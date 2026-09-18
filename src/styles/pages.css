@@ -22,6 +22,15 @@
   padding-left: 0.22em;
   text-transform: uppercase;
   color: var(--muted);
+  text-wrap: balance;
+}
+
+@media (max-width: 30em) {
+  .landing__eyebrow {
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    padding-left: 0.18em;
+  }
 }
 
 .landing__name {

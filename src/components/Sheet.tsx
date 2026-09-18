@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { Link } from 'react-router'
+import { Link } from '../lib/router'
 import { ArrowLeft } from './Glyph'
 import { Wordmark } from './Wordmark'
 import { Footer } from './Footer'
@@ -30,7 +30,7 @@ export function Sheet({ children, className = '', withTop = false, pageKey }: Sh
 
 export function BackToMenu() {
   return (
-    <Link to="/menu" viewTransition className="link back">
+    <Link to="/menu" className="link back">
       <ArrowLeft />
       Back To The Menu
     </Link>

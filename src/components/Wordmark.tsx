@@ -1,4 +1,4 @@
-import { Link } from 'react-router'
+import { Link } from '../lib/router'
 import { site } from '../lib/content'
 
 interface WordmarkProps {
@@ -11,7 +11,7 @@ export function Wordmark({ className = '', as = 'span', to }: WordmarkProps) {
   const cls = `wordmark ${className}`.trim()
   if (to) {
     return (
-      <Link to={to} viewTransition className={cls} aria-label={`${site.name}, back to the menu`}>
+      <Link to={to} className={cls} aria-label={`${site.name}, back to the menu`}>
         {site.name}
       </Link>
     )

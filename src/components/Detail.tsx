@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { Link } from 'react-router'
+import { Link } from '../lib/router'
 import { ArrowRight } from './Glyph'
 import { BackToMenu } from './Sheet'
 import type { Stat } from '../lib/content'
@@ -74,7 +74,7 @@ export function PageNav({ nextTo, nextLabel }: PageNavProps) {
   return (
     <nav className="page__nav" aria-label="Menu navigation">
       <BackToMenu />
-      <Link to={nextTo} viewTransition className="link">
+      <Link to={nextTo} className="link">
         <em>Next On The Menu</em> {nextLabel}
         <ArrowRight />
       </Link>

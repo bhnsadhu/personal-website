@@ -34,7 +34,7 @@ interface RevealProps {
 }
 
 export function Reveal({ as = 'div', className = '', children }: RevealProps) {
-  const ref = useRef<HTMLElement>(null)
+  const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const el = ref.current
@@ -48,9 +48,8 @@ export function Reveal({ as = 'div', className = '', children }: RevealProps) {
     return () => io.unobserve(el)
   }, [])
 
-  const Tag = as
+  const Tag = as as 'div'
   return (
-    // @ts-expect-error ref typing across dynamic tags
     <Tag ref={ref} className={`reveal ${className}`.trim()}>
       {children}
     </Tag>

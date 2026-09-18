@@ -100,7 +100,7 @@ export const courses = {
   mains: { name: 'Mains', sub: 'Work Experience' },
   sides: { name: 'Sides', sub: 'Leadership & Involvement' },
   specials: { name: 'Specials', sub: 'Projects' },
-  chefsTable: { name: "Chef's Table", sub: 'Personal Interests' },
+  chefsTable: { name: 'Chef’s Table', sub: 'Personal Interests' },
   ingredients: { name: 'Ingredients', sub: 'Skills & Tools' },
 } satisfies Record<string, CourseMeta>
 
@@ -317,36 +317,37 @@ export const interests: Interest[] = [
   { title: '[Interest Four]', text: '[One sentence on it and why it stuck.]' },
 ]
 
+/* Skill tags render inside typographic brackets, so the data itself is unbracketed. */
 export const skillGroups: SkillGroup[] = [
   {
     label: 'Languages',
-    items: ['[Language One]', '[Language Two]', '[Language Three]', '[Language Four]'],
+    items: ['Language One', 'Language Two', 'Language Three', 'Language Four'],
   },
   {
     label: 'Frameworks',
-    items: ['[Framework One]', '[Framework Two]', '[Framework Three]', '[Library One]'],
+    items: ['Framework One', 'Framework Two', 'Framework Three', 'Library One'],
   },
   {
     label: 'Data & Infrastructure',
-    items: ['[Database One]', '[Database Two]', '[Cloud One]', '[Cloud Two]', '[Queue]'],
+    items: ['Database One', 'Database Two', 'Cloud One', 'Cloud Two', 'Queue'],
   },
   {
     label: 'Tools & Practices',
-    items: ['[Tool One]', '[Tool Two]', '[Tool Three]', '[Practice One]', '[Practice Two]'],
+    items: ['Tool One', 'Tool Two', 'Tool Three', 'Practice One', 'Practice Two'],
   },
 ]
 
 /** The tags shown on the single collapsed line of the Ingredients course. */
 export const skillHighlights: string[] = [
-  '[Language One]',
-  '[Framework One]',
-  '[Language Two]',
-  '[Database One]',
-  '[Cloud One]',
-  '[Framework Two]',
-  '[Tool One]',
-  '[Language Three]',
-  '[Practice One]',
+  'Language One',
+  'Framework One',
+  'Language Two',
+  'Database One',
+  'Cloud One',
+  'Framework Two',
+  'Tool One',
+  'Language Three',
+  'Practice One',
 ]
 
 export function findBySlug<T extends { slug: string }>(list: T[], slug: string | undefined) {

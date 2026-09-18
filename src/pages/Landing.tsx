@@ -1,5 +1,5 @@
 import { useEffect, type CSSProperties } from 'react'
-import { Link, useNavigate } from 'react-router'
+import { Link, navigate } from '../lib/router'
 import { ArrowRight } from '../components/Glyph'
 import { Wordmark } from '../components/Wordmark'
 import { site } from '../lib/content'
@@ -9,7 +9,6 @@ const step = (i: number) => ({ ['--i' as string]: i }) as CSSProperties
 
 export function Landing() {
   useTitle()
-  const navigate = useNavigate()
 
   // "Scroll or tap to be seated": a wheel, a swipe up, or a down key seats you.
   useEffect(() => {
@@ -18,7 +17,7 @@ export function Landing() {
     const seat = () => {
       if (seated) return
       seated = true
-      navigate('/menu', { viewTransition: true })
+      navigate('/menu')
     }
     const onWheel = (e: WheelEvent) => {
       if (e.deltaY > 8) seat()
@@ -43,7 +42,7 @@ export function Landing() {
       window.removeEventListener('touchmove', onTouchMove)
       window.removeEventListener('keydown', onKey)
     }
-  }, [navigate])
+  }, [])
 
   return (
     <main className="landing">
@@ -56,7 +55,7 @@ export function Landing() {
           {site.tagline}
         </p>
         <div className="landing__cta fade-up" style={step(3)}>
-          <Link to="/menu" viewTransition className="btn">
+          <Link to="/menu" className="btn">
             View The Menu
             <ArrowRight />
           </Link>

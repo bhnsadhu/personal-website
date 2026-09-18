@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { Link } from 'react-router'
+import { Link } from '../lib/router'
 
 interface RowProps {
   to: string
@@ -16,7 +16,7 @@ interface RowProps {
  */
 export function Row({ to, title, inline, description, note, action }: RowProps) {
   return (
-    <Link to={to} viewTransition className="row row--link">
+    <Link to={to} className="row row--link">
       <span className="row__head">
         <span className="row__title">{title}</span>
         {inline && <span className="row__inline">{inline}</span>}

@@ -1,4 +1,4 @@
-import { useParams } from 'react-router'
+import { useParams } from '../lib/router'
 import { CourseLabel } from '../components/Course'
 import { PageNav, Prose, Section } from '../components/Detail'
 import { Sheet } from '../components/Sheet'
