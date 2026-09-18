@@ -26,7 +26,7 @@ export function Menu() {
             <Row
               to="/starters"
               title={starter.title}
-              description={starter.description}
+              meta={starter.description}
               action={<View />}
             />
           </Course>
@@ -38,8 +38,9 @@ export function Menu() {
               <Row
                 key={main.slug}
                 to={`/mains/${main.slug}`}
-                title={`${main.role} · ${main.company}`}
-                inline={main.dates}
+                title={main.role}
+                subtitle={main.company}
+                meta={main.dates}
                 action={<View />}
               />
             ))}
@@ -52,8 +53,9 @@ export function Menu() {
               <Row
                 key={side.slug}
                 to={`/sides/${side.slug}`}
-                title={`${side.position} · ${side.organization}`}
-                inline={side.dates}
+                title={side.position}
+                subtitle={side.organization}
+                meta={side.dates}
                 action={<View />}
               />
             ))}
@@ -67,8 +69,8 @@ export function Menu() {
                 key={special.slug}
                 to={`/specials/${special.slug}`}
                 title={special.name}
-                description={special.description}
-                note={special.stack.join(' · ')}
+                meta={special.description}
+                note={special.stack.join(', ')}
                 action={<Status kind={special.status} />}
               />
             ))}
@@ -80,7 +82,7 @@ export function Menu() {
             <Row
               to="/chefs-table"
               title={chefsTable.title}
-              description={chefsTable.description}
+              meta={chefsTable.description}
               action={<View />}
             />
           </Course>

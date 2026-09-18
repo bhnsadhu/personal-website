@@ -45,8 +45,15 @@ Motion is ease-out only (`--ease-out`), no bounce; respect reduced motion.
 - Courses, in order: Starters (About Me), Mains (Work Experience), Sides
   (Leadership & Involvement), Specials (Projects), Chef’s Table (Personal
   Interests), Ingredients (Skills & Tools).
+- Course header: name left (accent caps), plain-English sub-label right
+  (muted). No rules under headers or between rows; whitespace does the work.
+- Row shape: `[Bold Title] · Regular Subtitle | meta`, thin muted bar as the
+  separator, action flush right in bold. On phones the bar hides and meta
+  drops to its own line.
 - Row action is always **View**; project status is **Live** (green) or
-  **Soon** (gray) with a dot.
+  **Soon** (gray) with a dot. Tech-stack notes are comma-separated, italic.
+- Footer is icons only (Email, LinkedIn, GitHub, Resume in accent) above a
+  thin rule; labels live in `aria-label`/`title`.
 - Dish pages: `← Back To The Menu` top and bottom, `Next On The Menu` at the
   bottom. Mains use What I Owned / What I Actually Did / What Came Of It.
   Specials use The Situation / The Ask / How It Came Together / The Result,

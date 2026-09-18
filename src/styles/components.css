@@ -14,6 +14,7 @@
     margin-block: var(--s-6);
     padding: var(--s-6) 3.25rem var(--s-5);
     border: 1px solid var(--border);
+    border-radius: 6px;
     box-shadow:
       0 1px 2px rgba(26, 26, 26, 0.03),
       0 20px 44px -36px rgba(26, 26, 26, 0.16);
@@ -108,10 +109,10 @@
 
 .course__head {
   display: flex;
+  justify-content: space-between;
   align-items: baseline;
-  gap: 0.875rem;
-  padding-bottom: var(--s-2);
-  border-bottom: 1px solid var(--rule);
+  gap: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 .course__sub {
@@ -126,11 +127,7 @@
   grid-template-columns: minmax(0, 1fr) auto;
   column-gap: var(--s-4);
   align-items: baseline;
-  padding: var(--s-3) 0 var(--s-3);
-}
-
-.row + .row {
-  border-top: 1px solid var(--border);
+  padding: 0.5rem 0;
 }
 
 .row__head {
@@ -143,26 +140,34 @@
 }
 
 .row__title {
+  color: var(--ink);
+}
+
+.row__title strong {
   font-weight: 700;
 }
 
-.row__inline {
+.row__subtitle {
+  font-weight: 400;
+}
+
+/* Thin bar between the dish and its detail, like a rule on a printed menu. */
+.row__sep {
+  align-self: center;
+  width: 1px;
+  height: 1em;
+  background: var(--muted);
+}
+
+.row__meta {
   color: var(--ink-2);
   font-size: 0.9375rem;
   font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-}
-
-.row__desc {
-  grid-column: 1;
-  margin-top: 0.125rem;
-  font-size: 0.9375rem;
-  color: var(--ink-2);
 }
 
 .row__note {
   grid-column: 1;
-  margin-top: 0.25rem;
+  margin-top: 0.0625rem;
   font-size: 0.875rem;
   font-style: italic;
   color: var(--muted);
@@ -173,10 +178,11 @@
   grid-row: 1;
   justify-self: end;
   font-size: 0.9375rem;
+  font-weight: 700;
   white-space: nowrap;
 }
 
-.row--link .row__title {
+.row--link .row__title strong {
   text-decoration: underline;
   text-decoration-color: transparent;
   text-decoration-thickness: 1px;
@@ -184,13 +190,22 @@
   transition: text-decoration-color var(--dur-fast) var(--ease-out);
 }
 
-.row--link:hover .row__title,
-.row--link:focus-visible .row__title {
+.row--link:hover .row__title strong,
+.row--link:focus-visible .row__title strong {
   text-decoration-color: var(--muted);
 }
 
 .row--link:focus-visible {
-  outline-offset: 0;
+  outline-offset: 2px;
+}
+
+@media (max-width: 34em) {
+  .row__sep {
+    display: none;
+  }
+  .row__meta {
+    flex-basis: 100%;
+  }
 }
 
 /* ---------------- Status ---------------- */
@@ -199,6 +214,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  font-weight: 700;
 }
 
 .status__dot {
@@ -467,60 +483,45 @@
 
 .footer {
   margin-top: var(--s-6);
-  padding-top: var(--s-5);
+  padding-top: var(--s-4);
   border-top: 1px solid var(--rule);
   text-align: center;
 }
 
 .footer__links {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 0.75rem 1.875rem;
-}
-
-@media (max-width: 26em) {
-  .footer__links {
-    display: grid;
-    grid-template-columns: repeat(2, max-content);
-    justify-content: center;
-    gap: 0.875rem 2.25rem;
-  }
-  .footer__link {
-    justify-content: flex-start;
-  }
+  gap: 0.75rem;
 }
 
 .footer__link {
   display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
+  padding: 0.5rem;
   color: var(--ink);
-  text-decoration: underline;
-  text-decoration-color: transparent;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.22em;
-  transition: text-decoration-color var(--dur-fast) var(--ease-out);
-}
-
-.footer__link:hover,
-.footer__link:focus-visible {
-  text-decoration-color: var(--muted);
+  transition: color var(--dur-fast) var(--ease-out);
 }
 
 .footer__link svg {
   width: 20px;
   height: 20px;
-  color: var(--ink);
 }
 
-.footer__link--accent svg {
+.footer__link--accent {
   color: var(--accent);
 }
 
+.footer__link:hover,
+.footer__link:focus-visible {
+  color: var(--accent);
+}
+
+.footer__link--accent:hover,
+.footer__link--accent:focus-visible {
+  color: var(--ink);
+}
+
 .footer__note {
-  margin-top: var(--s-4);
+  margin-top: var(--s-3);
   font-size: 0.75rem;
   color: var(--muted);
 }

@@ -6,21 +6,38 @@ export function Footer() {
   return (
     <footer className="footer">
       <nav className="footer__links" aria-label="Contact">
-        <a className="footer__link" href={site.email}>
+        <a className="footer__link" href={site.email} aria-label="Email" title="Email">
           <IconMail />
-          Email
         </a>
-        <a className="footer__link" href={site.linkedin} target="_blank" rel="noreferrer">
+        <a
+          className="footer__link"
+          href={site.linkedin}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="LinkedIn"
+          title="LinkedIn"
+        >
           <IconLinkedin />
-          LinkedIn
         </a>
-        <a className="footer__link" href={site.github} target="_blank" rel="noreferrer">
+        <a
+          className="footer__link"
+          href={site.github}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="GitHub"
+          title="GitHub"
+        >
           <IconGithub />
-          GitHub
         </a>
-        <a className="footer__link footer__link--accent" href={site.resume} target="_blank" rel="noreferrer">
+        <a
+          className="footer__link footer__link--accent"
+          href={site.resume}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Resume"
+          title="Resume"
+        >
           <IconFileText />
-          Resume
         </a>
       </nav>
       <p className="footer__note">

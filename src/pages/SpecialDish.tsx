@@ -24,7 +24,7 @@ export function SpecialDish() {
         <p className="page__meta">
           <Status kind={special.status} />
           <span>·</span>
-          <span className="row__note">{special.stack.join(' · ')}</span>
+          <span className="row__note">{special.stack.join(', ')}</span>
         </p>
         <p className="page__lede">{special.description}</p>
       </header>

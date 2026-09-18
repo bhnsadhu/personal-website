@@ -105,8 +105,8 @@ export const courses = {
 } satisfies Record<string, CourseMeta>
 
 export const starter: Starter = {
-  title: '[Your Title] · [City, ST]',
-  description: '[One line on who you are and what you build.]',
+  title: '[Bio / About]',
+  description: '[One-Line Description]',
   heading: '[Your Name]',
   subtitle: '[Your Title] · [City, ST]',
   paragraphs: [
@@ -233,7 +233,7 @@ export const specials: Special[] = [
   {
     slug: 'project-one',
     name: '[Project One]',
-    description: '[One line on what it does and who it is for.]',
+    description: '[One-Line Description]',
     status: 'live',
     stack: ['[Framework]', '[Language]', '[Database]'],
     situation: [
@@ -258,7 +258,7 @@ export const specials: Special[] = [
   {
     slug: 'project-two',
     name: '[Project Two]',
-    description: '[One line on what it does and who it is for.]',
+    description: '[One-Line Description]',
     status: 'live',
     stack: ['[Framework]', '[Language]', '[Platform]'],
     situation: [
@@ -282,7 +282,7 @@ export const specials: Special[] = [
   {
     slug: 'project-three',
     name: '[Project Three]',
-    description: '[One line on what it will do and who it is for.]',
+    description: '[One-Line Description]',
     status: 'soon',
     stack: ['[Language]', '[Framework]', '[API]'],
     situation: [
