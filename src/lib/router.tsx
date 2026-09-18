@@ -10,10 +10,11 @@ import {
 import { flushSync } from 'react-dom'
 
 /**
- * A small client-side router. It does exactly four things this site needs:
+ * A small client-side router. It does exactly what this site needs:
  * path matching with :params, <Link> that intercepts plain left-clicks,
- * navigation wrapped in the View Transitions API where available, and
- * scroll restoration keyed per history entry. Nothing else.
+ * "/#anchor" links that scroll to a course on the home page, navigation
+ * wrapped in the View Transitions API where available, and scroll
+ * restoration keyed per history entry. Nothing else.
  */
 
 type Params = Record<string, string>
@@ -31,6 +32,14 @@ const listeners = new Set<() => void>()
 const positions = new Map<string, number>()
 let currentKey = 'initial'
 let pendingScroll: number | null = null
+let pendingHash: string | null = null
+
+function scrollToHash(hash: string) {
+  const el = document.getElementById(hash)
+  if (!el) return false
+  el.scrollIntoView({ block: 'start' })
+  return true
+}
 
 function emit() {
   for (const fn of listeners) fn()
@@ -64,7 +73,14 @@ function transition(update: () => void) {
 }
 
 export function navigate(to: string, options: { replace?: boolean } = {}) {
-  if (to === getPath()) return
+  const [path, hash = ''] = to.split('#')
+  if (path === getPath()) {
+    // Same page: just move to the anchor (or the top).
+    window.history.replaceState(window.history.state, '', to)
+    if (hash) scrollToHash(hash)
+    else window.scrollTo({ top: 0 })
+    return
+  }
   positions.set(currentKey, window.scrollY)
   const key = Math.random().toString(36).slice(2, 10)
   const state: EntryState = { key }
@@ -72,7 +88,8 @@ export function navigate(to: string, options: { replace?: boolean } = {}) {
     if (options.replace) window.history.replaceState(state, '', to)
     else window.history.pushState(state, '', to)
     currentKey = key
-    pendingScroll = 0
+    pendingScroll = hash ? null : 0
+    pendingHash = hash || null
     emit()
   })
 }
@@ -93,6 +110,7 @@ function install() {
   const state = window.history.state as EntryState | null
   if (state?.key) currentKey = state.key
   else window.history.replaceState({ key: currentKey } satisfies EntryState, '')
+  if (window.location.hash) pendingHash = window.location.hash.slice(1)
   window.addEventListener('popstate', onPopState)
 }
 
@@ -126,8 +144,17 @@ export function Router({ routes }: { routes: Route[] }) {
 
   // Restore (or reset) scroll after the new page has committed.
   useLayoutEffect(() => {
+    if (pendingHash) {
+      const hash = pendingHash
+      pendingHash = null
+      pendingScroll = null
+      // Fonts and images can still shift layout on first paint; try again next frame.
+      if (!scrollToHash(hash)) requestAnimationFrame(() => scrollToHash(hash))
+      else requestAnimationFrame(() => scrollToHash(hash))
+      return
+    }
     if (pendingScroll === null) return
-    window.scrollTo(0, pendingScroll)
+    window.scrollTo({ top: pendingScroll, behavior: 'instant' })
     pendingScroll = null
   }, [path])
 

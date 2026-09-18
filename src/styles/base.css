@@ -1,5 +1,3 @@
-/* Fonts come from Google Fonts (see index.html). Two families, nothing else. */
-
 *,
 *::before,
 *::after {
@@ -7,26 +5,28 @@
 }
 
 html {
-  background: var(--paper);
+  background: var(--white);
+  scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
-  font: 400 0.9375rem/1.6 var(--serif);
-  color: var(--ink);
-  background: var(--paper);
+  padding-top: var(--nav-h);
+  font: 400 16px/1.5 var(--sans);
+  color: var(--black);
+  background: var(--white);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  font-kerning: normal;
   overflow-x: hidden;
 }
 
 h1,
 h2,
 h3,
+h4,
 p,
 ul,
 ol,
@@ -56,113 +56,286 @@ button {
   cursor: pointer;
 }
 
+img,
 svg {
   display: block;
 }
 
+img {
+  max-width: 100%;
+}
+
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--black);
   outline-offset: 3px;
-  border-radius: 4px;
 }
 
 ::selection {
-  background: var(--border);
-  color: var(--ink);
+  background: var(--black);
+  color: var(--white);
 }
 
-.wordmark {
-  font-family: var(--logo);
-  font-weight: 800;
-  color: var(--accent);
-  letter-spacing: -0.01em;
+.container {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* ---------------- Type scale ---------------- */
+
+.t-section {
+  font-size: 80px;
+  font-weight: 900;
   line-height: 1;
-  white-space: nowrap;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
 }
 
-/* Baloo 2 at 500: only the landing tagline. */
-.logo-copy {
-  font-family: var(--logo);
-  font-weight: 500;
+.t-statement {
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
 }
 
-/* Uppercase, tracked label. Used for course names and section labels only. */
-.label {
-  font-size: 0.75rem;
+.t-category {
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.t-card {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+}
+
+.t-lead {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.t-summary {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.t-label {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.t-nav {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.t-mono {
+  font-family: var(--mono);
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--accent);
 }
 
-.glyph {
-  width: 0.875em;
-  height: 0.875em;
-  flex: none;
-  transition: transform var(--dur-fast) var(--ease-out);
+.t-meta {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
+.measure {
+  max-width: 62ch;
+}
+
+.measure-narrow {
+  max-width: 52ch;
+}
+
+@media (max-width: 768px) {
+  .t-section {
+    font-size: 48px;
+  }
+  .t-statement {
+    font-size: 32px;
+  }
+  .t-category {
+    font-size: 24px;
+  }
+}
+
+/* ---------------- Shared pieces ---------------- */
+
+/* Text link with an arrow that nudges on hover. */
+.arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.arrow-link .arrow {
+  display: inline-block;
+  transition: transform var(--fast);
+}
+
+.arrow-link:hover .arrow {
+  transform: translateX(4px);
+}
+
+.arrow-link--back:hover .arrow {
+  transform: translateX(-4px);
+}
+
+/* The one button: black rectangle, white uppercase text. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s3);
+  padding: var(--s4) var(--s8);
+  background: var(--black);
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   white-space: nowrap;
   border: 0;
-}
-
-/* ---------------- Motion ---------------- */
-
-@keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.fade-up {
-  opacity: 0;
-  animation: fade-up 620ms var(--ease-out) forwards;
-  animation-delay: calc(var(--i, 0) * 150ms + 60ms);
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(12px);
+  border-radius: 0;
   transition:
-    opacity var(--dur) var(--ease-out),
-    transform var(--dur) var(--ease-out);
+    transform var(--fast),
+    background var(--fast);
 }
 
-.reveal.is-in {
-  opacity: 1;
-  transform: none;
+.btn:hover {
+  transform: translateY(-2px);
+  background: var(--dark-hover);
 }
 
-@keyframes page-in {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
+.btn .arrow {
+  transition: transform var(--fast);
+}
+
+.btn:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* Tag / chip: mono, uppercase, outlined. */
+.tag {
+  display: inline-block;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition:
+    border-color var(--fast),
+    background var(--fast);
+}
+
+.tag:hover {
+  border-color: var(--border-hover);
+  background: var(--surface);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+}
+
+/* Live / soon status with the green dot. */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.status__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-3);
+  flex: none;
+}
+
+.status--live .status__dot {
+  background: var(--green);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(22, 163, 74, 0);
   }
 }
 
-html:not(.vt) .page-enter {
-  animation: page-in 380ms var(--ease-out) both;
+/* Eyebrow + big title + 3px rule, used by every course. */
+.course-head {
+  padding-bottom: var(--s6);
+  border-bottom: 3px solid var(--black);
+  margin-bottom: var(--s8);
 }
 
+.course-head__eyebrow {
+  color: var(--text-3);
+}
+
+.course-head__title {
+  margin-top: var(--s4);
+}
+
+.course-head__lede {
+  margin-top: var(--s4);
+  font-size: 18px;
+  color: var(--text-2);
+}
+
+.section {
+  padding: var(--s11) 0;
+  border-top: 1px solid var(--border);
+  scroll-margin-top: var(--nav-h-scrolled);
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--s10) 0;
+  }
+}
+
+/* Route change: quick crossfade. */
 ::view-transition-old(root) {
-  animation: 150ms var(--ease-out) both vt-out;
+  animation: 0.15s ease both vt-out;
 }
 
 ::view-transition-new(root) {
-  animation: 300ms var(--ease-out) 50ms both vt-in;
+  animation: 0.15s ease both vt-in;
 }
 
 @keyframes vt-out {
@@ -174,26 +347,17 @@ html:not(.vt) .page-enter {
 @keyframes vt-in {
   from {
     opacity: 0;
-    transform: translateY(10px);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .fade-up,
-  .page-enter {
-    animation: none;
-    opacity: 1;
+  html {
+    scroll-behavior: auto;
   }
-  .reveal {
-    transition: none;
-    opacity: 1;
-    transform: none;
-  }
-  ::view-transition-old(root),
-  ::view-transition-new(root) {
-    animation: none;
-  }
-  .glyph {
-    transition: none;
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
   }
 }
