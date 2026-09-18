@@ -172,28 +172,6 @@ export const mains: Main[] = [
     ],
     ingredients: ['[Language]', '[Framework]', '[Database]', '[Tool]'],
   },
-  {
-    slug: 'role-three',
-    role: '[Role Three]',
-    company: '[Company Three]',
-    location: '[City, ST]',
-    dates: '[Mon YYYY] – [Mon YYYY]',
-    summary: '[One line on the scope of the role and the team it sat on.]',
-    owned: [
-      '[The project or component you were accountable for.]',
-      '[The second thing you owned.]',
-    ],
-    did: [
-      '[A concrete thing you built, with the technology named.]',
-      '[A bug, migration, or integration you carried across the line.]',
-      '[Something you learned the hard way and fixed for everyone.]',
-    ],
-    cameOf: [
-      '[A measured outcome, with the number.]',
-      '[What changed for the people who used it.]',
-    ],
-    ingredients: ['[Language]', '[Framework]', '[Tool]'],
-  },
 ]
 
 export const sides: Side[] = [
@@ -259,32 +237,8 @@ export const specials: Special[] = [
     slug: 'project-two',
     name: '[Project Two]',
     description: '[One-Line Description]',
-    status: 'live',
-    stack: ['[Framework]', '[Language]', '[Platform]'],
-    situation: [
-      '[Two or three sentences on the context: who had the problem, why it mattered, and what was already there.]',
-    ],
-    ask: ['[What you set out to deliver, stated in one plain sentence.]'],
-    how: [
-      '[The architecture or approach you chose and why.]',
-      '[The hardest part and how you got through it.]',
-      '[A tradeoff you made deliberately.]',
-    ],
-    result: ['[One or two sentences on what shipped and what happened after.]'],
-    stats: [
-      { value: '[850]', label: '[Metric One]' },
-      { value: '[99.9%]', label: '[Metric Two]' },
-    ],
-    ingredients: ['[Language]', '[Framework]', '[Platform]', '[Tool]'],
-    siteUrl: 'https://[project-two].example',
-    codeUrl: 'https://github.com/[your-handle]/[project-two]',
-  },
-  {
-    slug: 'project-three',
-    name: '[Project Three]',
-    description: '[One-Line Description]',
     status: 'soon',
-    stack: ['[Language]', '[Framework]', '[API]'],
+    stack: ['[Framework]', '[Language]', '[Platform]'],
     situation: [
       '[Two or three sentences on the context: who has the problem, why it matters, and what exists today.]',
     ],
@@ -299,8 +253,8 @@ export const specials: Special[] = [
       { value: '[Q4]', label: '[Target Launch]' },
       { value: '[12]', label: '[Metric Two]' },
     ],
-    ingredients: ['[Language]', '[Framework]', '[API]', '[Tool]'],
-    codeUrl: 'https://github.com/[your-handle]/[project-three]',
+    ingredients: ['[Language]', '[Framework]', '[Platform]', '[Tool]'],
+    codeUrl: 'https://github.com/[your-handle]/[project-two]',
   },
 ]
 

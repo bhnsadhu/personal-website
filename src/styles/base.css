@@ -41,7 +41,7 @@ html {
 
 body {
   margin: 0;
-  font: 400 1rem/1.6 var(--serif);
+  font: 400 0.9375rem/1.6 var(--serif);
   color: var(--ink);
   background: var(--paper);
   -webkit-font-smoothing: antialiased;
@@ -49,12 +49,6 @@ body {
   text-rendering: optimizeLegibility;
   font-kerning: normal;
   overflow-x: hidden;
-}
-
-@media (min-width: 40em) {
-  body {
-    font-size: 1.0625rem;
-  }
 }
 
 h1,
@@ -117,7 +111,7 @@ svg {
 .label {
   font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: var(--track);
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--accent);
 }

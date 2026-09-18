@@ -47,9 +47,13 @@ Motion is ease-out only (`--ease-out`), no bounce; respect reduced motion.
   Interests), Ingredients (Skills & Tools).
 - Course header: name left (accent caps), plain-English sub-label right
   (muted). No rules under headers or between rows; whitespace does the work.
-- Row shape: `[Bold Title] · Regular Subtitle | meta`, thin muted bar as the
-  separator, action flush right in bold. On phones the bar hides and meta
-  drops to its own line.
+- Row shape: `[Bold Title] · Regular Subtitle | meta`, a plain muted `|` as
+  the separator, action flush right in 12px bold. On phones the bar hides
+  and meta drops to its own line.
+- Exact scale: sheet 640px / 48×52px padding / 4px radius; wordmark 40px;
+  À La Carte 11px bold 0.2em; course name 12px bold 0.1em; sub-label 11px;
+  item 15px; description 13px; View/Live/Soon/See All 12px bold; stack note
+  12px italic muted; rows 5px padding; header→rows 10px; course gap 24px.
 - Row action is always **View**; project status is **Live** (green) or
   **Soon** (gray) with a dot. Tech-stack notes are comma-separated, italic.
 - Footer is icons only (Email, LinkedIn, GitHub, Resume in accent) above a

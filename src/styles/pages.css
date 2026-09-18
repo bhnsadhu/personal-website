@@ -63,22 +63,24 @@
 }
 
 .menu__name {
-  font-size: clamp(2.25rem, 7vw, 3rem);
+  font-size: 2.5rem;
+  letter-spacing: -0.01em;
   white-space: normal;
 }
 
 .menu__carte {
   display: inline-flex;
   align-items: center;
-  gap: 0.875rem;
-  margin-top: var(--s-3);
-  font-size: 0.8125rem;
-  letter-spacing: 0.18em;
+  gap: 0.75rem;
+  margin-top: 6px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
   color: var(--muted);
 }
 
 .menu__carte span {
-  padding-left: 0.18em;
+  padding-left: 0.2em;
 }
 
 .menu__carte::before,
@@ -92,8 +94,8 @@
 
 .menu__courses {
   display: grid;
-  gap: var(--s-5);
-  margin-top: clamp(2.5rem, 6vw, 3.5rem);
+  gap: 24px;
+  margin-top: 32px;
 }
 
 /* ---------------- Detail pages ---------------- */
@@ -106,11 +108,11 @@
 }
 
 .page__wordmark {
-  font-size: 1.375rem;
+  font-size: 1.25rem;
 }
 
 .page__head {
-  padding-top: var(--s-5);
+  padding-top: 32px;
 }
 
 .page__course {
@@ -121,8 +123,8 @@
 }
 
 .page__title {
-  margin-top: var(--s-3);
-  font-size: clamp(1.75rem, 4.8vw, 2.375rem);
+  margin-top: 10px;
+  font-size: clamp(1.625rem, 4.5vw, 2rem);
   line-height: 1.15;
   font-weight: 700;
   letter-spacing: -0.005em;
@@ -133,23 +135,24 @@
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: 0.25rem 0.75rem;
-  margin-top: var(--s-2);
+  gap: 0.25rem 0.625rem;
+  margin-top: 6px;
+  font-size: 0.8125rem;
   color: var(--ink-2);
   font-variant-numeric: tabular-nums;
 }
 
 .page__lede {
-  margin-top: var(--s-3);
-  font-size: 1.125rem;
+  margin-top: 10px;
+  font-size: 0.9375rem;
   color: var(--ink-2);
   text-wrap: pretty;
 }
 
 .page__body {
   display: grid;
-  gap: var(--s-5);
-  margin-top: var(--s-6);
+  gap: 28px;
+  margin-top: 36px;
 }
 
 .page__nav {
@@ -158,12 +161,14 @@
   justify-content: space-between;
   align-items: baseline;
   gap: var(--s-3) var(--s-4);
-  margin-top: var(--s-6);
-  font-size: 0.875rem;
+  margin-top: 40px;
+  font-size: 0.75rem;
+  font-weight: 700;
 }
 
 .page__nav .link em {
   font-style: normal;
+  font-weight: 400;
   color: var(--ink-2);
 }
 
@@ -174,5 +179,5 @@
 }
 
 .missing .btn {
-  margin-top: var(--s-5);
+  margin-top: 28px;
 }

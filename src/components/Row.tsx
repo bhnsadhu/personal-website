@@ -28,7 +28,9 @@ export function Row({ to, title, subtitle, meta, note, action }: RowProps) {
         </span>
         {meta && (
           <>
-            <span className="row__sep" aria-hidden="true" />
+            <span className="row__sep" aria-hidden="true">
+              |
+            </span>
             <span className="row__meta">{meta}</span>
           </>
         )}
