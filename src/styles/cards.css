@@ -1,0 +1,576 @@
+/* ==================================================================
+   Cards. One flip/expand model everywhere: the open card takes most
+   of the row, siblings slide back to slivers. Escape closes.
+   ================================================================== */
+
+/* ---------------- Rows ---------------- */
+
+.row {
+  display: grid;
+  gap: 20px;
+  align-items: stretch;
+  transition: grid-template-columns var(--slide) var(--ease);
+}
+
+/* Short sets (leadership, personal): cap card width, center the set. */
+.row--flop {
+  max-width: calc(var(--n) * 300px + (var(--n) - 1) * 20px);
+  margin-inline: auto;
+}
+
+.row--flop.has-open {
+  max-width: 100%;
+}
+
+/* The hero fan: overlapped and rotated until a card opens. */
+.row--fan:not(.has-open) {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 32px 0 12px;
+}
+
+.row--fan:not(.has-open) .card {
+  flex: none;
+  width: 224px;
+  margin-left: -64px;
+  transform: rotate(var(--rot, 0deg));
+  transform-origin: 50% 150%;
+  transition:
+    transform var(--fast) var(--ease),
+    z-index 0s;
+}
+
+.row--fan:not(.has-open) .card:first-child {
+  margin-left: 0;
+}
+
+.row--fan:not(.has-open) .card:hover,
+.row--fan:not(.has-open) .card:focus-within {
+  transform: rotate(var(--rot, 0deg)) translateY(-18px);
+  z-index: 2;
+}
+
+/* Deal-in on first paint. */
+.deal {
+  animation: deal 0.7s var(--ease) backwards;
+  animation-delay: calc(var(--i, 0) * 120ms + 180ms);
+}
+
+@keyframes deal {
+  from {
+    opacity: 0;
+    transform: translate(-40vw, 30vh) rotate(-40deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(var(--rot, 0deg));
+  }
+}
+
+/* ---------------- One card ---------------- */
+
+.card {
+  position: relative;
+  min-width: 0;
+  perspective: 1400px;
+}
+
+.card__inner {
+  position: relative;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform var(--flip) var(--ease);
+}
+
+.card.is-open .card__inner {
+  transform: rotateY(180deg);
+}
+
+.card__front,
+.card__back {
+  border-radius: var(--card-radius);
+  background: var(--cream);
+  color: var(--ink);
+  box-shadow: var(--card-shadow);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.card__front {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 5 / 7;
+  overflow: hidden;
+  text-align: left;
+  transition:
+    transform var(--fast) var(--ease),
+    box-shadow var(--fast) var(--ease),
+    opacity var(--fast) var(--ease);
+}
+
+/* Inner printed rule, like real card stock. */
+.card__front::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px solid var(--cream-3);
+  border-radius: calc(var(--card-radius) - 4px);
+  pointer-events: none;
+}
+
+.card:not(.is-open):not(.is-down) .card__front:hover,
+.card:not(.is-open):not(.is-down) .card__front:focus-visible {
+  transform: translateY(-6px);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.card__corner {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 19px;
+  letter-spacing: -0.02em;
+}
+
+.card__corner--tl {
+  top: 14px;
+  left: 15px;
+}
+
+.card__corner--br {
+  bottom: 14px;
+  right: 15px;
+  transform: rotate(180deg);
+}
+
+.card__corner .suit {
+  font-size: 17px;
+  margin-top: 3px;
+}
+
+.card__face-body {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding: 52px 24px 48px;
+  text-align: center;
+}
+
+.card__tag-corner {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  color: var(--ink-2);
+}
+
+.card__title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(18px, 1.6vw, 24px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.card__subtitle {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--ink-2);
+}
+
+.card__meta {
+  margin-top: 6px;
+  color: var(--ink-2);
+}
+
+.card__hint {
+  position: absolute;
+  left: 40px;
+  right: 40px;
+  bottom: 16px;
+  text-align: center;
+  color: var(--ink-2);
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity var(--fast) var(--ease),
+    transform var(--fast) var(--ease);
+}
+
+.card__front:hover .card__hint,
+.card__front:focus-visible .card__hint {
+  opacity: 1;
+  transform: none;
+}
+
+/* Face cards (leadership): a framed portrait letter, mirrored like the real thing. */
+.card--face .card__face-body {
+  justify-content: flex-end;
+  padding-bottom: 46px;
+}
+
+.card__portrait {
+  position: absolute;
+  top: 17%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(72px, 52%, 160px);
+  aspect-ratio: 3 / 4;
+  border: 1px solid var(--wine);
+  border-radius: 6px;
+  box-shadow:
+    inset 0 0 0 4px var(--cream),
+    inset 0 0 0 5px var(--wine);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(36px, 5vw, 68px);
+  line-height: 1;
+  color: var(--wine);
+}
+
+.card__portrait::before,
+.card__portrait::after {
+  content: attr(data-face);
+  position: absolute;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.card__portrait::before {
+  top: 9px;
+  left: 10px;
+}
+
+.card__portrait::after {
+  bottom: 9px;
+  right: 10px;
+  transform: rotate(180deg);
+}
+
+/* Face-down: still in the deck. */
+.card.is-down .card__front {
+  cursor: default;
+  color: var(--brass);
+  background-color: var(--bg-2);
+  background-image:
+    repeating-linear-gradient(45deg, rgba(176, 141, 87, 0.16) 0 1px, transparent 1px 11px),
+    repeating-linear-gradient(-45deg, rgba(176, 141, 87, 0.16) 0 1px, transparent 1px 11px);
+}
+
+.card.is-down .card__front::before {
+  border-color: var(--brass);
+  opacity: 0.6;
+}
+
+.card.is-down .suit {
+  color: var(--brass);
+}
+
+.card__down {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.card__down-mark .suit {
+  font-size: 44px;
+}
+
+.card__down-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brass-2);
+}
+
+/* ---------------- Back face (expanded content) ---------------- */
+
+.card__back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 28px 30px;
+  overflow: hidden;
+}
+
+.card.is-open .card__front {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  aspect-ratio: auto;
+}
+
+.card.is-open .card__back {
+  position: relative;
+  inset: auto;
+}
+
+.card__back-head {
+  position: relative;
+  display: grid;
+  gap: 6px;
+  padding-right: 48px;
+}
+
+.card__back-pip {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.card__back .eyebrow {
+  color: var(--wine);
+}
+
+.card__back-title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(24px, 2.4vw, 34px);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  outline: none;
+}
+
+.card__back-meta {
+  color: var(--ink-2);
+}
+
+.card__body {
+  display: grid;
+  gap: 14px;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.card__summary {
+  font-style: italic;
+  font-size: 17px;
+  color: var(--ink-2);
+}
+
+.card__list {
+  display: grid;
+  gap: 8px;
+}
+
+.card__list li {
+  position: relative;
+  padding-left: 22px;
+}
+
+.card__list li::before {
+  content: '♦';
+  position: absolute;
+  left: 2px;
+  top: 0.1em;
+  font-size: 12px;
+  color: var(--wine);
+}
+
+.card__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card__extlink {
+  justify-self: start;
+}
+
+.card__tags {
+  color: var(--ink-2);
+}
+
+.card__back-foot {
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid var(--cream-3);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px 20px;
+}
+
+.card__back .tlink {
+  color: var(--wine);
+}
+
+/* Slivers: the cards that slid back. Still clickable to switch. */
+.card.is-aside .card__front {
+  height: 100%;
+  min-height: 220px;
+  aspect-ratio: auto;
+  opacity: 0.6;
+}
+
+.card.is-aside .card__face-body,
+.card.is-aside .card__down-label {
+  opacity: 0;
+}
+
+.card.is-aside .card__front:hover,
+.card.is-aside .card__front:focus-visible {
+  opacity: 1;
+}
+
+/* ---------------- Toast ---------------- */
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  z-index: 60;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: var(--cream);
+  color: var(--ink);
+  box-shadow: var(--card-shadow);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 10px);
+  transition:
+    opacity var(--fast) var(--ease),
+    transform var(--fast) var(--ease);
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* ---------------- Reduced motion: fade, never rotate ---------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .row {
+    transition: none;
+  }
+  .card__inner {
+    transition: none;
+    transform-style: flat;
+  }
+  .card.is-open .card__inner {
+    transform: none;
+  }
+  .card__front,
+  .card__back {
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+    transition: opacity 0.2s ease;
+  }
+  .card__back {
+    transform: none;
+    opacity: 0;
+    visibility: hidden;
+  }
+  .card.is-open .card__back {
+    opacity: 1;
+    visibility: visible;
+  }
+  .card.is-open .card__front {
+    opacity: 0;
+    visibility: hidden;
+  }
+  .card:not(.is-open):not(.is-down) .card__front:hover {
+    transform: none;
+  }
+  .row--fan:not(.has-open) .card:hover {
+    transform: rotate(var(--rot, 0deg));
+  }
+  .deal {
+    animation: deal-fade 0.4s ease backwards;
+  }
+  .toast {
+    transition: none;
+  }
+}
+
+@keyframes deal-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+/* ---------------- Small screens: one column, no fan ---------------- */
+
+@media (max-width: 720px) {
+  .row {
+    grid-template-columns: 1fr !important;
+    gap: 14px;
+  }
+  .row--flop {
+    max-width: 100%;
+  }
+  .row--fan:not(.has-open) {
+    display: grid;
+    padding: 0;
+  }
+  .row--fan:not(.has-open) .card {
+    width: auto;
+    margin-left: 0;
+    transform: none;
+  }
+  .row--fan:not(.has-open) .card:hover {
+    transform: none;
+  }
+  @keyframes deal {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .card__front {
+    aspect-ratio: 8 / 5;
+  }
+  .card__face-body {
+    padding: 40px 48px;
+  }
+  .card--face .card__face-body {
+    padding-bottom: 40px;
+  }
+  .card__portrait {
+    top: 12%;
+    width: 84px;
+  }
+  .card.is-aside .card__front {
+    height: 64px;
+    min-height: 0;
+  }
+  .card__back {
+    padding: 22px 20px;
+  }
+}
