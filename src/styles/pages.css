@@ -1,0 +1,174 @@
+/* ---------------- Landing ---------------- */
+
+.landing {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: var(--s-6) var(--gutter);
+  text-align: center;
+}
+
+.landing__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 34rem;
+}
+
+.landing__eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  padding-left: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.landing__name {
+  margin-top: var(--s-4);
+  font-size: clamp(2.875rem, 10vw, 4.75rem);
+  white-space: normal;
+}
+
+.landing__tagline {
+  margin-top: var(--s-3);
+  font-size: clamp(1.125rem, 2.6vw, 1.375rem);
+  font-style: italic;
+  color: var(--ink-2);
+}
+
+.landing__cta {
+  margin-top: var(--s-5);
+}
+
+.landing__hint {
+  margin-top: var(--s-4);
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+/* ---------------- Menu ---------------- */
+
+.menu__head {
+  text-align: center;
+}
+
+.menu__name {
+  font-size: clamp(2.25rem, 7vw, 3rem);
+  white-space: normal;
+}
+
+.menu__carte {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.875rem;
+  margin-top: var(--s-3);
+  font-size: 0.8125rem;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+}
+
+.menu__carte span {
+  padding-left: 0.18em;
+}
+
+.menu__carte::before,
+.menu__carte::after {
+  content: '';
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.menu__courses {
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 3.5rem);
+  margin-top: clamp(2.5rem, 6vw, 3.5rem);
+}
+
+/* ---------------- Detail pages ---------------- */
+
+.page__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--s-4);
+  padding-bottom: var(--s-4);
+  border-bottom: 1px solid var(--rule);
+}
+
+.page__wordmark {
+  font-size: 1.375rem;
+}
+
+.page__head {
+  padding-top: var(--s-5);
+}
+
+.page__course {
+  display: flex;
+  align-items: baseline;
+  gap: 0.875rem;
+}
+
+.page__title {
+  margin-top: var(--s-3);
+  font-size: clamp(1.75rem, 4.8vw, 2.375rem);
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  text-wrap: balance;
+}
+
+.page__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.75rem;
+  margin-top: var(--s-2);
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.page__lede {
+  margin-top: var(--s-3);
+  font-size: 1.125rem;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+
+.page__body {
+  display: grid;
+  gap: var(--s-5);
+  margin-top: var(--s-5);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--rule);
+}
+
+.page__nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--s-3) var(--s-4);
+  margin-top: var(--s-6);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--rule);
+  font-size: 0.875rem;
+}
+
+.page__nav .link em {
+  font-style: normal;
+  color: var(--ink-2);
+}
+
+/* ---------------- Not found ---------------- */
+
+.missing {
+  padding-top: var(--s-5);
+}
+
+.missing .btn {
+  margin-top: var(--s-5);
+}
