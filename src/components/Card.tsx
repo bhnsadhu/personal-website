@@ -90,7 +90,6 @@ export function Card({
           aria-expanded={faceDown ? undefined : open}
           aria-controls={faceDown ? undefined : backId}
           aria-disabled={faceDown || undefined}
-          aria-label={faceDown ? `${label}: ${title}, not dealt yet` : `${label}: ${title}. Flip to read more.`}
           onClick={faceDown ? onFaceDownClick : onOpen}
           inert={open}
         >
@@ -103,9 +102,13 @@ export function Card({
             <SuitGlyph suit={suit} />
           </span>
 
+          {/* Accessible name comes from the face itself: rank, suit, then the visible text. */}
+          <span className="sr-only">
+            {label}: {faceDown ? `${title}, ` : ''}
+          </span>
           {faceDown ? (
-            <span className="card__down" aria-hidden="true">
-              <span className="card__down-mark">
+            <span className="card__down">
+              <span className="card__down-mark" aria-hidden="true">
                 <SuitGlyph suit={suit} />
               </span>
               <span className="card__down-label">Not dealt yet</span>
@@ -121,9 +124,7 @@ export function Card({
               <span className="card__title">{title}</span>
               {subtitle && <span className="card__subtitle">{subtitle}</span>}
               {meta && <span className="card__meta mono mono--sm">{meta}</span>}
-              <span className="card__hint mono mono--sm" aria-hidden="true">
-                Tap to flip
-              </span>
+              <span className="card__hint mono mono--sm">Tap to flip</span>
             </span>
           )}
         </button>

@@ -48,7 +48,7 @@ export function Nav() {
         </nav>
 
         <div className="nav__end">
-          <Link to={onList ? '/' : '/list'} className="btn btn--ghost nav__toggle" aria-pressed={onList}>
+          <Link to={onList ? '/' : '/list'} className="btn btn--ghost nav__toggle" aria-current={onList ? 'page' : undefined}>
             {onList ? 'Card view' : 'List view'}
           </Link>
           <a className="btn nav__resume" href={site.resume} download>
