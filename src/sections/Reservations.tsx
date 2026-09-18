@@ -31,7 +31,7 @@ export function Reservations() {
         <CourseHead course={courses.reservations} />
         <div className="book">
           <div>
-            <h3 className="book__title t-category">Book A Table</h3>
+            <h3 className="book__title t-category">Now Seating</h3>
             <p className="book__note t-lead measure-narrow">{reservations.availability}</p>
             <ul className="methods">
               {reservations.methods.map((m) => (

@@ -92,7 +92,6 @@
 
 .plate__metrics {
   margin-top: var(--s10);
-  margin-inline: calc(-1 * var(--gutter));
 }
 
 .plate__metrics .metrics__grid {
