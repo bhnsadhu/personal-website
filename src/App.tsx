@@ -1,24 +1,28 @@
+import { Footer } from './components/Footer'
+import { Nav } from './components/Nav'
+import { ScrollTop } from './components/ScrollTop'
 import { Router } from './lib/router'
-import { ChefsTable } from './pages/ChefsTable'
-import { Landing } from './pages/Landing'
+import { ChefsTableList } from './pages/ChefsTableList'
+import { Home } from './pages/Home'
 import { MainDish } from './pages/MainDish'
-import { Menu } from './pages/Menu'
 import { NotFound } from './pages/NotFound'
-import { SideDish } from './pages/SideDish'
 import { SpecialDish } from './pages/SpecialDish'
-import { Starters } from './pages/Starters'
 
 const routes = [
-  { path: '/', element: () => <Landing /> },
-  { path: '/menu', element: () => <Menu /> },
-  { path: '/starters', element: () => <Starters /> },
+  { path: '/', element: () => <Home /> },
   { path: '/mains/:slug', element: () => <MainDish /> },
-  { path: '/sides/:slug', element: () => <SideDish /> },
   { path: '/specials/:slug', element: () => <SpecialDish /> },
-  { path: '/chefs-table', element: () => <ChefsTable /> },
+  { path: '/chefs-table', element: () => <ChefsTableList /> },
   { path: '*', element: () => <NotFound /> },
 ]
 
 export function App() {
-  return <Router routes={routes} />
+  return (
+    <>
+      <Nav />
+      <Router routes={routes} />
+      <Footer />
+      <ScrollTop />
+    </>
+  )
 }

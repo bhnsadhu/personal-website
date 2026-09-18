@@ -1,0 +1,272 @@
+/* ---------------- Fixed navigation ---------------- */
+
+.nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  height: var(--nav-h);
+  background: var(--nav-bg);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  transition: height var(--slow);
+}
+
+.nav.is-scrolled {
+  height: var(--nav-h-scrolled);
+}
+
+.nav__inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s6);
+}
+
+.nav__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s3);
+  flex: none;
+}
+
+.nav__mark {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--black);
+  flex: none;
+}
+
+.nav__word {
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.nav__links ul {
+  display: flex;
+  align-items: center;
+  gap: var(--s6);
+}
+
+.nav__link {
+  position: relative;
+  display: inline-block;
+  padding: var(--s1) 0;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.nav__link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--black);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--fast);
+}
+
+.nav__link:hover::after,
+.nav__link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.nav__end {
+  display: flex;
+  align-items: center;
+  gap: var(--s4);
+  flex: none;
+}
+
+.nav__status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  padding: 6px var(--s3);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.nav__cta {
+  display: inline-block;
+  padding: 10px var(--s4) 8px;
+  background: var(--black);
+  color: var(--white);
+  border-bottom: 4px solid var(--dark-hover);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition:
+    transform var(--fast),
+    border-bottom-width var(--fast);
+}
+
+.nav__cta:hover {
+  transform: translateY(-2px);
+  border-bottom-width: 6px;
+}
+
+.nav__burger {
+  display: none;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  margin-right: calc(-1 * var(--s2));
+}
+
+.nav__menu {
+  position: fixed;
+  top: var(--nav-h);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--white);
+  overflow-y: auto;
+  padding: var(--s7) 0 var(--s8);
+}
+
+.nav.is-scrolled .nav__menu {
+  top: var(--nav-h-scrolled);
+}
+
+.nav__menu ul {
+  display: grid;
+}
+
+.nav__menu .nav__link {
+  display: block;
+  padding: var(--s4) 0;
+  border-bottom: 1px solid var(--divider);
+  font-size: 16px;
+}
+
+.nav__menu .nav__link::after {
+  display: none;
+}
+
+.nav__menu-cta {
+  margin-top: var(--s7);
+  width: 100%;
+}
+
+@media (max-width: 1120px) {
+  .nav__status {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .nav__links,
+  .nav__cta {
+    display: none;
+  }
+  .nav__burger {
+    display: inline-flex;
+  }
+}
+
+/* ---------------- Footer + floating ---------------- */
+
+.footer {
+  padding: var(--s8) 0;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.footer__links {
+  display: flex;
+  justify-content: center;
+  gap: var(--s6);
+}
+
+.footer__links a {
+  display: inline-flex;
+  padding: var(--s2);
+  color: var(--black);
+  transition: color var(--fast);
+}
+
+.footer__links a:hover {
+  color: var(--dark-hover);
+}
+
+.footer__note {
+  margin-top: var(--s4);
+  color: var(--text-3);
+}
+
+.to-top {
+  position: fixed;
+  right: var(--gutter);
+  bottom: var(--gutter);
+  z-index: 40;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--black);
+  color: var(--white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity var(--fast),
+    visibility var(--fast),
+    transform var(--fast);
+}
+
+.to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.to-top:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Back link on dish pages, styled like the nav wordmark. */
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s3);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.back__mark {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--black);
+}
+
+.back .arrow {
+  transition: transform var(--fast);
+}
+
+.back:hover .arrow {
+  transform: translateX(-4px);
+}
