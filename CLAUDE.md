@@ -32,8 +32,7 @@ paper `#FDFBF6`, ink `#1A1A1A`, secondary `#4A4A4A`, accent `#A47C42`,
 muted `#A89A80`, border `#EAE3D3`, rule `#DCD2B8`, live `#2F8F4E`, soon `#B8AF9C`.
 
 Type: exactly two families. **Baloo 2** only for the wordmark (800, accent)
-and the landing tagline + "Scroll Or Tap To Be Seated" micro-copy (500,
-`.logo-copy`). **PT Serif** for every other word on every page, including
+and the landing tagline (500, `.logo-copy`). **PT Serif** for every other word on every page, including
 labels, buttons, and all dish pages. No third font, no sans, no mono, no
 system-ui in any reset. Title Case throughout; course names and section
 labels are uppercase + tracked (`.label`). Italic only for tech-stack notes.
@@ -72,5 +71,6 @@ only (`--ease-out`), no bounce; respect reduced motion.
 
 ## Routes
 
-`/` landing · `/menu` · `/starters` · `/mains/:slug` · `/sides/:slug` ·
+`/` landing (eyebrow, wordmark, tagline, one CTA, inside the sheet card;
+no micro-copy) · `/menu` · `/starters` · `/mains/:slug` · `/sides/:slug` ·
 `/specials/:slug` · `/chefs-table` · anything else → 404.

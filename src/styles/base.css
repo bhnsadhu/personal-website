@@ -80,7 +80,7 @@ svg {
   white-space: nowrap;
 }
 
-/* Baloo 2 at 500: only the tagline and the "be seated" micro-copy. */
+/* Baloo 2 at 500: only the landing tagline. */
 .logo-copy {
   font-family: var(--logo);
   font-weight: 500;
