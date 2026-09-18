@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 700">
-  <rect width="1600" height="700" fill="#111111"/>
-  <g stroke="#333333" stroke-width="1">
-    <path d="M0 700 L700 0"/><path d="M300 700 L1000 0"/><path d="M600 700 L1300 0"/><path d="M900 700 L1600 0"/><path d="M1200 700 L1600 300"/>
-  </g>
-  <rect x="640" y="316" width="320" height="68" fill="none" stroke="#333333"/>
-  <text x="800" y="358" fill="#888888" font-family="SF Mono, Monaco, Roboto Mono, Consolas, monospace" font-size="18" font-weight="700" text-anchor="middle" letter-spacing="3">[ HERO IMAGE 16:7 ]</text>
-</svg>

@@ -33,6 +33,18 @@ const positions = new Map<string, number>()
 let currentKey = 'initial'
 let pendingScroll: number | null = null
 let pendingHash: string | null = null
+let pushes = 0
+
+/** True when this session has in-app history to go back to. */
+export function canGoBack() {
+  return pushes > 0
+}
+
+/** Browser back when there is in-app history; otherwise go to `fallback`. */
+export function goBack(fallback = '/') {
+  if (canGoBack()) window.history.back()
+  else navigate(fallback, { replace: true })
+}
 
 function scrollToHash(hash: string) {
   const el = document.getElementById(hash)
@@ -86,7 +98,10 @@ export function navigate(to: string, options: { replace?: boolean } = {}) {
   const state: EntryState = { key }
   transition(() => {
     if (options.replace) window.history.replaceState(state, '', to)
-    else window.history.pushState(state, '', to)
+    else {
+      window.history.pushState(state, '', to)
+      pushes += 1
+    }
     currentKey = key
     pendingScroll = hash ? null : 0
     pendingHash = hash || null
@@ -95,6 +110,7 @@ export function navigate(to: string, options: { replace?: boolean } = {}) {
 }
 
 function onPopState() {
+  pushes = Math.max(0, pushes - 1)
   positions.set(currentKey, window.scrollY)
   const state = window.history.state as EntryState | null
   currentKey = state?.key ?? 'initial'

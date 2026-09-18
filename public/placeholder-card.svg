@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 500">
-  <rect width="680" height="500" fill="#111111"/>
-  <g stroke="#333333" stroke-width="1">
-    <path d="M0 500 L500 0"/><path d="M200 500 L680 20"/><path d="M400 500 L680 220"/>
-  </g>
-  <text x="340" y="256" fill="#888888" font-family="SF Mono, Monaco, Roboto Mono, Consolas, monospace" font-size="16" font-weight="700" text-anchor="middle" letter-spacing="3">[ PHOTO ]</text>
-</svg>

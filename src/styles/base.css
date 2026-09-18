@@ -5,7 +5,8 @@
 }
 
 html {
-  background: var(--white);
+  background: var(--bg);
+  color-scheme: dark;
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
@@ -14,12 +15,12 @@ html {
 body {
   margin: 0;
   padding-top: var(--nav-h);
-  font: 400 16px/1.5 var(--sans);
-  color: var(--black);
-  background: var(--white);
+  font: 400 16px/1.55 var(--serif);
+  font-optical-sizing: auto;
+  color: var(--cream);
+  background: var(--bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
   overflow-x: hidden;
 }
 
@@ -61,18 +62,14 @@ svg {
   display: block;
 }
 
-img {
-  max-width: 100%;
-}
-
 :focus-visible {
-  outline: 2px solid var(--black);
+  outline: 2px solid var(--brass);
   outline-offset: 3px;
 }
 
 ::selection {
-  background: var(--black);
-  color: var(--white);
+  background: var(--wine);
+  color: var(--cream);
 }
 
 .container {
@@ -81,261 +78,250 @@ img {
   padding-inline: var(--gutter);
 }
 
-/* ---------------- Type scale ---------------- */
-
-.t-section {
-  font-size: 80px;
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: -0.05em;
-  text-transform: uppercase;
-}
-
-.t-statement {
-  font-size: 56px;
-  font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -0.04em;
-}
-
-.t-category {
-  font-size: 32px;
-  font-weight: 900;
-  line-height: 1.1;
-  letter-spacing: -0.04em;
-}
-
-.t-card {
-  font-size: 24px;
-  font-weight: 800;
-  line-height: 1.2;
-  letter-spacing: -0.04em;
-}
-
-.t-lead {
-  font-size: 18px;
-  line-height: 1.5;
-}
-
-.t-summary {
-  font-size: 13px;
-  line-height: 1.5;
-}
-
-.t-label {
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.t-nav {
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.t-mono {
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.t-meta {
-  font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.measure {
-  max-width: 62ch;
-}
-
-.measure-narrow {
-  max-width: 52ch;
-}
-
-@media (max-width: 768px) {
-  .t-section {
-    font-size: 48px;
-  }
-  .t-statement {
-    font-size: 32px;
-  }
-  .t-category {
-    font-size: 24px;
-  }
-}
-
-/* ---------------- Shared pieces ---------------- */
-
-/* Text link with an arrow that nudges on hover. */
-.arrow-link {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--s2);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
   white-space: nowrap;
+  border: 0;
 }
 
-.arrow-link .arrow {
-  display: inline-block;
-  transition: transform var(--fast);
+/* ---------------- Type ---------------- */
+
+.mono {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-.arrow-link:hover .arrow {
-  transform: translateX(4px);
+.mono--sm {
+  font-size: 11px;
 }
 
-.arrow-link--back:hover .arrow {
-  transform: translateX(-4px);
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brass);
 }
 
-/* The one button: black rectangle, white uppercase text. */
+.display {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: var(--cream);
+}
+
+.display em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--brass-2);
+}
+
+.lede {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--gray);
+  max-width: 58ch;
+}
+
+.suit {
+  font-family: var(--serif);
+  line-height: 1;
+}
+
+.suit--red {
+  color: var(--wine);
+}
+
+.suit--black {
+  color: var(--ink);
+}
+
+/* ---------------- Section frame ---------------- */
+
+.section {
+  padding: 96px 0;
+  scroll-margin-top: calc(var(--nav-h) + 8px);
+}
+
+.section + .section {
+  border-top: 1px solid var(--line);
+}
+
+.section__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px 32px;
+  margin-bottom: 40px;
+}
+
+.section__title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(30px, 3.4vw, 44px);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+}
+
+.section__title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--brass-2);
+}
+
+.section__note {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--gray);
+  max-width: 44ch;
+}
+
+@media (max-width: 720px) {
+  .section {
+    padding: 64px 0;
+  }
+}
+
+/* ---------------- Buttons & links ---------------- */
+
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--s3);
-  padding: var(--s4) var(--s8);
-  background: var(--black);
-  color: var(--white);
-  font-size: 13px;
-  font-weight: 800;
+  gap: 10px;
+  padding: 12px 20px;
+  border: 1px solid var(--brass);
+  border-radius: 999px;
+  background: var(--brass);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   white-space: nowrap;
-  border: 0;
-  border-radius: 0;
   transition:
-    transform var(--fast),
-    background var(--fast);
+    transform var(--fast) var(--ease),
+    background var(--fast) var(--ease),
+    border-color var(--fast) var(--ease),
+    color var(--fast) var(--ease);
 }
 
 .btn:hover {
   transform: translateY(-2px);
-  background: var(--dark-hover);
+  background: var(--brass-2);
+  border-color: var(--brass-2);
 }
 
-.btn .arrow {
-  transition: transform var(--fast);
+.btn--ghost {
+  background: transparent;
+  color: var(--cream);
+  border-color: var(--line);
 }
 
-.btn:hover .arrow {
-  transform: translateX(4px);
+.btn--ghost:hover {
+  background: var(--bg-3);
+  border-color: var(--gray);
 }
 
-/* Tag / chip: mono, uppercase, outlined. */
-.tag {
-  display: inline-block;
-  padding: 6px 10px;
-  border: 1px solid var(--border);
-  border-radius: 2px;
+.btn--wine {
+  background: var(--wine);
+  border-color: var(--wine);
+  color: var(--cream);
+}
+
+.btn--wine:hover {
+  background: var(--wine-2);
+  border-color: var(--wine-2);
+}
+
+/* Text link: mono, underline grows. */
+.tlink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 700;
+  font-size: 12px;
+  font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   white-space: nowrap;
-  transition:
-    border-color var(--fast),
-    background var(--fast);
 }
 
-.tag:hover {
-  border-color: var(--border-hover);
-  background: var(--surface);
+.tlink::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--fast) var(--ease);
+}
+
+.tlink:hover::after,
+.tlink:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.tlink .arrow {
+  display: inline-block;
+  transition: transform var(--fast) var(--ease);
+}
+
+.tlink:hover .arrow {
+  transform: translateX(4px);
+}
+
+.tlink--back:hover .arrow {
+  transform: translateX(-4px);
+}
+
+.tag {
+  display: inline-block;
+  padding: 4px 9px;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0.85;
 }
 
 .tags {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--s2);
+  gap: 6px;
 }
 
-/* Live / soon status with the green dot. */
-.status {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--s2);
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
+/* ---------------- Route transition ---------------- */
 
-.status__dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--text-3);
-  flex: none;
-}
-
-.status--live .status__dot {
-  background: var(--green);
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.45);
-  }
-  50% {
-    box-shadow: 0 0 0 6px rgba(22, 163, 74, 0);
-  }
-}
-
-/* Eyebrow + big title + 3px rule, used by every course. */
-.course-head {
-  padding-bottom: var(--s6);
-  border-bottom: 3px solid var(--black);
-  margin-bottom: var(--s8);
-}
-
-.course-head__eyebrow {
-  color: var(--text-3);
-}
-
-.course-head__title {
-  margin-top: var(--s4);
-}
-
-.course-head__lede {
-  margin-top: var(--s4);
-  font-size: 18px;
-  color: var(--text-2);
-}
-
-.section {
-  padding: var(--s11) 0;
-  border-top: 1px solid var(--border);
-  scroll-margin-top: var(--nav-h-scrolled);
-}
-
-@media (max-width: 768px) {
-  .section {
-    padding: var(--s10) 0;
-  }
-}
-
-/* Route change: quick crossfade. */
 ::view-transition-old(root) {
-  animation: 0.15s ease both vt-out;
+  animation: 0.16s ease both vt-out;
 }
 
 ::view-transition-new(root) {
-  animation: 0.15s ease both vt-in;
+  animation: 0.2s ease both vt-in;
 }
 
 @keyframes vt-out {
@@ -354,10 +340,8 @@ img {
   html {
     scroll-behavior: auto;
   }
-  *,
-  *::before,
-  *::after {
-    animation: none !important;
-    transition: none !important;
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
   }
 }

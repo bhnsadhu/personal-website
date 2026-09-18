@@ -1,50 +1,44 @@
 /* ------------------------------------------------------------------
-   Design tokens. Values are the spec; nothing outside them is used.
+   Tokens. Desaturated editorial casino: near-black, cream stock,
+   wine, brass, warm gray. Dark is the only mode.
    ------------------------------------------------------------------ */
 :root {
-  --white: #ffffff;
-  --black: #000000;
-  --dark-hover: #333333;
-  --text-2: #4a4a4a;
-  --text-3: #888888;
-  --surface: #fafafa;
-  --surface-2: #f3f3f3;
-  --border: #e2e2e2;
-  --border-hover: #c9c9c9;
-  --divider: #f0f0f0;
-  --dark: #111111;
-  --green: #16a34a;
-  --shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  --shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.12);
-  --backdrop: rgba(0, 0, 0, 0.48);
-  --nav-bg: rgba(255, 255, 255, 0.9);
+  --bg: #100e0c;
+  --bg-2: #171411;
+  --bg-3: #1f1b17;
+  --line: #2b2622;
+  --cream: #f3ede2;
+  --cream-2: #e6ddcd;
+  --cream-3: #d6cbb7;
+  --ink: #100e0c;
+  --ink-2: #5c554c;
+  --wine: #a6413e;
+  --wine-2: #8c3532;
+  --wine-text: #d1706c;
+  --brass: #b08d57;
+  --brass-2: #cfae78;
+  --gray: #8b8479;
 
-  --sans: 'Inter', Helvetica, Arial, sans-serif;
-  --mono: 'SF Mono', Monaco, 'Roboto Mono', Consolas, monospace;
+  --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --mono: 'IBM Plex Mono', 'SF Mono', Menlo, Consolas, monospace;
 
-  --fast: 0.15s ease;
-  --slow: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --fast: 0.18s;
+  --flip: 0.55s;
+  --slide: 0.5s;
 
-  --s1: 4px;
-  --s2: 8px;
-  --s3: 12px;
-  --s4: 16px;
-  --s5: 20px;
-  --s6: 24px;
-  --s7: 32px;
-  --s8: 48px;
-  --s9: 64px;
-  --s10: 96px;
-  --s11: 128px;
+  --card-radius: 12px;
+  --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 12px 30px rgba(0, 0, 0, 0.45);
+  --card-shadow-hover: 0 1px 0 rgba(255, 255, 255, 0.08) inset, 0 22px 44px rgba(0, 0, 0, 0.55), 0 0 0 1px var(--brass);
 
-  --container: 1200px;
+  --container: 1240px;
   --gutter: 32px;
-  --nav-h: 80px;
-  --nav-h-scrolled: 64px;
+  --nav-h: 72px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 720px) {
   :root {
-    --gutter: 16px;
+    --gutter: 18px;
+    --nav-h: 60px;
   }
 }
