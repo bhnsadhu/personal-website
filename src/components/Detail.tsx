@@ -44,8 +44,8 @@ export function Stats({ items }: { items: Stat[] }) {
     <dl className="stats" style={{ ['--n' as string]: items.length }}>
       {items.map((stat) => (
         <div className="stat" key={stat.label}>
-          <dd className="stat__value">{stat.value}</dd>
           <dt className="stat__label">{stat.label}</dt>
+          <dd className="stat__value">{stat.value}</dd>
         </div>
       ))}
     </dl>
