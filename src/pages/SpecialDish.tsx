@@ -54,7 +54,7 @@ export function SpecialDish() {
             </a>
           )}
           {special.codeUrl && (
-            <a className="btn btn--ghost" href={special.codeUrl} target="_blank" rel="noreferrer">
+            <a className="btn" href={special.codeUrl} target="_blank" rel="noreferrer">
               View The Code
               <ArrowRight />
             </a>

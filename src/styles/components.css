@@ -65,15 +65,15 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.625rem;
-  min-height: 2.875rem;
-  padding: 0.6875rem 1.5rem 0.75rem;
+  gap: 0.5rem;
+  padding: 11px 20px 12px;
   border: 1px solid var(--accent);
-  border-radius: 2px;
+  border-radius: 4px;
   background: var(--accent);
   color: var(--paper);
-  font-size: 0.8125rem;
-  letter-spacing: 0.02em;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   white-space: nowrap;
   transition:
     background-color var(--dur-fast) var(--ease-out),
@@ -88,18 +88,6 @@
 
 .btn:hover .glyph {
   transform: translateX(3px);
-}
-
-.btn--ghost {
-  background: transparent;
-  color: var(--ink);
-  border-color: var(--rule);
-}
-
-.btn--ghost:hover {
-  background: transparent;
-  color: var(--ink);
-  border-color: var(--ink);
 }
 
 /* ---------------- Course header ---------------- */
@@ -354,8 +342,9 @@
   grid-template-columns: repeat(var(--n), minmax(0, 1fr));
   margin-top: var(--s-4);
   border: 1px solid var(--border);
+  border-radius: 4px;
   background: var(--paper);
-  box-shadow: 0 1px 2px rgba(26, 26, 26, 0.03);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
 /* Label precedes value in the DOM (valid <dl>); value is shown on top. */

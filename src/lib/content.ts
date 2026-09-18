@@ -88,7 +88,7 @@ export interface SkillGroup {
 
 export const site: Site = {
   name: '[Your Name]',
-  tagline: 'A portfolio, plated like a menu.',
+  tagline: 'A Portfolio, Plated Like A Menu.',
   email: 'mailto:[you]@[domain].com',
   linkedin: 'https://www.linkedin.com/in/[your-handle]',
   github: 'https://github.com/[your-handle]',

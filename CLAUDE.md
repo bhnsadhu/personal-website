@@ -21,9 +21,9 @@ item opens its own page. Menu language first, portfolio second, everywhere.
   reset, motion), `components.css`, `pages.css`. Plain CSS, BEM-ish names.
 - `src/components/` — `Sheet` (the menu card + footer), `Course`, `Row`,
   `Status`, `Ingredients`, `Detail` (Section/Prose/Bullets/Stats/Pills/PageNav).
-- `public/fonts/` — self-hosted latin woff2 subsets (PT Serif 400/400i/700,
-  Baloo 2 800). Preloaded from `index.html`. Do not add Google Fonts links.
-- `vercel.json` — SPA rewrite to `index.html`, immutable cache for fonts/assets.
+- Fonts load from Google Fonts via the two exact `<link>` tags in
+  `index.html` (Baloo 2 500/800; PT Serif 400/400i/700). Nothing self-hosted.
+- `vercel.json` — SPA rewrite to `index.html`, immutable cache for assets.
 
 ## Design system — locked
 
@@ -31,14 +31,18 @@ Palette (nothing outside it, hover states included):
 paper `#FDFBF6`, ink `#1A1A1A`, secondary `#4A4A4A`, accent `#A47C42`,
 muted `#A89A80`, border `#EAE3D3`, rule `#DCD2B8`, live `#2F8F4E`, soon `#B8AF9C`.
 
-Type: exactly two families. **Baloo 2 800** is the wordmark only, always in
-accent. **PT Serif** for everything else. No third font, no sans, no mono.
-Title Case throughout; course names and section labels are uppercase +
-tracked (`.label`). Italic is reserved for the tagline and tech-stack notes.
+Type: exactly two families. **Baloo 2** only for the wordmark (800, accent)
+and the landing tagline + "Scroll Or Tap To Be Seated" micro-copy (500,
+`.logo-copy`). **PT Serif** for every other word on every page, including
+labels, buttons, and all dish pages. No third font, no sans, no mono, no
+system-ui in any reset. Title Case throughout; course names and section
+labels are uppercase + tracked (`.label`). Italic only for tech-stack notes.
 
-Accent is used sparingly: wordmark, labels, one filled button per page, the
-Resume icon. Flat surfaces; 1px border + very light shadow is the ceiling.
-Motion is ease-out only (`--ease-out`), no bounce; respect reduced motion.
+One button style: accent fill, paper text, PT Serif 12px bold 0.08em, 4px
+radius (`.btn`). One card treatment: 1px `#EAE3D3` border, 4px radius,
+`0 1px 3px rgba(0,0,0,.06)` shadow (sheet and stats block). Accent is used
+sparingly: wordmark, labels, buttons, the Resume icon. Motion is ease-out
+only (`--ease-out`), no bounce; respect reduced motion.
 
 ## Menu vocabulary — keep it airtight
 

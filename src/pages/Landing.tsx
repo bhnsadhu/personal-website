@@ -51,7 +51,7 @@ export function Landing() {
           Reservation Confirmed — Party Of One
         </p>
         <Wordmark as="h1" className="landing__name fade-up" />
-        <p className="landing__tagline fade-up" style={step(2)}>
+        <p className="landing__tagline logo-copy fade-up" style={step(2)}>
           {site.tagline}
         </p>
         <div className="landing__cta fade-up" style={step(3)}>
@@ -60,8 +60,8 @@ export function Landing() {
             <ArrowRight />
           </Link>
         </div>
-        <p className="landing__hint fade-up" style={step(4)}>
-          Scroll or tap to be seated
+        <p className="landing__hint logo-copy fade-up" style={step(4)}>
+          Scroll Or Tap To Be Seated
         </p>
       </div>
     </main>
