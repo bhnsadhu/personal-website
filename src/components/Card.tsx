@@ -149,8 +149,8 @@ export function Card({
           <div className="card__body">{children}</div>
           {tags && tags.length > 0 && (
             <ul className="tags card__tags" aria-label="Tags">
-              {tags.map((t) => (
-                <li key={t} className="tag">
+              {tags.map((t, i) => (
+                <li key={`${t}-${i}`} className="tag">
                   {t}
                 </li>
               ))}

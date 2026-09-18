@@ -12,12 +12,19 @@
   transition: grid-template-columns var(--slide) var(--ease);
 }
 
-/* Short sets (leadership, personal): cap card width, center the set. */
+/* Cap card width so short rows read as a hand, not a billboard. Opening
+   a card releases the cap so it can fill the row. */
+.row--row,
 .row--flop {
   max-width: calc(var(--n) * 300px + (var(--n) - 1) * 20px);
   margin-inline: auto;
 }
 
+.row--flop {
+  justify-content: center;
+}
+
+.row--row.has-open,
 .row--flop.has-open {
   max-width: 100%;
 }
@@ -217,15 +224,19 @@
 /* Face cards (leadership): a framed portrait letter, mirrored like the real thing. */
 .card--face .card__face-body {
   justify-content: flex-end;
-  padding-bottom: 46px;
+  padding-bottom: 44px;
+}
+
+.card--face .card__title {
+  font-size: clamp(17px, 1.4vw, 21px);
 }
 
 .card__portrait {
   position: absolute;
-  top: 17%;
+  top: 14%;
   left: 50%;
   transform: translateX(-50%);
-  width: clamp(72px, 52%, 160px);
+  width: clamp(64px, 44%, 132px);
   aspect-ratio: 3 / 4;
   border: 1px solid var(--wine);
   border-radius: 6px;

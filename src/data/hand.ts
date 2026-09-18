@@ -13,7 +13,7 @@ export const hand: Highlight[] = [
       '[What you are accountable for and the size of it: users, revenue, systems, people.]',
       '[The one thing you shipped there that you would lead with in an interview.]',
     ],
-    tags: ['[Domain]', '[Skill]', '[Skill]'],
+    tags: ['[Domain]', '[Skill One]', '[Skill Two]'],
   },
   {
     kind: 'project',

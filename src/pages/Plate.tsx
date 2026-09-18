@@ -58,8 +58,8 @@ export function Plate({ eyebrow, rank, suit, title, subtitle, meta, tags, childr
           <div className="plate__body">{children}</div>
           {tags && tags.length > 0 && (
             <ul className="tags plate__tags" aria-label="Tags">
-              {tags.map((t) => (
-                <li key={t} className="tag">
+              {tags.map((t, i) => (
+                <li key={`${t}-${i}`} className="tag">
                   {t}
                 </li>
               ))}
