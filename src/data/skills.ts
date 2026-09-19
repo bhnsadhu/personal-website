@@ -70,6 +70,7 @@ export const skills: SkillStack[] = [
       'Figma',
       'Notion',
       'Confluence',
+      'Microsoft Office',
       'PowerPoint',
     ],
   },
