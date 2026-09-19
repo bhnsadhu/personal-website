@@ -19,13 +19,11 @@ inside the function, carries no `VITE_` prefix, and never reaches the client
 bundle. The form shows success only after the API confirms the send, and
 keeps what was typed when a send fails.
 
-Mail currently goes to **bhnsadhu@gmail.com**, not sadhubhanu07@gmail.com.
-Resend's shared `onboarding@resend.dev` sender only delivers to the address
-that owns the API key, and refuses anything else with a 403. To switch,
-verify a domain at [resend.com/domains](https://resend.com/domains), then set
-`CONTACT_FROM` to an address on it and `CONTACT_TO` to sadhubhanu07@gmail.com.
-No code change needed. Either way the visitor's address is set as `reply_to`,
-so replying from the inbox answers them.
+Mail is sent from `hello@bhanusadhu.com`, on the verified bhanusadhu.com
+domain, to **sadhubhanu07@gmail.com**. The visitor's address is set as
+`reply_to`, so replying from the inbox answers them. `CONTACT_FROM` and
+`CONTACT_TO` override either without a code change; any sender address must
+be on a domain verified at [resend.com/domains](https://resend.com/domains).
 
 `npm run dev` serves no `/api`, so the form shows its error state locally.
 Test on a Vercel preview deployment.

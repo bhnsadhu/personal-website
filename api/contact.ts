@@ -6,19 +6,17 @@
  * function only, carries no VITE_ prefix, and so never reaches the client
  * bundle. Without a key the route answers 503 and the form says so.
  *
- * Recipient: while the sender is Resend's shared onboarding@resend.dev,
- * Resend only delivers to the address that owns the API key, which is
- * bhnsadhu@gmail.com. Sending to sadhubhanu07@gmail.com is refused with a
- * 403 until a domain is verified at resend.com/domains. After verifying
- * one, set CONTACT_FROM to an address on that domain and CONTACT_TO to
- * sadhubhanu07@gmail.com; no code change needed.
+ * Sends from hello@bhanusadhu.com, on the bhanusadhu.com domain verified in
+ * Resend, to sadhubhanu07@gmail.com. A sender off a verified domain is
+ * refused with a 403, so keep CONTACT_FROM on one; CONTACT_TO and
+ * CONTACT_FROM override the pair.
  *
  * The visitor's address goes in reply_to, so replying from the inbox
- * answers them directly whichever mailbox receives it.
+ * answers them directly.
  */
 
-const TO_DEFAULT = 'bhnsadhu@gmail.com'
-const FROM_DEFAULT = 'Portfolio <onboarding@resend.dev>'
+const TO_DEFAULT = 'sadhubhanu07@gmail.com'
+const FROM_DEFAULT = 'Portfolio <hello@bhanusadhu.com>'
 const LIMIT = { name: 120, email: 254, message: 5000, honeypot: 200 }
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
