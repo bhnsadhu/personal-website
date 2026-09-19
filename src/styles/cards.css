@@ -380,6 +380,7 @@
 .card__body {
   display: grid;
   gap: 14px;
+  min-width: 0; /* a long nowrap link must not widen the body past the card */
   font-size: 16px;
   line-height: 1.55;
 }
@@ -627,6 +628,12 @@
 
 .card__related > .mono {
   color: var(--ink-2);
+}
+
+/* Client labels run long; let them wrap inside the card. */
+.card__related .tlink {
+  white-space: normal;
+  text-align: left;
 }
 
 /* Five favorites on a community card. Numbered, not ranked. */
