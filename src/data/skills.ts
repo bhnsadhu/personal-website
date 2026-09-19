@@ -37,6 +37,7 @@ export const skills: SkillStack[] = [
     label: 'Frameworks & Platforms',
     skills: [
       'React',
+      'React Native',
       'Next.js',
       'Tailwind CSS',
       'Vite',
@@ -52,7 +53,16 @@ export const skills: SkillStack[] = [
   {
     id: 'devtools',
     label: 'Development Tools',
-    skills: ['Git', 'GitHub', 'GitHub Actions', 'Postman', 'Visual Studio Code', 'Android Studio', 'Xcode'],
+    skills: [
+      'Git',
+      'GitHub',
+      'GitHub Actions',
+      'Postman',
+      'Chrome DevTools',
+      'Visual Studio Code',
+      'Android Studio',
+      'Xcode',
+    ],
   },
   {
     id: 'business-tools',
