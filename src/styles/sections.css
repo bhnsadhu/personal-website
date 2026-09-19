@@ -248,14 +248,12 @@
 
 /* ---------------- Chips ---------------- */
 
-/* Wide columns so every list packs several skills to a line. At 168px the
-   product phrases were each wider than half a column, so no two could ever
-   sit together and that one stack read as a vertical list while the short
-   token categories flowed. Three to a row gives them all room. */
+/* Six stacks fit one row at the container width; chips line up along the
+   top so one long list does not float the rest. */
 .stacks {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 44px 24px;
+  grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
+  gap: 40px 24px;
   align-items: start;
 }
 
@@ -341,7 +339,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 4px 12px;
-  max-width: 340px;
+  max-width: 220px;
   color: var(--gray);
 }
 
