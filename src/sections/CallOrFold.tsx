@@ -5,9 +5,17 @@ import { site } from '../data'
 
 type Status = { state: 'idle' } | { state: 'sending' } | { state: 'sent' } | { state: 'error'; message: string }
 
+/** A dropped connection surfaces as a bare "Failed to fetch"; say it plainly instead. */
+function readError(err: unknown): string {
+  if (err instanceof TypeError) return 'the connection dropped'
+  if (err instanceof Error && err.message) return err.message
+  return 'something went wrong'
+}
+
 /**
  * Contact. The form posts to /api/contact, which delivers by email from the
- * server. Success shows only after the server confirms delivery.
+ * server through Resend. Success shows only after the server confirms the
+ * send; on failure the typed message is kept so nothing is lost.
  */
 export function CallOrFold() {
   const [status, setStatus] = useState<Status>({ state: 'idle' })
@@ -34,7 +42,7 @@ export function CallOrFold() {
       setStatus({ state: 'sent' })
       form.reset()
     } catch (err) {
-      setStatus({ state: 'error', message: err instanceof Error ? err.message : 'something went wrong' })
+      setStatus({ state: 'error', message: readError(err) })
     }
   }
 

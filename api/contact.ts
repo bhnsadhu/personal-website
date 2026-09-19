@@ -1,13 +1,23 @@
 /**
- * POST /api/contact: delivers the contact form by email.
+ * POST /api/contact: delivers the contact form by email through Resend.
  *
- * Runs as a Vercel Function on the Node.js runtime. Needs RESEND_API_KEY
- * in the project's environment (never shipped to the client). Optional
- * CONTACT_TO and CONTACT_FROM override the recipient and the sender.
- * Without a key it answers 503 so the form shows an honest error.
+ * Runs as a Vercel Function on the Node.js runtime. Needs RESEND_API_KEY in
+ * the project's environment. The key is read from process.env inside this
+ * function only, carries no VITE_ prefix, and so never reaches the client
+ * bundle. Without a key the route answers 503 and the form says so.
+ *
+ * Recipient: while the sender is Resend's shared onboarding@resend.dev,
+ * Resend only delivers to the address that owns the API key, which is
+ * bhnsadhu@gmail.com. Sending to sadhubhanu07@gmail.com is refused with a
+ * 403 until a domain is verified at resend.com/domains. After verifying
+ * one, set CONTACT_FROM to an address on that domain and CONTACT_TO to
+ * sadhubhanu07@gmail.com; no code change needed.
+ *
+ * The visitor's address goes in reply_to, so replying from the inbox
+ * answers them directly whichever mailbox receives it.
  */
 
-const TO_DEFAULT = 'sadhubhanu07@gmail.com'
+const TO_DEFAULT = 'bhnsadhu@gmail.com'
 const FROM_DEFAULT = 'Portfolio <onboarding@resend.dev>'
 const LIMIT = { name: 120, email: 254, message: 5000, honeypot: 200 }
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -53,16 +63,32 @@ export async function POST(request: Request): Promise<Response> {
   const text = `${message}\n\n— ${name}\n${email}`
   const html = `<p style="white-space:pre-wrap">${escapeHtml(message)}</p><p>— ${escapeHtml(name)}<br>${escapeHtml(email)}</p>`
 
-  const res = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ from, to: [to], reply_to: email, subject, text, html }),
-  })
+  let res: Response
+  try {
+    res = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ from, to: [to], reply_to: email, subject, text, html }),
+    })
+  } catch (err) {
+    console.error('Could not reach Resend', err)
+    return json(502, { ok: false, error: 'the email service could not be reached' })
+  }
 
   if (!res.ok) {
+    // Logged server-side only. The response never echoes Resend's body, which
+    // can name the account, nor anything derived from the key.
     console.error('Resend rejected the message', res.status, await res.text().catch(() => ''))
-    return json(502, { ok: false, error: 'the email service rejected the message' })
+    const error =
+      res.status === 401 || res.status === 403
+        ? 'email delivery is misconfigured'
+        : res.status === 429
+          ? 'too many messages just now, please try again shortly'
+          : 'the email service rejected the message'
+    return json(502, { ok: false, error })
   }
+
+  // Only now is the message really sent; the form shows success on this alone.
   return json(200, { ok: true })
 }
 

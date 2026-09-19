@@ -45,8 +45,13 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   the visit started in-app and falls back to `/` on a shared link.
 - `api/contact.ts` — Vercel Function. Validates, drops honeypot hits, sends
   through Resend. Env: `RESEND_API_KEY` (required), `CONTACT_TO`,
-  `CONTACT_FROM` (optional). Without a key it answers 503 and the form
-  shows an honest error with a direct email fallback.
+  `CONTACT_FROM` (optional). The key is read from `process.env` in the
+  function, never `VITE_`-prefixed, so it stays off the client. Without a
+  key it answers 503 and the form shows an honest error with a direct email
+  fallback. Mail goes to bhnsadhu@gmail.com: Resend's shared
+  `onboarding@resend.dev` sender only delivers to the account that owns the
+  key. Verify a domain to send to sadhubhanu07@gmail.com instead. Secrets
+  live in `.env`, which is gitignored; `.env.example` documents the keys.
 - `public/Bhanu_Sadhu_Resume.pdf` — the resume every "Resume" link opens in
   a new tab. Not in the repo until the real file is dropped in.
   `og.png` is the social preview; `VITE_SITE_URL` (Vercel env) makes its
