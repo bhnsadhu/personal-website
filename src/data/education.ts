@@ -14,7 +14,7 @@ export const education: Education = {
     { code: 'CS 225', name: 'Data Structures', status: 'In progress' },
     { code: 'ECON 302', name: 'Intermediate Microeconomic Theory', status: 'In progress' },
     { code: 'ECON 203', name: 'Economic Statistics II', status: 'Completed' },
-    { code: 'CS 173', name: 'Discrete Structures', status: 'Transfer credit' },
+    { code: 'CS 173', name: 'Discrete Structures', status: 'Completed' },
     { code: 'CS 128', name: 'Introduction to Computer Science II', status: 'Completed' },
   ],
 }
