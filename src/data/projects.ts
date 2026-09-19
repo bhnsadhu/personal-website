@@ -1,67 +1,65 @@
 import type { Project } from './types'
 
 /**
- * The fan: projects. `status: 'idea'` renders face-down ("not dealt yet")
- * and never expands, so leave body empty for those.
+ * The fan: independent projects. Face up when live or shipped. A
+ * `status: 'idea'` entry would render face down and never expand.
+ * Card fronts stay concise; the detail page carries the full build.
  */
 export const projects: Project[] = [
   {
-    slug: 'project-one',
+    slug: 'cambio',
     status: 'live',
-    year: '[YYYY]',
-    title: '[Project One]',
-    subtitle: '[One-line description of what it does.]',
-    meta: '[YYYY] · Live',
-    summary: '[One line on what it does and who it is for.]',
+    year: '2026',
+    title: 'Cambio',
+    subtitle: 'Next.js · TypeScript · Supabase',
+    meta: 'Sept 2026 · Live',
+    summary: 'A multiplayer card game built for the moments when you want to play but nobody has a deck.',
     body: [
-      '[The situation: who had the problem and why it mattered.]',
-      '[The build: the architecture you chose and the hardest part.]',
-      '[The result: what shipped and the number that proves it.]',
+      'Up to 4 players. Join by room code, no account needed. Bots fill the empty seats.',
+      'A four-step onboarding teaches the game while you play, with animated cards and private, player-specific views.',
+      'About 17–18 active users, mostly friends testing it, as of September 19, 2026.',
     ],
-    tags: ['[Framework]', '[Language]', '[Database]'],
-    stack: ['[Framework]', '[Language]', '[Database]', '[Hosting]'],
-    siteUrl: 'https://[project-one].example',
-    codeUrl: 'https://github.com/[your-handle]/[project-one]',
-  },
-  {
-    slug: 'project-two',
-    status: 'shipped',
-    year: '[YYYY]',
-    title: '[Project Two]',
-    subtitle: '[One-line description of what it does.]',
-    meta: '[YYYY] · Shipped',
-    summary: '[One line on what it does and who it is for.]',
-    body: [
-      '[The situation: who had the problem and why it mattered.]',
-      '[The build: the architecture you chose and the hardest part.]',
-      '[The result: what shipped and what happened after.]',
+    tags: ['Next.js', 'React', 'TypeScript', 'Supabase', 'Vercel'],
+    stack: [
+      'Next.js App Router',
+      'React',
+      'TypeScript',
+      'Tailwind CSS',
+      'Supabase',
+      'PostgreSQL',
+      'Vercel',
+      'Vitest',
+      'Web Animations API',
     ],
-    tags: ['[Framework]', '[Language]'],
-    stack: ['[Framework]', '[Language]', '[Platform]'],
-    codeUrl: 'https://github.com/[your-handle]/[project-two]',
-  },
-  {
-    slug: 'project-three',
-    status: 'idea',
-    year: '[YYYY]',
-    title: '[Project Three]',
-    subtitle: '',
-    meta: 'Not dealt yet',
-    summary: '',
-    body: [],
-    tags: [],
-    stack: [],
-  },
-  {
-    slug: 'project-four',
-    status: 'idea',
-    year: '[YYYY]',
-    title: '[Project Four]',
-    subtitle: '',
-    meta: 'Not dealt yet',
-    summary: '',
-    body: [],
-    tags: [],
-    stack: [],
+    siteUrl: 'https://cambio-lime.vercel.app',
+    codeUrl: 'https://github.com/bhnsadhu/cambio',
+    origin:
+      "Cambio is a game I play with my friends a lot. Sometimes we'd have a few minutes between classes or during a library break and want to play, but nobody had cards. I built a version we could open anywhere, and a way for new players to learn a game I love.",
+    ownership:
+      'I built Cambio independently, from the game rules and interface to multiplayer synchronization and deployment.',
+    usage: 'About 17–18 active users, primarily friends testing it, as of September 19, 2026.',
+    features: [
+      'Multiplayer for up to 4 players.',
+      'Account-free joining via room codes.',
+      'Bots fill empty seats.',
+      'Four-step onboarding with contextual guidance.',
+      'Animated card interactions.',
+      'Private, player-specific views.',
+      'Real-time updates.',
+      'Automated game-engine and bot testing, including 40 seeded rounds.',
+    ],
+    decisions: [
+      'Room codes reduce the friction to start a game.',
+      'Bots make it possible to play without a full group.',
+      'Guided onboarding teaches the game while you play it.',
+      'Browser-based, so there is no app to download.',
+    ],
+    technical: [
+      'A pure TypeScript reducer holds the game rules and scoring.',
+      'The full game state stays server-side. Clients receive player-specific views that redact hidden information.',
+      'State updates use compare-and-swap commits.',
+      'Supabase Realtime broadcasts updates, with a polling fallback.',
+      'Bot strategy is kept separate from scheduling and execution.',
+    ],
   },
 ]

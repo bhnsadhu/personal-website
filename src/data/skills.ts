@@ -1,10 +1,99 @@
 import type { SkillStack } from './types'
 
-/** The chips: one stack per category. Stack height = number of skills. */
+/**
+ * The chips: one stack per category, product and strategy first.
+ * Stack height is a count, not a rating. No tool here is claimed for
+ * any one project.
+ */
 export const skills: SkillStack[] = [
-  { id: 'frontend', label: 'Frontend', skills: ['[React]', '[TypeScript]', '[CSS]', '[Accessibility]', '[Testing]'] },
-  { id: 'backend', label: 'Backend & Data', skills: ['[Node]', '[Postgres]', '[APIs]', '[Queues]'] },
-  { id: 'languages', label: 'Languages', skills: ['[TypeScript]', '[Python]', '[SQL]', '[Go]', '[Java]', '[Bash]'] },
-  { id: 'tools', label: 'Tools & Platforms', skills: ['[Git]', '[Vercel]', '[AWS]', '[Figma]'] },
-  { id: 'product', label: 'Product & Business', skills: ['[Roadmapping]', '[Analytics]', '[Writing]'] },
+  {
+    id: 'product',
+    label: 'Product, Strategy & Delivery',
+    skills: [
+      'Product management',
+      'Product strategy',
+      'Product requirements documents',
+      'Requirements gathering',
+      'User stories',
+      'Acceptance criteria',
+      'User interviews',
+      'Usability testing',
+      'Feature prioritization',
+      'Roadmapping',
+      'Product analytics',
+      'Success metrics',
+      'A/B testing',
+      'Competitive analysis',
+      'Market research',
+      'Market sizing',
+      'Go-to-market strategy',
+      'Stakeholder management',
+      'Project management',
+      'Business analysis',
+      'Process mapping',
+    ],
+  },
+  {
+    id: 'languages',
+    label: 'Programming Languages',
+    skills: ['Python', 'SQL', 'TypeScript', 'JavaScript', 'Java', 'C++', 'R', 'HTML', 'CSS'],
+  },
+  {
+    id: 'frameworks',
+    label: 'Frameworks & Platforms',
+    skills: [
+      'React',
+      'Next.js',
+      'Tailwind CSS',
+      'Vite',
+      'Supabase',
+      'PostgreSQL',
+      'Vercel',
+      'Vitest',
+      'Capacitor',
+      'React Router',
+      'Framer Motion',
+    ],
+  },
+  {
+    id: 'devtools',
+    label: 'Development Tools',
+    skills: ['Git', 'GitHub', 'GitHub Actions', 'Postman', 'Visual Studio Code', 'Android Studio', 'Xcode'],
+  },
+  {
+    id: 'business-tools',
+    label: 'Analytics, Design & Business Tools',
+    skills: [
+      'Microsoft Excel (pivot tables, lookup functions)',
+      'Google Sheets',
+      'Tableau',
+      'Power BI',
+      'Looker Studio',
+      'Amplitude',
+      'Mixpanel',
+      'PostHog',
+      'Google Analytics',
+      'Figma',
+      'Notion',
+      'Confluence',
+      'Microsoft Office',
+      'PowerPoint',
+    ],
+  },
+  {
+    id: 'ai',
+    label: 'AI & APIs',
+    skills: [
+      'Claude API',
+      'Mistral AI API',
+      'REST APIs',
+      'Claude Code',
+      'Cursor',
+      'ChatGPT',
+      'Replit',
+      'Prompt engineering',
+      'Prompt evaluation',
+      'Tool calling',
+    ],
+  },
 ]

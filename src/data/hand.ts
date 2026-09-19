@@ -1,55 +1,58 @@
+import { education } from './education'
 import type { Highlight } from './types'
 
-/** The hero hand: four top highlights, dealt as the four aces. */
+/**
+ * The hero hand: four top highlights, dealt as the four aces. Each card
+ * stays short and links to its fuller entry elsewhere on the site.
+ */
 export const hand: Highlight[] = [
   {
     kind: 'role',
-    slug: 'current-role',
-    title: '[Role] at [Company]',
-    subtitle: 'Current role',
-    meta: '[Mon YYYY] — Present',
-    summary: '[One line on what you own there.]',
-    body: [
-      '[What you are accountable for and the size of it: users, revenue, systems, people.]',
-      '[The one thing you shipped there that you would lead with in an interview.]',
-    ],
-    tags: ['[Domain]', '[Skill One]', '[Skill Two]'],
+    slug: 'replit',
+    corner: 'Current',
+    title: 'Replit',
+    subtitle: 'Student Product Strategy Consultant',
+    meta: 'Aug 2026 — Present',
+    summary: 'Exploring AI literacy and campus adoption of Replit Agent across 4+ UIUC colleges.',
+    body: ['Client engagement through Disruption Lab at Gies. Ongoing.'],
+    tags: ['Product Strategy', 'User Research', 'AI Adoption'],
+    more: { label: 'See the full hand', to: '/experience/replit' },
   },
   {
     kind: 'project',
-    slug: 'flagship-project',
-    title: '[Flagship Project]',
-    subtitle: 'Flagship project',
-    meta: '[YYYY] · Live',
-    summary: '[One line on what it does and who uses it.]',
-    body: [
-      '[Why it exists, what you built, and the number that proves it worked.]',
-    ],
-    tags: ['[Framework]', '[Language]', '[Platform]'],
-    links: [{ label: 'Visit the site', href: 'https://[flagship].example' }],
+    slug: 'cambio',
+    corner: 'Live',
+    title: 'Cambio',
+    subtitle: 'Solo Creator & Developer',
+    meta: 'Sept 2026 · Live',
+    summary: 'A multiplayer card game I built so friends can play anywhere, even when nobody has a deck.',
+    body: ['About 17–18 active users, mostly friends testing it, as of September 19, 2026.'],
+    tags: ['Product Development', 'Multiplayer', 'TypeScript'],
+    links: [{ label: 'Live Demo', href: 'https://cambio-lime.vercel.app' }],
+    more: { label: 'See the full hand', to: '/projects/cambio' },
   },
   {
     kind: 'credential',
-    slug: 'credential',
-    title: '[Degree], [University]',
-    subtitle: 'Credential',
-    meta: 'Class of [YYYY] · [GPA] GPA',
-    summary: '[Major, minor, or the thing you actually studied.]',
-    body: [
-      '[Honors, thesis, or the coursework that shaped how you work.]',
-    ],
-    tags: ['[Major]', '[Minor]'],
+    slug: 'education',
+    corner: 'Education',
+    title: 'Computer Science + Economics',
+    subtitle: education.school,
+    meta: education.dates,
+    summary: `${education.degree}. ${education.expected}. Declared minors in ${education.minors.join(' and ')}.`,
+    body: [education.courseworkNote, ...education.coursework.map((c) => `${c.code} ${c.name} · ${c.status}`)],
+    tags: ['Computer Science', 'Economics', 'Statistics minor', 'Advertising minor'],
   },
   {
     kind: 'other',
-    slug: 'one-more',
-    title: '[One More Highlight]',
-    subtitle: 'Wild card',
-    meta: '[YYYY]',
-    summary: '[An award, a talk, a launch, a number worth bragging about.]',
-    body: [
-      '[Two sentences on why this one matters to the kind of team you want to join.]',
-    ],
-    tags: ['[Tag]'],
+    slug: 'community',
+    corner: 'Community',
+    title: 'Bringing people together',
+    subtitle: 'Indian Student Association · Director of Cultural Events',
+    meta: 'Aug 2025 — Present',
+    summary:
+      'Creating opportunities to connect through South Asian cultural events, from Unity Week to Diwali Night and India Night.',
+    body: [],
+    tags: ['Community', 'Event Production', 'Leadership'],
+    more: { label: 'See the face cards', to: '/#face' },
   },
 ]
