@@ -235,18 +235,25 @@
 
 /* ---------------- Face cards: one row per suit ---------------- */
 
+/* Block, not grid: each row centers itself with auto margins, which a
+   grid or flex parent would shrink-wrap to nothing. */
 .face-rows {
-  display: grid;
-  gap: 28px;
+  display: block;
+}
+
+.face-rows .row + .row {
+  margin-top: 28px;
 }
 
 /* ---------------- Chips ---------------- */
 
+/* Six stacks fit one row at the container width; chips line up along the
+   top so one long list does not float the rest. */
 .stacks {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
   gap: 40px 24px;
-  align-items: end;
+  align-items: start;
 }
 
 .stack {

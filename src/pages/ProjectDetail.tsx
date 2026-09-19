@@ -96,9 +96,6 @@ export function ProjectDetail() {
           </ul>
         </PlateSection>
       )}
-      <PlateSection label="Technology">
-        <p className="plate__p">{item.stack.join(' · ')}</p>
-      </PlateSection>
     </Plate>
   )
 }
