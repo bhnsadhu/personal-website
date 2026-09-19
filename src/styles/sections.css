@@ -151,7 +151,8 @@
   gap: 6px 0;
 }
 
-.hero__role + .hero__role::before {
+/* Trailing separators, so a wrapped line never starts with a dot. */
+.hero__role:not(:last-child)::after {
   content: '·';
   padding: 0 8px;
   color: var(--gray);
