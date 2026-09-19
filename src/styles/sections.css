@@ -114,10 +114,14 @@
   padding: 72px 0 32px;
 }
 
+/* Wide enough for the full name on one line at the largest display size,
+   which needs about 875px. The lede keeps its own 58ch measure, so only the
+   headline uses the extra room. Left as a max-width rather than nowrap: on a
+   phone the name is wider than the screen and still has to wrap. */
 .hero__head {
   display: grid;
   gap: 18px;
-  max-width: 800px;
+  max-width: 920px;
   margin-bottom: 24px;
 }
 
