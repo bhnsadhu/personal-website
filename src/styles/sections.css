@@ -264,10 +264,14 @@
   text-align: center;
 }
 
+/* Reserve the tallest stack's box for every stack. Chips sit from the bottom
+   up, so they all rest on one line and it is the top that varies, the way a
+   row of stacks on a table would. --max comes from the component, so the
+   reserved height tracks MAX_CHIPS. */
 .stack__chips {
   position: relative;
   width: 104px;
-  height: calc(66px + var(--count, 1) * 8px);
+  height: calc(66px + var(--max, 8) * 8px);
 }
 
 .chip {

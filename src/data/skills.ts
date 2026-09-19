@@ -30,7 +30,7 @@ export const skills: SkillStack[] = [
   {
     id: 'languages',
     label: 'Programming Languages',
-    skills: ['Python', 'SQL', 'TypeScript', 'JavaScript', 'Java', 'C++', 'R', 'HTML', 'CSS'],
+    skills: ['Python', 'SQL', 'TypeScript', 'JavaScript', 'Java', 'Kotlin', 'C++', 'R', 'HTML', 'CSS'],
   },
   {
     id: 'frameworks',

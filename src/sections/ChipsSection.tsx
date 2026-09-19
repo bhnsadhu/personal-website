@@ -4,6 +4,11 @@ import { certifications, skills } from '../data'
 
 /** The chips: one stack per skill category, product first. Certifications sit beneath. */
 export function ChipsSection() {
+  // The stacks are sized against each other, so the extremes come first.
+  const lengths = skills.map((s) => s.skills.length)
+  const shortest = Math.min(...lengths)
+  const longest = Math.max(...lengths)
+
   return (
     <Section
       id="chips"
@@ -13,11 +18,11 @@ export function ChipsSection() {
           The <em>chips</em>
         </>
       }
-      note="One stack per category. Height is a count of chips, not a rating."
+      note="One stack per category. The stack is a rough indicator; the number beside it is exact."
     >
       <ul className="stacks">
         {skills.map((s, i) => (
-          <ChipStack key={s.id} stack={s} index={i} />
+          <ChipStack key={s.id} stack={s} index={i} min={shortest} max={longest} />
         ))}
       </ul>
 

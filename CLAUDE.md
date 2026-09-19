@@ -37,6 +37,13 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   `status: 'idea'` renders face down and shows a toast), ChipsSection
   (skills plus certifications), Flop (personal: flop and turn, four cards),
   CallOrFold (contact form posting to `/api/contact`).
+- `src/components/Chips.tsx` — a chip stack is a rough indicator, not a
+  count: `chipsFor()` scales the longest category to `MAX_CHIPS` and the
+  rest down to `MIN_CHIPS`, so no stack towers. ChipsSection passes the
+  shortest and longest lengths in. Every stack reserves the tallest box
+  (`--max` in CSS) and chips sit from the bottom up, so all six rest on one
+  baseline with their labels aligned. The `×N` beside it is the real
+  number.
 - `src/pages/` — Home, ListView (`/list`, same data flat, adds Education),
   ExperienceDetail (`/experience/:slug`), ProjectDetail
   (`/projects/:slug`), NotFound.
