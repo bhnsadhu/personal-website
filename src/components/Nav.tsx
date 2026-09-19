@@ -23,8 +23,8 @@ export function Nav() {
   return (
     <header className="nav">
       <div className="nav__inner container">
-        <Link to="/" className="nav__brand" aria-label={`${site.name}, back to your hand`}>
-          {site.name}
+        <Link to="/" className="nav__brand" aria-label={`${site.shortName}, back to your hand`}>
+          {site.shortName}
         </Link>
 
         <nav className="nav__suits" aria-label="Sections">
@@ -51,9 +51,9 @@ export function Nav() {
           <Link to={onList ? '/' : '/list'} className="btn btn--ghost nav__toggle" aria-current={onList ? 'page' : undefined}>
             {onList ? 'Card view' : 'List view'}
           </Link>
-          <a className="btn nav__resume" href={site.resume} download>
-            Draw a card
-            <span className="sr-only">(download résumé PDF)</span>
+          <a className="btn nav__resume" href={site.resume} target="_blank" rel="noreferrer">
+            Resume
+            <span className="sr-only">(opens PDF in a new tab)</span>
           </a>
         </div>
       </div>

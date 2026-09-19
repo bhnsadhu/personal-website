@@ -4,7 +4,7 @@ import { CardRow } from '../components/CardRow'
 import { Section } from '../components/Section'
 import { FAN_RANKS, projects, rankAt } from '../data'
 
-/** The fan: projects. Live and shipped are face up; ideas are face down. */
+/** The fan: independent projects. Live and shipped are face up; ideas are face down. */
 export function Fan() {
   const [toast, setToast] = useState<string | null>(null)
   const timer = useRef<number | undefined>(undefined)
@@ -26,7 +26,7 @@ export function Fan() {
           The <em>fan</em>
         </>
       }
-      note="Face up: shipped and live. Face down: still in the deck."
+      note="Independent work. Face up means live; face down would mean still in the deck."
     >
       <CardRow ids={projects.map((p) => p.slug)} ariaLabel="Projects">
         {(row) =>
@@ -60,7 +60,7 @@ export function Fan() {
                 <div className="card__links">
                   {p.siteUrl && (
                     <a className="tlink" href={p.siteUrl} target="_blank" rel="noreferrer">
-                      Visit the site
+                      Live Demo
                       <span className="arrow" aria-hidden="true">
                         →
                       </span>
@@ -68,7 +68,7 @@ export function Fan() {
                   )}
                   {p.codeUrl && (
                     <a className="tlink" href={p.codeUrl} target="_blank" rel="noreferrer">
-                      View the code
+                      GitHub
                       <span className="arrow" aria-hidden="true">
                         →
                       </span>

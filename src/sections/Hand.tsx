@@ -1,18 +1,47 @@
 import { Card } from '../components/Card'
 import { CardRow } from '../components/CardRow'
 import { hand, HAND_SUITS, site } from '../data'
+import { Link } from '../lib/router'
 
-/** Hero: name plus a fanned hand of four aces, one per top highlight. */
+/**
+ * Hero: name, intro, primary actions, and a fanned hand of four aces, one
+ * per top highlight. Product management leads; the roles list keeps the
+ * recruiting order as written.
+ */
 export function Hand() {
   return (
     <section id="hand" className="hero" aria-labelledby="hand-title">
       <div className="container">
         <div className="hero__head">
-          <p className="eyebrow">Your hand · {site.title} · {site.location}</p>
+          <p className="eyebrow">
+            Your hand · {site.focus} · {site.location}
+          </p>
           <h1 id="hand-title" className="display hero__title">
             {site.name}
           </h1>
           <p className="lede">{site.tagline}</p>
+          <div className="hero__actions">
+            <Link to="/#spread" className="btn">
+              Explore My Work
+            </Link>
+            <a className="btn btn--ghost" href={site.resume} target="_blank" rel="noreferrer">
+              View Resume
+              <span className="sr-only">(opens PDF in a new tab)</span>
+            </a>
+            <Link to="/#contact" className="btn btn--ghost">
+              Contact Me
+            </Link>
+          </div>
+          <div className="hero__seeking mono mono--sm">
+            <span className="hero__seeking-lead">Seeking {site.seeking}</span>
+            <ol className="hero__roles" aria-label="Roles, in priority order">
+              {site.roles.map((r, i) => (
+                <li key={r} className={i === 0 ? 'hero__role hero__role--lead' : 'hero__role'}>
+                  {r}
+                </li>
+              ))}
+            </ol>
+          </div>
         </div>
 
         <CardRow ids={hand.map((h) => h.slug)} layout="fan" className="hero__fan" ariaLabel="Top highlights">
@@ -27,19 +56,23 @@ export function Hand() {
                 subtitle={h.subtitle}
                 meta={h.meta}
                 tags={h.tags}
+                corner={h.corner}
                 open={row.isOpen(h.slug)}
                 aside={row.isAside(h.slug)}
                 onOpen={() => row.open(h.slug)}
                 onClose={row.close}
+                more={h.more}
                 className="deal"
                 style={{ ['--i' as string]: i, ['--rot' as string]: `${(i - 1.5) * 9}deg` }}
               >
                 <p className="card__summary">{h.summary}</p>
-                <ul className="card__list">
-                  {h.body.map((b, j) => (
-                    <li key={j}>{b}</li>
-                  ))}
-                </ul>
+                {h.body.length > 0 && (
+                  <ul className="card__list">
+                    {h.body.map((b, j) => (
+                      <li key={j}>{b}</li>
+                    ))}
+                  </ul>
+                )}
                 {h.links?.map((l) => (
                   <a key={l.href} className="tlink card__extlink" href={l.href} target="_blank" rel="noreferrer">
                     {l.label}

@@ -236,3 +236,42 @@
 .list .band {
   margin: 8px 0 0;
 }
+
+/* Prose on a plate. */
+.plate__p {
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.plate__p + .plate__p {
+  margin-top: 10px;
+}
+
+/* List view: recruiting order, favorites. */
+.list__roles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 0;
+  color: var(--gray);
+  margin-top: 4px;
+}
+
+.list__roles li + li::before {
+  content: '·';
+  padding: 0 8px;
+}
+
+.list__roles li:first-child {
+  color: var(--cream);
+}
+
+.list__entries {
+  display: grid;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.list__entries strong {
+  font-weight: 600;
+  color: var(--cream);
+}

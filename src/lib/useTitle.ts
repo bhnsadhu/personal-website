@@ -3,6 +3,6 @@ import { site } from '../data'
 
 export function useTitle(title?: string) {
   useEffect(() => {
-    document.title = title ? `${title} — ${site.name}` : `${site.name} — Your Hand`
+    document.title = title ? `${title} | ${site.shortName}` : site.browserTitle
   }, [title])
 }

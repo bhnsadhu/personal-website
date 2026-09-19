@@ -585,3 +585,107 @@
     padding: 22px 20px;
   }
 }
+
+/* ---------------- Back-face extras: context, role steps, favorites ---------------- */
+
+/* The consulting org an engagement ran through. Wine on cream passes contrast. */
+.card__via {
+  color: var(--wine);
+}
+
+.card__context {
+  color: var(--ink-2);
+}
+
+/* Titles held in one org, newest first. */
+.card__steps {
+  display: grid;
+  gap: 6px;
+}
+
+.card__steps li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+}
+
+.card__step-role {
+  font-weight: 600;
+}
+
+.card__step-dates {
+  color: var(--ink-2);
+}
+
+.card__related {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 20px;
+}
+
+.card__related > .mono {
+  color: var(--ink-2);
+}
+
+/* Five favorites on a community card. Numbered, not ranked. */
+.card__entries {
+  display: grid;
+  gap: 16px;
+  counter-reset: entry;
+}
+
+.entry {
+  position: relative;
+  display: grid;
+  gap: 3px;
+  padding-left: 34px;
+  counter-increment: entry;
+}
+
+.entry::before {
+  content: counter(entry, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0.25em;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--wine);
+}
+
+.entry__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+}
+
+.entry__name {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+}
+
+.entry__detail {
+  font-style: italic;
+  color: var(--ink-2);
+}
+
+.entry__line {
+  font-size: 15px;
+  color: var(--ink-2);
+}
+
+.entry__key {
+  color: var(--wine);
+  margin-right: 8px;
+}
+
+.entry__note {
+  font-size: 15px;
+  line-height: 1.5;
+}

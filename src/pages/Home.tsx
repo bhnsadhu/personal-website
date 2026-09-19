@@ -1,5 +1,5 @@
 import { MetricBand } from '../components/MetricBand'
-import { metrics } from '../data'
+import { metrics, site } from '../data'
 import { useTitle } from '../lib/useTitle'
 import { CallOrFold } from '../sections/CallOrFold'
 import { ChipsSection } from '../sections/ChipsSection'
@@ -14,7 +14,7 @@ export function Home() {
   return (
     <main>
       <Hand />
-      <MetricBand metrics={metrics} label="Headline numbers" />
+      <MetricBand metrics={metrics} label="Headline numbers" note={`As of ${site.asOf}`} />
       <Spread />
       <FaceCards />
       <Fan />

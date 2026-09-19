@@ -1,12 +1,16 @@
-import { FileIcon, GitHubIcon, LinkedInIcon, MailIcon } from '../components/Icons'
+import { FileIcon, GitHubIcon, LinkedInIcon, MailIcon, PhoneIcon, PinIcon } from '../components/Icons'
 import { MetricBand } from '../components/MetricBand'
 import {
+  certifications,
+  education,
   experience,
   hand,
   leadership,
-  LEADERSHIP_CAP,
   metrics,
   personal,
+  personalExtras,
+  personalIntro,
+  personalNote,
   projects,
   site,
   skills,
@@ -33,9 +37,9 @@ export function ListView() {
             <Link to="/" className="btn btn--ghost">
               Back to the cards
             </Link>
-            <a className="btn" href={site.resume} download>
-              Draw a card
-              <span className="sr-only">(download résumé PDF)</span>
+            <a className="btn" href={site.resume} target="_blank" rel="noreferrer">
+              View Resume
+              <span className="sr-only">(opens PDF in a new tab)</span>
             </a>
           </div>
         </header>
@@ -52,7 +56,13 @@ export function ListView() {
               {p}
             </p>
           ))}
+          <p className="list__p list__p--muted">{site.workingStyle}</p>
           <p className="list__p">{site.availability}</p>
+          <ol className="list__roles mono" aria-label="Roles, in priority order">
+            {site.roles.map((r) => (
+              <li key={r}>{r}</li>
+            ))}
+          </ol>
         </section>
 
         <section className="list__section" aria-labelledby="l-hand">
@@ -66,17 +76,34 @@ export function ListView() {
                 {h.subtitle} · {h.meta}
               </p>
               <p className="list__p">{h.summary}</p>
-              <ul className="list__bullets">
-                {h.body.map((b, j) => (
-                  <li key={j}>{b}</li>
+              {h.body.length > 0 && (
+                <ul className="list__bullets">
+                  {h.body.map((b, j) => (
+                    <li key={j}>{b}</li>
+                  ))}
+                </ul>
+              )}
+              <div className="list__links">
+                {h.links?.map((l) => (
+                  <a key={l.href} className="tlink" href={l.href} target="_blank" rel="noreferrer">
+                    {l.label}
+                  </a>
                 ))}
-              </ul>
+                {h.more && (
+                  <Link to={h.more.to} className="tlink">
+                    {h.more.label}
+                    <span className="arrow" aria-hidden="true">
+                      →
+                    </span>
+                  </Link>
+                )}
+              </div>
             </article>
           ))}
         </section>
       </div>
 
-      <MetricBand metrics={metrics} label="Headline numbers" />
+      <MetricBand metrics={metrics} label="Headline numbers" note={`As of ${site.asOf}`} />
 
       <div className="container">
         <section className="list__section" aria-labelledby="l-exp">
@@ -90,8 +117,10 @@ export function ListView() {
               </h3>
               <p className="list__meta mono">
                 {e.dates} · {e.location}
+                {e.via && ` · via ${e.via}`}
               </p>
               <p className="list__p">{e.summary}</p>
+              {e.context && <p className="list__p list__p--muted">{e.context}</p>}
               <ul className="list__bullets">
                 {e.body.map((b, j) => (
                   <li key={j}>{b}</li>
@@ -112,18 +141,38 @@ export function ListView() {
           <h2 id="l-lead" className="list__title">
             Leadership
           </h2>
-          {leadership.slice(0, LEADERSHIP_CAP).map((l) => (
+          {leadership.map((l) => (
             <article key={l.slug} className="list__item">
               <h3 className="list__item-title">
                 {l.role} · {l.organization}
               </h3>
-              <p className="list__meta mono">{l.dates}</p>
+              <p className="list__meta mono">
+                {l.dates} · {l.location}
+              </p>
+              {l.progression && (
+                <p className="list__meta mono">
+                  {l.progression.map((s) => `${s.role} (${s.dates})`).join(' ← ')}
+                </p>
+              )}
               <p className="list__p">{l.summary}</p>
               <ul className="list__bullets">
                 {l.body.map((b, j) => (
                   <li key={j}>{b}</li>
                 ))}
               </ul>
+              <p className="list__meta mono">{l.tags.join(' · ')}</p>
+              {l.related && (
+                <div className="list__links">
+                  {l.related.map((r) => (
+                    <Link key={r.to} to={r.to} className="tlink">
+                      {r.label}
+                      <span className="arrow" aria-hidden="true">
+                        →
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              )}
             </article>
           ))}
         </section>
@@ -141,6 +190,7 @@ export function ListView() {
               ) : (
                 <>
                   <p className="list__p">{p.summary}</p>
+                  {p.ownership && <p className="list__p">{p.ownership}</p>}
                   <ul className="list__bullets">
                     {p.body.map((b, j) => (
                       <li key={j}>{b}</li>
@@ -156,12 +206,12 @@ export function ListView() {
                     </Link>
                     {p.siteUrl && (
                       <a className="tlink" href={p.siteUrl} target="_blank" rel="noreferrer">
-                        Visit the site
+                        Live Demo
                       </a>
                     )}
                     {p.codeUrl && (
                       <a className="tlink" href={p.codeUrl} target="_blank" rel="noreferrer">
-                        View the code
+                        GitHub
                       </a>
                     )}
                   </div>
@@ -169,6 +219,31 @@ export function ListView() {
               )}
             </article>
           ))}
+        </section>
+
+        <section id="education" className="list__section" aria-labelledby="l-edu">
+          <h2 id="l-edu" className="list__title">
+            Education
+          </h2>
+          <article className="list__item">
+            <h3 className="list__item-title">
+              {education.degree} · {education.school}
+            </h3>
+            <p className="list__meta mono">
+              {education.dates} · {education.location}
+            </p>
+            <p className="list__p">
+              {education.expected}. Declared minors in {education.minors.join(' and ')}.
+            </p>
+            <p className="list__meta mono">{education.courseworkNote}</p>
+            <ul className="list__bullets">
+              {education.coursework.map((c) => (
+                <li key={c.code}>
+                  {c.code} · {c.name} · {c.status}
+                </li>
+              ))}
+            </ul>
+          </article>
         </section>
 
         <section className="list__section" aria-labelledby="l-skills">
@@ -185,35 +260,73 @@ export function ListView() {
           </dl>
         </section>
 
+        <section className="list__section" aria-labelledby="l-certs">
+          <h2 id="l-certs" className="list__title">
+            Certifications
+          </h2>
+          {certifications.map((c) => (
+            <article key={c.url} className="list__item">
+              <h3 className="list__item-title">{c.name}</h3>
+              <p className="list__meta mono">
+                {c.issuer} · Issued {c.issued}
+              </p>
+              <a className="tlink" href={c.url} target="_blank" rel="noreferrer">
+                View Credential
+                <span className="arrow" aria-hidden="true">
+                  →
+                </span>
+              </a>
+            </article>
+          ))}
+        </section>
+
         <section className="list__section" aria-labelledby="l-personal">
           <h2 id="l-personal" className="list__title">
             Personal
           </h2>
+          <p className="list__p">{personalIntro}</p>
+          <p className="list__meta mono">{personalNote}</p>
           {personal.map((c) => (
             <article key={c.slug} className="list__item">
               <h3 className="list__item-title">{c.title}</h3>
-              <p className="list__meta mono">
-                {c.subtitle} · {c.meta}
-              </p>
-              <p className="list__p">{c.summary}</p>
-              <ul className="list__bullets">
-                {c.body.map((b, j) => (
-                  <li key={j}>{b}</li>
+              <p className="list__meta mono">{c.subtitle}</p>
+              {c.intro && <p className="list__p">{c.intro}</p>}
+              <ol className="list__entries">
+                {c.entries.map((e) => (
+                  <li key={e.name}>
+                    <p className="list__p">
+                      <strong>{e.name}</strong>
+                      {e.detail && <span className="list__p--muted"> · {e.detail}</span>}
+                    </p>
+                    {e.address && <p className="list__meta mono">{e.address}</p>}
+                    {e.pick && <p className="list__p list__p--muted">Order: {e.pick}</p>}
+                    <p className="list__p">{e.note}</p>
+                  </li>
                 ))}
-              </ul>
+              </ol>
             </article>
           ))}
+          <p className="list__meta mono">Also in rotation: {personalExtras.join(' · ')}</p>
         </section>
 
         <section className="list__section" aria-labelledby="l-contact">
           <h2 id="l-contact" className="list__title">
             Contact
           </h2>
+          <p className="list__p">{site.contactLede}</p>
           <p className="list__p">{site.availability}</p>
           <div className="list__links">
+            <span className="tlink">
+              <PinIcon className="icon--brass" />
+              {site.location}
+            </span>
             <a className="tlink" href={`mailto:${site.email}`}>
               <MailIcon className="icon--brass" />
               {site.email}
+            </a>
+            <a className="tlink" href={site.phoneHref}>
+              <PhoneIcon className="icon--brass" />
+              {site.phone}
             </a>
             <a className="tlink" href={site.linkedin} target="_blank" rel="noreferrer">
               <LinkedInIcon className="icon--brass" />
@@ -223,9 +336,9 @@ export function ListView() {
               <GitHubIcon className="icon--brass" />
               GitHub
             </a>
-            <a className="tlink" href={site.resume} download>
+            <a className="tlink" href={site.resume} target="_blank" rel="noreferrer">
               <FileIcon className="icon--brass" />
-              Resume PDF
+              Resume
             </a>
           </div>
         </section>

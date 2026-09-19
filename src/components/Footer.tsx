@@ -2,8 +2,8 @@ import { site } from '../data'
 import { FileIcon, GitHubIcon, LinkedInIcon, MailIcon } from './Icons'
 import { SUIT_GLYPH } from './Suit'
 
+/** Year and "last updated" are static on purpose: they change with the content, not the clock. */
 export function Footer() {
-  const year = new Date().getFullYear()
   return (
     <footer className="footer">
       <div className="container footer__inner">
@@ -23,14 +23,15 @@ export function Footer() {
             <GitHubIcon className="icon--brass" />
             GitHub
           </a>
-          <a className="tlink" href={site.resume} download>
+          <a className="tlink" href={site.resume} target="_blank" rel="noreferrer">
             <FileIcon className="icon--brass" />
             Resume
           </a>
         </nav>
         <p className="footer__note mono mono--sm">
-          © {year} {site.name} · Shuffled, not stirred
+          © {site.copyrightYear} {site.name} · {site.signoff}
         </p>
+        <p className="footer__note mono mono--sm">Content last updated {site.updated}</p>
       </div>
     </footer>
   )

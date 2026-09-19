@@ -3,7 +3,7 @@ import { CardRow } from '../components/CardRow'
 import { Section } from '../components/Section'
 import { experience, rankAt, SPREAD_RANKS } from '../data'
 
-/** The spread: work experience, ranked high to low. Grows with the data. */
+/** The spread: professional and client work. Grows with the data. */
 export function Spread() {
   return (
     <Section
@@ -14,7 +14,7 @@ export function Spread() {
           The <em>spread</em>
         </>
       }
-      note="Ranked high to low. Face cards are reserved for leadership."
+      note="Professional and client work, dealt in order. Face cards are reserved for campus leadership."
     >
       <CardRow ids={experience.map((e) => e.slug)} ariaLabel="Work experience">
         {(row) =>
@@ -36,6 +36,8 @@ export function Spread() {
               more={{ label: 'See the full hand', to: `/experience/${e.slug}` }}
             >
               <p className="card__summary">{e.summary}</p>
+              {e.via && <p className="card__via mono mono--sm">Client engagement through {e.via}</p>}
+              {e.context && <p className="card__context">{e.context}</p>}
               <ul className="card__list">
                 {e.body.map((b, j) => (
                   <li key={j}>{b}</li>

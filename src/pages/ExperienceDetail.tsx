@@ -11,6 +11,7 @@ export function ExperienceDetail() {
   if (!item) return <NotFound />
   const i = experience.indexOf(item)
   const next = nextOf(experience, item.slug)
+  const ongoing = item.dates.endsWith('Present')
 
   return (
     <Plate
@@ -27,7 +28,13 @@ export function ExperienceDetail() {
       <PlateSection label="In one line">
         <p className="plate__lede">{item.summary}</p>
       </PlateSection>
-      <PlateSection label="What I did">
+      {(item.via || item.context) && (
+        <PlateSection label="The engagement">
+          {item.via && <p className="plate__p">Client engagement through {item.via}.</p>}
+          {item.context && <p className="plate__p">{item.context}</p>}
+        </PlateSection>
+      )}
+      <PlateSection label={ongoing ? 'What I do' : 'What I did'}>
         <ul className="card__list">
           {item.body.map((b, j) => (
             <li key={j}>{b}</li>

@@ -1,11 +1,11 @@
 import { Card } from '../components/Card'
 import { CardRow } from '../components/CardRow'
 import { Section } from '../components/Section'
-import { FLOP_RANKS, personal, rankAt } from '../data'
+import { FLOP_RANKS, personal, personalExtras, personalIntro, personalNote, rankAt } from '../data'
 
-/** The flop: up to three community cards for life outside work. */
+/** The flop, plus the turn: four community cards for life outside work, five favorites each. */
 export function Flop() {
-  const cards = personal.slice(0, 3)
+  const cards = personal.slice(0, FLOP_RANKS.length)
   return (
     <Section
       id="flop"
@@ -15,9 +15,10 @@ export function Flop() {
           The <em>flop</em>
         </>
       }
-      note={`Community cards. ${cards.length} of 3 on the table.`}
+      note={personalNote}
       className="section--flop"
     >
+      <p className="lede flop__intro">{personalIntro}</p>
       <div className="table">
         <CardRow ids={cards.map((c) => c.slug)} layout="flop" ariaLabel="Personal interests">
           {(row) =>
@@ -36,17 +37,31 @@ export function Flop() {
                 onOpen={() => row.open(c.slug)}
                 onClose={row.close}
               >
-                <p className="card__summary">{c.summary}</p>
-                <ul className="card__list">
-                  {c.body.map((b, j) => (
-                    <li key={j}>{b}</li>
+                {c.intro && <p className="card__summary">{c.intro}</p>}
+                <ol className="card__entries">
+                  {c.entries.map((e) => (
+                    <li key={e.name} className="entry">
+                      <p className="entry__head">
+                        <span className="entry__name">{e.name}</span>
+                        {e.detail && <span className="entry__detail">{e.detail}</span>}
+                      </p>
+                      {e.address && <p className="entry__line mono mono--sm">{e.address}</p>}
+                      {e.pick && (
+                        <p className="entry__line">
+                          <span className="entry__key mono mono--sm">Order</span>
+                          {e.pick}
+                        </p>
+                      )}
+                      <p className="entry__note">{e.note}</p>
+                    </li>
                   ))}
-                </ul>
+                </ol>
               </Card>
             ))
           }
         </CardRow>
       </div>
+      <p className="flop__extras mono mono--sm">Also in rotation: {personalExtras.join(' · ')}</p>
     </Section>
   )
 }
