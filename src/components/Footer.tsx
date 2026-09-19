@@ -1,4 +1,5 @@
 import { site } from '../data'
+import { FileIcon, GitHubIcon, LinkedInIcon, MailIcon } from './Icons'
 import { SUIT_GLYPH } from './Suit'
 
 export function Footer() {
@@ -11,16 +12,20 @@ export function Footer() {
         </p>
         <nav className="footer__links" aria-label="Elsewhere">
           <a className="tlink" href={`mailto:${site.email}`}>
+            <MailIcon className="icon--brass" />
             Email
           </a>
           <a className="tlink" href={site.linkedin} target="_blank" rel="noreferrer">
+            <LinkedInIcon className="icon--brass" />
             LinkedIn
           </a>
           <a className="tlink" href={site.github} target="_blank" rel="noreferrer">
+            <GitHubIcon className="icon--brass" />
             GitHub
           </a>
           <a className="tlink" href={site.resume} download>
-            Résumé
+            <FileIcon className="icon--brass" />
+            Resume
           </a>
         </nav>
         <p className="footer__note mono mono--sm">

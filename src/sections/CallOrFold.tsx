@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import { Section } from '../components/Section'
+import { GitHubIcon, LinkedInIcon, MailIcon } from '../components/Icons'
 import { site } from '../data'
 
 /** Contact. Static site: the form composes an email in the visitor's client. */
@@ -31,19 +32,28 @@ export function CallOrFold() {
           <p className="lede">Your move. Reach out and I’ll deal you in.</p>
           <ul className="contact__links">
             <li>
-              <span className="mono mono--sm contact__label">Email</span>
+              <span className="mono mono--sm contact__label">
+                <MailIcon className="icon--brass" />
+                Email
+              </span>
               <a className="tlink" href={`mailto:${site.email}`}>
                 {site.email}
               </a>
             </li>
             <li>
-              <span className="mono mono--sm contact__label">LinkedIn</span>
+              <span className="mono mono--sm contact__label">
+                <LinkedInIcon className="icon--brass" />
+                LinkedIn
+              </span>
               <a className="tlink" href={site.linkedin} target="_blank" rel="noreferrer">
                 in/{site.handle}
               </a>
             </li>
             <li>
-              <span className="mono mono--sm contact__label">GitHub</span>
+              <span className="mono mono--sm contact__label">
+                <GitHubIcon className="icon--brass" />
+                GitHub
+              </span>
               <a className="tlink" href={site.github} target="_blank" rel="noreferrer">
                 @{site.handle}
               </a>

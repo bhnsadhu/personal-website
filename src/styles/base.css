@@ -294,6 +294,26 @@ svg {
   transform: translateX(-4px);
 }
 
+/* Inline outline icons (Icons.tsx). Em-sized so they track the label. */
+.icon {
+  width: 1.2em;
+  height: 1.2em;
+  flex: none;
+  vertical-align: -0.2em;
+}
+
+/* Brass icon beside cream/gray mono text. Dark surfaces only:
+   brass fails contrast on cream card backs. */
+.icon--brass {
+  color: var(--brass);
+  transition: color var(--fast) var(--ease);
+}
+
+.tlink:hover .icon--brass,
+.tlink:focus-visible .icon--brass {
+  color: var(--brass-2);
+}
+
 .tag {
   display: inline-block;
   padding: 4px 9px;

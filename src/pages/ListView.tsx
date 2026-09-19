@@ -1,3 +1,4 @@
+import { FileIcon, GitHubIcon, LinkedInIcon, MailIcon } from '../components/Icons'
 import { MetricBand } from '../components/MetricBand'
 import {
   experience,
@@ -211,16 +212,20 @@ export function ListView() {
           <p className="list__p">{site.availability}</p>
           <div className="list__links">
             <a className="tlink" href={`mailto:${site.email}`}>
+              <MailIcon className="icon--brass" />
               {site.email}
             </a>
             <a className="tlink" href={site.linkedin} target="_blank" rel="noreferrer">
+              <LinkedInIcon className="icon--brass" />
               LinkedIn
             </a>
             <a className="tlink" href={site.github} target="_blank" rel="noreferrer">
+              <GitHubIcon className="icon--brass" />
               GitHub
             </a>
             <a className="tlink" href={site.resume} download>
-              Résumé PDF
+              <FileIcon className="icon--brass" />
+              Resume PDF
             </a>
           </div>
         </section>
