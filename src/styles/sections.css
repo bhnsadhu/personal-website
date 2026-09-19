@@ -194,25 +194,27 @@
   border-bottom: 1px solid var(--line);
 }
 
-/* One centred row of equal columns. Stretch, so the dividers run the full
+/* One row of equal columns across the whole container. No max-width: the
+   figures should carry the strip's width themselves rather than sit in a
+   narrow block with air either side. Stretch, so the dividers run the full
    height of the tallest stat rather than stopping at its own text. */
 .band__inner {
   display: flex;
   align-items: stretch;
   justify-content: center;
-  max-width: 1000px;
-  margin-inline: auto;
 }
 
 /* flex-basis 0 rather than auto: every stat takes the same width whatever
-   the length of its label, so the dividers land at even intervals. */
+   the length of its label, so the dividers land at even intervals. Narrow
+   side padding, so the label wraps into a full block instead of a thin line
+   with wide margins. */
 .band__item {
   flex: 1 1 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  padding: 20px 20px 22px;
+  gap: 10px;
+  padding: 26px 18px 28px;
   text-align: center;
 }
 
@@ -223,13 +225,17 @@
 
 .band__value {
   font-family: var(--mono);
-  font-size: 22px;
+  font-size: clamp(32px, 3.4vw, 46px);
   font-weight: 600;
+  line-height: 1;
   letter-spacing: -0.01em;
   color: var(--brass-2);
 }
 
+/* Beats .mono--sm on source order: sections.css loads after base.css. */
 .band__label {
+  font-size: 14px;
+  line-height: 1.55;
   color: var(--gray);
 }
 
@@ -247,7 +253,10 @@
   }
   .band__item {
     flex: 1 1 45%;
-    padding: 14px 12px 16px;
+    padding: 18px 10px 20px;
+  }
+  .band__label {
+    font-size: 12px;
   }
   .band__item + .band__item {
     border-left: 0;
