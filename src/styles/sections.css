@@ -190,19 +190,29 @@
   border-bottom: 1px solid var(--line);
 }
 
+/* One centred row of equal columns. Stretch, so the dividers run the full
+   height of the tallest stat rather than stopping at its own text. */
 .band__inner {
   display: flex;
-  flex-wrap: wrap;
+  align-items: stretch;
   justify-content: center;
+  max-width: 1000px;
+  margin-inline: auto;
 }
 
+/* flex-basis 0 rather than auto: every stat takes the same width whatever
+   the length of its label, so the dividers land at even intervals. */
 .band__item {
+  flex: 1 1 0;
   display: flex;
-  align-items: baseline;
-  gap: 10px;
-  padding: 16px 32px;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 20px 20px 22px;
+  text-align: center;
 }
 
+/* Between the stats only, never after the last. */
 .band__item + .band__item {
   border-left: 1px solid var(--line);
 }
@@ -225,9 +235,15 @@
   color: var(--gray);
 }
 
+/* Too narrow for four across: wrap to two by two and drop the rules, which
+   would otherwise hang off the first stat of the second row. */
 @media (max-width: 720px) {
+  .band__inner {
+    flex-wrap: wrap;
+  }
   .band__item {
-    padding: 12px 16px;
+    flex: 1 1 45%;
+    padding: 14px 12px 16px;
   }
   .band__item + .band__item {
     border-left: 0;
