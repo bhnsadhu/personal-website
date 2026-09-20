@@ -122,7 +122,10 @@ svg {
   color: var(--cream);
 }
 
-.display em {
+/* The italic brass word inside a headline, on the display line and on a
+   section title alike. */
+.display em,
+.section__title em {
   font-style: italic;
   font-weight: 400;
   color: var(--brass-2);
@@ -176,12 +179,6 @@ svg {
   letter-spacing: -0.015em;
 }
 
-.section__title em {
-  font-style: italic;
-  font-weight: 400;
-  color: var(--brass-2);
-}
-
 .section__note {
   font-family: var(--mono);
   font-size: 12px;
@@ -194,6 +191,24 @@ svg {
   .section {
     padding: 64px 0;
   }
+}
+
+/* ---------------- Item titles ---------------- */
+
+/* Wherever something is named — a card front, the brand, a certification
+   tile, a chip stack, a list row, a favorite — it is set in the same
+   serif at the same weight and tracking, and only the size changes with
+   the surface. Section headings and the display line sit on their own
+   scale: lighter at 500, and tracking that tightens as they grow. */
+.card__title,
+.nav__brand,
+.cert__name,
+.stack__label,
+.list__item-title,
+.entry__name {
+  font-family: var(--serif);
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 /* ---------------- Buttons & links ---------------- */

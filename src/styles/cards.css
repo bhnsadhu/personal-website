@@ -181,11 +181,8 @@
 }
 
 .card__title {
-  font-family: var(--serif);
-  font-weight: 600;
   font-size: clamp(18px, 1.6vw, 24px);
   line-height: 1.15;
-  letter-spacing: -0.01em;
   text-wrap: balance;
 }
 
@@ -652,10 +649,7 @@
 }
 
 .entry__name {
-  font-family: var(--serif);
-  font-weight: 600;
   font-size: 17px;
-  letter-spacing: -0.01em;
 }
 
 .entry__detail {

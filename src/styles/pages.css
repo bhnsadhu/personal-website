@@ -177,10 +177,7 @@
 }
 
 .list__item-title {
-  font-family: var(--serif);
-  font-weight: 600;
   font-size: 22px;
-  letter-spacing: -0.01em;
   margin-bottom: 4px;
 }
 
