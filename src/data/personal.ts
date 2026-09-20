@@ -4,8 +4,8 @@ import type { PersonalCard } from './types'
 export const personalIntro =
   'A few things I keep coming back to: a good meal, a sweet fragrance, a film that stays with me, and somewhere new to explore.'
 
-/** Static on purpose. Update by hand, never from the clock. */
-export const personalNote = 'Current favorites, always subject to change. Last updated September 19, 2026.'
+/** The line beside the flop's title. */
+export const personalNote = 'A few current favorites.'
 
 /** The compact line under the table. */
 export const personalExtras = ['Card games', 'Cooking', 'Fitness', 'Badminton', 'Indian music']
@@ -164,7 +164,7 @@ export const personal: PersonalCard[] = [
       {
         name: 'Banff',
         detail: 'Canada',
-        note: 'My most recent trip as of September 2026. I went with family friends, and spending time together made it especially fun.',
+        note: 'I went with family friends, and spending time together made it especially fun.',
       },
     ],
   },

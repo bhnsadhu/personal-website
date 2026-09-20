@@ -18,7 +18,7 @@ export function ChipsSection() {
           The <em>chips</em>
         </>
       }
-      note="One stack per category. The stack is a rough indicator; the number beside it is exact."
+      note="One stack per category."
     >
       <ul className="stacks">
         {skills.map((s, i) => (

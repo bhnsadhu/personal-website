@@ -26,7 +26,7 @@ export function Fan() {
           The <em>fan</em>
         </>
       }
-      note="Independent work. Face up means live; face down would mean still in the deck."
+      note="Independent work."
     >
       <CardRow ids={projects.map((p) => p.slug)} ariaLabel="Projects">
         {(row) =>
