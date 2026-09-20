@@ -28,7 +28,7 @@ export const hand: Highlight[] = [
     summary: 'A multiplayer card game I built so friends can play anywhere, even when nobody has a deck.',
     body: ['About 17–18 active users, mostly friends testing it, as of September 19, 2026.'],
     tags: ['Product Development', 'Multiplayer', 'TypeScript'],
-    links: [{ label: 'Live Demo', href: 'https://cambio-lime.vercel.app' }],
+    links: [{ label: 'Live Demo', href: 'https://cambio.bhanusadhu.com' }],
     more: { label: 'See the full hand', to: '/projects/cambio' },
   },
   {

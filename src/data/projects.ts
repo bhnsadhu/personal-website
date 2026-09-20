@@ -31,7 +31,7 @@ export const projects: Project[] = [
       'Vitest',
       'Web Animations API',
     ],
-    siteUrl: 'https://cambio-lime.vercel.app',
+    siteUrl: 'https://cambio.bhanusadhu.com',
     codeUrl: 'https://github.com/bhnsadhu/cambio',
     origin:
       "Cambio is a game I play with my friends a lot. Sometimes we'd have a few minutes between classes or during a library break and want to play, but nobody had cards. I built a version we could open anywhere, and a way for new players to learn a game I love.",
