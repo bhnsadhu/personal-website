@@ -62,7 +62,7 @@ export function Hand() {
               >
                 <p className="card__summary">{h.summary}</p>
                 {h.body.length > 0 && (
-                  <ul className="card__list">
+                  <ul className="dlist">
                     {h.body.map((b, j) => (
                       <li key={j}>{b}</li>
                     ))}

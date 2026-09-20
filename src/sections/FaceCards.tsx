@@ -64,7 +64,7 @@ export function FaceCards() {
                         ))}
                       </ol>
                     )}
-                    <ul className="card__list">
+                    <ul className="dlist">
                       {l.body.map((b, j) => (
                         <li key={j}>{b}</li>
                       ))}

@@ -200,25 +200,16 @@
   font-style: italic;
 }
 
-.list__bullets {
-  display: grid;
-  gap: 6px;
-  margin: 8px 0 12px;
-}
-
-.list__bullets li {
-  position: relative;
-  padding-left: 20px;
+/* The dark page, so the pip lightens and the copy is cream-2. The
+   geometry stays with .dlist in base.css. */
+.list .dlist {
+  --pip: var(--wine-text);
   color: var(--cream-2);
 }
 
-.list__bullets li::before {
-  content: '♦';
-  position: absolute;
-  left: 0;
-  top: 0.15em;
-  font-size: 11px;
-  color: var(--wine-text);
+/* Where the list sits in the flow. Spacing only. */
+.list__bullets {
+  margin: 8px 0 12px;
 }
 
 .list__links {

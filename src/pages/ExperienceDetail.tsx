@@ -35,7 +35,7 @@ export function ExperienceDetail() {
         </PlateSection>
       )}
       <PlateSection label={ongoing ? 'What I do' : 'What I did'}>
-        <ul className="card__list">
+        <ul className="dlist">
           {item.body.map((b, j) => (
             <li key={j}>{b}</li>
           ))}

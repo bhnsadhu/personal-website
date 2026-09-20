@@ -62,7 +62,7 @@ export function ProjectDetail() {
       )}
       {item.features && (
         <PlateSection label="What it does">
-          <ul className="card__list">
+          <ul className="dlist">
             {item.features.map((f) => (
               <li key={f}>{f}</li>
             ))}
@@ -71,7 +71,7 @@ export function ProjectDetail() {
       )}
       {item.decisions && (
         <PlateSection label="Product decisions">
-          <ul className="card__list">
+          <ul className="dlist">
             {item.decisions.map((d) => (
               <li key={d}>{d}</li>
             ))}
@@ -80,7 +80,7 @@ export function ProjectDetail() {
       )}
       {!item.origin && item.body.length > 0 && (
         <PlateSection label="The build">
-          <ul className="card__list">
+          <ul className="dlist">
             {item.body.map((b, j) => (
               <li key={j}>{b}</li>
             ))}
@@ -89,7 +89,7 @@ export function ProjectDetail() {
       )}
       {item.technical && (
         <PlateSection label="Under the hood">
-          <ul className="card__list">
+          <ul className="dlist">
             {item.technical.map((t) => (
               <li key={t}>{t}</li>
             ))}

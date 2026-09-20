@@ -52,7 +52,7 @@ export function Fan() {
                 more={down ? undefined : { label: 'See the full hand', to: `/projects/${p.slug}` }}
               >
                 <p className="card__summary">{p.summary}</p>
-                <ul className="card__list">
+                <ul className="dlist">
                   {p.body.map((b, j) => (
                     <li key={j}>{b}</li>
                   ))}

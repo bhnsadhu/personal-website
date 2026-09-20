@@ -74,7 +74,7 @@ export function ListView() {
               </p>
               <p className="list__p">{h.summary}</p>
               {h.body.length > 0 && (
-                <ul className="list__bullets">
+                <ul className="dlist list__bullets">
                   {h.body.map((b, j) => (
                     <li key={j}>{b}</li>
                   ))}
@@ -118,7 +118,7 @@ export function ListView() {
               </p>
               <p className="list__p">{e.summary}</p>
               {e.context && <p className="list__p list__p--muted">{e.context}</p>}
-              <ul className="list__bullets">
+              <ul className="dlist list__bullets">
                 {e.body.map((b, j) => (
                   <li key={j}>{b}</li>
                 ))}
@@ -152,7 +152,7 @@ export function ListView() {
                 </p>
               )}
               <p className="list__p">{l.summary}</p>
-              <ul className="list__bullets">
+              <ul className="dlist list__bullets">
                 {l.body.map((b, j) => (
                   <li key={j}>{b}</li>
                 ))}
@@ -188,7 +188,7 @@ export function ListView() {
                 <>
                   <p className="list__p">{p.summary}</p>
                   {p.ownership && <p className="list__p">{p.ownership}</p>}
-                  <ul className="list__bullets">
+                  <ul className="dlist list__bullets">
                     {p.body.map((b, j) => (
                       <li key={j}>{b}</li>
                     ))}
@@ -233,7 +233,7 @@ export function ListView() {
               {education.expected}. Declared minors in {education.minors.join(' and ')}.
             </p>
             <p className="list__meta mono">{education.courseworkNote}</p>
-            <ul className="list__bullets">
+            <ul className="dlist list__bullets">
               {education.coursework.map((c) => (
                 <li key={c.code}>
                   {c.code} · {c.name} · {c.status}

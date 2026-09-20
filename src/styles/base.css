@@ -334,6 +334,32 @@ svg {
   gap: 6px;
 }
 
+/* ---------------- Diamond list ---------------- */
+
+/* Bulleted content, dealt with a diamond pip. One rule behind the card
+   backs, the detail plates and the list view, so the indent, the gap and
+   the pip size stay the same everywhere. Only --pip changes with the
+   surface: wine reads on cream stock but goes muddy on the dark page. */
+.dlist {
+  --pip: var(--wine);
+  display: grid;
+  gap: 8px;
+}
+
+.dlist li {
+  position: relative;
+  padding-left: 22px;
+}
+
+.dlist li::before {
+  content: '♦';
+  position: absolute;
+  left: 2px;
+  top: 0.1em;
+  font-size: 12px;
+  color: var(--pip);
+}
+
 /* ---------------- Recruiting order ---------------- */
 
 /* One list behind the hero's seeking line and the list view's about

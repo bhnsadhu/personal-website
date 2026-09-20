@@ -38,7 +38,7 @@ export function Spread() {
               <p className="card__summary">{e.summary}</p>
               {e.via && <p className="card__via mono mono--sm">Client engagement through {e.via}</p>}
               {e.context && <p className="card__context">{e.context}</p>}
-              <ul className="card__list">
+              <ul className="dlist">
                 {e.body.map((b, j) => (
                   <li key={j}>{b}</li>
                 ))}
