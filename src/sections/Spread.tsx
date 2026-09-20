@@ -14,7 +14,7 @@ export function Spread() {
           The <em>spread</em>
         </>
       }
-      note="Professional experience and client engagements. Face cards are reserved for campus leadership."
+      note="Working across product, technology, and strategy to understand problems and turn research into useful next steps."
     >
       <CardRow ids={experience.map((e) => e.slug)} ariaLabel="Work experience">
         {(row) =>

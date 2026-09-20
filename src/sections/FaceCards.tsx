@@ -22,7 +22,7 @@ export function FaceCards() {
           The <em>face cards</em>
         </>
       }
-      note="Campus leadership and officer roles. Three face cards to a suit: King, Queen, Jack."
+      note="Bringing people together, helping teams find direction, and making things happen across campus. A different kind of strong hand."
       className="section--face"
     >
       <div className="face-rows">

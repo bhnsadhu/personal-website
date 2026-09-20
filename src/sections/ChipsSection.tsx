@@ -18,7 +18,7 @@ export function ChipsSection() {
           The <em>chips</em>
         </>
       }
-      note="One stack per category."
+      note="The tools and approaches I bring to the table, from understanding users and setting priorities to building software and making sense of data."
     >
       <ul className="stacks">
         {skills.map((s, i) => (

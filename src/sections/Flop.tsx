@@ -1,7 +1,7 @@
 import { Card } from '../components/Card'
 import { CardRow } from '../components/CardRow'
 import { Section } from '../components/Section'
-import { FLOP_RANKS, personal, personalExtras, personalIntro, personalNote, rankAt } from '../data'
+import { FLOP_RANKS, personal, personalExtras, personalIntro, rankAt } from '../data'
 
 /** The flop, plus the turn: four community cards for life outside work, five favorites each. */
 export function Flop() {
@@ -15,7 +15,7 @@ export function Flop() {
           The <em>flop</em>
         </>
       }
-      note={personalNote}
+      note="A little of what fills my time outside of work. Favorite meals, fragrances, films, and places, each with a story behind it."
       className="section--flop"
     >
       <p className="lede flop__intro">{personalIntro}</p>

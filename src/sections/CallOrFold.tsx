@@ -57,7 +57,7 @@ export function CallOrFold() {
           Let’s <em>talk</em>
         </>
       }
-      note={site.availability}
+      note="I'm seeking Summer 2027 internships primarily in product management, while also exploring opportunities in software engineering, business analysis, project management, and business development."
     >
       <div className="contact">
         <div className="contact__aside">

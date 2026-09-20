@@ -26,7 +26,7 @@ export function Fan() {
           The <em>fan</em>
         </>
       }
-      note="Independent work."
+      note="Ideas taken beyond the ‘what if.’ Things I’ve built to solve everyday problems, try something new, or make time with friends more fun."
     >
       <CardRow ids={projects.map((p) => p.slug)} ariaLabel="Projects">
         {(row) =>
