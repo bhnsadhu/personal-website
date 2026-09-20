@@ -1,5 +1,6 @@
 import { FileIcon, GitHubIcon, LinkedInIcon, MailIcon, PhoneIcon, PinIcon } from '../components/Icons'
 import { MetricBand } from '../components/MetricBand'
+import { RoleList } from '../components/RoleList'
 import {
   certifications,
   education,
@@ -58,11 +59,7 @@ export function ListView() {
           ))}
           <p className="list__p list__p--muted">{site.workingStyle}</p>
           <p className="list__p">{site.availability}</p>
-          <ol className="list__roles mono" aria-label="Roles, in priority order">
-            {site.roles.map((r) => (
-              <li key={r}>{r}</li>
-            ))}
-          </ol>
+          <RoleList className="list__roles" />
         </section>
 
         <section className="list__section" aria-labelledby="l-hand">

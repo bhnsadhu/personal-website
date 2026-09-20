@@ -149,24 +149,6 @@
   color: var(--brass);
 }
 
-.hero__roles {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 0;
-}
-
-/* Trailing separators, so a wrapped line never starts with a dot. */
-.hero__role:not(:last-child)::after {
-  content: '·';
-  padding: 0 8px;
-  color: var(--gray);
-}
-
-.hero__role--lead {
-  color: var(--cream);
-  font-weight: 600;
-}
-
 .hero__fan {
   min-height: 360px;
 }

@@ -243,22 +243,10 @@
   margin-top: 10px;
 }
 
-/* List view: recruiting order, favorites. */
+/* List view: the recruiting order sits under the availability line.
+   Spacing only. RoleList carries the look (see .roles in base.css). */
 .list__roles {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 0;
-  color: var(--gray);
   margin-top: 4px;
-}
-
-.list__roles li:not(:last-child)::after {
-  content: '·';
-  padding: 0 8px;
-}
-
-.list__roles li:first-child {
-  color: var(--cream);
 }
 
 .list__entries {

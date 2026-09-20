@@ -334,6 +334,31 @@ svg {
   gap: 6px;
 }
 
+/* ---------------- Recruiting order ---------------- */
+
+/* One list behind the hero's seeking line and the list view's about
+   section. RoleList is the only component that renders it, and this is the
+   only place it is styled, so the two contexts cannot drift. */
+.roles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 0;
+  color: var(--gray);
+}
+
+/* The first role, marked rather than re-sorted. */
+.roles__role--lead {
+  color: var(--cream);
+  font-weight: 600;
+}
+
+/* Trailing separators, so a wrapped line never starts with a dot. */
+.roles__role:not(:last-child)::after {
+  content: '·';
+  padding: 0 8px;
+  color: var(--gray);
+}
+
 /* ---------------- Route transition ---------------- */
 
 ::view-transition-old(root) {

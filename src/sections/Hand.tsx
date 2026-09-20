@@ -1,5 +1,6 @@
 import { Card } from '../components/Card'
 import { CardRow } from '../components/CardRow'
+import { RoleList } from '../components/RoleList'
 import { hand, HAND_SUITS, site } from '../data'
 import { Link } from '../lib/router'
 
@@ -34,13 +35,7 @@ export function Hand() {
           </div>
           <div className="hero__seeking mono mono--sm">
             <span className="hero__seeking-lead">Seeking {site.seeking}</span>
-            <ol className="hero__roles" aria-label="Roles, in priority order">
-              {site.roles.map((r, i) => (
-                <li key={r} className={i === 0 ? 'hero__role hero__role--lead' : 'hero__role'}>
-                  {r}
-                </li>
-              ))}
-            </ol>
+            <RoleList />
           </div>
         </div>
 
