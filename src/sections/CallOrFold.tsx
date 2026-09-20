@@ -54,7 +54,7 @@ export function CallOrFold() {
       eyebrow="♥ Contact"
       title={
         <>
-          Call or <em>fold</em>
+          Let’s <em>talk</em>
         </>
       }
       note={site.availability}

@@ -1,4 +1,5 @@
 import { education } from './education'
+import { moreLabel } from './site'
 import type { Highlight } from './types'
 
 /**
@@ -16,7 +17,7 @@ export const hand: Highlight[] = [
     summary: 'Exploring AI literacy and campus adoption of Replit Agent across 4+ UIUC colleges.',
     body: ['Client engagement through Disruption Lab at Gies.'],
     tags: ['Product Strategy', 'User Research', 'AI Adoption'],
-    more: { label: 'See the full hand', to: '/experience/replit' },
+    more: { label: moreLabel.experience, to: '/experience/replit' },
   },
   {
     kind: 'project',
@@ -29,7 +30,7 @@ export const hand: Highlight[] = [
     body: ['Early testing with approximately 18 players, primarily friends.'],
     tags: ['Product Development', 'Multiplayer', 'TypeScript'],
     links: [{ label: 'Live Demo', href: 'https://cambio.bhanusadhu.com' }],
-    more: { label: 'See the full hand', to: '/projects/cambio' },
+    more: { label: moreLabel.project, to: '/projects/cambio' },
   },
   {
     kind: 'credential',

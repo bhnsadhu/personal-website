@@ -1,7 +1,7 @@
 import type { Face, Rank, Suit } from './types'
 
 export * from './types'
-export { site } from './site'
+export { site, moreLabel } from './site'
 export { hand } from './hand'
 export { education } from './education'
 export { experience } from './experience'

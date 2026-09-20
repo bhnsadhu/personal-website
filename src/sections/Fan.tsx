@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Card } from '../components/Card'
 import { CardRow } from '../components/CardRow'
 import { Section } from '../components/Section'
-import { FAN_RANKS, projects, rankAt } from '../data'
+import { FAN_RANKS, moreLabel, projects, rankAt } from '../data'
 
 /** The fan: independent projects. Live and shipped are face up; ideas are face down. */
 export function Fan() {
@@ -49,7 +49,7 @@ export function Fan() {
                 onOpen={() => row.open(p.slug)}
                 onClose={row.close}
                 onFaceDownClick={() => notDealt(p.title)}
-                more={down ? undefined : { label: 'See the full hand', to: `/projects/${p.slug}` }}
+                more={down ? undefined : { label: moreLabel.project, to: `/projects/${p.slug}` }}
               >
                 <p className="card__summary">{p.summary}</p>
                 <ul className="dlist">

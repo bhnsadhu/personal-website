@@ -97,10 +97,10 @@ swaps the flip for a fade and drops the deal-in animation (`cards.css`).
 ## Vocabulary — keep it airtight
 
 Your hand (hero) · The spread (experience) · The face cards (leadership) ·
-The fan (projects) · The chips (skills) · The flop (personal) · Call or fold
+The fan (projects) · The chips (skills) · The flop (personal) · Let's talk
 (contact). Buttons and links: "Explore My Work", "View Resume", "Contact
 Me" (hero), "Resume" (nav, footer), "Send Message" (submit), "Back to the
-hand", "See the full hand", "List view" / "Card view", "Live Demo",
+hand", "View experience", "Explore the project", "List view" / "Card view", "Live Demo",
 "GitHub", "View Credential". Face-down cards say "Not dealt yet". 404 is
 "Not in the deck". Footer sign-off: "Shuffled, not stirred."
 

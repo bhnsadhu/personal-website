@@ -20,7 +20,7 @@ export const site = {
   ],
   workingStyle: 'Understand the problem, make thoughtful tradeoffs, and improve through feedback.',
   availability:
-    "I'm seeking Summer 2027 internships, primarily in product management, followed by software engineering, business analyst, project management, and business development roles.",
+    "I'm seeking Summer 2027 internships in product management, with additional interests in software engineering, business analysis, project management, and business development.",
   email: 'sadhubhanu07@gmail.com',
   phone: '224-428-4480',
   phoneHref: 'tel:+12244284480',
@@ -37,3 +37,6 @@ export const site = {
   updated: 'September 19, 2026',
   asOf: 'September 19, 2026',
 }
+
+/** The link at the foot of an expanded card, named for where it leads. */
+export const moreLabel = { experience: 'View experience', project: 'Explore the project' } as const

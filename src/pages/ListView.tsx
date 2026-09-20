@@ -8,6 +8,7 @@ import {
   hand,
   leadership,
   metrics,
+  moreLabel,
   personal,
   personalExtras,
   personalIntro,
@@ -30,9 +31,8 @@ export function ListView() {
       <div className="container">
         <header className="list__head">
           <p className="eyebrow">List view · Same content, no cards</p>
-          <h1 className="display">
-            {site.name}, <em>laid flat</em>
-          </h1>
+          <h1 className="display">{site.name}</h1>
+          <p className="list__subtitle">Your hand, at a glance</p>
           <p className="lede">{site.tagline}</p>
           <div className="actions list__actions">
             <Link to="/" className="btn btn--ghost">
@@ -125,7 +125,7 @@ export function ListView() {
               </ul>
               <p className="list__meta mono">{e.tags.join(' · ')}</p>
               <Link to={`/experience/${e.slug}`} className="tlink">
-                See the full hand
+                {moreLabel.experience}
                 <span className="arrow" aria-hidden="true">
                   →
                 </span>
@@ -196,7 +196,7 @@ export function ListView() {
                   <p className="list__meta mono">{p.stack.join(' · ')}</p>
                   <div className="linkrow list__links">
                     <Link to={`/projects/${p.slug}`} className="tlink">
-                      See the full hand
+                      {moreLabel.project}
                       <span className="arrow" aria-hidden="true">
                         →
                       </span>

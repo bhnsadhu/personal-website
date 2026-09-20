@@ -29,7 +29,7 @@ export const skills: SkillStack[] = [
   },
   {
     id: 'languages',
-    label: 'Programming Languages',
+    label: 'Languages & Web Technologies',
     skills: ['Python', 'SQL', 'TypeScript', 'JavaScript', 'Java', 'Kotlin', 'C++', 'R', 'HTML', 'CSS'],
   },
   {
