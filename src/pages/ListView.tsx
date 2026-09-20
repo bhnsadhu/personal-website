@@ -35,7 +35,7 @@ export function ListView() {
           <p className="lede">{site.tagline}</p>
           <div className="list__actions">
             <Link to="/" className="btn btn--ghost">
-              Back to the cards
+              Back to the hand
             </Link>
             <a className="btn" href={site.resume} target="_blank" rel="noreferrer">
               View Resume
