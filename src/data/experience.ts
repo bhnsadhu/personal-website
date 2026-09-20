@@ -76,7 +76,7 @@ export const experience: Experience[] = [
     meta: 'Jan 2026 — May 2026',
     summary: 'Market expansion strategy for a confidential Berkshire Hathaway-affiliated manufacturer.',
     body: [
-      'Evaluated 500+ applications across 10 industries, identifying 12 potential expansion opportunities.',
+      'Evaluated 500+ potential product applications across 10 industries, identifying 12 potential expansion opportunities.',
       'Organized market and competitive research into a 200+ row Excel analysis.',
       "Presented recommendations that informed the client's 2026 growth roadmap.",
     ],
@@ -97,7 +97,7 @@ export const experience: Experience[] = [
     body: [
       'Synthesized 80+ hours of logistics, distribution, and competitive research into a go-to-market strategy.',
       'Assessed market sizing, competitive dynamics, and a phased distribution approach.',
-      'Mapped 15+ FAA and state-level regulatory requirements into a compliance roadmap supporting a potential Champaign pilot within six months.',
+      'Mapped 15+ FAA and state-level regulatory requirements into a compliance roadmap for a proposed Champaign pilot.',
     ],
     tags: ['Go-to-Market Strategy', 'Market Sizing', 'Competitive Analysis', 'Regulatory Research', 'Launch Planning'],
   },

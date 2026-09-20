@@ -39,9 +39,9 @@ export const leadership: Leadership[] = [
     ],
     summary: 'Helping teams turn research into clear priorities and client recommendations.',
     body: [
-      'Work within a nine-person team: a senior manager, a project manager, junior analysts, and me.',
+      'Collaborate on a nine-person team to develop client research and recommendations.',
       'Help determine project priorities and align the work with client needs.',
-      'Support junior analysts as they build out research and recommendations.',
+      'Support junior analysts in developing research and recommendations.',
     ],
     related: [
       { label: 'Replit', to: '/experience/replit' },
@@ -125,7 +125,7 @@ export const leadership: Leadership[] = [
     body: [
       'Perform with a roughly 35-member dance team.',
       'Organize team socials and bonding activities.',
-      'Organize fundraisers, from pie-in-the-face activities to dare challenges, raising more than $500.',
+      'Organized fundraisers, including pie-in-the-face activities and dare challenges, that raised over $500.',
     ],
     tags: ['Community Building', 'Event Planning', 'Fundraising', 'Teamwork', 'Performance'],
   },
