@@ -394,14 +394,21 @@
   gap: 20px;
 }
 
+/* Panels on the dark table: a certification tile and the contact form.
+   The surface is set once here. Padding stays with each of them, since a
+   form needs more room to breathe than a tile does. */
+.cert,
+.form {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
 .cert {
   display: grid;
   gap: 8px;
   justify-items: start;
   padding: 22px 24px;
-  background: var(--bg-2);
-  border: 1px solid var(--line);
-  border-radius: 14px;
 }
 
 .cert__name {
@@ -481,9 +488,6 @@
 
 .form {
   position: relative;
-  background: var(--bg-2);
-  border: 1px solid var(--line);
-  border-radius: 14px;
   padding: 28px;
 }
 
