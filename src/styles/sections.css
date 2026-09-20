@@ -62,8 +62,8 @@
 }
 
 .nav__suit-label {
-  font-size: 9px;
-  letter-spacing: 0.12em;
+  font-size: 10px;
+  letter-spacing: 0.1em;
   color: var(--gray);
 }
 
@@ -361,9 +361,14 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 4px 12px;
+  gap: 5px 12px;
   max-width: 220px;
   color: var(--gray);
+}
+
+.stack__skills li {
+  font-size: 12px;
+  letter-spacing: 0.05em;
 }
 
 /* ---------------- Certifications ---------------- */

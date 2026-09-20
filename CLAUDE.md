@@ -62,8 +62,13 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   documents the keys.
 - `public/Bhanu_Sadhu_Resume.pdf` — the resume every "Resume" link opens in
   a new tab. Not in the repo until the real file is dropped in.
-  `og.png` is the social preview; `VITE_SITE_URL` (Vercel env) makes its
-  URL absolute.
+  `og.png` is the social preview, 1200x630; index.html points `og:image`
+  and `twitter:image` at `https://bhanusadhu.com/og.png`, absolute because
+  crawlers do not resolve relative ones.
+- `sitemap.xml` is emitted at build time by the `sitemap` plugin in
+  `vite.config.ts`, from `experience` and `projects`, so it cannot drift
+  from the router. No `lastmod`: the dates would be invented. Vercel serves
+  it and `robots.txt` from the filesystem, ahead of the SPA rewrite.
 
 ## Content rules
 
@@ -84,7 +89,8 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
 Palette: bg `#100E0C`, cream `#F3EDE2`, wine `#A6413E` (fills, text on
 cream), wine-text `#D1706C` (small text on dark), brass `#B08D57` /
 `#CFAE78` (accents on dark only; brass fails contrast on cream), gray
-`#8B8479` (secondary on dark), ink-2 `#5C554C` (secondary on cream).
+`#9A9287` (secondary on dark, 6.3:1 on bg), ink-2 `#5C554C` (secondary on
+cream).
 Dark is the only mode.
 
 Type: Fraunces for headlines and card titles (optical sizing on), IBM Plex
@@ -106,6 +112,8 @@ hand", "View experience", "Explore the project", "List view" / "Card view", "Liv
 
 ## Routes
 
-`/` · `/list` · `/experience/:slug` · `/projects/:slug` · `/#spread`,
-`/#face`, `/#fan`, `/#chips`, `/#flop`, `/#contact` anchors ·
+`/` · `/list` · `/experience/:slug` · `/projects/:slug` · `/sitemap.xml` ·
+the `#spread`, `#face`, `#fan`, `#chips`, `#flop`, `#contact` anchors, which
+the card view and the list view both carry, so a nav suit scrolls within
+whichever view you are in ·
 `POST /api/contact` · anything else → 404.
