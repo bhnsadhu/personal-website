@@ -40,7 +40,7 @@ export const experience: Experience[] = [
     body: [
       'Assessing AI literacy and readiness across 4+ UIUC colleges.',
       'Developing pre- and post-workshop assessments.',
-      'Translating campus problems into development briefs for a proposed innovation challenge. Proposed, not launched.',
+      'Translating campus problems into development briefs for a proposed innovation challenge.',
     ],
     tags: ['Product Strategy', 'User Research', 'Requirements Gathering', 'Data Analysis', 'Technology Adoption'],
   },
