@@ -8,7 +8,7 @@ export const education: Education = {
   expected: 'Expected graduation May 2029',
   location: 'Champaign, IL',
   minors: ['Statistics', 'Advertising'],
-  courseworkNote: 'Selected coursework as of September 19, 2026. Not a transcript.',
+  courseworkNote: 'Selected coursework as of September 19, 2026.',
   coursework: [
     { code: 'CS 222', name: 'Software Design Lab', status: 'In progress' },
     { code: 'CS 225', name: 'Data Structures', status: 'In progress' },
