@@ -31,7 +31,7 @@ export function ProjectDetail() {
       </PlateSection>
       {(item.siteUrl || item.codeUrl) && (
         <PlateSection label="Links">
-          <div className="plate__links">
+          <div className="actions">
             {item.siteUrl && (
               <a className="btn" href={item.siteUrl} target="_blank" rel="noreferrer">
                 Live Demo

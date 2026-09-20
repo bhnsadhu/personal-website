@@ -127,12 +127,6 @@
   line-height: 0.98;
 }
 
-.hero__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
 /* Seeking line: product management leads, the rest follow in the order given. */
 .hero__seeking {
   display: flex;
@@ -587,11 +581,9 @@
   color: var(--brass);
 }
 
+/* Centered under the suits. The row itself is .linkrow. */
 .footer__links {
-  display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 24px;
 }
 
 .footer__note {

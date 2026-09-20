@@ -21,7 +21,7 @@ export function Hand() {
             {site.name}
           </h1>
           <p className="lede">{site.tagline}</p>
-          <div className="hero__actions">
+          <div className="actions">
             <Link to="/#spread" className="btn">
               Explore My Work
             </Link>

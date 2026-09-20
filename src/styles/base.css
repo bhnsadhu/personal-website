@@ -356,6 +356,23 @@ svg {
   gap: 6px;
 }
 
+/* ---------------- Rows of actions ---------------- */
+
+/* A row of buttons, and a row of text links. Text links carry more air
+   between them than pills do, having no edge of their own to separate
+   them. Where a row sits on the page stays with that page's own rule. */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.linkrow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
 /* ---------------- Diamond list ---------------- */
 
 /* Bulleted content, dealt with a diamond pip. One rule behind the card

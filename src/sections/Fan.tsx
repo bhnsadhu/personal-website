@@ -57,7 +57,7 @@ export function Fan() {
                     <li key={j}>{b}</li>
                   ))}
                 </ul>
-                <div className="card__links">
+                <div className="linkrow">
                   {p.siteUrl && (
                     <a className="tlink" href={p.siteUrl} target="_blank" rel="noreferrer">
                       Live Demo

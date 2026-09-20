@@ -89,12 +89,6 @@
   line-height: 1.5;
 }
 
-.plate__links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
 .plate__card .btn--ghost {
   color: var(--ink);
   border-color: var(--ink-2);
@@ -149,10 +143,10 @@
   margin-bottom: 48px;
 }
 
-.list__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+/* Where the rows sit in the flow. The rows themselves are .actions
+   and .linkrow. */
+.list__actions,
+.list__links {
   margin-top: 8px;
 }
 
@@ -207,13 +201,6 @@
 /* Where the list sits in the flow. Spacing only. */
 .list__bullets {
   margin: 8px 0 12px;
-}
-
-.list__links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-top: 8px;
 }
 
 .list__skills {

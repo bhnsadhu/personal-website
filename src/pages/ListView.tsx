@@ -34,7 +34,7 @@ export function ListView() {
             {site.name}, <em>laid flat</em>
           </h1>
           <p className="lede">{site.tagline}</p>
-          <div className="list__actions">
+          <div className="actions list__actions">
             <Link to="/" className="btn btn--ghost">
               Back to the hand
             </Link>
@@ -80,7 +80,7 @@ export function ListView() {
                   ))}
                 </ul>
               )}
-              <div className="list__links">
+              <div className="linkrow list__links">
                 {h.links?.map((l) => (
                   <a key={l.href} className="tlink" href={l.href} target="_blank" rel="noreferrer">
                     {l.label}
@@ -159,7 +159,7 @@ export function ListView() {
               </ul>
               <p className="list__meta mono">{l.tags.join(' · ')}</p>
               {l.related && (
-                <div className="list__links">
+                <div className="linkrow list__links">
                   {l.related.map((r) => (
                     <Link key={r.to} to={r.to} className="tlink">
                       {r.label}
@@ -194,7 +194,7 @@ export function ListView() {
                     ))}
                   </ul>
                   <p className="list__meta mono">{p.stack.join(' · ')}</p>
-                  <div className="list__links">
+                  <div className="linkrow list__links">
                     <Link to={`/projects/${p.slug}`} className="tlink">
                       See the full hand
                       <span className="arrow" aria-hidden="true">
@@ -312,7 +312,7 @@ export function ListView() {
           </h2>
           <p className="list__p">{site.contactLede}</p>
           <p className="list__p">{site.availability}</p>
-          <div className="list__links">
+          <div className="linkrow list__links">
             <span className="tlink">
               <PinIcon className="icon--brass" />
               {site.location}

@@ -388,12 +388,6 @@
   color: var(--ink-2);
 }
 
-.card__links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
 .card__extlink {
   justify-self: start;
 }

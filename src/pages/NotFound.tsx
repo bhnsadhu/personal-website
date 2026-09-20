@@ -10,7 +10,7 @@ export function NotFound() {
           <p className="eyebrow">404 · Not in the deck</p>
           <h1 className="plate__title">That card was never dealt.</h1>
           <p className="plate__lede">The page you asked for isn’t in this hand. Head back to the table.</p>
-          <div className="plate__links">
+          <div className="actions">
             <Link to="/" className="btn">
               Back to the hand
             </Link>

@@ -10,7 +10,7 @@ export function Footer() {
         <p className="footer__suits" aria-hidden="true">
           {SUIT_GLYPH.spades} {SUIT_GLYPH.hearts} {SUIT_GLYPH.diamonds} {SUIT_GLYPH.clubs}
         </p>
-        <nav className="footer__links" aria-label="Elsewhere">
+        <nav className="linkrow footer__links" aria-label="Elsewhere">
           <a className="tlink" href={`mailto:${site.email}`}>
             <MailIcon className="icon--brass" />
             Email
