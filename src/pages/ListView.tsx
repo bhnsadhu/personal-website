@@ -62,7 +62,7 @@ export function ListView() {
           <RoleList className="list__roles" />
         </section>
 
-        <section className="list__section" aria-labelledby="l-hand">
+        <section id="hand" className="list__section" aria-labelledby="l-hand">
           <h2 id="l-hand" className="list__title">
             Your hand
           </h2>
@@ -103,7 +103,7 @@ export function ListView() {
       <MetricBand metrics={metrics} label="Headline numbers" note={`As of ${site.asOf}`} />
 
       <div className="container">
-        <section className="list__section" aria-labelledby="l-exp">
+        <section id="spread" className="list__section" aria-labelledby="l-exp">
           <h2 id="l-exp" className="list__title">
             Experience
           </h2>
@@ -134,7 +134,7 @@ export function ListView() {
           ))}
         </section>
 
-        <section className="list__section" aria-labelledby="l-lead">
+        <section id="face" className="list__section" aria-labelledby="l-lead">
           <h2 id="l-lead" className="list__title">
             Leadership
           </h2>
@@ -174,7 +174,7 @@ export function ListView() {
           ))}
         </section>
 
-        <section className="list__section" aria-labelledby="l-proj">
+        <section id="fan" className="list__section" aria-labelledby="l-proj">
           <h2 id="l-proj" className="list__title">
             Projects
           </h2>
@@ -243,7 +243,7 @@ export function ListView() {
           </article>
         </section>
 
-        <section className="list__section" aria-labelledby="l-skills">
+        <section id="chips" className="list__section" aria-labelledby="l-skills">
           <h2 id="l-skills" className="list__title">
             Skills
           </h2>
@@ -277,7 +277,7 @@ export function ListView() {
           ))}
         </section>
 
-        <section className="list__section" aria-labelledby="l-personal">
+        <section id="flop" className="list__section" aria-labelledby="l-personal">
           <h2 id="l-personal" className="list__title">
             Personal
           </h2>
@@ -306,7 +306,7 @@ export function ListView() {
           <p className="list__meta mono">Also in rotation: {personalExtras.join(' · ')}</p>
         </section>
 
-        <section className="list__section" aria-labelledby="l-contact">
+        <section id="contact" className="list__section" aria-labelledby="l-contact">
           <h2 id="l-contact" className="list__title">
             Contact
           </h2>

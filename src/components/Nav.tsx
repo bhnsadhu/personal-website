@@ -4,16 +4,20 @@ import { SUIT_GLYPH } from './Suit'
 
 interface SuitLink {
   suit: Suit
-  to: string
+  anchor: string
   label: string
 }
 
-/** Suits are the nav. Each announces the section it leads to. */
+/**
+ * Suits are the nav. Each announces the section it leads to. The anchor is
+ * the section's id, which the card view and the list view both use, so a
+ * suit scrolls within whichever view you are already in.
+ */
 export const SUIT_NAV: SuitLink[] = [
-  { suit: 'spades', to: '/#spread', label: 'Experience' },
-  { suit: 'diamonds', to: '/#fan', label: 'Projects' },
-  { suit: 'clubs', to: '/#chips', label: 'Skills' },
-  { suit: 'hearts', to: '/#flop', label: 'Personal' },
+  { suit: 'spades', anchor: 'spread', label: 'Experience' },
+  { suit: 'diamonds', anchor: 'fan', label: 'Projects' },
+  { suit: 'clubs', anchor: 'chips', label: 'Skills' },
+  { suit: 'hearts', anchor: 'flop', label: 'Personal' },
 ]
 
 export function Nav() {
@@ -32,7 +36,7 @@ export function Nav() {
             {SUIT_NAV.map((s) => (
               <li key={s.suit}>
                 <Link
-                  to={s.to}
+                  to={`${onList ? '/list' : '/'}#${s.anchor}`}
                   className={`nav__suit nav__suit--${s.suit}`}
                   aria-label={`${s.label} (${s.suit})`}
                   title={s.label}

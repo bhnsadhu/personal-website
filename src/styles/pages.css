@@ -160,10 +160,13 @@
   margin-top: 8px;
 }
 
+/* scroll-margin matches .section, so a nav suit lands the heading clear of
+   the fixed header in either view. */
 .list__section {
   max-width: 780px;
   padding: 40px 0;
   border-top: 1px solid var(--line);
+  scroll-margin-top: calc(var(--nav-h) + 8px);
 }
 
 .list__title {
