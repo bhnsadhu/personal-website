@@ -19,7 +19,7 @@ export const leadership: Leadership[] = [
     summary: 'Developing product judgment through case discussions and early product exploration.',
     body: [
       'Studying product cases to practice identifying user needs, evaluating solutions, and prioritizing features.',
-      'Exploring a potential product to help students coordinate apartment chores. An idea under consideration, not a launched product.',
+      'Exploring a potential product to help students coordinate apartment chores.',
     ],
     tags: ['Product Thinking', 'Problem Definition', 'Feature Prioritization', 'Collaboration'],
   },
@@ -90,7 +90,7 @@ export const leadership: Leadership[] = [
       'Developed the summer roadmap for brand strategy, content, event identity, sponsorship outreach, and student recruitment.',
       'Planned cross-platform recruitment across Instagram, LinkedIn, and X for the upcoming event.',
       'Worked on sponsor relationships within a 14-organization portfolio that includes OpenAI, Stripe, Cloudflare, Capital One, and John Deere.',
-      'Team and event figures for this period, not personal results: $175,000+ in prize and operational funding, 1M+ combined campaign impressions, a 40% year-over-year increase in applications, and an event scale of 1,500+ attendees across 150+ universities.',
+      'Event-wide metrics: $175,000+ in prize and operational funding, 1M+ combined campaign impressions, a 40% year-over-year increase in applications, and an event scale of 1,500+ attendees across 150+ universities.',
     ],
     tags: ['Marketing Strategy', 'Brand Strategy', 'Partnerships', 'Campaign Planning', 'Project Coordination'],
   },

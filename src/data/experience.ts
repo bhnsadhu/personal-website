@@ -56,7 +56,7 @@ export const experience: Experience[] = [
     meta: 'Aug 2026 — Present',
     summary: 'Workflow optimization and AI adoption strategy for a media production business.',
     context:
-      'The client is a media production business with roughly $300,000 in annual revenue, a figure supplied by the client rather than a verified public number.',
+      'The client is a media production business with roughly $300,000 in annual revenue.',
     body: [
       'Mapping production workflows, along with the time and cost behind each step.',
       'Gathering input from the founder and contract crew on handoffs, quality standards, and responsibilities.',

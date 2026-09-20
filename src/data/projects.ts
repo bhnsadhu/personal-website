@@ -17,7 +17,7 @@ export const projects: Project[] = [
     body: [
       'Up to 4 players. Join by room code, no account needed. Bots fill the empty seats.',
       'A four-step onboarding teaches the game while you play, with animated cards and private, player-specific views.',
-      'About 17–18 active users, mostly friends testing it, as of September 19, 2026.',
+      'Early testing with approximately 18 players, primarily friends.',
     ],
     tags: ['Next.js', 'React', 'TypeScript', 'Supabase', 'Vercel'],
     stack: [
@@ -37,7 +37,7 @@ export const projects: Project[] = [
       "Cambio is a game I play with my friends a lot. Sometimes we'd have a few minutes between classes or during a library break and want to play, but nobody had cards. I built a version we could open anywhere, and a way for new players to learn a game I love.",
     ownership:
       'I built Cambio independently, from the game rules and interface to multiplayer synchronization and deployment.',
-    usage: 'About 17–18 active users, primarily friends testing it, as of September 19, 2026.',
+    usage: 'Early testing with approximately 18 players, primarily friends.',
     features: [
       'Multiplayer for up to 4 players.',
       'Account-free joining via room codes.',
