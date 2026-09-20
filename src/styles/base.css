@@ -198,6 +198,25 @@ svg {
 
 /* ---------------- Buttons & links ---------------- */
 
+/* The mono label. Buttons, text links and the inline contact values all
+   read as the same small caps-mono label, so the type is set once here
+   rather than restated in each rule. Only .btn and .tlink hold their line;
+   a contact value such as a location is allowed to wrap. */
+.btn,
+.tlink,
+.contact__value {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.btn,
+.tlink {
+  white-space: nowrap;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -208,12 +227,6 @@ svg {
   border-radius: 999px;
   background: var(--brass);
   color: var(--ink);
-  font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  white-space: nowrap;
   transition:
     transform var(--fast) var(--ease),
     background var(--fast) var(--ease),
@@ -255,12 +268,6 @@ svg {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  white-space: nowrap;
 }
 
 .tlink::after {

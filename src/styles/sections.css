@@ -470,14 +470,6 @@
   color: var(--gray);
 }
 
-.contact__value {
-  font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
 /* Honeypot: off-canvas, never focusable by tab. */
 .form__hp {
   position: absolute;
