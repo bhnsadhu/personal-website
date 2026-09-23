@@ -30,7 +30,7 @@ export function ExperienceDetail() {
       </PlateSection>
       {(item.via || item.context) && (
         <PlateSection label="The engagement">
-          {item.via && <p className="plate__p">Client engagement through {item.via}.</p>}
+          {item.via && <p className="plate__p">Consulting engagement via {item.via}.</p>}
           {item.context && <p className="plate__p">{item.context}</p>}
         </PlateSection>
       )}
