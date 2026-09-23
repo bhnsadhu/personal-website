@@ -39,7 +39,7 @@ export const experience: Experience[] = [
     summary: 'Product research and campus adoption strategy for Replit Agent.',
     body: [
       'Assessing AI literacy and readiness across 4+ UIUC colleges.',
-      'Developing pre- and post-workshop assessments.',
+      'Developing assessments to measure adoption before and after each workshop.',
       'Translating campus problems into development briefs for a proposed innovation challenge.',
     ],
     tags: ['Product Strategy', 'User Research', 'Requirements Gathering', 'Data Analysis', 'Technology Adoption'],
