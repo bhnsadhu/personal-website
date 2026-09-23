@@ -26,7 +26,7 @@ export function Spread() {
               suit="spades"
               title={e.role}
               subtitle={e.company}
-              meta={e.via ? `${e.dates} · via ${e.via}` : e.dates}
+              meta={e.dates}
               tags={e.tags}
               corner={e.location}
               open={row.isOpen(e.slug)}

@@ -114,7 +114,6 @@ export function ListView() {
               </h3>
               <p className="list__meta mono">
                 {e.dates} · {e.location}
-                {e.via && ` · via ${e.via}`}
               </p>
               <p className="list__p">{e.summary}</p>
               {e.context && <p className="list__p list__p--muted">{e.context}</p>}

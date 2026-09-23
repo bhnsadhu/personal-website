@@ -20,7 +20,7 @@ export function ExperienceDetail() {
       suit="spades"
       title={item.role}
       subtitle={`${item.company} · ${item.location}`}
-      meta={item.via ? `${item.dates} · via ${item.via}` : item.dates}
+      meta={item.dates}
       tags={item.tags}
       nextTo={`/experience/${next.slug}`}
       nextLabel={`${next.role} · ${next.company}`}
