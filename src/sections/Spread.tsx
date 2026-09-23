@@ -26,7 +26,7 @@ export function Spread() {
               suit="spades"
               title={e.role}
               subtitle={e.company}
-              meta={e.dates}
+              meta={e.via ? `${e.dates} · via ${e.via}` : e.dates}
               tags={e.tags}
               corner={e.location}
               open={row.isOpen(e.slug)}
@@ -36,7 +36,6 @@ export function Spread() {
               more={{ label: moreLabel.experience, to: `/experience/${e.slug}` }}
             >
               <p className="card__summary">{e.summary}</p>
-              {e.via && <p className="card__via mono mono--sm">Consulting engagement via {e.via}</p>}
               {e.context && <p className="card__context">{e.context}</p>}
               <ul className="dlist">
                 {e.body.map((b, j) => (

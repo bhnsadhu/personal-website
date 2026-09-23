@@ -561,11 +561,6 @@
 
 /* ---------------- Back-face extras: context, role steps, favorites ---------------- */
 
-/* The consulting org an engagement ran through. Wine on cream passes contrast. */
-.card__via {
-  color: var(--wine);
-}
-
 .card__context {
   color: var(--ink-2);
 }

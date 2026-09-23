@@ -20,7 +20,7 @@ export function ExperienceDetail() {
       suit="spades"
       title={item.role}
       subtitle={`${item.company} · ${item.location}`}
-      meta={item.dates}
+      meta={item.via ? `${item.dates} · via ${item.via}` : item.dates}
       tags={item.tags}
       nextTo={`/experience/${next.slug}`}
       nextLabel={`${next.role} · ${next.company}`}
@@ -28,10 +28,9 @@ export function ExperienceDetail() {
       <PlateSection label="In one line">
         <p className="plate__lede">{item.summary}</p>
       </PlateSection>
-      {(item.via || item.context) && (
+      {item.context && (
         <PlateSection label="The engagement">
-          {item.via && <p className="plate__p">Consulting engagement via {item.via}.</p>}
-          {item.context && <p className="plate__p">{item.context}</p>}
+          <p className="plate__p">{item.context}</p>
         </PlateSection>
       )}
       <PlateSection label={ongoing ? 'What I do' : 'What I did'}>
