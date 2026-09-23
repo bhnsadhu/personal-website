@@ -27,7 +27,7 @@ export const hand: Highlight[] = [
     subtitle: 'Solo Creator & Developer',
     meta: 'Sept 2026 · Live',
     summary: 'A multiplayer card game I built so friends can play anywhere, even when nobody has a deck.',
-    body: ['Early testing with approximately 18 players, primarily friends.'],
+    body: ['Guest access, three bot difficulty levels, accounts, and leaderboards.'],
     tags: ['Product Development', 'Multiplayer', 'TypeScript'],
     links: [{ label: 'Live Demo', href: 'https://cambio.bhanusadhu.com' }],
     more: { label: moreLabel.project, to: '/projects/cambio' },
