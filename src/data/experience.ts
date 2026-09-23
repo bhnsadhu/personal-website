@@ -21,8 +21,8 @@ export const experience: Experience[] = [
       'Worked on an AI care companion, translating patient needs into product requirements and web and mobile experiences.',
     body: [
       'Defined use cases and product requirements, translating patient feedback into features.',
-      'Developed web and mobile UX across eight feature areas, including care tracking and medication management.',
-      'Built an outreach pipeline of 750+ contacts across eight healthcare networks.',
+      "Drove Ingenio Care's App Store launch by leading the web-to-mobile UI/UX redesign across eight feature areas.",
+      'Built a patient and provider outreach pipeline spanning 750+ contacts across eight healthcare networks.',
     ],
     tags: ['Product Management', 'Product Requirements', 'UX', 'Digital Health', 'Outreach'],
   },
