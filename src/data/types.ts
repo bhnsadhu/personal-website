@@ -63,7 +63,6 @@ export interface Leadership extends CardContent {
 
 export interface Project extends CardContent {
   status: 'live' | 'shipped' | 'idea'
-  year: string
   stack: string[]
   siteUrl?: string
   codeUrl?: string

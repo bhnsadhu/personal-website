@@ -9,10 +9,9 @@ export const projects: Project[] = [
   {
     slug: 'cambio',
     status: 'live',
-    year: '2026',
     title: 'Cambio',
     subtitle: 'Next.js · TypeScript · Supabase',
-    meta: 'Sept 2026 · Live',
+    meta: 'Live',
     summary: 'A multiplayer card game built for the moments when you want to play but nobody has a deck.',
     body: [
       'A four-player browser card game with guest access, guided onboarding, and three bot difficulty levels.',
