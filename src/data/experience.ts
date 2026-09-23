@@ -18,7 +18,7 @@ export const experience: Experience[] = [
     meta: 'May 2026 — Aug 2026',
     summary: 'Product strategy and feature development for a pre-seed digital health startup.',
     context:
-      'Worked on an AI care companion, shaping product requirements, driving its App Store launch, and building outreach to patients and providers.',
+      "Shaped product direction, led the mobile redesign, and drove Ingenio Care's App Store launch while building patient and provider outreach.",
     body: [
       'Defined use cases and product requirements, translating patient feedback into features.',
       "Drove Ingenio Care's App Store launch by leading the web-to-mobile UI/UX redesign across eight feature areas.",
