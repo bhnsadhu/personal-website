@@ -20,7 +20,7 @@ export const experience: Experience[] = [
     context:
       "Shaped product direction for an AI care companion, led the web-to-mobile UI/UX redesign, and drove Ingenio Care's App Store launch while building patient and provider outreach.",
     body: [
-      'Defined use cases and product requirements, translating patient feedback into features.',
+      'Defined use cases and product requirements for an AI care companion, translating patient feedback into features.',
       "Drove Ingenio Care's App Store launch by leading the web-to-mobile UI/UX redesign across eight feature areas.",
       'Built a patient and provider outreach pipeline spanning 750+ contacts across eight healthcare networks.',
     ],
