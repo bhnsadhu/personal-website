@@ -39,7 +39,7 @@ export const hand: Highlight[] = [
     title: 'Computer Science + Economics',
     subtitle: education.school,
     meta: education.dates,
-    summary: `${education.degree}. ${education.expected}. Declared minors in ${education.minors.join(' and ')}.`,
+    summary: `${education.degree}. ${education.expected}. Minors in ${education.minors.join(' and ')}.`,
     body: [education.courseworkNote, ...education.coursework.map((c) => `${c.code} ${c.name} · ${c.status}`)],
     tags: ['Computer Science', 'Economics', 'Statistics minor', 'Advertising minor'],
   },

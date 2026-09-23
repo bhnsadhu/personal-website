@@ -229,7 +229,7 @@ export function ListView() {
               {education.dates} · {education.location}
             </p>
             <p className="list__p">
-              {education.expected}. Declared minors in {education.minors.join(' and ')}.
+              {education.expected}. Minors in {education.minors.join(' and ')}.
             </p>
             <p className="list__meta mono">{education.courseworkNote}</p>
             <ul className="dlist list__bullets">
