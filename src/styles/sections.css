@@ -235,7 +235,7 @@
 /* A step below the labels, so the caption stays subordinate to them. */
 .band__note {
   font-size: var(--band-note);
-  padding: 0 0 var(--band-note-pad);
+  padding: calc(var(--band-note-pad) / 2) 0;
   text-align: center;
   color: var(--gray);
 }
