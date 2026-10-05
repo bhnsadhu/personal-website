@@ -76,7 +76,9 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   a new tab. Not in the repo until the real file is dropped in.
   `og.png` is the social preview, 1200x630; index.html points `og:image`
   and `twitter:image` at `https://bhanusadhu.com/og.png`, absolute because
-  crawlers do not resolve relative ones.
+  crawlers do not resolve relative ones. `og:title` and `twitter:title`
+  put no-break spaces (`&#160;`) around the bar; with plain spaces iMessage
+  strips "Bhanu Sadhu" as a duplicate of the domain.
 - `sitemap.xml` is emitted at build time by the `sitemap` plugin in
   `vite.config.ts`, from `experience` and `projects`, so it cannot drift
   from the router. No `lastmod`: the dates would be invented. Vercel serves
