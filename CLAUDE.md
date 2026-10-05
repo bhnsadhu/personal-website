@@ -83,10 +83,10 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
 ## Content rules
 
 - Fixed wording in fixed places. "Product Management" (`site.focus`):
-  the label beside "Your hand" in the hero and under About in the list
-  view. Short form, "Product, Software, & Strategy" (`site.title`, split
-  as `site.interests`): tab title, social meta, and the hero's seeking
-  line with Product highlighted. Long form, "Product Management, Software
+  the label beside "Your hand" in the hero. Short form, "Product,
+  Software, & Strategy" (`site.title`, split as `site.interests`): tab
+  title, social meta, the hero's seeking line with Product highlighted,
+  and the label under About in the list view. Long form, "Product Management, Software
   Development, & Business Strategy" (`site.availability`): the sentence
   in the contact section and the list view. No other role list.
 - The card view and the list view say the same things in the same words.

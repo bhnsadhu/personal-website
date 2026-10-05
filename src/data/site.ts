@@ -4,14 +4,14 @@ const interests = { lead: 'Product', rest: 'Software, & Strategy' }
 export const site = {
   name: 'Bhanu Prakash Sadhu',
   shortName: 'Bhanu Sadhu',
-  /** The short form: tab title, social preview, and the hero's seeking line. */
+  /** The short form: tab title, social preview, the hero's seeking line, and the label under About in the list view. */
   title: `${interests.lead}, ${interests.rest}`,
   browserTitle: `Bhanu Sadhu | ${interests.lead}, ${interests.rest}`,
   description:
     'Bhanu Sadhu studies Computer Science + Economics at UIUC and builds products across software, digital health, and AI. Explore his projects, experience, and interests.',
   location: 'Hawthorn Woods, Illinois',
   education: 'Computer Science + Economics, University of Illinois Urbana-Champaign',
-  /** The label beside "Your hand" in the hero and under About in the list view. */
+  /** The label beside "Your hand" in the hero. */
   focus: 'Product Management',
   seeking: 'Summer 2027 internships',
   interests,
