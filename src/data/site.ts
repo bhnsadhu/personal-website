@@ -11,7 +11,8 @@ export const site = {
     'Bhanu Sadhu studies Computer Science + Economics at UIUC and builds products across software, digital health, and AI. Explore his projects, experience, and interests.',
   location: 'Hawthorn Woods, Illinois',
   education: 'Computer Science + Economics, University of Illinois Urbana-Champaign',
-  /** The label beside "Your hand" in the hero. */
+  major: 'Computer Science + Economics',
+  /** With `major`, the labels beside "Your hand" in the hero. */
   focus: 'Builder & breaker of products',
   seeking: 'Summer 2027 internships',
   interests,

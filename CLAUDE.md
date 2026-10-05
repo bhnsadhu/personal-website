@@ -86,8 +86,9 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
 
 ## Content rules
 
-- Fixed wording in fixed places. "Product Management" (`site.focus`):
-  the label beside "Your hand" in the hero. Every list of the three is
+- Fixed wording in fixed places. The hero eyebrow reads "Your hand ·
+  Computer Science + Economics · Builder & breaker of products"
+  (`site.major`, `site.focus`), no location. Every list of the three is
   "Product, Software, & Strategy" (`site.title`, split as
   `site.interests`): tab title, social meta, the hero's seeking line
   with Product highlighted, the label under About in the list view, and
