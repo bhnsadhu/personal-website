@@ -12,7 +12,7 @@ export const projects: Project[] = [
     status: 'live',
     title: 'Cambio',
     subtitle: ['Next.js', 'TypeScript', 'Supabase'].join(SEP),
-    meta: 'Live',
+    meta: 'Play now',
     summary: 'A multiplayer card game built for the moments when you want to play but nobody has a deck.',
     body: [
       'A four-player browser card game with guest access, guided onboarding, and three bot difficulty levels.',
