@@ -4,8 +4,7 @@ import type { Education } from './types'
 export const education: Education = {
   school: 'University of Illinois Urbana-Champaign',
   degree: 'B.S. Computer Science + Economics',
-  dates: 'Aug 2025 — May 2029',
-  expected: 'Expected graduation May 2029',
+  dates: 'Aug 2025 — Present',
   location: 'Champaign, IL',
   minors: ['Statistics', 'Advertising'],
   courseworkNote: 'Selected coursework as of September 19, 2026.',

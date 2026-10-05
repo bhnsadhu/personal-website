@@ -84,7 +84,6 @@ export interface Education {
   school: string
   degree: string
   dates: string
-  expected: string
   location: string
   minors: string[]
   courseworkNote: string

@@ -12,7 +12,7 @@ A poker-themed portfolio. Every section is a deck of cards, and the one you open
 
 The portfolio of **Bhanu Sadhu**, a Computer Science + Economics student at the University of Illinois Urbana-Champaign, with minors in Statistics and Advertising.
 
-Currently recruiting for **Summer 2027 internships**, primarily in **Product Management**, followed by Software Engineering, Business Analyst, Project Management, and Business Development roles.
+Currently recruiting for **Summer 2027 internships** in product, software, and strategy.
 
 For recruiters and hiring managers, the [live site](https://bhanusadhu.com) is the fastest way to explore my experience, projects, and leadership. The resume is one click from the top of the page.
 
@@ -30,7 +30,7 @@ A resume is a hand you're dealt and how you play it. So the whole site is a deck
 
 | Section | On the site | What's in it |
 | --- | --- | --- |
-| Hero | **Your hand** | Introduction, recruiting priorities, and four aces linking to fuller entries |
+| Hero | **Your hand** | Introduction, what I'm seeking, and four aces linking to fuller entries |
 | Experience | **The spread** | Roles laid out as a row of cards |
 | Leadership | **The face cards** | Kings, queens, and jacks, dealt three to a suit |
 | Projects | **The fan** | Fanned cards, with unbuilt ideas face down as “Not dealt yet” |

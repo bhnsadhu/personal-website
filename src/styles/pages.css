@@ -231,12 +231,6 @@
   margin-top: 10px;
 }
 
-/* List view: the recruiting order sits under the availability line.
-   Spacing only. RoleList carries the look (see .roles in base.css). */
-.list__roles {
-  margin-top: 4px;
-}
-
 .list__entries {
   display: grid;
   gap: 16px;

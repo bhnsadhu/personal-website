@@ -127,17 +127,18 @@
   line-height: 0.98;
 }
 
-/* Seeking line: product management leads, the rest follow in the order given. */
+/* Seeking line: when, then what, in one sentence. */
 .hero__seeking {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 6px 16px;
   color: var(--gray);
 }
 
 .hero__seeking-lead {
   color: var(--brass);
+}
+
+.hero__seeking-focus {
+  color: var(--cream);
+  font-weight: 600;
 }
 
 .hero__fan {

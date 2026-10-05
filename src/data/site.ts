@@ -7,11 +7,11 @@ export const site = {
     'Bhanu Sadhu studies Computer Science + Economics at UIUC and builds products across software, digital health, and AI. Explore his projects, experience, and interests.',
   location: 'Hawthorn Woods, Illinois',
   education: 'Computer Science + Economics, University of Illinois Urbana-Champaign',
-  /** The lead. Product management first; the rest support it. */
+  /** The lead, named in the hero eyebrow. */
   focus: 'Product Management',
-  /** Recruiting priority, in order. Never re-sort. */
-  roles: ['Product Management', 'Software Engineering', 'Business Analyst', 'Project Management', 'Business Development'],
   seeking: 'Summer 2027 internships',
+  /** What the internships are in. One phrase, never a list of role titles. */
+  interests: 'product, software, and strategy',
   tagline:
     "I turn ideas into products and research into decisions. I'm studying Computer Science + Economics at UIUC, with a focus on product management and building useful software.",
   about: [
@@ -19,8 +19,7 @@ export const site = {
     "Outside of work, I'm usually playing cards with friends, trying a restaurant, collecting fragrances, or watching a movie.",
   ],
   workingStyle: 'Understand the problem, make thoughtful tradeoffs, and improve through feedback.',
-  availability:
-    "I'm seeking Summer 2027 internships in product management, with additional interests in software engineering, business analysis, project management, and business development.",
+  availability: "I'm seeking Summer 2027 internships in product, software, and strategy.",
   email: 'sadhubhanu07@gmail.com',
   phone: '224-428-4480',
   phoneHref: 'tel:+12244284480',

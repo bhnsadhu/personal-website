@@ -1,13 +1,11 @@
 import { Card } from '../components/Card'
 import { CardRow } from '../components/CardRow'
-import { RoleList } from '../components/RoleList'
 import { hand, HAND_SUITS, site } from '../data'
 import { Link } from '../lib/router'
 
 /**
  * Hero: name, intro, primary actions, and a fanned hand of four aces, one
- * per top highlight. Product management leads; the roles list keeps the
- * recruiting order as written.
+ * per top highlight.
  */
 export function Hand() {
   return (
@@ -33,10 +31,10 @@ export function Hand() {
               Contact Me
             </Link>
           </div>
-          <div className="hero__seeking mono mono--sm">
-            <span className="hero__seeking-lead">Seeking {site.seeking}</span>
-            <RoleList />
-          </div>
+          <p className="hero__seeking mono mono--sm">
+            <span className="hero__seeking-lead">Seeking {site.seeking}</span> in{' '}
+            <span className="hero__seeking-focus">{site.interests}</span>
+          </p>
         </div>
 
         <CardRow ids={hand.map((h) => h.slug)} layout="fan" className="hero__fan" ariaLabel="Top highlights">

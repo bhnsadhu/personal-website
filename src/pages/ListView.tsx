@@ -1,6 +1,5 @@
 import { FileIcon, GitHubIcon, LinkedInIcon, MailIcon, PhoneIcon, PinIcon } from '../components/Icons'
 import { MetricBand } from '../components/MetricBand'
-import { RoleList } from '../components/RoleList'
 import {
   certifications,
   education,
@@ -59,7 +58,6 @@ export function ListView() {
           ))}
           <p className="list__p list__p--muted">{site.workingStyle}</p>
           <p className="list__p">{site.availability}</p>
-          <RoleList className="list__roles" />
         </section>
 
         <section id="hand" className="list__section" aria-labelledby="l-hand">
@@ -229,7 +227,7 @@ export function ListView() {
               {education.dates} · {education.location}
             </p>
             <p className="list__p">
-              {education.expected}. Minors in {education.minors.join(' and ')}.
+              Minors in {education.minors.join(' and ')}.
             </p>
             <p className="list__meta mono">{education.courseworkNote}</p>
             <ul className="dlist list__bullets">

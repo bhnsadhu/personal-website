@@ -15,8 +15,8 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
 ## Where things live
 
 - `src/data/*.ts` — all content, one source for card, list, and detail
-  views. `site.ts` holds identity, recruiting order (`roles`, never
-  re-sort), links, and the static "as of" / "last updated" dates.
+  views. `site.ts` holds identity, what he's seeking (`seeking`,
+  `interests`), links, and the static "as of" / "last updated" dates.
   `hand.ts` (four aces, each links to its fuller entry), `experience.ts`
   (the spread; `via` names the consulting org, kept separate from the
   client), `leadership.ts` (face cards, fixed order, `progression` and
@@ -31,7 +31,7 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   Escape. Layouts: `row` (spread, fan), `fan` (hero overlap), `flop` (short
   centered sets). Rows center with auto margins, so wrap them in a block,
   never a grid or flex parent.
-- `src/sections/` — Hand (hero: intro, actions, recruiting order, four
+- `src/sections/` — Hand (hero: intro, actions, seeking line, four
   aces), Spread (experience), FaceCards (leadership, dealt three to a suit
   in one row per suit: K/Q/J spades, then clubs), Fan (projects;
   `status: 'idea'` renders face down and shows a toast), ChipsSection
@@ -72,8 +72,8 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
 
 ## Content rules
 
-- Recruiting order everywhere: Product Management, Software Engineering,
-  Business Analyst, Project Management, Business Development.
+- What he's seeking is one phrase: "product, software, and strategy"
+  (`site.interests`). Never list role titles (PM, SWE, BA, and so on).
 - Confidential clients stay unnamed in text, slugs, metadata, and labels.
   The consulting org (Illinois Business Consulting, Disruption Lab at Gies)
   is named separately as `via`.
@@ -81,6 +81,8 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   or idea-stage things (AviLux pilot, the innovation challenge, the
   apartment-chores product) are never described as launched.
 - No GPA, grades, honors, photos, ratings, or invented metrics and dates.
+- No class year and no graduation date, expected or otherwise. Education
+  shows the start date only (`Aug 2025 — Present`).
   "As of" and "last updated" dates are static strings, never the clock.
 - Spell "resume" plain, no accent, everywhere.
 
