@@ -10,8 +10,8 @@ export const site = {
   /** The lead, named in the hero eyebrow. */
   focus: 'Product Management',
   seeking: 'Summer 2027 internships',
-  /** What the internships are in. One phrase, never a list of role titles. */
-  interests: 'product, software, and strategy',
+  /** What the internships are in. Product leads; never a list of role titles. */
+  interests: { lead: 'product', rest: 'software, and strategy' },
   tagline:
     "I turn ideas into products and research into decisions. I'm studying Computer Science + Economics at UIUC, with a focus on product management and building useful software.",
   about: [
@@ -19,7 +19,7 @@ export const site = {
     "Outside of work, I'm usually playing cards with friends, trying a restaurant, collecting fragrances, or watching a movie.",
   ],
   workingStyle: 'Understand the problem, make thoughtful tradeoffs, and improve through feedback.',
-  availability: "I'm seeking Summer 2027 internships in product, software, and strategy.",
+  availability: "I'm seeking Summer 2027 internships, primarily in product, along with software and strategy.",
   email: 'sadhubhanu07@gmail.com',
   phone: '224-428-4480',
   phoneHref: 'tel:+12244284480',

@@ -33,7 +33,7 @@ export function Hand() {
           </div>
           <p className="hero__seeking mono mono--sm">
             <span className="hero__seeking-lead">Seeking {site.seeking}</span> in{' '}
-            <span className="hero__seeking-focus">{site.interests}</span>
+            <span className="hero__seeking-focus">{site.interests.lead}</span>, {site.interests.rest}
           </p>
         </div>
 

@@ -127,7 +127,7 @@
   line-height: 0.98;
 }
 
-/* Seeking line: when, then what, in one sentence. */
+/* Seeking line: when, then what, in one sentence. Product is marked as the lead. */
 .hero__seeking {
   color: var(--gray);
 }
