@@ -17,6 +17,7 @@ import {
   skills,
 } from '../data'
 import { Link } from '../lib/router'
+import { SEP } from '../lib/sep'
 import { useTitle } from '../lib/useTitle'
 
 /**
@@ -29,7 +30,7 @@ export function ListView() {
     <main className="list">
       <div className="container">
         <header className="list__head">
-          <p className="eyebrow">List view · Same content, no cards</p>
+          <p className="eyebrow">List view{SEP}Same content, no cards</p>
           <h1 className="display">{site.name}</h1>
           <p className="list__subtitle">Your hand, at a glance</p>
           <p className="lede">{site.tagline}</p>
@@ -49,7 +50,7 @@ export function ListView() {
             About
           </h2>
           <p className="list__meta mono">
-            {site.title} · {site.location}
+            {site.title}{SEP}{site.location}
           </p>
           {site.about.map((p, i) => (
             <p key={i} className="list__p">
@@ -68,7 +69,7 @@ export function ListView() {
             <article key={h.slug} className="list__item">
               <h3 className="list__item-title">{h.title}</h3>
               <p className="list__meta mono">
-                {h.subtitle} · {h.meta}
+                {h.subtitle}{SEP}{h.meta}
               </p>
               <p className="list__p">{h.summary}</p>
               {h.body.length > 0 && (
@@ -109,10 +110,10 @@ export function ListView() {
           {experience.map((e) => (
             <article key={e.slug} className="list__item">
               <h3 className="list__item-title">
-                {e.role} · {e.company}
+                {e.role}{SEP}{e.company}
               </h3>
               <p className="list__meta mono">
-                {e.dates} · {e.location}
+                {e.dates}{SEP}{e.location}
               </p>
               <p className="list__p">{e.summary}</p>
               {e.context && <p className="list__p list__p--muted">{e.context}</p>}
@@ -121,7 +122,7 @@ export function ListView() {
                   <li key={j}>{b}</li>
                 ))}
               </ul>
-              <p className="list__meta mono">{e.tags.join(' · ')}</p>
+              <p className="list__meta mono">{e.tags.join(SEP)}</p>
               <Link to={`/experience/${e.slug}`} className="tlink">
                 {moreLabel.experience}
                 <span className="arrow" aria-hidden="true">
@@ -140,10 +141,10 @@ export function ListView() {
           {leadership.map((l) => (
             <article key={l.slug} className="list__item">
               <h3 className="list__item-title">
-                {l.role} · {l.organization}
+                {l.role}{SEP}{l.organization}
               </h3>
               <p className="list__meta mono">
-                {l.dates} · {l.location}
+                {l.dates}{SEP}{l.location}
               </p>
               {l.progression && (
                 <p className="list__meta mono">
@@ -156,7 +157,7 @@ export function ListView() {
                   <li key={j}>{b}</li>
                 ))}
               </ul>
-              <p className="list__meta mono">{l.tags.join(' · ')}</p>
+              <p className="list__meta mono">{l.tags.join(SEP)}</p>
               {l.related && (
                 <div className="linkrow list__links">
                   {l.related.map((r) => (
@@ -193,7 +194,7 @@ export function ListView() {
                       <li key={j}>{b}</li>
                     ))}
                   </ul>
-                  <p className="list__meta mono">{p.stack.join(' · ')}</p>
+                  <p className="list__meta mono">{p.stack.join(SEP)}</p>
                   <div className="linkrow list__links">
                     <Link to={`/projects/${p.slug}`} className="tlink">
                       {moreLabel.project}
@@ -224,10 +225,10 @@ export function ListView() {
           </h2>
           <article className="list__item">
             <h3 className="list__item-title">
-              {education.degree} · {education.school}
+              {education.degree}{SEP}{education.school}
             </h3>
             <p className="list__meta mono">
-              {education.dates} · {education.location}
+              {education.dates}{SEP}{education.location}
             </p>
             <p className="list__p">
               Minors in {education.minors.join(' and ')}.
@@ -236,7 +237,7 @@ export function ListView() {
             <ul className="dlist list__bullets">
               {education.coursework.map((c) => (
                 <li key={c.code}>
-                  {c.code} · {c.name} · {c.status}
+                  {c.code}{SEP}{c.name}{SEP}{c.status}
                 </li>
               ))}
             </ul>
@@ -252,7 +253,7 @@ export function ListView() {
             {skills.map((s) => (
               <div key={s.id}>
                 <dt className="list__item-title">{s.label}</dt>
-                <dd className="list__meta mono">{s.skills.join(' · ')}</dd>
+                <dd className="list__meta mono">{s.skills.join(SEP)}</dd>
               </div>
             ))}
           </dl>
@@ -266,7 +267,7 @@ export function ListView() {
             <article key={c.url} className="list__item">
               <h3 className="list__item-title">{c.name}</h3>
               <p className="list__meta mono">
-                {c.issuer} · Issued {c.issued}
+                {c.issuer}{SEP}Issued {c.issued}
               </p>
               <a className="tlink" href={c.url} target="_blank" rel="noreferrer">
                 View Credential
@@ -294,7 +295,7 @@ export function ListView() {
                   <li key={e.name}>
                     <p className="list__p">
                       <strong>{e.name}</strong>
-                      {e.detail && <span className="list__p--muted"> · {e.detail}</span>}
+                      {e.detail && <span className="list__p--muted">{SEP}{e.detail}</span>}
                     </p>
                     {e.address && <p className="list__meta mono">{e.address}</p>}
                     {e.pick && <p className="list__p list__p--muted">Order: {e.pick}</p>}
@@ -304,7 +305,7 @@ export function ListView() {
               </ol>
             </article>
           ))}
-          <p className="list__meta mono">Also in rotation: {personalExtras.join(' · ')}</p>
+          <p className="list__meta mono">Also in rotation: {personalExtras.join(SEP)}</p>
         </section>
 
         <section id="contact" className="list__section" aria-labelledby="l-contact">

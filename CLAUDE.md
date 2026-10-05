@@ -59,6 +59,9 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
 - `src/lib/router.tsx` — in-house router: params, `/#anchor` links, view
   transitions, scroll restoration, and `goBack()` which uses history when
   the visit started in-app and falls back to `/` on a shared link.
+- `src/lib/sep.ts` — `SEP`, the " · " between joined items, with a
+  no-break space before the dot so a wrapped line never starts with one.
+  Use it for every rendered separator, in data and views alike.
 - `api/contact.ts` — Vercel Function. Validates, drops honeypot hits, sends
   through Resend. Env: `RESEND_API_KEY` (required), `CONTACT_TO`,
   `CONTACT_FROM` (optional). The key is read from `process.env` in the

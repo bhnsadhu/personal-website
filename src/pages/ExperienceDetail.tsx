@@ -1,5 +1,6 @@
 import { experience, findBySlug, nextOf, rankAt, SPREAD_RANKS } from '../data'
 import { useParams } from '../lib/router'
+import { SEP } from '../lib/sep'
 import { useTitle } from '../lib/useTitle'
 import { NotFound } from './NotFound'
 import { Plate, PlateSection } from './Plate'
@@ -15,15 +16,15 @@ export function ExperienceDetail() {
 
   return (
     <Plate
-      eyebrow="♠ Experience · The spread"
+      eyebrow={`♠ Experience${SEP}The spread`}
       rank={rankAt(SPREAD_RANKS, i)}
       suit="spades"
       title={item.role}
-      subtitle={`${item.company} · ${item.location}`}
+      subtitle={`${item.company}${SEP}${item.location}`}
       meta={item.dates}
       tags={item.tags}
       nextTo={`/experience/${next.slug}`}
-      nextLabel={`${next.role} · ${next.company}`}
+      nextLabel={`${next.role}${SEP}${next.company}`}
     >
       <PlateSection label="In one line">
         <p className="plate__lede">{item.summary}</p>

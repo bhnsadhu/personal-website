@@ -1,5 +1,6 @@
 import { FAN_RANKS, findBySlug, projects, rankAt } from '../data'
 import { useParams } from '../lib/router'
+import { SEP } from '../lib/sep'
 import { useTitle } from '../lib/useTitle'
 import { NotFound } from './NotFound'
 import { Plate, PlateSection } from './Plate'
@@ -16,7 +17,7 @@ export function ProjectDetail() {
 
   return (
     <Plate
-      eyebrow="♦ Projects · The fan"
+      eyebrow={`♦ Projects${SEP}The fan`}
       rank={rankAt(FAN_RANKS, i)}
       suit="diamonds"
       title={item.title}

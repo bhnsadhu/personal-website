@@ -1,4 +1,5 @@
 import { education } from './education'
+import { SEP } from '../lib/sep'
 import { moreLabel } from './site'
 import type { Highlight } from './types'
 
@@ -40,7 +41,7 @@ export const hand: Highlight[] = [
     subtitle: education.school,
     meta: education.dates,
     summary: `${education.degree}. Minors in ${education.minors.join(' and ')}.`,
-    body: [education.courseworkNote, ...education.coursework.map((c) => `${c.code} ${c.name} · ${c.status}`)],
+    body: [education.courseworkNote, ...education.coursework.map((c) => `${c.code} ${c.name}${SEP}${c.status}`)],
     tags: ['Computer Science', 'Economics', 'Statistics minor', 'Advertising minor'],
   },
   {
@@ -48,7 +49,7 @@ export const hand: Highlight[] = [
     slug: 'community',
     corner: 'Community',
     title: 'Bringing people together',
-    subtitle: 'Indian Student Association · Director of Cultural Events',
+    subtitle: `Indian Student Association${SEP}Director of Cultural Events`,
     meta: 'Aug 2025 — Present',
     summary:
       'Creating opportunities to connect through South Asian cultural events, from Unity Week to Diwali Night and India Night.',

@@ -1,4 +1,5 @@
 import { site } from '../data'
+import { SEP } from '../lib/sep'
 import { FileIcon, GitHubIcon, LinkedInIcon, MailIcon } from './Icons'
 import { SUIT_GLYPH } from './Suit'
 
@@ -29,7 +30,7 @@ export function Footer() {
           </a>
         </nav>
         <p className="footer__note mono mono--sm">
-          © {site.copyrightYear} {site.name} · {site.signoff}
+          © {site.copyrightYear} {site.name}{SEP}{site.signoff}
         </p>
         <p className="footer__note mono mono--sm">Content last updated {site.updated}</p>
       </div>

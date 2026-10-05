@@ -2,6 +2,7 @@ import { Card } from '../components/Card'
 import { CardRow } from '../components/CardRow'
 import { Section } from '../components/Section'
 import { FLOP_RANKS, personal, personalExtras, personalIntro, rankAt, sectionNotes } from '../data'
+import { SEP } from '../lib/sep'
 
 /** The flop, plus the turn: four community cards for life outside work, five favorites each. */
 export function Flop() {
@@ -61,7 +62,7 @@ export function Flop() {
           }
         </CardRow>
       </div>
-      <p className="flop__extras mono mono--sm">Also in rotation: {personalExtras.join(' · ')}</p>
+      <p className="flop__extras mono mono--sm">Also in rotation: {personalExtras.join(SEP)}</p>
     </Section>
   )
 }

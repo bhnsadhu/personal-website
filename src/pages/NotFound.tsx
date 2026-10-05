@@ -1,4 +1,5 @@
 import { Link } from '../lib/router'
+import { SEP } from '../lib/sep'
 import { useTitle } from '../lib/useTitle'
 
 export function NotFound() {
@@ -7,7 +8,7 @@ export function NotFound() {
     <main className="plate">
       <div className="container">
         <article className="plate__card plate__card--empty">
-          <p className="eyebrow">404 · Not in the deck</p>
+          <p className="eyebrow">404{SEP}Not in the deck</p>
           <h1 className="plate__title">That card was never dealt.</h1>
           <p className="plate__lede">The page you asked for isn’t in this hand. Head back to the table.</p>
           <div className="actions">

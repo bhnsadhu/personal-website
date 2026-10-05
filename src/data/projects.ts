@@ -1,4 +1,5 @@
 import type { Project } from './types'
+import { SEP } from '../lib/sep'
 
 /**
  * The fan: independent projects. Face up when live or shipped. A
@@ -10,7 +11,7 @@ export const projects: Project[] = [
     slug: 'cambio',
     status: 'live',
     title: 'Cambio',
-    subtitle: 'Next.js · TypeScript · Supabase',
+    subtitle: ['Next.js', 'TypeScript', 'Supabase'].join(SEP),
     meta: 'Live',
     summary: 'A multiplayer card game built for the moments when you want to play but nobody has a deck.',
     body: [

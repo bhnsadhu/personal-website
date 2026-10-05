@@ -2,6 +2,7 @@ import { Card } from '../components/Card'
 import { CardRow } from '../components/CardRow'
 import { hand, HAND_SUITS, site } from '../data'
 import { Link } from '../lib/router'
+import { SEP } from '../lib/sep'
 
 /**
  * Hero: name, intro, primary actions, and a fanned hand of four aces, one
@@ -13,7 +14,7 @@ export function Hand() {
       <div className="container">
         <div className="hero__head">
           <p className="eyebrow">
-            Your hand · {site.focus} · {site.location}
+            Your hand{SEP}{site.focus}{SEP}{site.location}
           </p>
           <h1 id="hand-title" className="display hero__title">
             {site.name}

@@ -1,6 +1,7 @@
 import { ChipStack } from '../components/Chips'
 import { Section } from '../components/Section'
 import { certifications, sectionNotes, skills } from '../data'
+import { SEP } from '../lib/sep'
 
 /** The chips: one stack per skill category, product first. Certifications sit beneath. */
 export function ChipsSection() {
@@ -35,7 +36,7 @@ export function ChipsSection() {
             <li key={c.url} className="cert">
               <span className="cert__name">{c.name}</span>
               <span className="cert__meta mono mono--sm">
-                {c.issuer} · Issued {c.issued}
+                {c.issuer}{SEP}Issued {c.issued}
               </span>
               <a className="tlink" href={c.url} target="_blank" rel="noreferrer">
                 View Credential
