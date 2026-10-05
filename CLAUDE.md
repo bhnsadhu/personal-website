@@ -30,7 +30,10 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   `grid-template-columns` (7fr for the open card, 1fr slivers) and handles
   Escape. Layouts: `row` (spread, fan), `fan` (hero overlap), `flop` (short
   centered sets). Rows center with auto margins, so wrap them in a block,
-  never a grid or flex parent.
+  never a grid or flex parent. At 720px and below every row stacks; from
+  721 to 1023 a closed row of four or more wraps (three per line, two for
+  exactly four) and the hero fan tightens, so nothing crushes or scrolls
+  sideways on a tablet.
 - `src/sections/` — Hand (hero: intro, actions, seeking line, four
   aces), Spread (experience), FaceCards (leadership, dealt three to a suit
   in one row per suit: K/Q/J spades, then clubs), Fan (projects;

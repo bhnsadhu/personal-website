@@ -505,6 +505,45 @@
   }
 }
 
+/* ---------------- Tablets: between the phone stack and the full spread ---------------- */
+
+/* Kept in one row, five cards crush to 120px and four to 150px, and the
+   hero fan runs off the screen. So a closed row of four or more wraps:
+   three to a line, or two to a line for exactly four. The fan stays a fan,
+   tighter and flatter. --rot is rewritten rather than the transform, so
+   the deal-in and the hover lift land on the same angle. */
+@media (min-width: 721px) and (max-width: 1023px) {
+  .row:not(.row--fan):not(.has-open):has(> .card:nth-child(4)) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .row:not(.row--fan):not(.has-open):has(> .card:nth-child(4)) > .card {
+    flex: 0 0 calc((100% - 40px) / 3);
+    max-width: 300px;
+  }
+  .row:not(.row--fan):not(.has-open):has(> .card:nth-child(4)):not(:has(> .card:nth-child(5))) {
+    max-width: 620px;
+  }
+  .row:not(.row--fan):not(.has-open):has(> .card:nth-child(4)):not(:has(> .card:nth-child(5))) > .card {
+    flex-basis: calc((100% - 20px) / 2);
+  }
+  .row--fan:not(.has-open) .card {
+    --rot: calc((var(--i) - 1.5) * 4deg) !important;
+    width: 208px;
+    margin-left: -100px;
+  }
+}
+
+/* Three to a row, a face card runs narrow enough that the full portrait
+   reaches the title, so the portrait shrinks and rises. */
+@media (min-width: 721px) and (max-width: 900px) {
+  .card__portrait {
+    top: 9%;
+    width: clamp(56px, 30%, 132px);
+  }
+}
+
 /* ---------------- Small screens: one column, no fan ---------------- */
 
 @media (max-width: 720px) {
@@ -543,12 +582,28 @@
   .card__face-body {
     padding: 40px 48px;
   }
+  /* A wide card is too short to float the portrait over the title, so it
+     joins the column above it and the content sets the height. The floor
+     keeps one- and two-line titles the same size. */
+  .card--face .card__front {
+    aspect-ratio: auto;
+    min-height: 272px;
+  }
   .card--face .card__face-body {
-    padding-bottom: 40px;
+    position: relative;
+    inset: auto;
+    min-height: inherit;
+    justify-content: center;
+    padding: 36px 48px;
   }
   .card__portrait {
-    top: 12%;
-    width: 84px;
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 64px;
+    margin-bottom: 10px;
+    font-size: 34px;
   }
   .card.is-aside .card__front {
     height: 64px;

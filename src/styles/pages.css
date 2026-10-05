@@ -114,6 +114,14 @@
   color: var(--cream);
 }
 
+/* Client names run long. These links wrap inside the column instead of
+   holding one line and pushing a phone screen sideways. */
+.plate__nav .tlink,
+.list__links .tlink {
+  white-space: normal;
+  text-align: left;
+}
+
 .plate__card--empty {
   display: grid;
   justify-items: center;
@@ -125,8 +133,21 @@
   .plate {
     padding: 24px 0 64px;
   }
+  /* The side padding narrows to the corner's own column, so the content
+     starts below the top corner and ends above the bottom one. */
   .plate__card {
-    padding: 56px 24px 48px;
+    padding: 76px 24px 76px;
+  }
+  .plate__card .card__corner {
+    font-size: 19px;
+  }
+  .plate__card .card__corner--tl {
+    top: 18px;
+    left: 20px;
+  }
+  .plate__card .card__corner--br {
+    bottom: 18px;
+    right: 20px;
   }
 }
 
