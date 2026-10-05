@@ -667,9 +667,12 @@
   color: var(--brass);
 }
 
-/* Centered under the suits. The row itself is .linkrow. */
+/* Centered under the suits. The row itself is .linkrow. The 2px makes up
+   for the icons' ink sitting closer to the box edge than the notes' caps,
+   so the copyright line sits midway between the links and "last updated". */
 .footer__links {
   justify-content: center;
+  margin-bottom: 2px;
 }
 
 .footer__note {
