@@ -12,7 +12,7 @@ export const site = {
   location: 'Hawthorn Woods, Illinois',
   education: 'Computer Science + Economics, University of Illinois Urbana-Champaign',
   /** The label beside "Your hand" in the hero. */
-  focus: 'Product Management',
+  focus: 'Builder & breaker of products',
   seeking: 'Summer 2027 internships',
   interests,
   tagline:
