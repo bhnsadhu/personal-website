@@ -22,9 +22,8 @@ export const site = {
     "Outside of work, I'm usually playing cards with friends, trying a restaurant, collecting fragrances, or watching a movie.",
   ],
   workingStyle: 'Understand the problem, make thoughtful tradeoffs, and improve through feedback.',
-  /** The long form, as a sentence: the contact section and the list view. */
-  availability:
-    "I'm seeking Summer 2027 internships in Product Management, Software Development, & Business Strategy.",
+  /** The short form, as a sentence: the contact section and the list view. */
+  availability: `I'm seeking Summer 2027 internships in ${interests.lead}, ${interests.rest}.`,
   email: 'sadhubhanu07@gmail.com',
   phone: '224-428-4480',
   phoneHref: 'tel:+12244284480',
