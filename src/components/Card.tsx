@@ -116,14 +116,24 @@ export function Card({
           ) : (
             <span className="card__face-body">
               {corner && <span className="card__tag-corner mono mono--sm">{corner}</span>}
-              {face && (
-                <span className="card__portrait" data-face={face} aria-hidden="true">
-                  <span>{face}</span>
-                </span>
-              )}
-              <span className="card__title">{title}</span>
+              {/* Above, the italic subtitle, below: the subtitle sits on the card's midline. */}
+              <span className="card__above">
+                {face && (
+                  <span className="card__portrait" data-face={face} aria-hidden="true">
+                    <span>{face}</span>
+                  </span>
+                )}
+                <span className="card__title">{title}</span>
+              </span>
               {subtitle && <span className="card__subtitle">{subtitle}</span>}
-              {meta && <span className="card__meta mono mono--sm">{meta}</span>}
+              <span className="card__below">
+                {meta && <span className="card__meta mono mono--sm">{meta}</span>}
+                {face && (
+                  <span className="card__portrait card__portrait--mirror" data-face={face} aria-hidden="true">
+                    <span>{face}</span>
+                  </span>
+                )}
+              </span>
               <span className="card__hint mono mono--sm">Tap to flip</span>
             </span>
           )}

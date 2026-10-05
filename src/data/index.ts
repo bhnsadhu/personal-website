@@ -9,7 +9,8 @@ export { leadership } from './leadership'
 export { projects } from './projects'
 export { skills } from './skills'
 export { certifications } from './certifications'
-export { personal, personalExtras, personalIntro, personalNote } from './personal'
+export { personal, personalExtras, personalIntro } from './personal'
+export { sectionNotes } from './sections'
 export { metrics } from './metrics'
 
 /** Experience ranks: Ace first, then 10 downward. Face cards are reserved for leadership. */

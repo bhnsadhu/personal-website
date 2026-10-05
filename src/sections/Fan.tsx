@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Card } from '../components/Card'
 import { CardRow } from '../components/CardRow'
 import { Section } from '../components/Section'
-import { FAN_RANKS, moreLabel, projects, rankAt } from '../data'
+import { FAN_RANKS, moreLabel, projects, rankAt, sectionNotes } from '../data'
 
 /** The fan: independent projects. Live and shipped are face up; ideas are face down. */
 export function Fan() {
@@ -26,7 +26,7 @@ export function Fan() {
           The <em>fan</em>
         </>
       }
-      note="Ideas taken beyond the ‘what if.’ Things I’ve built to solve everyday problems, try something new, or make time with friends more fun."
+      note={sectionNotes.fan}
     >
       <CardRow ids={projects.map((p) => p.slug)} ariaLabel="Projects">
         {(row) =>

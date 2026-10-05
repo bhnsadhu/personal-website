@@ -4,9 +4,6 @@ import type { PersonalCard } from './types'
 export const personalIntro =
   'A few things I keep coming back to: a good meal, a sweet fragrance, a film that stays with me, and somewhere new to explore.'
 
-/** The line beside the flop's title. */
-export const personalNote = 'A few current favorites.'
-
 /** The compact line under the table. */
 export const personalExtras = ['Card games', 'Cooking', 'Fitness', 'Badminton', 'Indian music']
 

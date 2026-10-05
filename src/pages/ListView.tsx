@@ -11,8 +11,8 @@ import {
   personal,
   personalExtras,
   personalIntro,
-  personalNote,
   projects,
+  sectionNotes,
   site,
   skills,
 } from '../data'
@@ -105,6 +105,7 @@ export function ListView() {
           <h2 id="l-exp" className="list__title">
             Experience
           </h2>
+          <p className="list__p list__p--muted">{sectionNotes.spread}</p>
           {experience.map((e) => (
             <article key={e.slug} className="list__item">
               <h3 className="list__item-title">
@@ -135,6 +136,7 @@ export function ListView() {
           <h2 id="l-lead" className="list__title">
             Leadership
           </h2>
+          <p className="list__p list__p--muted">{sectionNotes.face}</p>
           {leadership.map((l) => (
             <article key={l.slug} className="list__item">
               <h3 className="list__item-title">
@@ -175,6 +177,7 @@ export function ListView() {
           <h2 id="l-proj" className="list__title">
             Projects
           </h2>
+          <p className="list__p list__p--muted">{sectionNotes.fan}</p>
           {projects.map((p) => (
             <article key={p.slug} className="list__item">
               <h3 className="list__item-title">{p.title}</h3>
@@ -244,6 +247,7 @@ export function ListView() {
           <h2 id="l-skills" className="list__title">
             Skills
           </h2>
+          <p className="list__p list__p--muted">{sectionNotes.chips}</p>
           <dl className="list__skills">
             {skills.map((s) => (
               <div key={s.id}>
@@ -278,8 +282,8 @@ export function ListView() {
           <h2 id="l-personal" className="list__title">
             Personal
           </h2>
+          <p className="list__p list__p--muted">{sectionNotes.flop}</p>
           <p className="list__p">{personalIntro}</p>
-          <p className="list__meta mono">{personalNote}</p>
           {personal.map((c) => (
             <article key={c.slug} className="list__item">
               <h3 className="list__item-title">{c.title}</h3>

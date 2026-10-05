@@ -2,7 +2,7 @@ import { Card } from '../components/Card'
 import { CardRow } from '../components/CardRow'
 import { Section } from '../components/Section'
 import { SUIT_NAME } from '../components/Suit'
-import { FACES, faceSuitAt, leadership, type Leadership } from '../data'
+import { FACES, faceSuitAt, leadership, sectionNotes, type Leadership } from '../data'
 import { Link } from '../lib/router'
 
 /**
@@ -22,7 +22,7 @@ export function FaceCards() {
           The <em>face cards</em>
         </>
       }
-      note="Bringing people together, helping teams find direction, and making things happen across campus. A different kind of strong hand."
+      note={sectionNotes.face}
       className="section--face"
     >
       <div className="face-rows">

@@ -22,10 +22,17 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   client), `leadership.ts` (face cards, fixed order, `progression` and
   `related` optional), `projects.ts` (the fan), `education.ts`,
   `certifications.ts`, `skills.ts`, `personal.ts` (four cards, five
-  `entries` each), `metrics.ts`.
+  `entries` each), `metrics.ts`, `sections.ts` (the note beside each
+  section title, rendered by both the card view and the list view).
 - `src/components/Card.tsx` — one playing card: front is a `<button>`, back
   is a `role="region"` with the full content, always in the DOM, `inert`
-  until open. Focus moves into the back on open and returns on close.
+  until open. Focus moves into the back on open and returns on close. The
+  front is three grid rows (above, italic subtitle, below) with equal
+  outer rows and equal padding, so the subtitle sits on the midline of
+  every card. 5:7 (8:5 on phones) is a floor via `min-height` in `cqw`,
+  not a fixed size: a card grows instead of letting text spill. Face
+  cards are double-headed, the portrait at the top edge and again, turned
+  over, at the bottom.
 - `src/components/CardRow.tsx` — owns which card is open in a row; sets
   `grid-template-columns` (7fr for the open card, 1fr slivers) and handles
   Escape. Layouts: `row` (spread, fan), `fan` (hero overlap), `flop` (short
@@ -75,10 +82,14 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
 
 ## Content rules
 
-- What he's seeking, word for word: "Product Management, Software
-  Development, & Business Strategy" (`site.interests`). Product
-  Management is always the highlighted lead. No other role list (no
-  Business Analyst, Project Management, Business Development).
+- Two forms, each in fixed places. Short, "Product, Software, &
+  Strategy" (`site.title`): tab title, social meta, and the label under
+  the name in both views. Long, "Product Management, Software
+  Development, & Business Strategy" (`site.interests`): the seeking line
+  and availability sentence, wherever they appear. Product Management is
+  the highlighted lead. No other role list.
+- The card view and the list view say the same things in the same words.
+  Shared text lives in `src/data`, never inline in one view.
 - Confidential clients stay unnamed in text, slugs, metadata, and labels.
   The consulting org (Illinois Business Consulting, Disruption Lab at Gies)
   is named separately as `via`.

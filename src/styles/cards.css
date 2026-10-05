@@ -33,7 +33,7 @@
 .row--fan:not(.has-open) {
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: stretch;
   padding: 32px 0 12px;
 }
 
@@ -77,10 +77,12 @@
 
 /* ---------------- One card ---------------- */
 
+/* A size container, so a card's height floor can be read off its own width. */
 .card {
   position: relative;
   min-width: 0;
   perspective: 1400px;
+  container-type: inline-size;
 }
 
 .card__inner {
@@ -104,11 +106,15 @@
   -webkit-backface-visibility: hidden;
 }
 
+/* 5:7 as a floor (140% of the card's width), not a fixed size: when the
+   content needs more, the card grows instead of letting text spill into the
+   corners, and a row stretches its cards to the tallest. */
 .card__front {
   position: relative;
   display: block;
   width: 100%;
-  aspect-ratio: 5 / 7;
+  height: 100%;
+  min-height: 140cqw;
   overflow: hidden;
   text-align: left;
   transition:
@@ -161,16 +167,38 @@
   margin-top: 3px;
 }
 
+/* Three rows: whatever sits above, the italic subtitle, whatever sits
+   below. The outer rows stay equal (as the card grows, too) and the padding
+   is the same top and bottom, so the subtitle lands on the card's midline
+   whatever the title's line count. */
 .card__face-body {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  height: 100%;
+  min-height: inherit;
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+  justify-items: center;
+  row-gap: 6px;
+  padding: 50px 24px;
+  text-align: center;
+}
+
+.card__above {
+  grid-row: 1;
+  align-self: end;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  gap: 6px;
-  padding: 52px 24px 48px;
-  text-align: center;
+  gap: 10px;
+}
+
+.card__subtitle {
+  grid-row: 2;
+}
+
+.card__below {
+  grid-row: 3;
+  align-self: start;
 }
 
 .card__tag-corner {
@@ -194,6 +222,7 @@
 }
 
 .card__meta {
+  display: block;
   margin-top: 6px;
   color: var(--ink-2);
 }
@@ -218,10 +247,26 @@
   transform: none;
 }
 
-/* Face cards (leadership): a framed portrait letter, mirrored like the real thing. */
+/* Face cards (leadership): double-headed like the real thing. A framed
+   portrait letter sits at the top edge above the title and again, turned
+   over, at the bottom edge below the dates, the same distance from the
+   midline. No tag in the top corner, so less padding. */
 .card--face .card__face-body {
-  justify-content: flex-end;
-  padding-bottom: 44px;
+  padding: 28px 24px;
+}
+
+.card--face .card__above,
+.card--face .card__below {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.card__portrait--mirror {
+  transform: rotate(180deg);
 }
 
 .card--face .card__title {
@@ -229,11 +274,9 @@
 }
 
 .card__portrait {
-  position: absolute;
-  top: 14%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: clamp(64px, 44%, 132px);
+  position: relative;
+  flex: none;
+  width: clamp(48px, 24cqw, 84px);
   aspect-ratio: 3 / 4;
   border: 1px solid var(--wine);
   border-radius: 6px;
@@ -246,7 +289,7 @@
   font-family: var(--serif);
   font-style: italic;
   font-weight: 500;
-  font-size: clamp(36px, 5vw, 68px);
+  font-size: clamp(26px, 12cqw, 40px);
   line-height: 1;
   color: var(--wine);
 }
@@ -330,7 +373,7 @@
   position: absolute;
   inset: 0;
   height: 100%;
-  aspect-ratio: auto;
+  min-height: 0;
 }
 
 .card.is-open .card__back {
@@ -414,13 +457,19 @@
 .card.is-aside .card__front {
   height: 100%;
   min-height: 220px;
-  aspect-ratio: auto;
   opacity: 0.6;
 }
 
 .card.is-aside .card__face-body,
 .card.is-aside .card__down-label {
   opacity: 0;
+}
+
+/* Hidden on a sliver, and taken out of flow so its text, wrapped to the
+   sliver's width, cannot make the row taller than the open card. */
+.card.is-aside .card__face-body {
+  position: absolute;
+  inset: 0;
 }
 
 .card.is-aside .card__front:hover,
@@ -535,15 +584,6 @@
   }
 }
 
-/* Three to a row, a face card runs narrow enough that the full portrait
-   reaches the title, so the portrait shrinks and rises. */
-@media (min-width: 721px) and (max-width: 900px) {
-  .card__portrait {
-    top: 9%;
-    width: clamp(56px, 30%, 132px);
-  }
-}
-
 /* ---------------- Small screens: one column, no fan ---------------- */
 
 @media (max-width: 720px) {
@@ -553,6 +593,11 @@
   }
   .row--flop {
     max-width: 100%;
+  }
+  /* Stacked, each card would size to its own text. Every card in a closed
+     row takes the tallest one's height instead. */
+  .row:not(.has-open) {
+    grid-auto-rows: 1fr;
   }
   .row--fan:not(.has-open) {
     display: grid;
@@ -576,33 +621,22 @@
       transform: none;
     }
   }
+  /* 8:5 as the floor. A face card's floor is set by its tallest content
+     instead, so one- and two-line titles come out the same size. */
   .card__front {
-    aspect-ratio: 8 / 5;
+    min-height: 62.5cqw;
   }
   .card__face-body {
     padding: 40px 48px;
   }
-  /* A wide card is too short to float the portrait over the title, so it
-     joins the column above it and the content sets the height. The floor
-     keeps one- and two-line titles the same size. */
   .card--face .card__front {
-    aspect-ratio: auto;
-    min-height: 272px;
+    min-height: 360px;
   }
   .card--face .card__face-body {
-    position: relative;
-    inset: auto;
-    min-height: inherit;
-    justify-content: center;
-    padding: 36px 48px;
+    padding: 28px 48px;
   }
   .card__portrait {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
     width: 64px;
-    margin-bottom: 10px;
     font-size: 34px;
   }
   .card.is-aside .card__front {

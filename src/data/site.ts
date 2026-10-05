@@ -1,16 +1,15 @@
 export const site = {
   name: 'Bhanu Prakash Sadhu',
   shortName: 'Bhanu Sadhu',
-  title: 'Product, Software & Strategy',
-  browserTitle: 'Bhanu Sadhu | Product, Software & Strategy',
+  /** The short form: tab title, social preview, and the label under the name in both views. */
+  title: 'Product, Software, & Strategy',
+  browserTitle: 'Bhanu Sadhu | Product, Software, & Strategy',
   description:
     'Bhanu Sadhu studies Computer Science + Economics at UIUC and builds products across software, digital health, and AI. Explore his projects, experience, and interests.',
   location: 'Hawthorn Woods, Illinois',
   education: 'Computer Science + Economics, University of Illinois Urbana-Champaign',
-  /** The lead, named in the hero eyebrow. */
-  focus: 'Product Management',
   seeking: 'Summer 2027 internships',
-  /** What the internships are in. Product leads; never a list of role titles. */
+  /** The long form: what the internships are in, wherever the seeking line appears. Product Management leads. */
   interests: { lead: 'Product Management', rest: 'Software Development, & Business Strategy' },
   tagline:
     "I turn ideas into products and research into decisions. I'm studying Computer Science + Economics at UIUC, with a focus on product management and building useful software.",

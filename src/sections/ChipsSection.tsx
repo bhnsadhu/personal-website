@@ -1,6 +1,6 @@
 import { ChipStack } from '../components/Chips'
 import { Section } from '../components/Section'
-import { certifications, skills } from '../data'
+import { certifications, sectionNotes, skills } from '../data'
 
 /** The chips: one stack per skill category, product first. Certifications sit beneath. */
 export function ChipsSection() {
@@ -18,7 +18,7 @@ export function ChipsSection() {
           The <em>chips</em>
         </>
       }
-      note="The tools and approaches I bring to the table, from understanding users and setting priorities to building software and making sense of data."
+      note={sectionNotes.chips}
     >
       <ul className="stacks">
         {skills.map((s, i) => (

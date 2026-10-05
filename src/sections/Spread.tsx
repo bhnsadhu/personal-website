@@ -1,7 +1,7 @@
 import { Card } from '../components/Card'
 import { CardRow } from '../components/CardRow'
 import { Section } from '../components/Section'
-import { experience, moreLabel, rankAt, SPREAD_RANKS } from '../data'
+import { experience, moreLabel, rankAt, sectionNotes, SPREAD_RANKS } from '../data'
 
 /** The spread: professional and client work. Grows with the data. */
 export function Spread() {
@@ -14,7 +14,7 @@ export function Spread() {
           The <em>spread</em>
         </>
       }
-      note="Working across product, technology, and strategy to understand problems and turn research into useful next steps."
+      note={sectionNotes.spread}
     >
       <CardRow ids={experience.map((e) => e.slug)} ariaLabel="Work experience">
         {(row) =>
