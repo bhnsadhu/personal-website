@@ -324,13 +324,37 @@
 
 /* ---------------- Chips ---------------- */
 
-/* Six stacks fit one row at the container width; chips line up along the
-   top so one long list does not float the rest. */
+/* Stacks line up along the top so one long list does not float the rest. */
 .stacks {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
+  grid-template-columns: 1fr;
   gap: 40px 24px;
   align-items: start;
+}
+
+/* Product's column is at least 240px so its paired skills (Roadmapping
+   with Product analytics, Success metrics with A/B testing) share a line;
+   the other stacks split what is left. Six across on a desktop, five on a
+   small laptop, three on a tablet, two on a wide phone, one below that. */
+@media (min-width: 460px) {
+  .stacks {
+    grid-template-columns: minmax(240px, 1.5fr) minmax(0, 1fr);
+  }
+}
+@media (min-width: 721px) {
+  .stacks {
+    grid-template-columns: minmax(240px, 1.5fr) repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1024px) {
+  .stacks {
+    grid-template-columns: minmax(240px, 1.5fr) repeat(4, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1192px) {
+  .stacks {
+    grid-template-columns: minmax(240px, 1.5fr) repeat(5, minmax(0, 1fr));
+  }
 }
 
 .stack {
@@ -418,9 +442,14 @@
   color: var(--gray);
 }
 
+.stack[data-stack='product'] .stack__skills {
+  max-width: 240px;
+}
+
 .stack__skills li {
   font-size: 12px;
   letter-spacing: 0.05em;
+  text-wrap: balance;
 }
 
 /* ---------------- Certifications ---------------- */

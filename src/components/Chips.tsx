@@ -31,7 +31,7 @@ export function ChipStack({
   const n = chipsFor(stack.skills.length, min, max)
   const color = COLORS[index % COLORS.length]
   return (
-    <li className="stack">
+    <li className="stack" data-stack={stack.id}>
       <div className="stack__chips" aria-hidden="true" style={{ ['--max' as string]: MAX_CHIPS }}>
         {Array.from({ length: n }, (_, i) => (
           <span key={i} className={`chip chip--${color}`} style={{ ['--i' as string]: i }} />
