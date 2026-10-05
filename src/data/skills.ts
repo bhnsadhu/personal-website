@@ -12,8 +12,8 @@ export const skills: SkillStack[] = [
     skills: [
       'Product strategy',
       'Requirements gathering',
-      'PRDs',
       'User stories & acceptance criteria',
+      'PRDs',
       'User interviews',
       'Usability testing',
       'Feature prioritization',
