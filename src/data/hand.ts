@@ -26,7 +26,7 @@ export const hand: Highlight[] = [
     corner: 'Live',
     title: 'Cambio',
     subtitle: 'Solo Creator & Developer',
-    meta: 'Live',
+    meta: 'Play now',
     summary: 'A multiplayer card game I built so friends can play anywhere, even when nobody has a deck.',
     body: ['Guest access, three bot difficulty levels, accounts, and leaderboards.'],
     tags: ['Product Development', 'Multiplayer', 'TypeScript'],
