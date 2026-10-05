@@ -31,8 +31,8 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   outer rows and equal padding, so the subtitle sits on the midline of
   every card. 5:7 (8:5 on phones) is a floor via `min-height` in `cqw`,
   not a fixed size: a card grows instead of letting text spill. Face
-  cards are double-headed, the portrait at the top edge and again, turned
-  over, at the bottom.
+  cards carry one framed portrait letter at the top edge, above the
+  title.
 - `src/components/CardRow.tsx` — owns which card is open in a row; sets
   `grid-template-columns` (7fr for the open card, 1fr slivers) and handles
   Escape. Layouts: `row` (spread, fan), `fan` (hero overlap), `flop` (short

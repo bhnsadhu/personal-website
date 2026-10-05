@@ -128,11 +128,6 @@ export function Card({
               {subtitle && <span className="card__subtitle">{subtitle}</span>}
               <span className="card__below">
                 {meta && <span className="card__meta mono mono--sm">{meta}</span>}
-                {face && (
-                  <span className="card__portrait card__portrait--mirror" data-face={face} aria-hidden="true">
-                    <span>{face}</span>
-                  </span>
-                )}
               </span>
               <span className="card__hint mono mono--sm">Tap to flip</span>
             </span>

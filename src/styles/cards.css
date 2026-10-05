@@ -247,26 +247,16 @@
   transform: none;
 }
 
-/* Face cards (leadership): double-headed like the real thing. A framed
-   portrait letter sits at the top edge above the title and again, turned
-   over, at the bottom edge below the dates, the same distance from the
-   midline. No tag in the top corner, so less padding. */
+/* Face cards (leadership): a framed portrait letter at the top edge, the
+   title resting on the subtitle below it. No tag in the top corner, so
+   less padding. */
 .card--face .card__face-body {
   padding: 28px 24px;
 }
 
-.card--face .card__above,
-.card--face .card__below {
+.card--face .card__above {
   align-self: stretch;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: space-between;
-  gap: 10px;
-}
-
-.card__portrait--mirror {
-  transform: rotate(180deg);
 }
 
 .card--face .card__title {
