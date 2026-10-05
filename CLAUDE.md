@@ -88,11 +88,11 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
 
 - Fixed wording in fixed places. The hero eyebrow reads "Your hand ·
   Computer Science + Economics · Builder & breaker of products"
-  (`site.major`, `site.focus`), no location. Every list of the three is
-  "Product, Software, & Strategy" (`site.title`, split as
-  `site.interests`): tab title, social meta, the hero's seeking line
-  with Product highlighted, the label under About in the list view, and
-  the `site.availability` sentence in the contact section and the list
+  (`site.major`, `site.focus`), no location; the list view says the same
+  under About. Every list of the three is "Product, Software, &
+  Strategy" (`site.title`, split as `site.interests`): tab title, social
+  meta, the hero's seeking line with Product highlighted, and the
+  `site.availability` sentence in the contact section and the list
   view. No long form, no other role list.
 - The card view and the list view say the same things in the same words.
   Shared text lives in `src/data`, never inline in one view.
