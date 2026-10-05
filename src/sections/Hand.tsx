@@ -13,7 +13,7 @@ export function Hand() {
       <div className="container">
         <div className="hero__head">
           <p className="eyebrow">
-            Your hand · {site.title} · {site.location}
+            Your hand · {site.focus} · {site.location}
           </p>
           <h1 id="hand-title" className="display hero__title">
             {site.name}

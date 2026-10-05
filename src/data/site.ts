@@ -1,16 +1,20 @@
+/** The short form, split so the hero's seeking line can mark Product as the lead. */
+const interests = { lead: 'Product', rest: 'Software, & Strategy' }
+
 export const site = {
   name: 'Bhanu Prakash Sadhu',
   shortName: 'Bhanu Sadhu',
-  /** The short form: tab title, social preview, and the label under the name in both views. */
-  title: 'Product, Software, & Strategy',
-  browserTitle: 'Bhanu Sadhu | Product, Software, & Strategy',
+  /** The short form: tab title, social preview, and the hero's seeking line. */
+  title: `${interests.lead}, ${interests.rest}`,
+  browserTitle: `Bhanu Sadhu | ${interests.lead}, ${interests.rest}`,
   description:
     'Bhanu Sadhu studies Computer Science + Economics at UIUC and builds products across software, digital health, and AI. Explore his projects, experience, and interests.',
   location: 'Hawthorn Woods, Illinois',
   education: 'Computer Science + Economics, University of Illinois Urbana-Champaign',
+  /** The label beside "Your hand" in the hero and under About in the list view. */
+  focus: 'Product Management',
   seeking: 'Summer 2027 internships',
-  /** The long form: what the internships are in, wherever the seeking line appears. Product Management leads. */
-  interests: { lead: 'Product Management', rest: 'Software Development, & Business Strategy' },
+  interests,
   tagline:
     "I turn ideas into products and research into decisions. I'm studying Computer Science + Economics at UIUC, with a focus on product management and building useful software.",
   about: [
@@ -18,6 +22,7 @@ export const site = {
     "Outside of work, I'm usually playing cards with friends, trying a restaurant, collecting fragrances, or watching a movie.",
   ],
   workingStyle: 'Understand the problem, make thoughtful tradeoffs, and improve through feedback.',
+  /** The long form, as a sentence: the contact section and the list view. */
   availability:
     "I'm seeking Summer 2027 internships in Product Management, Software Development, & Business Strategy.",
   email: 'sadhubhanu07@gmail.com',

@@ -49,7 +49,7 @@ export function ListView() {
             About
           </h2>
           <p className="list__meta mono">
-            {site.title} · {site.location}
+            {site.focus} · {site.location}
           </p>
           {site.about.map((p, i) => (
             <p key={i} className="list__p">
