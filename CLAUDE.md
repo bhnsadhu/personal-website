@@ -27,20 +27,19 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
 - `src/components/Card.tsx` — one playing card: front is a `<button>`, back
   is a `role="region"` with the full content, always in the DOM, `inert`
   until open. Focus moves into the back on open and returns on close. The
-  front is three grid rows (above, italic subtitle, below) with equal
-  outer rows and equal padding, so the subtitle sits on the midline of
-  every card. 5:7 (8:5 on phones) is a floor via `min-height` in `cqw`,
-  not a fixed size: a card grows instead of letting text spill. Face
-  cards carry one framed portrait letter at the top edge, above the
-  title.
+  front's title, italic subtitle, and dates sit in one column with equal
+  spacing, so the subtitle is midway between the title and the dates.
+  Cards keep a fixed shape: 5:7 on desktop, and on phones one size for
+  every card (full width, 272px tall). Face cards carry a large framed
+  portrait letter above the title.
 - `src/components/CardRow.tsx` — owns which card is open in a row; sets
   `grid-template-columns` (7fr for the open card, 1fr slivers) and handles
   Escape. Layouts: `row` (spread, fan), `fan` (hero overlap), `flop` (short
   centered sets). Rows center with auto margins, so wrap them in a block,
   never a grid or flex parent. At 720px and below every row stacks; from
-  721 to 1023 a closed row of four or more wraps (three per line, two for
-  exactly four) and the hero fan tightens, so nothing crushes or scrolls
-  sideways on a tablet.
+  721 to 1149 a closed row of four or more wraps (three per line, two for
+  exactly four), and from 721 to 1023 the hero fan tightens, so nothing
+  crushes or scrolls sideways on a tablet or small laptop.
 - `src/sections/` — Hand (hero: intro, actions, seeking line, four
   aces), Spread (experience), FaceCards (leadership, dealt three to a suit
   in one row per suit: K/Q/J spades, then clubs), Fan (projects;
