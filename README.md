@@ -12,7 +12,7 @@ A poker-themed portfolio. Every section is a deck of cards, and the one you open
 
 The portfolio of **Bhanu Sadhu**, a Computer Science + Economics student at the University of Illinois Urbana-Champaign, with minors in Statistics and Advertising.
 
-Currently recruiting for **Summer 2027 internships**, primarily in **product**, along with software and strategy.
+Currently recruiting for **Summer 2027 internships** in **Product Management**, Software Development, & Business Strategy.
 
 For recruiters and hiring managers, the [live site](https://bhanusadhu.com) is the fastest way to explore my experience, projects, and leadership. The resume is one click from the top of the page.
 

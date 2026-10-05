@@ -75,9 +75,10 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
 
 ## Content rules
 
-- What he's seeking: product first, then software and strategy
-  (`site.interests`). Product is always the highlighted lead. Never list
-  role titles (PM, SWE, BA, and so on).
+- What he's seeking, word for word: "Product Management, Software
+  Development, & Business Strategy" (`site.interests`). Product
+  Management is always the highlighted lead. No other role list (no
+  Business Analyst, Project Management, Business Development).
 - Confidential clients stay unnamed in text, slugs, metadata, and labels.
   The consulting org (Illinois Business Consulting, Disruption Lab at Gies)
   is named separately as `via`.
