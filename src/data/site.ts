@@ -8,16 +8,17 @@ export const site = {
   title: `${interests.lead}, ${interests.rest}`,
   browserTitle: `Bhanu Sadhu | ${interests.lead}, ${interests.rest}`,
   description:
-    'Bhanu Sadhu studies Computer Science + Economics at UIUC and builds products across software, digital health, and AI. Explore his projects, experience, and interests.',
+    'Bhanu Sadhu studies Computer Science + Economics at the University of Illinois Urbana-Champaign and builds products across software, digital health, and AI. Explore his projects, experience, and interests.',
   location: 'Hawthorn Woods, Illinois',
+  school: 'University of Illinois Urbana-Champaign',
   education: 'Computer Science + Economics, University of Illinois Urbana-Champaign',
   major: 'Computer Science + Economics',
-  /** With `major`, the labels beside "Your hand" in the hero and under About in the list view. */
+  /** With `major` and `school`, the labels beside "Your hand" in the hero and under About in the list view. */
   focus: 'Builder & breaker of products',
   seeking: 'Summer 2027 internships',
   interests,
   tagline:
-    "I turn ideas into products and research into decisions. I'm studying Computer Science + Economics at UIUC, with a focus on product management and building useful software.",
+    "I turn ideas into products and research into decisions. I'm studying Computer Science + Economics at the University of Illinois Urbana-Champaign, with a focus on product management and building useful software.",
   about: [
     "I'm Bhanu, a Computer Science + Economics student at the University of Illinois Urbana-Champaign, with minors in Statistics and Advertising. My experience spans digital health, AI adoption, consulting, and building products of my own. I enjoy understanding what people need, deciding what matters most, and turning those decisions into something they can use.",
     "Outside of work, I'm usually playing cards with friends, trying a restaurant, collecting fragrances, or watching a movie.",

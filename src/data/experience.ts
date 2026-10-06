@@ -38,7 +38,7 @@ export const experience: Experience[] = [
     meta: 'Aug 2026 — Present',
     summary: 'Product research and campus adoption strategy for Replit Agent.',
     body: [
-      'Assessing AI literacy and readiness across 4+ UIUC colleges.',
+      'Assessing AI literacy and readiness across 4+ colleges at the University of Illinois Urbana-Champaign.',
       'Developing assessments to measure adoption before and after each workshop.',
       'Conceived an AI learnathon where beginners build AI fluency by creating a working project with Replit Agent.',
       'Developing the learnathon format, with assessments before and after, to take participants from AI basics to a working project.',

@@ -86,9 +86,12 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
 
 ## Content rules
 
+- Always the full school name, "University of Illinois Urbana-Champaign",
+  never "UIUC" or "Illinois" alone, in text, metadata, and docs.
 - Fixed wording in fixed places. The hero eyebrow reads "Your hand ·
-  Computer Science + Economics · Builder & breaker of products"
-  (`site.major`, `site.focus`), no location; the list view says the same
+  Computer Science + Economics · University of Illinois Urbana-Champaign
+  · Builder & breaker of products" (`site.major`, `site.school`,
+  `site.focus`), no location; the list view says the same
   under About. Every list of the three is "Product, Software, &
   Strategy" (`site.title`, split as `site.interests`): tab title, social
   meta, the hero's seeking line with Product highlighted, and the
