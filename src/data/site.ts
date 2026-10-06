@@ -10,10 +10,11 @@ export const site = {
   description:
     'Bhanu Sadhu studies Computer Science + Economics at the University of Illinois Urbana-Champaign and builds products across software, digital health, and AI. Explore his projects, experience, and interests.',
   location: 'Hawthorn Woods, Illinois',
-  school: 'University of Illinois Urbana-Champaign',
+  /** The short form, used only in the hero eyebrow and the list view's About line. Everywhere else spells the school out. */
+  schoolShort: 'UIUC',
   education: 'Computer Science + Economics, University of Illinois Urbana-Champaign',
   major: 'Computer Science + Economics',
-  /** With `major` and `school`, the labels beside "Your hand" in the hero and under About in the list view. */
+  /** With `major` and `schoolShort`, the labels beside "Your hand" in the hero and under About in the list view. */
   focus: 'Builder & breaker of products',
   seeking: 'Summer 2027 internships',
   interests,
