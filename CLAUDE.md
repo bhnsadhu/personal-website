@@ -104,7 +104,7 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   The consulting org (Illinois Business Consulting, Disruption Lab at Gies)
   is named separately as `via`.
 - Team results belong to the team. Ongoing work is present tense; proposed
-  or idea-stage things (AviLux pilot, the innovation challenge, the
+  or idea-stage things (AviLux pilot, the AI learnathon, the
   apartment-chores product) are never described as launched.
 - No GPA, grades, honors, photos, ratings, or invented metrics and dates.
 - No class year and no graduation date, expected or otherwise. Education

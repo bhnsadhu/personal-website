@@ -16,7 +16,7 @@ export const hand: Highlight[] = [
     subtitle: 'Product Strategy Consultant',
     meta: 'Aug 2026 — Present',
     summary: 'Exploring AI literacy and campus adoption of Replit Agent across 4+ colleges at the University of Illinois Urbana-Champaign.',
-    body: ['Developing assessments to measure adoption before and after each workshop.'],
+    body: ['Designing assessments to measure gains in AI fluency.'],
     tags: ['Product Strategy', 'User Research', 'AI Adoption'],
     more: { label: moreLabel.experience, to: '/experience/replit' },
   },
