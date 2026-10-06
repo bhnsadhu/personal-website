@@ -15,7 +15,7 @@ export const hand: Highlight[] = [
     title: 'Replit',
     subtitle: 'Product Strategy Consultant',
     meta: 'Aug 2026 — Present',
-    summary: 'Exploring AI literacy and campus adoption of Replit Agent across 4+ colleges at the University of Illinois Urbana-Champaign.',
+    summary: 'Turning campus AI-literacy problems into product direction for Replit Agent across 4+ colleges at the University of Illinois Urbana-Champaign.',
     body: ['Conceived an AI learnathon to help beginners build AI fluency by creating a working project with Replit Agent.'],
     tags: ['Product Strategy', 'User Research', 'AI Adoption'],
     more: { label: moreLabel.experience, to: '/experience/replit' },
@@ -28,7 +28,7 @@ export const hand: Highlight[] = [
     subtitle: 'Solo Creator & Developer',
     meta: 'Play now',
     summary: 'A multiplayer card game I built so friends can play anywhere, even when nobody has a deck.',
-    body: ['Guest access, three bot difficulty levels, accounts, and leaderboards.'],
+    body: ['Built so a new player can jump in as a guest, learn with guided onboarding and bots, then come back for accounts and leaderboards.'],
     tags: ['Product Development', 'Multiplayer', 'TypeScript'],
     links: [{ label: 'Live Demo', href: 'https://cambio.bhanusadhu.com' }],
     more: { label: moreLabel.project, to: '/projects/cambio' },
@@ -54,8 +54,7 @@ export const hand: Highlight[] = [
     summary:
       'Creating opportunities to connect through South Asian cultural events, from Unity Week to Diwali Night and India Night.',
     body: [
-      'Led five South Asian Unity Week events reaching 1,000+ attendees in total.',
-      'Produced Diwali Night and India Night, annual showcases drawing 3,000+ attendees combined.',
+      'Led five South Asian Unity Week events reaching 1,000+ attendees, and produced the Diwali Night and India Night showcases drawing 3,000+ combined.',
     ],
     tags: ['Community', 'Event Production', 'Leadership'],
     more: { label: 'See the face cards', to: '/#face' },
