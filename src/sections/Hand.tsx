@@ -14,7 +14,7 @@ export function Hand() {
       <div className="container">
         <div className="hero__head">
           <p className="eyebrow">
-            Your hand{SEP}{site.major}{SEP}{site.schoolShort}{SEP}{site.focus}
+            Your hand{SEP}{site.schoolShort}{SEP}{site.major}{SEP}{site.focus}
           </p>
           <h1 id="hand-title" className="display hero__title">
             {site.name}
