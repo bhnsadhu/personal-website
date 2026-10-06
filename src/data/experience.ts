@@ -40,6 +40,9 @@ export const experience: Experience[] = [
     body: [
       'Assessing AI literacy and readiness across 4+ UIUC colleges.',
       'Developing assessments to measure adoption before and after each workshop.',
+      'Conceived an AI learnathon where beginners build AI fluency by creating a working project with Replit Agent.',
+      'Developing the learnathon format, with assessments before and after, to take participants from AI basics to a working project.',
+      'Building a web showcase where participants share their apps and demonstrate practical AI skills.',
       'Translating campus problems into development briefs for a proposed innovation challenge.',
     ],
     tags: ['Product Strategy', 'User Research', 'Requirements Gathering', 'Data Analysis', 'Technology Adoption'],
