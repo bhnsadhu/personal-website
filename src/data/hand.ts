@@ -16,7 +16,7 @@ export const hand: Highlight[] = [
     subtitle: 'Product Strategy Consultant',
     meta: 'Aug 2026 — Present',
     summary: 'Exploring AI literacy and campus adoption of Replit Agent across 4+ colleges at the University of Illinois Urbana-Champaign.',
-    body: ['Designing assessments to measure gains in AI fluency.'],
+    body: ['Conceived an AI learnathon to help beginners build AI fluency by creating a working project with Replit Agent.'],
     tags: ['Product Strategy', 'User Research', 'AI Adoption'],
     more: { label: moreLabel.experience, to: '/experience/replit' },
   },
@@ -53,7 +53,10 @@ export const hand: Highlight[] = [
     meta: 'Aug 2025 — Present',
     summary:
       'Creating opportunities to connect through South Asian cultural events, from Unity Week to Diwali Night and India Night.',
-    body: [],
+    body: [
+      'Led five South Asian Unity Week events reaching 1,000+ attendees in total.',
+      'Produced Diwali Night and India Night, annual showcases drawing 3,000+ attendees combined.',
+    ],
     tags: ['Community', 'Event Production', 'Leadership'],
     more: { label: 'See the face cards', to: '/#face' },
   },
