@@ -330,9 +330,10 @@
 
 /* ---------------- The opening deal (Opening.tsx) ---------------- */
 
-/* While it plays: the page holds still underneath, the real hand waits
-   unseen in its place, and the hero's own entrance is paused until the
-   overlay hands over. The hand is not dealt in twice. */
+/* While it plays: the page holds still underneath and the real hand waits
+   unseen in its place. Everything else (the nav, the name rising, the
+   intro) comes in as usual around the deck, through the clear overlay. The
+   hand is not dealt in twice. */
 html[data-intro='play'] {
   overflow: hidden;
 }
@@ -345,16 +346,16 @@ html[data-intro='play'] .hero__fan > .card {
   visibility: hidden;
 }
 
-html[data-intro='play'] .split__ch,
-html[data-intro='play'] .intro > * {
-  animation-play-state: paused;
-}
-
+/* Clear, but it still takes every click until it hands over. --x and --y
+   are the deck's centre and --s its size, set by Opening.tsx over the
+   hand's spot. */
 .opening {
+  --x: 50vw;
+  --y: 50vh;
+  --s: 1;
   position: fixed;
   inset: 0;
   z-index: 200;
-  background: var(--bg);
   transition: opacity 0.5s var(--ease);
 }
 
@@ -371,11 +372,22 @@ html[data-intro='play'] .intro > * {
 
 .opening__deck {
   position: absolute;
-  left: 50%;
-  top: 50%;
+  left: var(--x);
+  top: var(--y);
   width: 152px;
   height: 213px;
-  margin: -120px 0 0 -76px;
+  margin: -106px 0 0 -76px;
+  scale: var(--s);
+}
+
+/* A soft pool of shadow under the deck so it reads over whatever is behind. */
+.opening__deck::before {
+  content: '';
+  position: absolute;
+  inset: -40px -70px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(16, 14, 12, 0.85), rgba(16, 14, 12, 0));
+  pointer-events: none;
 }
 
 /* A card back, the same brass lattice as a face-down project. */
@@ -407,9 +419,11 @@ html[data-intro='play'] .intro > * {
 
 .opening__caption {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: calc(50% + 124px);
+  left: var(--x);
+  top: calc(var(--y) + var(--s) * 106px + 14px);
+  transform: translateX(-50%);
+  margin: 0;
+  white-space: nowrap;
   text-align: center;
   font-family: var(--mono);
   font-size: 11px;

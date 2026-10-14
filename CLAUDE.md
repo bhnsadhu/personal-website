@@ -69,15 +69,16 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   (`--max` in CSS) and chips sit from the bottom up, so all six rest on one
   baseline with their labels aligned. The `×N` beside it is the real
   number.
-- `src/components/Opening.tsx` — the opening deal: a deck riffle-shuffles,
-  then the four aces are dealt to the exact spots the hero's hand occupies
-  and turn face up; they are clones of the real cards, so the overlay fades
-  onto a hand already in place. An inline script in `index.html` decides
+- `src/components/Opening.tsx` — the opening deal: a deck riffle-shuffles
+  in the hand's own spot (smaller and low on screen on phones), then the
+  four aces are dealt to the exact spots the hero's hand occupies and turn
+  face up while the rest of the deck clears; they are clones of the real
+  cards, so the overlay fades onto a hand already in place. The overlay is
+  clear, so the nav, name, and intro come in around the deck as it plays. An inline script in `index.html` decides
   before first paint (`data-intro="play"`): once per visit
   (`sessionStorage` `dealt`), only when landing on `/` itself, never for a
   `#section` link or reduced motion. It cannot be skipped (about 2.5s; the
-  page is locked until it hands over). While it plays, motion.css hides the real hand and pauses the name's
-  rise; afterwards (`data-intro="done"`) the hand is not dealt in twice.
+  page is locked until it hands over). While it plays, motion.css hides the real hand; afterwards (`data-intro="done"`) the hand is not dealt in twice.
 - `src/components/IndexList.tsx` — the list view's rows. A row is a card
   laid flat: the same rank and suit (a small cream pip), title, italic
   subtitle, corner label, and dates, and the same back sliding open
