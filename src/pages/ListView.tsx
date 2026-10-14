@@ -312,9 +312,13 @@ export function ListView() {
           <h2 id="l-contact" className="list__title">
             Contact
           </h2>
-          <p className="list__p">{site.contactLede}</p>
-          <p className="list__p">{site.availability}</p>
-          <ContactLinks />
+          <div className="list__contact">
+            <div>
+              <p className="list__p">{site.contactLede}</p>
+              <p className="list__p">{site.availability}</p>
+            </div>
+            <ContactLinks />
+          </div>
         </section>
       </div>
     </main>

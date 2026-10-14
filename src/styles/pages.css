@@ -181,6 +181,29 @@
   margin-top: 8px;
 }
 
+/* The lede and the details side by side, so the section stays short.
+   Stacks on a phone. */
+.list__contact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px 48px;
+  align-items: start;
+}
+
+.list__contact .contact__links {
+  margin-top: 0;
+}
+
+@media (max-width: 720px) {
+  .list__contact {
+    grid-template-columns: 1fr;
+  }
+
+  .list__contact .contact__links {
+    margin-top: 8px;
+  }
+}
+
 /* scroll-margin matches .section, so a nav suit lands the heading clear of
    the fixed header in either view. */
 .list__section {
