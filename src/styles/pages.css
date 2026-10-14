@@ -194,8 +194,20 @@
 }
 
 .list__rail ol {
+  position: relative;
   display: grid;
   gap: 2px;
+}
+
+/* The track the active marker rides on, fading out at both ends. */
+.list__rail ol::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(176, 141, 87, 0.35) 15% 85%, transparent);
 }
 
 .list__rail-link {

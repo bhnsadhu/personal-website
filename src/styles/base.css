@@ -159,27 +159,32 @@ svg {
   scroll-margin-top: calc(var(--nav-h) + 8px);
 }
 
-/* Between sections: the next section's suit, centered between two short
-   brass rules that fade out at both ends, the way a book marks a break
-   between chapters. Never a rule across the page. Both views use it. */
+/* Between sections: the next section's suit, centered, with a brass rule
+   running out from it to both edges of the content and fading away at the
+   ends, the way a book marks a break between chapters. Both views use it.
+   --orn-w is the content width: the container's on the card view, the
+   column's in the list view. */
 .section + .section::before,
 .list__section + .list__section::before {
   content: attr(data-suit);
   position: absolute;
   top: 0;
   left: 50%;
-  width: 184px;
-  margin-left: -92px;
-  transform: translateY(-50%);
+  width: var(--orn-w, 100%);
+  transform: translate(-50%, -50%);
   font-family: var(--serif);
   font-size: 15px;
   line-height: 1;
   text-align: center;
   color: var(--brass);
   background:
-    linear-gradient(90deg, transparent, rgba(176, 141, 87, 0.5)) left center / 70px 1px no-repeat,
-    linear-gradient(270deg, transparent, rgba(176, 141, 87, 0.5)) right center / 70px 1px no-repeat;
+    linear-gradient(90deg, transparent, rgba(176, 141, 87, 0.55)) left center / calc(50% - 22px) 1px no-repeat,
+    linear-gradient(270deg, transparent, rgba(176, 141, 87, 0.55)) right center / calc(50% - 22px) 1px no-repeat;
   pointer-events: none;
+}
+
+.section + .section {
+  --orn-w: calc(min(var(--container), 100%) - 2 * var(--gutter));
 }
 
 .section[data-suit='♥']::before,

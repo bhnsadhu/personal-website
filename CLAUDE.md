@@ -144,11 +144,14 @@ cream), wine-text `#D1706C` (small text on dark), brass `#B08D57` /
 cream).
 Dark is the only mode. No full-width divider rules on the dark page.
 Sections, in both views, are parted by an ornament: the next section's
-suit between two short brass rules that fade at both ends (`data-suit`,
-`.section + .section::before` in base.css). Stats are parted by small
-brass dots; list rows by space, with a soft `--bg-2` panel on hover and
-while open; the nav by a shadow once the page scrolls. Rules printed on
-the cream card stock stay. `--live` (green) is reserved for the pulsing
+suit centered, with a brass rule running out to both edges of the content
+and fading at the ends (`data-suit`, `.section + .section::before` in
+base.css). The footer opens with the same ornament around all four suits;
+Certifications opens with its label and a rule out to the right edge.
+Stats are parted by small brass dots; list rows by space, with a soft
+`--bg-2` panel on hover and while open; panels (certs, the form) by a lift
+and shadow; the list rail by a track that fades at both ends; the nav by a
+shadow once the page scrolls. Rules printed on the cream card stock stay. `--live` (green) is reserved for the pulsing
 dot (`LiveDot`) beside "Live", every "Live Demo", and the nav's
 "Currently @" pill, and a "Live Demo" link always has "GitHub" beside it.
 
