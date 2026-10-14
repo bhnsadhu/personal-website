@@ -57,41 +57,6 @@
   color: var(--cream);
 }
 
-.nav__now-dot {
-  position: relative;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--brass-2);
-}
-
-.nav__now-dot::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: var(--brass-2);
-  animation: now-pulse 2s var(--ease) infinite;
-}
-
-@keyframes now-pulse {
-  from {
-    transform: scale(1);
-    opacity: 0.6;
-  }
-  to {
-    transform: scale(2.8);
-    opacity: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .nav__now-dot::after {
-    animation: none;
-    opacity: 0;
-  }
-}
-
 @media (max-width: 1149px) {
   .nav__now {
     display: none;
@@ -322,6 +287,7 @@
    side padding, so the label wraps into a full block instead of a thin line
    with wide margins. */
 .band__item {
+  position: relative;
   flex: 1 1 0;
   display: flex;
   flex-direction: column;
@@ -329,6 +295,20 @@
   gap: var(--band-gap);
   padding: var(--band-pad-top) var(--band-pad-x) var(--band-pad-bottom);
   text-align: center;
+}
+
+/* Between stats, a small brass dot rather than a divider. */
+.band__item + .band__item::before {
+  content: '';
+  position: absolute;
+  left: -2px;
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  margin-top: -2px;
+  border-radius: 50%;
+  background: var(--brass);
+  opacity: 0.7;
 }
 
 /* Explicit line heights, so the row's height is arithmetic rather than
@@ -357,8 +337,8 @@
   color: var(--gray);
 }
 
-/* Too narrow for four across: wrap to two by two and drop the rules, which
-   would otherwise hang off the first stat of the second row. */
+/* Too narrow for four across: wrap to two by two, with a dot only between
+   the two stats on each row, never hanging off the start of a row. */
 @media (max-width: 720px) {
   .band {
     --band-pad-x: 10px;
@@ -371,6 +351,9 @@
   }
   .band__item {
     flex: 1 1 45%;
+  }
+  .band__item:nth-child(odd)::before {
+    content: none;
   }
 }
 

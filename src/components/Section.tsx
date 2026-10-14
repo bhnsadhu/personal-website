@@ -20,7 +20,12 @@ interface SectionProps {
 
 export function Section({ id, note, children, className = '' }: SectionProps) {
   return (
-    <section id={id} className={`section ${className}`.trim()} aria-labelledby={`${id}-title`}>
+    <section
+      id={id}
+      className={`section ${className}`.trim()}
+      aria-labelledby={`${id}-title`}
+      data-suit={sectionHeads[id].eyebrow.charAt(0)}
+    >
       <div className="container">
         <header className="section__head reveal">
           <div>

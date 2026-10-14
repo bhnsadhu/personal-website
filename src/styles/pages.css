@@ -48,6 +48,7 @@
   gap: 10px;
   padding-bottom: 24px;
   margin-bottom: 28px;
+  border-bottom: 1px solid var(--cream-3);
 }
 
 .plate__eyebrow {
@@ -280,7 +281,8 @@
 /* scroll-margin matches .section, so a nav suit lands the heading clear of
    the fixed header in either view. */
 .list__section {
-  padding: 72px 0 24px;
+  position: relative;
+  padding: 56px 0;
   scroll-margin-top: calc(var(--nav-h) + 8px);
 }
 

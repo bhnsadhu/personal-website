@@ -399,7 +399,8 @@
 
 .card__back-foot {
   margin-top: auto;
-  padding-top: 8px;
+  padding-top: 18px;
+  border-top: 1px solid var(--cream-3);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;

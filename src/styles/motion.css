@@ -60,6 +60,15 @@
   color: var(--cream);
 }
 
+/* Once the page moves, the nav lifts off it with a soft shadow. */
+.nav {
+  transition: box-shadow 0.3s var(--ease);
+}
+
+.nav[data-scrolled] {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
 /* Scroll progress: a brass hairline along the foot of the nav. */
 .nav__progress {
   position: absolute;
@@ -118,7 +127,8 @@
 
 /* Inside a flex link the gap already spaces it. */
 .tlink .live-dot,
-.btn .live-dot {
+.btn .live-dot,
+.nav__now .live-dot {
   margin-right: 0;
 }
 

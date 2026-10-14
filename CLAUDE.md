@@ -142,11 +142,15 @@ cream), wine-text `#D1706C` (small text on dark), brass `#B08D57` /
 `#CFAE78` (accents on dark only; brass fails contrast on cream), gray
 `#9A9287` (secondary on dark, 6.3:1 on bg), ink-2 `#5C554C` (secondary on
 cream).
-Dark is the only mode. No divider rules on the dark page: sections and
-rows are separated by space, and a row shows a soft `--bg-2` panel on hover
-and while open. `--live` (green) is reserved for the pulsing dot
-(`LiveDot`) beside "Live" and every "Live Demo", and a "Live Demo" link
-always has "GitHub" beside it.
+Dark is the only mode. No full-width divider rules on the dark page.
+Sections, in both views, are parted by an ornament: the next section's
+suit between two short brass rules that fade at both ends (`data-suit`,
+`.section + .section::before` in base.css). Stats are parted by small
+brass dots; list rows by space, with a soft `--bg-2` panel on hover and
+while open; the nav by a shadow once the page scrolls. Rules printed on
+the cream card stock stay. `--live` (green) is reserved for the pulsing
+dot (`LiveDot`) beside "Live", every "Live Demo", and the nav's
+"Currently @" pill, and a "Live Demo" link always has "GitHub" beside it.
 
 Type: Fraunces for headlines and card titles (optical sizing on), IBM Plex
 Mono for metadata, dates, tags, stat numbers, nav, buttons. Red suits use

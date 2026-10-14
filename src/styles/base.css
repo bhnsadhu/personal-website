@@ -154,8 +154,39 @@ svg {
 /* ---------------- Section frame ---------------- */
 
 .section {
+  position: relative;
   padding: 96px 0;
   scroll-margin-top: calc(var(--nav-h) + 8px);
+}
+
+/* Between sections: the next section's suit, centered between two short
+   brass rules that fade out at both ends, the way a book marks a break
+   between chapters. Never a rule across the page. Both views use it. */
+.section + .section::before,
+.list__section + .list__section::before {
+  content: attr(data-suit);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 184px;
+  margin-left: -92px;
+  transform: translateY(-50%);
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1;
+  text-align: center;
+  color: var(--brass);
+  background:
+    linear-gradient(90deg, transparent, rgba(176, 141, 87, 0.5)) left center / 70px 1px no-repeat,
+    linear-gradient(270deg, transparent, rgba(176, 141, 87, 0.5)) right center / 70px 1px no-repeat;
+  pointer-events: none;
+}
+
+.section[data-suit='♥']::before,
+.section[data-suit='♦']::before,
+.list__section[data-suit='♥']::before,
+.list__section[data-suit='♦']::before {
+  color: var(--wine-text);
 }
 
 .section__head {

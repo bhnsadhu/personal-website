@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { Link, usePath } from '../lib/router'
 import { useScrollSpy } from '../lib/useScrollSpy'
 import { experience, site, type Suit } from '../data'
+import { LiveDot } from './LiveDot'
 import { SUIT_GLYPH } from './Suit'
 
 interface SuitLink {
@@ -40,6 +41,7 @@ export function Nav() {
       frame = requestAnimationFrame(() => {
         const max = document.documentElement.scrollHeight - window.innerHeight
         barRef.current?.style.setProperty('--p', String(max > 0 ? Math.min(1, window.scrollY / max) : 0))
+        barRef.current?.parentElement?.toggleAttribute('data-scrolled', window.scrollY > 8)
       })
     }
     update()
@@ -61,7 +63,7 @@ export function Nav() {
           </Link>
           {current && (
             <Link to={`/experience/${current.slug}`} className="nav__now mono" aria-label={`Currently at ${current.company}`}>
-              <span className="nav__now-dot" aria-hidden="true" />
+              <LiveDot />
               Currently @ {current.company}
             </Link>
           )}
