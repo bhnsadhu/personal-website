@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { ExperienceBack, HandBack, LeadershipBack, PersonalBack, ProjectBack } from '../components/Backs'
+import { ExperienceBack, HandBack, LeadershipBack, PersonalBack, PersonalExtras, ProjectBack } from '../components/Backs'
 import { Certifications } from '../components/Certifications'
 import { ContactBody } from '../components/ContactBody'
 import { IndexGroup, IndexRow } from '../components/IndexList'
@@ -18,7 +18,6 @@ import {
   metrics,
   moreLabel,
   personal,
-  personalExtras,
   personalIntro,
   projects,
   rankAt,
@@ -258,7 +257,7 @@ export function ListView() {
                 </IndexRow>
               ))}
             </IndexGroup>
-            <p className="flop__extras mono mono--sm">Also in rotation: {personalExtras.join(SEP)}</p>
+            <PersonalExtras flat />
           </ListSection>
 
           <ListSection k="contact" note={site.availability}>

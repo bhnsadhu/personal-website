@@ -28,8 +28,9 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
 - `src/components/Backs.tsx` — what each entry says when it opens, one
   component per kind (hand, experience, leadership, project, personal).
   The card renders it on its back and the list view inside its row, so the
-  two views cannot drift. `ContactBody`, `ContactLinks`, and
-  `Certifications` are shared the same way.
+  two views cannot drift. `ContactBody`, `ContactLinks`,
+  `Certifications`, and `PersonalExtras` (the "Also in rotation" line under
+  the flop) are shared the same way.
 - `src/components/Card.tsx` — one playing card: front is a `<button>`, back
   is a `role="region"` with the full content, always in the DOM, `inert`
   until open. Focus moves into the back on open and returns on close. The
@@ -159,8 +160,10 @@ and fading at the ends (`data-suit`, `.section + .section::before` in
 base.css). The footer opens with the same ornament around all four suits;
 Certifications opens with its label and a rule out to the right edge.
 Stats are parted by small brass dots; list rows by space, with a soft
-`--bg-2` panel on hover and while open; panels (certs, the form) by a lift
-and shadow; the list rail by a track that fades at both ends; the nav keeps
+`--bg-2` panel on hover and while open; panels (certs, the form, "Also in rotation") by
+a lift and shadow; "Also in rotation" is a pill 20px under the flop's cards
+in the card view and a panel the width of the rows in the list view, its
+text on the rows' pip edge; the list rail by a track that fades at both ends; the nav keeps
 its plain hairline, with the brass scroll-progress line riding on it. Rules
 printed on the cream card stock stay. `--live` (green) is reserved for the
 pulsing dot (`LiveDot`) beside "Live", every "Live Demo", and the nav's
