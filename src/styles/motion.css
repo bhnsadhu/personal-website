@@ -369,13 +369,26 @@ html[data-intro='play'] .intro > * {
   transition: opacity 0.25s var(--ease);
 }
 
+/* The caption and the deck sit as one group, centred on the screen: the
+   caption's line, a gap, then the pile. The pile rises 10.8px above its
+   bottom card and drifts 3.6px left as it stacks (rest() in Opening.tsx),
+   so both count here and the pile itself, not its bottom card, is what
+   lands in the middle. */
+.opening {
+  --deck-w: 152px;
+  --deck-h: 213px;
+  --pile: 10.8px;
+  --cap-h: 18px;
+  --cap-gap: 28px;
+  --group-top: calc(50% - (var(--cap-h) + var(--cap-gap) + var(--pile) + var(--deck-h)) / 2);
+}
+
 .opening__deck {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 152px;
-  height: 213px;
-  margin: -120px 0 0 -76px;
+  left: calc(50% - var(--deck-w) / 2 + 1.8px);
+  top: calc(var(--group-top) + var(--cap-h) + var(--cap-gap) + var(--pile));
+  width: var(--deck-w);
+  height: var(--deck-h);
 }
 
 /* A card back, the same brass lattice as a face-down project. */
@@ -409,9 +422,14 @@ html[data-intro='play'] .intro > * {
   position: absolute;
   left: 0;
   right: 0;
-  top: calc(50% - 160px);
+  top: var(--group-top);
   z-index: 60;
   margin: 0;
+  /* Letter spacing trails the last letter too; the same on the left keeps
+     the word itself centred. */
+  padding-left: 0.22em;
+  height: var(--cap-h);
+  line-height: var(--cap-h);
   text-align: center;
   font-family: var(--mono);
   font-size: 14px;
@@ -421,6 +439,15 @@ html[data-intro='play'] .intro > * {
   color: var(--brass-2);
   text-shadow: 0 0 6px var(--bg), 0 0 14px var(--bg), 0 2px 18px var(--bg);
   transition: opacity 0.3s var(--ease);
+  animation: caption-in 0.35s var(--ease) backwards;
+}
+
+/* Each new caption eases in rather than snapping over the last. */
+@keyframes caption-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
 }
 
 .opening__caption:empty {

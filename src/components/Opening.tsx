@@ -198,7 +198,9 @@ export function Opening() {
           <span key={i} className="opening__card" style={{ transform: rest(i), zIndex: i + 1 }} />
         ))}
       </div>
-      <p className="opening__caption">{caption}</p>
+      <p key={caption} className="opening__caption">
+        {caption}
+      </p>
     </div>,
     document.body,
   )
