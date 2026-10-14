@@ -1,5 +1,6 @@
 import type { Experience, Highlight, Leadership, PersonalCard, Project } from '../data'
 import { Link } from '../lib/router'
+import { LiveDot } from './LiveDot'
 
 /**
  * What each entry says when it opens. One component per kind, rendered on
@@ -31,12 +32,17 @@ export function HandBack({ h }: { h: Highlight }) {
     <>
       <p className="card__summary">{h.summary}</p>
       <Bullets items={h.body} />
-      {h.links?.map((l) => (
-        <a key={l.href} className="tlink card__extlink" href={l.href} target="_blank" rel="noreferrer">
-          {l.label}
-          <Arrow />
-        </a>
-      ))}
+      {h.links && h.links.length > 0 && (
+        <div className="linkrow">
+          {h.links.map((l) => (
+            <a key={l.href} className="tlink" href={l.href} target="_blank" rel="noreferrer">
+              {l.label === 'Live Demo' && <LiveDot />}
+              {l.label}
+              <Arrow />
+            </a>
+          ))}
+        </div>
+      )}
     </>
   )
 }
@@ -90,6 +96,7 @@ export function ProjectBack({ p }: { p: Project }) {
       <div className="linkrow">
         {p.siteUrl && (
           <a className="tlink" href={p.siteUrl} target="_blank" rel="noreferrer">
+            <LiveDot />
             Live Demo
             <Arrow />
           </a>

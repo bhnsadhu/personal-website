@@ -3,6 +3,7 @@ import type { Face, Rank, Suit } from '../data'
 import { onDeal, takeDeal } from '../lib/deal'
 import { Link } from '../lib/router'
 import { SEP } from '../lib/sep'
+import { LiveDot } from './LiveDot'
 import { SuitGlyph } from './Suit'
 
 /**
@@ -131,7 +132,12 @@ export function IndexRow({ id, rank, suit, title, subtitle, meta, corner, tags, 
           )}
         </h3>
         <span className="ix__meta mono mono--sm">
-          {corner && <span className="ix__corner">{corner}</span>}
+          {corner && (
+            <span className="ix__corner">
+              {corner === 'Live' && <LiveDot />}
+              {corner}
+            </span>
+          )}
           {down ? 'Not dealt yet' : meta}
         </span>
         {expandable && <span className="ix__plus" aria-hidden="true" />}

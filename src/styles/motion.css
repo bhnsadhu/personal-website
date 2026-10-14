@@ -73,27 +73,6 @@
   pointer-events: none;
 }
 
-/* The glow's layer: a brass light where the cursor is. */
-.glow {
-  position: relative;
-  isolation: isolate;
-}
-
-.glow::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 30%), rgba(176, 141, 87, 0.11), transparent 62%);
-  opacity: 0;
-  transition: opacity 0.6s var(--ease);
-  pointer-events: none;
-}
-
-.glow.is-lit::before {
-  opacity: 1;
-}
-
 /* Card glare: a soft highlight that tracks the cursor across the stock. */
 .card__front::after {
   content: '';
@@ -114,6 +93,50 @@
 .card.is-tilting:not(.is-open) .card__inner {
   transform: rotateX(var(--tx, 0deg)) rotateY(var(--ty, 0deg));
   transition: transform 0.12s linear;
+}
+
+/* Live: a green dot that breathes. Sits inline before "Live" or "Live Demo". */
+.live-dot {
+  position: relative;
+  display: inline-block;
+  flex: none;
+  width: 7px;
+  height: 7px;
+  margin-right: 7px;
+  border-radius: 50%;
+  background: var(--live);
+  vertical-align: 0.08em;
+}
+
+.live-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--live);
+}
+
+/* Inside a flex link the gap already spaces it. */
+.tlink .live-dot,
+.btn .live-dot {
+  margin-right: 0;
+}
+
+/* The hand fans open a little wider while the cursor is over it, the way
+   you'd spread your cards to look at them. */
+@media (min-width: 1024px) {
+  .row--fan:not(.has-open) .card {
+    transition:
+      transform 0.4s var(--ease),
+      z-index 0s;
+  }
+  .row--fan:not(.has-open):hover .card {
+    transform: translateX(calc((var(--i, 0) - 1.5) * 14px)) rotate(calc(var(--rot, 0deg) * 1.2));
+  }
+  .row--fan:not(.has-open):hover .card:hover,
+  .row--fan:not(.has-open) .card:focus-within {
+    transform: translateX(calc((var(--i, 0) - 1.5) * 14px)) rotate(calc(var(--rot, 0deg) * 1.2)) translateY(-22px);
+  }
 }
 
 /* Footer suits hop in turn on hover. */
@@ -139,8 +162,8 @@
   .split__word {
     display: inline-block;
     overflow: hidden;
-    padding-bottom: 0.14em;
-    margin-bottom: -0.14em;
+    padding: 0.06em 0.08em 0.16em;
+    margin: -0.06em -0.08em -0.16em;
     vertical-align: top;
   }
 
@@ -183,7 +206,7 @@
 
   /* ----- Scroll reveals ----- */
 
-  .js .reveal:not(.is-in) {
+  .js .reveal:not([data-in]) {
     opacity: 0;
     transform: translateY(22px);
   }
@@ -195,14 +218,20 @@
   }
 
   /* The accent word catches the light once its heading arrives. */
-  .js .reveal.is-in .section__title em,
-  .js .reveal.is-in .list__title em {
+  .js .reveal[data-in] .section__title em,
+  .js .reveal[data-in] .list__title em {
     background: linear-gradient(100deg, var(--brass-2) 0 42%, #fff4dc 50%, var(--brass-2) 58% 100%);
     background-size: 260% 100%;
     background-position: 0% 0;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    /* The text is painted only inside this box, and an italic leans out
+       of its own: pad it on every side, then pull the layout back. */
+    padding: 0.12em 0.18em 0.2em 0.06em;
+    margin: -0.12em -0.18em -0.2em -0.06em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
     animation: sheen 1.6s var(--ease) 0.35s backwards;
   }
 
@@ -213,11 +242,11 @@
   }
 
   /* Cards are dealt into each row as it arrives. */
-  .js .row.reveal-group:not(.is-in) > .card {
+  .js .row.reveal-group:not([data-in]) > .card {
     opacity: 0;
   }
 
-  .row.reveal-group.is-in > .card {
+  .row.reveal-group[data-in] > .card {
     animation: deal-in 0.75s var(--ease) backwards;
     animation-delay: calc(var(--i, 0) * 90ms);
   }
@@ -230,33 +259,33 @@
   }
 
   /* List rows, the stat band, and anything else in a group: one after another. */
-  .js .ix.reveal-group:not(.is-in) > li,
-  .js .band__inner.reveal-group:not(.is-in) > *,
-  .js .stacks.reveal-group:not(.is-in) .stack__count,
-  .js .stacks.reveal-group:not(.is-in) .stack__label,
-  .js .stacks.reveal-group:not(.is-in) .stack__skills {
+  .js .ix.reveal-group:not([data-in]) > li,
+  .js .band__inner.reveal-group:not([data-in]) > *,
+  .js .stacks.reveal-group:not([data-in]) .stack__count,
+  .js .stacks.reveal-group:not([data-in]) .stack__label,
+  .js .stacks.reveal-group:not([data-in]) .stack__skills {
     opacity: 0;
   }
 
-  .ix.reveal-group.is-in > li,
-  .band__inner.reveal-group.is-in > * {
+  .ix.reveal-group[data-in] > li,
+  .band__inner.reveal-group[data-in] > * {
     animation: fade-up 0.6s var(--ease) backwards;
     animation-delay: calc(var(--i, 0) * 70ms);
   }
 
   /* Chips drop onto their stacks with a small bounce, stack by stack. */
-  .js .stacks.reveal-group:not(.is-in) .chip {
+  .js .stacks.reveal-group:not([data-in]) .chip {
     opacity: 0;
   }
 
-  .stacks.reveal-group.is-in .chip {
+  .stacks.reveal-group[data-in] .chip {
     animation: chip-drop 0.6s cubic-bezier(0.3, 1.45, 0.55, 1) backwards;
     animation-delay: calc(var(--s, 0) * 110ms + var(--i, 0) * 55ms);
   }
 
-  .stacks.reveal-group.is-in .stack__count,
-  .stacks.reveal-group.is-in .stack__label,
-  .stacks.reveal-group.is-in .stack__skills {
+  .stacks.reveal-group[data-in] .stack__count,
+  .stacks.reveal-group[data-in] .stack__label,
+  .stacks.reveal-group[data-in] .stack__skills {
     animation: fade-up 0.6s var(--ease) backwards;
     animation-delay: calc(var(--s, 0) * 110ms + 0.45s);
   }
@@ -268,6 +297,21 @@
     }
     60% {
       opacity: 1;
+    }
+  }
+
+  .live-dot::after {
+    animation: live-pulse 2s var(--ease) infinite;
+  }
+
+  @keyframes live-pulse {
+    from {
+      transform: scale(1);
+      opacity: 0.7;
+    }
+    to {
+      transform: scale(2.8);
+      opacity: 0;
     }
   }
 

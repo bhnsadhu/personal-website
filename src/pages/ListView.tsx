@@ -1,4 +1,4 @@
-import { useRef, type ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import { ExperienceBack, HandBack, LeadershipBack, PersonalBack, ProjectBack } from '../components/Backs'
 import { Certifications } from '../components/Certifications'
 import { ContactBody } from '../components/ContactBody'
@@ -33,7 +33,6 @@ import {
 import { Link } from '../lib/router'
 import { SEP } from '../lib/sep'
 import { useScrollSpy } from '../lib/useScrollSpy'
-import { useGlow } from '../lib/useGlow'
 import { useTitle } from '../lib/useTitle'
 
 /** The rail, in page order. Same sections, same order, as the card view. */
@@ -80,57 +79,57 @@ export function ListView() {
   useTitle('List view')
   const active = useScrollSpy(RAIL.map((r) => r.k))
   const flop = personal.slice(0, FLOP_RANKS.length)
-  const headRef = useRef<HTMLElement>(null)
-  useGlow(headRef)
 
   return (
     <main className="list">
-      <section id="hand" ref={headRef} className="list__top glow" aria-labelledby="l-hand">
-        <div className="container list__head intro">
-        <p className="eyebrow">
-          Your hand{SEP}{site.schoolShort}{SEP}{site.major}{SEP}{site.focus}
-        </p>
-        <h1 id="l-hand" className="display list__name">
-          <SplitText text={site.name} />
-        </h1>
-        <p className="lede">{site.tagline}</p>
-        <div className="actions">
-          <Link to="/list#spread" className="btn">
-            Explore My Work
-          </Link>
-          <a className="btn btn--ghost" href={site.resume} target="_blank" rel="noreferrer">
-            View Resume
-            <span className="sr-only">(opens PDF in a new tab)</span>
-          </a>
-          <Link to="/list#contact" className="btn btn--ghost">
-            Contact Me
-          </Link>
-        </div>
-        <p className="hero__seeking mono mono--sm">
-          <span className="hero__seeking-lead">Seeking {site.seeking}</span> in{' '}
-          <span className="hero__seeking-focus">{site.interests.lead}</span>, {site.interests.rest}
-        </p>
+      <section id="hand" className="hero" aria-labelledby="l-hand">
+        <div className="container">
+          <div className="hero__head intro">
+            <p className="eyebrow">
+              Your hand{SEP}{site.schoolShort}{SEP}{site.major}{SEP}{site.focus}
+            </p>
+            <h1 id="l-hand" className="display hero__title">
+              <SplitText text={site.name} />
+            </h1>
+            <p className="lede">{site.tagline}</p>
+            <div className="actions">
+              <Link to="/list#spread" className="btn">
+                Explore My Work
+              </Link>
+              <a className="btn btn--ghost" href={site.resume} target="_blank" rel="noreferrer">
+                View Resume
+                <span className="sr-only">(opens PDF in a new tab)</span>
+              </a>
+              <Link to="/list#contact" className="btn btn--ghost">
+                Contact Me
+              </Link>
+            </div>
+            <p className="hero__seeking mono mono--sm">
+              <span className="hero__seeking-lead">Seeking {site.seeking}</span> in{' '}
+              <span className="hero__seeking-focus">{site.interests.lead}</span>, {site.interests.rest}
+            </p>
+          </div>
 
-        <div className="list__hand">
-          <IndexGroup ids={hand.map((h) => h.slug)} label="Top highlights">
-            {hand.map((h, i) => (
-              <IndexRow
-                key={h.slug}
-                id={h.slug}
-                rank="A"
-                suit={HAND_SUITS[i % HAND_SUITS.length]}
-                title={h.title}
-                subtitle={h.subtitle}
-                meta={h.meta}
-                corner={h.corner}
-                tags={h.tags}
-                more={h.more && { label: h.more.label, to: inList(h.more.to) }}
-              >
-                <HandBack h={h} />
-              </IndexRow>
-            ))}
-          </IndexGroup>
-        </div>
+          <div className="list__hand">
+            <IndexGroup ids={hand.map((h) => h.slug)} label="Top highlights">
+              {hand.map((h, i) => (
+                <IndexRow
+                  key={h.slug}
+                  id={h.slug}
+                  rank="A"
+                  suit={HAND_SUITS[i % HAND_SUITS.length]}
+                  title={h.title}
+                  subtitle={h.subtitle}
+                  meta={h.meta}
+                  corner={h.corner}
+                  tags={h.tags}
+                  more={h.more && { label: h.more.label, to: inList(h.more.to) }}
+                >
+                  <HandBack h={h} />
+                </IndexRow>
+              ))}
+            </IndexGroup>
+          </div>
         </div>
       </section>
 

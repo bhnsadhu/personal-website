@@ -2,6 +2,7 @@ import { FAN_RANKS, findBySlug, projects, rankAt } from '../data'
 import { useParams } from '../lib/router'
 import { SEP } from '../lib/sep'
 import { useTitle } from '../lib/useTitle'
+import { LiveDot } from '../components/LiveDot'
 import { NotFound } from './NotFound'
 import { Plate, PlateSection } from './Plate'
 
@@ -35,6 +36,7 @@ export function ProjectDetail() {
           <div className="actions">
             {item.siteUrl && (
               <a className="btn" href={item.siteUrl} target="_blank" rel="noreferrer">
+                <LiveDot />
                 Live Demo
               </a>
             )}

@@ -8,7 +8,6 @@
   background: rgba(16, 14, 12, 0.86);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--line);
 }
 
 .nav__inner {
@@ -308,8 +307,6 @@
   --band-pad-bottom: 15px;
   --band-note-pad: 10px;
   background: var(--bg-2);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
 }
 
 /* One row of equal columns across the whole container. */
@@ -332,11 +329,6 @@
   gap: var(--band-gap);
   padding: var(--band-pad-top) var(--band-pad-x) var(--band-pad-bottom);
   text-align: center;
-}
-
-/* Between the stats only, never after the last. */
-.band__item + .band__item {
-  border-left: 1px solid var(--line);
 }
 
 /* Explicit line heights, so the row's height is arithmetic rather than
@@ -379,9 +371,6 @@
   }
   .band__item {
     flex: 1 1 45%;
-  }
-  .band__item + .band__item {
-    border-left: 0;
   }
 }
 
@@ -532,9 +521,7 @@
 .certs {
   display: grid;
   gap: 18px;
-  margin-top: 64px;
-  padding-top: 36px;
-  border-top: 1px solid var(--line);
+  margin-top: 72px;
 }
 
 .certs__list {
@@ -549,7 +536,6 @@
 .cert,
 .form {
   background: var(--bg-2);
-  border: 1px solid var(--line);
   border-radius: 14px;
 }
 
@@ -724,8 +710,7 @@
 /* ---------------- Footer ---------------- */
 
 .footer {
-  border-top: 1px solid var(--line);
-  padding: 40px 0 48px;
+  padding: 56px 0 48px;
 }
 
 .footer__inner {

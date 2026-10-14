@@ -2,6 +2,7 @@ import { useEffect, useId, useRef, type CSSProperties, type PointerEvent, type R
 import type { Face, Rank, Suit } from '../data'
 import { richPointer } from '../lib/motion'
 import { Link } from '../lib/router'
+import { LiveDot } from './LiveDot'
 import { SUIT_NAME, SuitGlyph } from './Suit'
 
 export interface CardProps {
@@ -137,7 +138,12 @@ export function Card({
             </span>
           ) : (
             <span className="card__face-body">
-              {corner && <span className="card__tag-corner mono mono--sm">{corner}</span>}
+              {corner && (
+                <span className="card__tag-corner mono mono--sm">
+                  {corner === 'Live' && <LiveDot />}
+                  {corner}
+                </span>
+              )}
               {face && (
                 <span className="card__portrait" data-face={face} aria-hidden="true">
                   <span>{face}</span>

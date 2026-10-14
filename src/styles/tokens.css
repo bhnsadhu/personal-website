@@ -18,6 +18,8 @@
   --brass: #b08d57;
   --brass-2: #cfae78;
   --gray: #9a9287;
+  /* Live status only: the dot beside "Live" and "Live Demo". */
+  --live: #3fae6a;
 
   --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
   --mono: 'IBM Plex Mono', 'SF Mono', Menlo, Consolas, monospace;

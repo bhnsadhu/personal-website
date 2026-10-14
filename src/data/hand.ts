@@ -1,4 +1,5 @@
 import { education } from './education'
+import { projects } from './projects'
 import { SEP } from '../lib/sep'
 import { moreLabel } from './site'
 import type { Highlight } from './types'
@@ -7,6 +8,15 @@ import type { Highlight } from './types'
  * The hero hand: four top highlights, dealt as the four aces. Each card
  * stays short and links to its fuller entry elsewhere on the site.
  */
+/** A project's Live Demo and GitHub links, side by side, from its entry in projects.ts. */
+function projectLinks(slug: string) {
+  const p = projects.find((x) => x.slug === slug)
+  return [
+    ...(p?.siteUrl ? [{ label: 'Live Demo', href: p.siteUrl }] : []),
+    ...(p?.codeUrl ? [{ label: 'GitHub', href: p.codeUrl }] : []),
+  ]
+}
+
 export const hand: Highlight[] = [
   {
     kind: 'role',
@@ -30,7 +40,7 @@ export const hand: Highlight[] = [
     summary: 'A multiplayer card game I built so friends can play anywhere, even when nobody has a deck.',
     body: ['Built so a new player can jump in as a guest, learn with guided onboarding and bots, then come back for accounts and leaderboards.'],
     tags: ['Product Development', 'Multiplayer', 'TypeScript'],
-    links: [{ label: 'Live Demo', href: 'https://cambio.bhanusadhu.com' }],
+    links: projectLinks('cambio'),
     more: { label: moreLabel.project, to: '/projects/cambio' },
   },
   {

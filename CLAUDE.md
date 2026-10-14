@@ -142,7 +142,11 @@ cream), wine-text `#D1706C` (small text on dark), brass `#B08D57` /
 `#CFAE78` (accents on dark only; brass fails contrast on cream), gray
 `#9A9287` (secondary on dark, 6.3:1 on bg), ink-2 `#5C554C` (secondary on
 cream).
-Dark is the only mode.
+Dark is the only mode. No divider rules on the dark page: sections and
+rows are separated by space, and a row shows a soft `--bg-2` panel on hover
+and while open. `--live` (green) is reserved for the pulsing dot
+(`LiveDot`) beside "Live" and every "Live Demo", and a "Live Demo" link
+always has "GitHub" beside it.
 
 Type: Fraunces for headlines and card titles (optical sizing on), IBM Plex
 Mono for metadata, dates, tags, stat numbers, nav, buttons. Red suits use
@@ -151,9 +155,10 @@ wine, black suits use ink, on cream.
 Motion: flips 0.55s, row slide 0.5s, hover 0.18s, one ease. Reduced motion
 swaps the flip for a fade and drops the deal-in animation (`cards.css`).
 `src/styles/motion.css` and `src/lib/motion.ts` hold the rest: the name
-rising letter by letter (`SplitText`), the cursor glow (`useGlow`), card
-tilt with glare, scroll reveals (`.reveal` for one element,
-`.reveal-group` for staggered children), rows of cards dealt in on
+rising letter by letter (`SplitText`), the hero hand fanning wider on
+hover, card tilt with glare, scroll reveals (`.reveal` for one element,
+`.reveal-group` for staggered children, marked with `data-in` rather than
+a class so React's className updates cannot undo them), rows of cards dealt in on
 scroll, count-up stats, chips dropping onto stacks, the nav's progress
 line and active suit. Anything hidden before it reveals needs both
 `html.js` and `prefers-reduced-motion: no-preference`, so it can never
