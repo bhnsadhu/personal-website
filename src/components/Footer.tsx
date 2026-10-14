@@ -7,9 +7,13 @@ import { SUIT_GLYPH } from './Suit'
 export function Footer() {
   return (
     <footer className="footer">
-      <div className="container footer__inner">
+      <div className="container footer__inner reveal">
         <p className="footer__suits" aria-hidden="true">
-          {SUIT_GLYPH.spades} {SUIT_GLYPH.hearts} {SUIT_GLYPH.diamonds} {SUIT_GLYPH.clubs}
+          {(['spades', 'hearts', 'diamonds', 'clubs'] as const).map((k, i) => (
+            <span key={k} style={{ ['--i' as string]: i }}>
+              {SUIT_GLYPH[k]}
+            </span>
+          ))}
         </p>
         <nav className="linkrow footer__links" aria-label="Elsewhere">
           <a className="tlink" href={`mailto:${site.email}`}>

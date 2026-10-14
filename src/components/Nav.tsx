@@ -1,4 +1,6 @@
+import { useEffect, useRef } from 'react'
 import { Link, usePath } from '../lib/router'
+import { useScrollSpy } from '../lib/useScrollSpy'
 import { experience, site, type Suit } from '../data'
 import { SUIT_GLYPH } from './Suit'
 
@@ -24,6 +26,31 @@ export function Nav() {
   const path = usePath()
   const onList = path === '/list'
   const current = experience.find((e) => e.slug === site.currently)
+  const active = useScrollSpy(
+    SUIT_NAV.map((s) => s.anchor),
+    path,
+  )
+
+  // A brass line under the nav fills as the page scrolls.
+  const barRef = useRef<HTMLSpanElement>(null)
+  useEffect(() => {
+    let frame = 0
+    const update = () => {
+      cancelAnimationFrame(frame)
+      frame = requestAnimationFrame(() => {
+        const max = document.documentElement.scrollHeight - window.innerHeight
+        barRef.current?.style.setProperty('--p', String(max > 0 ? Math.min(1, window.scrollY / max) : 0))
+      })
+    }
+    update()
+    window.addEventListener('scroll', update, { passive: true })
+    window.addEventListener('resize', update)
+    return () => {
+      cancelAnimationFrame(frame)
+      window.removeEventListener('scroll', update)
+      window.removeEventListener('resize', update)
+    }
+  }, [path])
 
   return (
     <header className="nav">
@@ -46,7 +73,8 @@ export function Nav() {
               <li key={s.suit}>
                 <Link
                   to={`${onList ? '/list' : '/'}#${s.anchor}`}
-                  className={`nav__suit nav__suit--${s.suit}`}
+                  className={`nav__suit nav__suit--${s.suit} ${active === s.anchor ? 'is-active' : ''}`.trim()}
+                  aria-current={active === s.anchor ? 'location' : undefined}
                   aria-label={`${s.label} (${s.suit})`}
                   title={s.label}
                 >
@@ -70,6 +98,7 @@ export function Nav() {
           </a>
         </div>
       </div>
+      <span ref={barRef} className="nav__progress" aria-hidden="true" />
     </header>
   )
 }

@@ -7,6 +7,10 @@ import './styles/cards.css'
 import './styles/sections.css'
 import './styles/pages.css'
 import './styles/palette.css'
+import './styles/motion.css'
+import { installReveal } from './lib/motion'
+
+installReveal()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

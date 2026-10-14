@@ -22,7 +22,7 @@ export function Section({ id, note, children, className = '' }: SectionProps) {
   return (
     <section id={id} className={`section ${className}`.trim()} aria-labelledby={`${id}-title`}>
       <div className="container">
-        <header className="section__head">
+        <header className="section__head reveal">
           <div>
             <p className="eyebrow">{sectionHeads[id].eyebrow}</p>
             <h2 id={`${id}-title`} className="section__title">

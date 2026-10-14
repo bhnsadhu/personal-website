@@ -1,5 +1,6 @@
-import { useEffect, useId, useRef, type CSSProperties, type ReactNode } from 'react'
+import { useEffect, useId, useRef, type CSSProperties, type PointerEvent, type ReactNode } from 'react'
 import type { Face, Rank, Suit } from '../data'
+import { richPointer } from '../lib/motion'
 import { Link } from '../lib/router'
 import { SUIT_NAME, SuitGlyph } from './Suit'
 
@@ -68,6 +69,27 @@ export function Card({
     wasOpen.current = open
   }, [open])
 
+  // Tilt toward the cursor with a glare that follows it, while the card is closed.
+  const cardRef = useRef<HTMLElement>(null)
+  const tiltOk = useRef<boolean | null>(null)
+  function onTilt(e: PointerEvent<HTMLElement>) {
+    if (open || e.pointerType !== 'mouse') return
+    tiltOk.current ??= richPointer()
+    const el = cardRef.current
+    if (!tiltOk.current || !el) return
+    const r = el.getBoundingClientRect()
+    const x = (e.clientX - r.left) / r.width
+    const y = (e.clientY - r.top) / r.height
+    el.style.setProperty('--ty', `${(x - 0.5) * 14}deg`)
+    el.style.setProperty('--tx', `${(0.5 - y) * 12}deg`)
+    el.style.setProperty('--gx', `${x * 100}%`)
+    el.style.setProperty('--gy', `${y * 100}%`)
+    el.classList.add('is-tilting')
+  }
+  function endTilt() {
+    cardRef.current?.classList.remove('is-tilting')
+  }
+
   const label = `${rank} of ${SUIT_NAME[suit]}`
   const cls = [
     'card',
@@ -81,7 +103,7 @@ export function Card({
     .join(' ')
 
   return (
-    <article className={cls} data-card={id} style={style}>
+    <article className={cls} data-card={id} style={style} ref={cardRef} onPointerMove={onTilt} onPointerLeave={endTilt}>
       <div className="card__inner">
         <button
           ref={frontRef}

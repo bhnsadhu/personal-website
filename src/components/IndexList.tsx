@@ -72,7 +72,7 @@ export function IndexGroup({ ids, label, children }: { ids: string[]; label: str
           <span className="sr-only"> {label}</span>
         </button>
       </div>
-      <ol className="ix" ref={listRef} aria-label={label}>
+      <ol className="ix reveal-group" ref={listRef} aria-label={label}>
         {children}
       </ol>
     </GroupContext.Provider>

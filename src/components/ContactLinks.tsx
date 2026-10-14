@@ -19,6 +19,9 @@ export function ContactLinks({ className = '' }: { className?: string }) {
         </span>
         <a className="tlink" href={`mailto:${site.email}`}>
           {site.email}
+          <span className="contact__go" aria-hidden="true">
+            ↗
+          </span>
         </a>
       </li>
       <li>
@@ -28,6 +31,9 @@ export function ContactLinks({ className = '' }: { className?: string }) {
         </span>
         <a className="tlink" href={site.phoneHref}>
           {site.phone}
+          <span className="contact__go" aria-hidden="true">
+            ↗
+          </span>
         </a>
       </li>
       <li>
@@ -37,6 +43,9 @@ export function ContactLinks({ className = '' }: { className?: string }) {
         </span>
         <a className="tlink" href={site.linkedin} target="_blank" rel="noreferrer">
           in/{site.linkedinHandle}
+          <span className="contact__go" aria-hidden="true">
+            ↗
+          </span>
         </a>
       </li>
       <li>
@@ -46,6 +55,9 @@ export function ContactLinks({ className = '' }: { className?: string }) {
         </span>
         <a className="tlink" href={site.github} target="_blank" rel="noreferrer">
           @{site.githubHandle}
+          <span className="contact__go" aria-hidden="true">
+            ↗
+          </span>
         </a>
       </li>
     </ul>

@@ -73,7 +73,7 @@ export function CardRow({ ids, layout = 'row', className = '', ariaLabel, childr
   return (
     <div
       ref={rowRef}
-      className={`row row--${layout} ${openId ? 'has-open' : ''} ${className}`.trim()}
+      className={`row row--${layout} ${layout === 'fan' ? '' : 'reveal-group'} ${openId ? 'has-open' : ''} ${className}`.trim()}
       style={{ gridTemplateColumns: columns, ['--n' as string]: ids.length }}
       role="group"
       aria-label={ariaLabel}

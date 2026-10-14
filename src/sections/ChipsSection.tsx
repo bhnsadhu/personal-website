@@ -15,7 +15,7 @@ export function ChipsSection() {
       id="chips"
       note={sectionNotes.chips}
     >
-      <ul className="stacks">
+      <ul className="stacks reveal-group">
         {skills.map((s, i) => (
           <ChipStack key={s.id} stack={s} index={i} min={shortest} max={longest} />
         ))}

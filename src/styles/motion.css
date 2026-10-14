@@ -1,0 +1,285 @@
+/* ------------------------------------------------------------------
+   Motion. Everything here is extra: it sits behind a motion preference,
+   and anything hidden before it reveals also needs html.js, so with
+   reduced motion or without script the page simply shows. One ease,
+   the same timings as the cards.
+   ------------------------------------------------------------------ */
+
+/* ---------------- Always on: small hover feedback ---------------- */
+
+/* Contact rows: an arrow slides in on hover, the way a link to elsewhere should. */
+.contact__go {
+  display: inline-block;
+  margin-left: 2px;
+  color: var(--brass);
+  opacity: 0;
+  transform: translate(-4px, 4px);
+  transition:
+    opacity var(--fast) var(--ease),
+    transform var(--fast) var(--ease);
+}
+
+.contact__links a:hover .contact__go,
+.contact__links a:focus-visible .contact__go {
+  opacity: 1;
+  transform: none;
+}
+
+/* The nav suit for the section in view. */
+.nav__suit {
+  position: relative;
+}
+
+.nav__suit::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  width: 4px;
+  height: 4px;
+  margin-left: -2px;
+  border-radius: 50%;
+  background: var(--brass);
+  opacity: 0;
+  transform: scale(0);
+  transition:
+    opacity var(--fast) var(--ease),
+    transform var(--fast) var(--ease);
+}
+
+.nav__suit.is-active {
+  background: var(--bg-3);
+}
+
+.nav__suit.is-active::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.nav__suit.is-active .nav__suit-label {
+  color: var(--cream);
+}
+
+/* Scroll progress: a brass hairline along the foot of the nav. */
+.nav__progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--brass), var(--brass-2));
+  transform: scaleX(var(--p, 0));
+  transform-origin: 0 50%;
+  pointer-events: none;
+}
+
+/* The glow's layer: a brass light where the cursor is. */
+.glow {
+  position: relative;
+  isolation: isolate;
+}
+
+.glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 30%), rgba(176, 141, 87, 0.11), transparent 62%);
+  opacity: 0;
+  transition: opacity 0.6s var(--ease);
+  pointer-events: none;
+}
+
+.glow.is-lit::before {
+  opacity: 1;
+}
+
+/* Card glare: a soft highlight that tracks the cursor across the stock. */
+.card__front::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 255, 255, 0.55), transparent 55%);
+  mix-blend-mode: soft-light;
+  opacity: 0;
+  transition: opacity 0.3s var(--ease);
+  pointer-events: none;
+}
+
+.card.is-tilting:not(.is-open) .card__front::after {
+  opacity: 1;
+}
+
+.card.is-tilting:not(.is-open) .card__inner {
+  transform: rotateX(var(--tx, 0deg)) rotateY(var(--ty, 0deg));
+  transition: transform 0.12s linear;
+}
+
+/* Footer suits hop in turn on hover. */
+.footer__suits span {
+  display: inline-block;
+}
+
+.footer__suits:hover span {
+  animation: hop 0.5s var(--ease) both;
+  animation-delay: calc(var(--i, 0) * 70ms);
+}
+
+@keyframes hop {
+  40% {
+    transform: translateY(-7px) rotate(-10deg);
+  }
+}
+
+/* ---------------- Only with motion allowed ---------------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  /* The name rises letter by letter from behind its own line. */
+  .split__word {
+    display: inline-block;
+    overflow: hidden;
+    padding-bottom: 0.14em;
+    margin-bottom: -0.14em;
+    vertical-align: top;
+  }
+
+  .split__ch {
+    display: inline-block;
+    animation: ch-rise 0.9s var(--ease) backwards;
+    animation-delay: calc(var(--c, 0) * 32ms + 80ms);
+  }
+
+  @keyframes ch-rise {
+    from {
+      transform: translateY(105%) rotate(8deg);
+      opacity: 0;
+    }
+  }
+
+  /* Then the lines around it, in reading order. */
+  .intro > :not(h1):not(.list__hand) {
+    animation: fade-up 0.8s var(--ease) backwards;
+  }
+  .intro > :nth-child(1) {
+    animation-delay: 0.05s;
+  }
+  .intro > :nth-child(3) {
+    animation-delay: 0.55s;
+  }
+  .intro > :nth-child(4) {
+    animation-delay: 0.68s;
+  }
+  .intro > :nth-child(5) {
+    animation-delay: 0.8s;
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+  }
+
+  /* ----- Scroll reveals ----- */
+
+  .js .reveal:not(.is-in) {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  .js .reveal {
+    transition:
+      opacity 0.8s var(--ease),
+      transform 0.8s var(--ease);
+  }
+
+  /* The accent word catches the light once its heading arrives. */
+  .js .reveal.is-in .section__title em,
+  .js .reveal.is-in .list__title em {
+    background: linear-gradient(100deg, var(--brass-2) 0 42%, #fff4dc 50%, var(--brass-2) 58% 100%);
+    background-size: 260% 100%;
+    background-position: 0% 0;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: sheen 1.6s var(--ease) 0.35s backwards;
+  }
+
+  @keyframes sheen {
+    from {
+      background-position: 100% 0;
+    }
+  }
+
+  /* Cards are dealt into each row as it arrives. */
+  .js .row.reveal-group:not(.is-in) > .card {
+    opacity: 0;
+  }
+
+  .row.reveal-group.is-in > .card {
+    animation: deal-in 0.75s var(--ease) backwards;
+    animation-delay: calc(var(--i, 0) * 90ms);
+  }
+
+  @keyframes deal-in {
+    from {
+      opacity: 0;
+      transform: translate(-90px, -50px) rotate(-14deg) scale(0.9);
+    }
+  }
+
+  /* List rows, the stat band, and anything else in a group: one after another. */
+  .js .ix.reveal-group:not(.is-in) > li,
+  .js .band__inner.reveal-group:not(.is-in) > *,
+  .js .stacks.reveal-group:not(.is-in) .stack__count,
+  .js .stacks.reveal-group:not(.is-in) .stack__label,
+  .js .stacks.reveal-group:not(.is-in) .stack__skills {
+    opacity: 0;
+  }
+
+  .ix.reveal-group.is-in > li,
+  .band__inner.reveal-group.is-in > * {
+    animation: fade-up 0.6s var(--ease) backwards;
+    animation-delay: calc(var(--i, 0) * 70ms);
+  }
+
+  /* Chips drop onto their stacks with a small bounce, stack by stack. */
+  .js .stacks.reveal-group:not(.is-in) .chip {
+    opacity: 0;
+  }
+
+  .stacks.reveal-group.is-in .chip {
+    animation: chip-drop 0.6s cubic-bezier(0.3, 1.45, 0.55, 1) backwards;
+    animation-delay: calc(var(--s, 0) * 110ms + var(--i, 0) * 55ms);
+  }
+
+  .stacks.reveal-group.is-in .stack__count,
+  .stacks.reveal-group.is-in .stack__label,
+  .stacks.reveal-group.is-in .stack__skills {
+    animation: fade-up 0.6s var(--ease) backwards;
+    animation-delay: calc(var(--s, 0) * 110ms + 0.45s);
+  }
+
+  @keyframes chip-drop {
+    from {
+      opacity: 0;
+      transform: translateY(-140px);
+    }
+    60% {
+      opacity: 1;
+    }
+  }
+
+  /* Detail pages: the plate is laid down on arrival. */
+  .plate__card {
+    animation: plate-in 0.8s var(--ease) backwards;
+  }
+
+  @keyframes plate-in {
+    from {
+      opacity: 0;
+      transform: translateY(40px) rotate(-1.5deg);
+    }
+  }
+}

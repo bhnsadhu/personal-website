@@ -1,10 +1,11 @@
-import type { ReactNode } from 'react'
+import { useRef, type ReactNode } from 'react'
 import { ExperienceBack, HandBack, LeadershipBack, PersonalBack, ProjectBack } from '../components/Backs'
 import { Certifications } from '../components/Certifications'
 import { ContactBody } from '../components/ContactBody'
 import { IndexGroup, IndexRow } from '../components/IndexList'
 import { MetricBand } from '../components/MetricBand'
 import { SectionTitle } from '../components/Section'
+import { SplitText } from '../components/SplitText'
 import { SuitGlyph } from '../components/Suit'
 import {
   experience,
@@ -32,6 +33,7 @@ import {
 import { Link } from '../lib/router'
 import { SEP } from '../lib/sep'
 import { useScrollSpy } from '../lib/useScrollSpy'
+import { useGlow } from '../lib/useGlow'
 import { useTitle } from '../lib/useTitle'
 
 /** The rail, in page order. Same sections, same order, as the card view. */
@@ -78,15 +80,18 @@ export function ListView() {
   useTitle('List view')
   const active = useScrollSpy(RAIL.map((r) => r.k))
   const flop = personal.slice(0, FLOP_RANKS.length)
+  const headRef = useRef<HTMLElement>(null)
+  useGlow(headRef)
 
   return (
     <main className="list">
-      <section id="hand" className="container list__head" aria-labelledby="l-hand">
+      <section id="hand" ref={headRef} className="list__top glow" aria-labelledby="l-hand">
+        <div className="container list__head intro">
         <p className="eyebrow">
           Your hand{SEP}{site.schoolShort}{SEP}{site.major}{SEP}{site.focus}
         </p>
         <h1 id="l-hand" className="display list__name">
-          {site.name}
+          <SplitText text={site.name} />
         </h1>
         <p className="lede">{site.tagline}</p>
         <div className="actions">
@@ -125,6 +130,7 @@ export function ListView() {
               </IndexRow>
             ))}
           </IndexGroup>
+        </div>
         </div>
       </section>
 

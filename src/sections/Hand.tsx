@@ -1,8 +1,11 @@
 import { HandBack } from '../components/Backs'
+import { useRef } from 'react'
 import { Card } from '../components/Card'
 import { CardRow } from '../components/CardRow'
 import { hand, HAND_SUITS, site } from '../data'
 import { Link } from '../lib/router'
+import { useGlow } from '../lib/useGlow'
+import { SplitText } from '../components/SplitText'
 import { SEP } from '../lib/sep'
 
 /**
@@ -10,15 +13,17 @@ import { SEP } from '../lib/sep'
  * per top highlight.
  */
 export function Hand() {
+  const ref = useRef<HTMLElement>(null)
+  useGlow(ref)
   return (
-    <section id="hand" className="hero" aria-labelledby="hand-title">
+    <section id="hand" ref={ref} className="hero glow" aria-labelledby="hand-title">
       <div className="container">
-        <div className="hero__head">
+        <div className="hero__head intro">
           <p className="eyebrow">
             Your hand{SEP}{site.schoolShort}{SEP}{site.major}{SEP}{site.focus}
           </p>
           <h1 id="hand-title" className="display hero__title">
-            {site.name}
+            <SplitText text={site.name} />
           </h1>
           <p className="lede">{site.tagline}</p>
           <div className="actions">
