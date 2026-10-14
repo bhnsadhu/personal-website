@@ -330,10 +330,9 @@
 
 /* ---------------- The opening deal (Opening.tsx) ---------------- */
 
-/* While it plays: the page holds still underneath and the real hand waits
-   unseen in its place. Everything else (the nav, the name rising, the
-   intro) comes in as usual around the deck, through the clear overlay. The
-   hand is not dealt in twice. */
+/* While it plays: the page holds still underneath, the real hand waits
+   unseen in its place, and the hero's own entrance is paused until the
+   overlay hands over. The hand is not dealt in twice. */
 html[data-intro='play'] {
   overflow: hidden;
 }
@@ -346,16 +345,16 @@ html[data-intro='play'] .hero__fan > .card {
   visibility: hidden;
 }
 
-/* Clear, but it still takes every click until it hands over. --x and --y
-   are the deck's centre and --s its size, set by Opening.tsx over the
-   hand's spot. */
+html[data-intro='play'] .split__ch,
+html[data-intro='play'] .intro > * {
+  animation-play-state: paused;
+}
+
 .opening {
-  --x: 50vw;
-  --y: 50vh;
-  --s: 1;
   position: fixed;
   inset: 0;
   z-index: 200;
+  background: var(--bg);
   transition: opacity 0.5s var(--ease);
 }
 
@@ -372,22 +371,11 @@ html[data-intro='play'] .hero__fan > .card {
 
 .opening__deck {
   position: absolute;
-  left: var(--x);
-  top: var(--y);
+  left: 50%;
+  top: 50%;
   width: 152px;
   height: 213px;
-  margin: -106px 0 0 -76px;
-  scale: var(--s);
-}
-
-/* A soft pool of shadow under the deck so it reads over whatever is behind. */
-.opening__deck::before {
-  content: '';
-  position: absolute;
-  inset: -40px -70px;
-  border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(16, 14, 12, 0.85), rgba(16, 14, 12, 0));
-  pointer-events: none;
+  margin: -120px 0 0 -76px;
 }
 
 /* A card back, the same brass lattice as a face-down project. */
@@ -419,18 +407,19 @@ html[data-intro='play'] .hero__fan > .card {
 
 .opening__caption {
   position: absolute;
-  left: var(--x);
-  top: calc(var(--y) + var(--s) * 106px + 14px);
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
+  top: calc(50% - 160px);
+  z-index: 60;
   margin: 0;
-  white-space: nowrap;
   text-align: center;
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--brass);
+  color: var(--brass-2);
+  text-shadow: 0 0 6px var(--bg), 0 0 14px var(--bg), 0 2px 18px var(--bg);
   transition: opacity 0.3s var(--ease);
 }
 

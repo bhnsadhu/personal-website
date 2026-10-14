@@ -1,23 +1,20 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 
 /**
- * The opening deal. A deck riffle-shuffles in the empty spot where the hero's
- * hand will sit, then the four aces are dealt off the top to the exact places
- * the hand occupies, turning face up as they land, and the rest of the deck
- * is cleared away. The overlay is see-through, so the name, intro, and nav
- * come in around the deck while it plays. The dealt cards are clones of the
+ * The opening deal. A deck riffle-shuffles in the middle of the screen, then
+ * the four aces are dealt off the top to the exact places the hero's hand
+ * occupies, turning face up as they land. The dealt cards are clones of the
  * real ones, so when the overlay fades the hand is already there.
  *
  * index.html decides whether it plays (`data-intro="play"`): once per visit,
  * on the home page only, never for a section link or reduced motion. It
- * cannot be skipped: it is short, and it is the way in. While it plays, the
- * page underneath holds still and takes no clicks.
+ * cannot be skipped: it is short, and it is the way in. While it plays,
+ * motion.css holds the hero's own entrance until it hands over.
  */
 
 const DECK = 10
 const CARD_W = 152
-const CARD_H = 213
 const EASE = 'cubic-bezier(0.2, 0.7, 0.2, 1)'
 
 const wait = (ms: number) => new Promise<void>((r) => window.setTimeout(r, ms))
@@ -27,30 +24,6 @@ export function Opening() {
   const [leaving, setLeaving] = useState(false)
   const [caption, setCaption] = useState('Shuffling…')
   const stageRef = useRef<HTMLDivElement>(null)
-  const overlayRef = useRef<HTMLDivElement>(null)
-  const scaleRef = useRef(1)
-
-  // Set the deck down over the middle of the hand's spot before the first
-  // paint, kept on screen. On a phone the hand starts below the fold, so a
-  // smaller deck waits low on the screen, under the intro.
-  useLayoutEffect(() => {
-    const el = overlayRef.current
-    if (!on || !el) return
-    window.scrollTo(0, 0)
-    const fan = document.querySelector('.hero__fan')?.getBoundingClientRect()
-    const vw = window.innerWidth
-    const vh = window.innerHeight
-    const x = fan ? fan.left + fan.width / 2 : vw / 2
-    const y = fan ? fan.top + fan.height / 2 : vh / 2
-    const scale = vw <= 720 ? 0.72 : 1
-    const h = CARD_H * scale
-    const top = h / 2 + 72
-    const bottom = vh - h / 2 - 48
-    scaleRef.current = scale
-    el.style.setProperty('--x', `${x}px`)
-    el.style.setProperty('--y', `${Math.max(top, Math.min(y, Math.max(top, bottom)))}px`)
-    el.style.setProperty('--s', String(scale))
-  }, [on])
 
   useEffect(() => {
     if (!on) return
@@ -63,6 +36,7 @@ export function Opening() {
     } catch {
       /* private mode: it may replay, which is harmless */
     }
+    window.scrollTo(0, 0)
 
     let done = false
     let alive = true
@@ -122,20 +96,11 @@ export function Opening() {
 
       // 2. The deal: the top four go to where the hero's aces sit.
       setCaption('Dealing your hand')
-      window.setTimeout(() => alive && setCaption(''), 700)
       const targets = Array.from(document.querySelectorAll<HTMLElement>('.hero__fan > .card'))
       const deckBox = stage.getBoundingClientRect()
       const dcx = deckBox.left + deckBox.width / 2
       const dcy = deckBox.top + deckBox.height / 2
       const byStack = deck.slice().sort((a, b) => Number(b.style.zIndex) - Number(a.style.zIndex))
-      // What is left of the deck slips away under the incoming hand.
-      byStack.slice(targets.length).forEach((c, k) => {
-        const at = rest(Number(c.style.zIndex) - 1)
-        play(c, [{ opacity: 1, transform: at }, { opacity: 0, transform: `${at} scale(0.94)` }], {
-          duration: 420,
-          delay: targets.length * 130 + k * 20,
-        })
-      })
 
       await Promise.all(
         targets.map(async (card, i) => {
@@ -181,7 +146,7 @@ export function Opening() {
 
           // Start small and square on the deck: scaled about the card's own
           // transform origin, then shifted so its centre sits on the deck's.
-          const s = (CARD_W * scaleRef.current) / box.width
+          const s = CARD_W / box.width
           const cx = box.width / 2
           const cy = box.height / 2
           const dx = dcx - box.left - (ox + s * (cx - ox))
@@ -227,7 +192,7 @@ export function Opening() {
   if (!on) return null
 
   return createPortal(
-    <div ref={overlayRef} className={`opening ${leaving ? 'is-leaving' : ''}`.trim()} aria-hidden="true">
+    <div className={`opening ${leaving ? 'is-leaving' : ''}`.trim()} aria-hidden="true">
       <div className="opening__deck" ref={stageRef}>
         {Array.from({ length: DECK }, (_, i) => (
           <span key={i} className="opening__card" style={{ transform: rest(i), zIndex: i + 1 }} />
