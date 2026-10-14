@@ -42,7 +42,7 @@ export function ProjectDetail() {
             )}
             {item.codeUrl && (
               <a className="btn btn--ghost" href={item.codeUrl} target="_blank" rel="noreferrer">
-                GitHub
+                Repository
               </a>
             )}
           </div>

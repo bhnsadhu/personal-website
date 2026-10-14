@@ -103,7 +103,7 @@ export function ProjectBack({ p }: { p: Project }) {
         )}
         {p.codeUrl && (
           <a className="tlink" href={p.codeUrl} target="_blank" rel="noreferrer">
-            GitHub
+            Repository
             <Arrow />
           </a>
         )}

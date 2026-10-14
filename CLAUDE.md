@@ -163,7 +163,7 @@ and shadow; the list rail by a track that fades at both ends; the nav keeps
 its plain hairline, with the brass scroll-progress line riding on it. Rules
 printed on the cream card stock stay. `--live` (green) is reserved for the
 pulsing dot (`LiveDot`) beside "Live", every "Live Demo", and the nav's
-"Currently @" pill, and a "Live Demo" link always has "GitHub" beside it.
+"Currently @" pill, and a "Live Demo" link always has "Repository" beside it.
 
 Type: Fraunces for headlines and card titles (optical sizing on), IBM Plex
 Mono for metadata, dates, tags, stat numbers, nav, buttons. No line of
@@ -194,7 +194,7 @@ The fan (projects) · The chips (skills) · The flop (personal) · Let's talk
 (contact). Buttons and links: "Explore My Work", "View Resume", "Contact
 Me" (hero), "Resume" (nav, footer), "Send Message" (submit), "Back to the
 hand", "View experience", "Explore the project", "List view" / "Card view", "Live Demo",
-"GitHub", "View Credential", "Search", "Back to top" (aria), "Currently @ …". The
+"Repository" (a project's code), "GitHub" (his own profile: footer, contact, search), "View Credential", "Search", "Back to top" (aria), "Currently @ …". The
 search placeholder is "Search the deck…" and an empty search reads "Not in
 the deck: “…”". Face-down cards say "Not dealt yet". 404 is
 "Not in the deck". Footer sign-off: "Shuffled, not stirred."

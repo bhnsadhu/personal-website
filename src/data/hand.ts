@@ -8,12 +8,12 @@ import type { Highlight } from './types'
  * The hero hand: four top highlights, dealt as the four aces. Each card
  * stays short and links to its fuller entry elsewhere on the site.
  */
-/** A project's Live Demo and GitHub links, side by side, from its entry in projects.ts. */
+/** A project's Live Demo and Repository links, side by side, from its entry in projects.ts. */
 function projectLinks(slug: string) {
   const p = projects.find((x) => x.slug === slug)
   return [
     ...(p?.siteUrl ? [{ label: 'Live Demo', href: p.siteUrl }] : []),
-    ...(p?.codeUrl ? [{ label: 'GitHub', href: p.codeUrl }] : []),
+    ...(p?.codeUrl ? [{ label: 'Repository', href: p.codeUrl }] : []),
   ]
 }
 
