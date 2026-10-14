@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import { Section } from '../components/Section'
-import { GitHubIcon, LinkedInIcon, MailIcon, PhoneIcon, PinIcon } from '../components/Icons'
+import { ContactLinks } from '../components/ContactLinks'
 import { site } from '../data'
 
 type Status = { state: 'idle' } | { state: 'sending' } | { state: 'sent' } | { state: 'error'; message: string }
@@ -62,51 +62,7 @@ export function CallOrFold() {
       <div className="contact">
         <div className="contact__aside">
           <p className="lede">{site.contactLede}</p>
-          <ul className="contact__links">
-            <li>
-              <span className="mono mono--sm contact__label">
-                <PinIcon className="icon--brass" />
-                Location
-              </span>
-              <span className="contact__value">{site.location}</span>
-            </li>
-            <li>
-              <span className="mono mono--sm contact__label">
-                <MailIcon className="icon--brass" />
-                Email
-              </span>
-              <a className="tlink" href={`mailto:${site.email}`}>
-                {site.email}
-              </a>
-            </li>
-            <li>
-              <span className="mono mono--sm contact__label">
-                <PhoneIcon className="icon--brass" />
-                Phone
-              </span>
-              <a className="tlink" href={site.phoneHref}>
-                {site.phone}
-              </a>
-            </li>
-            <li>
-              <span className="mono mono--sm contact__label">
-                <LinkedInIcon className="icon--brass" />
-                LinkedIn
-              </span>
-              <a className="tlink" href={site.linkedin} target="_blank" rel="noreferrer">
-                in/{site.linkedinHandle}
-              </a>
-            </li>
-            <li>
-              <span className="mono mono--sm contact__label">
-                <GitHubIcon className="icon--brass" />
-                GitHub
-              </span>
-              <a className="tlink" href={site.github} target="_blank" rel="noreferrer">
-                @{site.githubHandle}
-              </a>
-            </li>
-          </ul>
+          <ContactLinks />
         </div>
 
         <form className="form" onSubmit={onSubmit}>

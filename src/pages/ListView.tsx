@@ -1,4 +1,4 @@
-import { FileIcon, GitHubIcon, LinkedInIcon, MailIcon, PhoneIcon, PinIcon } from '../components/Icons'
+import { ContactLinks } from '../components/ContactLinks'
 import { MetricBand } from '../components/MetricBand'
 import {
   certifications,
@@ -314,32 +314,7 @@ export function ListView() {
           </h2>
           <p className="list__p">{site.contactLede}</p>
           <p className="list__p">{site.availability}</p>
-          <div className="linkrow list__links">
-            <span className="tlink">
-              <PinIcon className="icon--brass" />
-              {site.location}
-            </span>
-            <a className="tlink" href={`mailto:${site.email}`}>
-              <MailIcon className="icon--brass" />
-              {site.email}
-            </a>
-            <a className="tlink" href={site.phoneHref}>
-              <PhoneIcon className="icon--brass" />
-              {site.phone}
-            </a>
-            <a className="tlink" href={site.linkedin} target="_blank" rel="noreferrer">
-              <LinkedInIcon className="icon--brass" />
-              LinkedIn
-            </a>
-            <a className="tlink" href={site.github} target="_blank" rel="noreferrer">
-              <GitHubIcon className="icon--brass" />
-              GitHub
-            </a>
-            <a className="tlink" href={site.resume} target="_blank" rel="noreferrer">
-              <FileIcon className="icon--brass" />
-              Resume
-            </a>
-          </div>
+          <ContactLinks className="list__contact" />
         </section>
       </div>
     </main>
