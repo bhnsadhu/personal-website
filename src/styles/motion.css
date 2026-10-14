@@ -327,3 +327,112 @@
     }
   }
 }
+
+/* ---------------- The opening deal (Opening.tsx) ---------------- */
+
+/* While it plays: the page holds still underneath, the real hand waits
+   unseen in its place, and the hero's own entrance is paused until the
+   overlay hands over. The hand is not dealt in twice. */
+html[data-intro='play'] {
+  overflow: hidden;
+}
+
+html[data-intro] .hero__fan > .card {
+  animation: none;
+}
+
+html[data-intro='play'] .hero__fan > .card {
+  visibility: hidden;
+}
+
+html[data-intro='play'] .split__ch,
+html[data-intro='play'] .intro > * {
+  animation-play-state: paused;
+}
+
+.opening {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: var(--bg);
+  cursor: pointer;
+  transition: opacity 0.5s var(--ease);
+}
+
+.opening.is-leaving {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.opening.is-leaving .opening__deck,
+.opening.is-leaving .opening__caption,
+.opening.is-leaving .opening__skip {
+  opacity: 0;
+  transition: opacity 0.25s var(--ease);
+}
+
+.opening__deck {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 152px;
+  height: 213px;
+  margin: -120px 0 0 -76px;
+}
+
+/* A card back, the same brass lattice as a face-down project. */
+.opening__card,
+.opening__back {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--card-radius);
+  background-color: var(--bg-2);
+  background-image:
+    repeating-linear-gradient(45deg, rgba(176, 141, 87, 0.24) 0 1px, transparent 1px 11px),
+    repeating-linear-gradient(-45deg, rgba(176, 141, 87, 0.24) 0 1px, transparent 1px 11px);
+  box-shadow:
+    inset 0 0 0 1px rgba(176, 141, 87, 0.75),
+    inset 0 0 0 7px var(--bg-2),
+    inset 0 0 0 8px rgba(176, 141, 87, 0.35),
+    0 10px 24px rgba(0, 0, 0, 0.5);
+}
+
+.opening__back {
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.opening .card {
+  pointer-events: none;
+}
+
+.opening__caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(50% + 124px);
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--brass);
+  transition: opacity 0.3s var(--ease);
+}
+
+.opening__caption:empty {
+  opacity: 0;
+}
+
+.opening__skip {
+  position: absolute;
+  right: 28px;
+  bottom: 24px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray);
+}

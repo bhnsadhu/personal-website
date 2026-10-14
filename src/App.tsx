@@ -2,6 +2,7 @@ import { BackToTop } from './components/BackToTop'
 import { CommandPalette } from './components/CommandPalette'
 import { Footer } from './components/Footer'
 import { Nav } from './components/Nav'
+import { Opening } from './components/Opening'
 import { Router } from './lib/router'
 import { ExperienceDetail } from './pages/ExperienceDetail'
 import { Home } from './pages/Home'
@@ -25,6 +26,7 @@ export function App() {
       <Footer />
       <CommandPalette />
       <BackToTop />
+      <Opening />
     </>
   )
 }

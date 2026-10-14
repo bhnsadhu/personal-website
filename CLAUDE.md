@@ -69,6 +69,15 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   (`--max` in CSS) and chips sit from the bottom up, so all six rest on one
   baseline with their labels aligned. The `×N` beside it is the real
   number.
+- `src/components/Opening.tsx` — the opening deal: a deck riffle-shuffles,
+  then the four aces are dealt to the exact spots the hero's hand occupies
+  and turn face up; they are clones of the real cards, so the overlay fades
+  onto a hand already in place. An inline script in `index.html` decides
+  before first paint (`data-intro="play"`): once per visit
+  (`sessionStorage` `dealt`), only when landing on `/` itself, never for a
+  `#section` link or reduced motion. Any click, key, wheel, or touch skips
+  it. While it plays, motion.css hides the real hand and pauses the name's
+  rise; afterwards (`data-intro="done"`) the hand is not dealt in twice.
 - `src/components/IndexList.tsx` — the list view's rows. A row is a card
   laid flat: the same rank and suit (a small cream pip), title, italic
   subtitle, corner label, and dates, and the same back sliding open

@@ -27,6 +27,20 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
     />
+    <script>
+      // The opening deal: once per visit, only when landing on the home page
+      // itself, never for a link to a section or for anyone who has asked for
+      // less motion. Decided before first paint so the hand never flashes.
+      (function () {
+        try {
+          var seen = sessionStorage.getItem('dealt') === '1';
+          var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          if (location.pathname === '/' && !location.hash && !seen && !calm) {
+            document.documentElement.setAttribute('data-intro', 'play');
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
