@@ -22,8 +22,14 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   client), `leadership.ts` (face cards, fixed order, `progression` and
   `related` optional), `projects.ts` (the fan), `education.ts`,
   `certifications.ts`, `skills.ts`, `personal.ts` (four cards, five
-  `entries` each), `metrics.ts`, `sections.ts` (the note beside each
-  section title, rendered by both the card view and the list view).
+  `entries` each), `metrics.ts`, `sections.ts` (`sectionHeads`: each
+  section's eyebrow and title, and `sectionNotes`: the note beside it,
+  rendered by both the card view and the list view).
+- `src/components/Backs.tsx` — what each entry says when it opens, one
+  component per kind (hand, experience, leadership, project, personal).
+  The card renders it on its back and the list view inside its row, so the
+  two views cannot drift. `ContactBody`, `ContactLinks`, and
+  `Certifications` are shared the same way.
 - `src/components/Card.tsx` — one playing card: front is a `<button>`, back
   is a `role="region"` with the full content, always in the DOM, `inert`
   until open. Focus moves into the back on open and returns on close. The
@@ -63,7 +69,15 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   (`--max` in CSS) and chips sit from the bottom up, so all six rest on one
   baseline with their labels aligned. The `×N` beside it is the real
   number.
-- `src/pages/` — Home, ListView (`/list`, same data flat, adds Education),
+- `src/components/IndexList.tsx` — the list view's rows. A row is a card
+  laid flat: the same rank and suit (a small cream pip), title, italic
+  subtitle, corner label, and dates, and the same back sliding open
+  beneath it. `IndexGroup` owns which rows are open, offers "Open all",
+  and claims cards dealt from search.
+- `src/pages/` — Home, ListView (`/list`: the card view laid flat, same
+  sections in the same order with the same heads, the hero mirrored at the
+  top with the four aces as rows, then the band, then a sticky section rail
+  beside the rows on wide screens),
   ExperienceDetail (`/experience/:slug`), ProjectDetail
   (`/projects/:slug`), NotFound.
 - `src/lib/router.tsx` — in-house router: params, `/#anchor` links, view
@@ -98,12 +112,11 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
 
 - Always the full school name, "University of Illinois Urbana-Champaign",
   never "UIUC" or "Illinois" alone, in text, metadata, and docs. The one
-  exception is the hero eyebrow and the list view's About line, which say
+  exception is the hero eyebrow, in both views, which says
   "UIUC" (`site.schoolShort`) to stay short.
 - Fixed wording in fixed places. The hero eyebrow reads "Your hand ·
   UIUC · Computer Science + Economics · Builder & breaker of products"
-  (`site.schoolShort`, `site.major`, `site.focus`), no location; the list view says the same
-  under About. Every list of the three is "Product, Software, &
+  (`site.schoolShort`, `site.major`, `site.focus`), no location; the list view's header says the same. Every list of the three is "Product, Software, &
   Strategy" (`site.title`, split as `site.interests`): tab title, social
   meta, the hero's seeking line with Product highlighted, and the
   `site.availability` sentence in the contact section and the list
@@ -137,6 +150,14 @@ wine, black suits use ink, on cream.
 
 Motion: flips 0.55s, row slide 0.5s, hover 0.18s, one ease. Reduced motion
 swaps the flip for a fade and drops the deal-in animation (`cards.css`).
+`src/styles/motion.css` and `src/lib/motion.ts` hold the rest: the name
+rising letter by letter (`SplitText`), the cursor glow (`useGlow`), card
+tilt with glare, scroll reveals (`.reveal` for one element,
+`.reveal-group` for staggered children), rows of cards dealt in on
+scroll, count-up stats, chips dropping onto stacks, the nav's progress
+line and active suit. Anything hidden before it reveals needs both
+`html.js` and `prefers-reduced-motion: no-preference`, so it can never
+stay invisible.
 
 ## Vocabulary — keep it airtight
 
