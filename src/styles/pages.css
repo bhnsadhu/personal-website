@@ -181,17 +181,21 @@
   margin-top: 8px;
 }
 
-/* The lede and the details side by side, so the section stays short.
-   Stacks on a phone. */
+/* The details on the left, the lede beside them, so the section stays
+   short. Stacks on a phone, lede first. */
 .list__contact {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px 48px;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 24px 64px;
   align-items: start;
 }
 
 .list__contact .contact__links {
   margin-top: 0;
+}
+
+.list__contact .list__p:last-child {
+  margin-bottom: 0;
 }
 
 @media (max-width: 720px) {
@@ -200,7 +204,7 @@
   }
 
   .list__contact .contact__links {
-    margin-top: 8px;
+    order: 1;
   }
 }
 
