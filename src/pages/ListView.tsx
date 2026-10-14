@@ -1,10 +1,18 @@
-import { ContactLinks } from '../components/ContactLinks'
+import type { ReactNode } from 'react'
+import { ExperienceBack, HandBack, LeadershipBack, PersonalBack, ProjectBack } from '../components/Backs'
+import { Certifications } from '../components/Certifications'
+import { ContactBody } from '../components/ContactBody'
+import { IndexGroup, IndexRow } from '../components/IndexList'
 import { MetricBand } from '../components/MetricBand'
+import { SectionTitle } from '../components/Section'
+import { SuitGlyph } from '../components/Suit'
 import {
-  certifications,
-  education,
   experience,
+  faceSuitAt,
+  FAN_RANKS,
+  FLOP_RANKS,
   hand,
+  HAND_SUITS,
   leadership,
   metrics,
   moreLabel,
@@ -12,314 +20,244 @@ import {
   personalExtras,
   personalIntro,
   projects,
+  rankAt,
+  sectionHeads,
   sectionNotes,
   site,
   skills,
+  SPREAD_RANKS,
+  type SectionKey,
+  type Suit,
 } from '../data'
 import { Link } from '../lib/router'
 import { SEP } from '../lib/sep'
+import { useScrollSpy } from '../lib/useScrollSpy'
 import { useTitle } from '../lib/useTitle'
 
+/** The rail, in page order. Same sections, same order, as the card view. */
+const RAIL: { k: SectionKey; suit: Suit }[] = [
+  { k: 'spread', suit: 'spades' },
+  { k: 'face', suit: 'spades' },
+  { k: 'fan', suit: 'diamonds' },
+  { k: 'chips', suit: 'clubs' },
+  { k: 'flop', suit: 'hearts' },
+  { k: 'contact', suit: 'hearts' },
+]
+
+/** The eyebrow's words without its leading suit glyph. */
+function railLabel(k: SectionKey) {
+  return sectionHeads[k].eyebrow.replace(/^\S+\s/, '')
+}
+
+/** A home-page anchor ("/#face") points at the same anchor in this view. */
+function inList(to: string) {
+  return to.startsWith('/#') ? `/list${to.slice(1)}` : to
+}
+
+function ListSection({ k, note, children }: { k: SectionKey; note?: string; children: ReactNode }) {
+  return (
+    <section id={k} className="list__section" aria-labelledby={`l-${k}`}>
+      <header className="list__sechead reveal">
+        <p className="eyebrow">{sectionHeads[k].eyebrow}</p>
+        <h2 id={`l-${k}`} className="list__title">
+          <SectionTitle k={k} />
+        </h2>
+        {note && <p className="list__note">{note}</p>}
+      </header>
+      {children}
+    </section>
+  )
+}
+
 /**
- * The whole table laid flat: every section, all of the same content,
- * no cards and nothing to click through. Built for a fast scan.
+ * The card view laid flat. Same sections in the same order, the same words,
+ * and every card kept as a row with its own rank and suit. A row opens to
+ * the same back its card flips to.
  */
 export function ListView() {
   useTitle('List view')
+  const active = useScrollSpy(RAIL.map((r) => r.k))
+  const flop = personal.slice(0, FLOP_RANKS.length)
+
   return (
     <main className="list">
-      <div className="container">
-        <header className="list__head">
-          <p className="eyebrow">List view{SEP}Same content, no cards</p>
-          <h1 className="display">{site.name}</h1>
-          <p className="list__subtitle">Your hand, at a glance</p>
-          <p className="lede">{site.tagline}</p>
-          <div className="actions list__actions">
-            <Link to="/" className="btn btn--ghost">
-              Back to the hand
-            </Link>
-            <a className="btn" href={site.resume} target="_blank" rel="noreferrer">
-              View Resume
-              <span className="sr-only">(opens PDF in a new tab)</span>
-            </a>
-          </div>
-        </header>
+      <section id="hand" className="container list__head" aria-labelledby="l-hand">
+        <p className="eyebrow">
+          Your hand{SEP}{site.schoolShort}{SEP}{site.major}{SEP}{site.focus}
+        </p>
+        <h1 id="l-hand" className="display list__name">
+          {site.name}
+        </h1>
+        <p className="lede">{site.tagline}</p>
+        <div className="actions">
+          <Link to="/list#spread" className="btn">
+            Explore My Work
+          </Link>
+          <a className="btn btn--ghost" href={site.resume} target="_blank" rel="noreferrer">
+            View Resume
+            <span className="sr-only">(opens PDF in a new tab)</span>
+          </a>
+          <Link to="/list#contact" className="btn btn--ghost">
+            Contact Me
+          </Link>
+        </div>
+        <p className="hero__seeking mono mono--sm">
+          <span className="hero__seeking-lead">Seeking {site.seeking}</span> in{' '}
+          <span className="hero__seeking-focus">{site.interests.lead}</span>, {site.interests.rest}
+        </p>
 
-        <section className="list__section" aria-labelledby="l-about">
-          <h2 id="l-about" className="list__title">
-            About
-          </h2>
-          <p className="list__meta mono">
-            {site.schoolShort}{SEP}{site.major}{SEP}{site.focus}
-          </p>
-          {site.about.map((p, i) => (
-            <p key={i} className="list__p">
-              {p}
-            </p>
-          ))}
-          <p className="list__p list__p--muted">{site.workingStyle}</p>
-          <p className="list__p">{site.availability}</p>
-        </section>
-
-        <section id="hand" className="list__section" aria-labelledby="l-hand">
-          <h2 id="l-hand" className="list__title">
-            Your hand
-          </h2>
-          {hand.map((h) => (
-            <article key={h.slug} className="list__item">
-              <h3 className="list__item-title">{h.title}</h3>
-              <p className="list__meta mono">
-                {h.subtitle}{SEP}{h.meta}
-              </p>
-              <p className="list__p">{h.summary}</p>
-              {h.body.length > 0 && (
-                <ul className="dlist list__bullets">
-                  {h.body.map((b, j) => (
-                    <li key={j}>{b}</li>
-                  ))}
-                </ul>
-              )}
-              <div className="linkrow list__links">
-                {h.links?.map((l) => (
-                  <a key={l.href} className="tlink" href={l.href} target="_blank" rel="noreferrer">
-                    {l.label}
-                  </a>
-                ))}
-                {h.more && (
-                  <Link to={h.more.to} className="tlink">
-                    {h.more.label}
-                    <span className="arrow" aria-hidden="true">
-                      →
-                    </span>
-                  </Link>
-                )}
-              </div>
-            </article>
-          ))}
-        </section>
-      </div>
+        <div className="list__hand">
+          <IndexGroup ids={hand.map((h) => h.slug)} label="Top highlights">
+            {hand.map((h, i) => (
+              <IndexRow
+                key={h.slug}
+                id={h.slug}
+                rank="A"
+                suit={HAND_SUITS[i % HAND_SUITS.length]}
+                title={h.title}
+                subtitle={h.subtitle}
+                meta={h.meta}
+                corner={h.corner}
+                tags={h.tags}
+                more={h.more && { label: h.more.label, to: inList(h.more.to) }}
+              >
+                <HandBack h={h} />
+              </IndexRow>
+            ))}
+          </IndexGroup>
+        </div>
+      </section>
 
       <MetricBand metrics={metrics} label="Headline numbers" note={`As of ${site.asOf}`} />
 
-      <div className="container">
-        <section id="spread" className="list__section" aria-labelledby="l-exp">
-          <h2 id="l-exp" className="list__title">
-            Experience
-          </h2>
-          <p className="list__p list__p--muted">{sectionNotes.spread}</p>
-          {experience.map((e) => (
-            <article key={e.slug} className="list__item">
-              <h3 className="list__item-title">
-                {e.role}{SEP}{e.company}
-              </h3>
-              <p className="list__meta mono">
-                {e.dates}{SEP}{e.location}
-              </p>
-              <p className="list__p">{e.summary}</p>
-              {e.context && <p className="list__p list__p--muted">{e.context}</p>}
-              <ul className="dlist list__bullets">
-                {e.body.map((b, j) => (
-                  <li key={j}>{b}</li>
-                ))}
-              </ul>
-              <p className="list__meta mono">{e.tags.join(SEP)}</p>
-              <Link to={`/experience/${e.slug}`} className="tlink">
-                {moreLabel.experience}
-                <span className="arrow" aria-hidden="true">
-                  →
-                </span>
-              </Link>
-            </article>
-          ))}
-        </section>
+      <div className="container list__body">
+        <nav className="list__rail" aria-label="Sections">
+          <ol>
+            {RAIL.map((r) => (
+              <li key={r.k}>
+                <Link
+                  to={`/list#${r.k}`}
+                  className={`list__rail-link ${active === r.k ? 'is-active' : ''}`.trim()}
+                  aria-current={active === r.k ? 'location' : undefined}
+                >
+                  <SuitGlyph suit={r.suit} />
+                  <span className="list__rail-label">{railLabel(r.k)}</span>
+                  <span className="list__rail-title">
+                    <SectionTitle k={r.k} />
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ol>
+        </nav>
 
-        <section id="face" className="list__section" aria-labelledby="l-lead">
-          <h2 id="l-lead" className="list__title">
-            Leadership
-          </h2>
-          <p className="list__p list__p--muted">{sectionNotes.face}</p>
-          {leadership.map((l) => (
-            <article key={l.slug} className="list__item">
-              <h3 className="list__item-title">
-                {l.role}{SEP}{l.organization}
-              </h3>
-              <p className="list__meta mono">
-                {l.dates}{SEP}{l.location}
-              </p>
-              {l.progression && (
-                <p className="list__meta mono">
-                  {l.progression.map((s) => `${s.role} (${s.dates})`).join(' ← ')}
-                </p>
-              )}
-              <p className="list__p">{l.summary}</p>
-              <ul className="dlist list__bullets">
-                {l.body.map((b, j) => (
-                  <li key={j}>{b}</li>
-                ))}
-              </ul>
-              <p className="list__meta mono">{l.tags.join(SEP)}</p>
-              {l.related && (
-                <div className="linkrow list__links">
-                  {l.related.map((r) => (
-                    <Link key={r.to} to={r.to} className="tlink">
-                      {r.label}
-                      <span className="arrow" aria-hidden="true">
-                        →
-                      </span>
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </article>
-          ))}
-        </section>
+        <div className="list__main">
+          <ListSection k="spread" note={sectionNotes.spread}>
+            <IndexGroup ids={experience.map((e) => e.slug)} label="Work experience">
+              {experience.map((e, i) => (
+                <IndexRow
+                  key={e.slug}
+                  id={e.slug}
+                  rank={rankAt(SPREAD_RANKS, i)}
+                  suit="spades"
+                  title={e.role}
+                  subtitle={e.company}
+                  meta={e.dates}
+                  corner={e.location}
+                  tags={e.tags}
+                  more={{ label: moreLabel.experience, to: `/experience/${e.slug}` }}
+                >
+                  <ExperienceBack e={e} />
+                </IndexRow>
+              ))}
+            </IndexGroup>
+          </ListSection>
 
-        <section id="fan" className="list__section" aria-labelledby="l-proj">
-          <h2 id="l-proj" className="list__title">
-            Projects
-          </h2>
-          <p className="list__p list__p--muted">{sectionNotes.fan}</p>
-          {projects.map((p) => (
-            <article key={p.slug} className="list__item">
-              <h3 className="list__item-title">{p.title}</h3>
-              <p className="list__meta mono">{p.meta}</p>
-              {p.status === 'idea' ? (
-                <p className="list__p list__p--muted">Not dealt yet. Still in the deck.</p>
-              ) : (
-                <>
-                  <p className="list__p">{p.summary}</p>
-                  {p.ownership && <p className="list__p">{p.ownership}</p>}
-                  <ul className="dlist list__bullets">
-                    {p.body.map((b, j) => (
-                      <li key={j}>{b}</li>
-                    ))}
-                  </ul>
-                  <p className="list__meta mono">{p.stack.join(SEP)}</p>
-                  <div className="linkrow list__links">
-                    <Link to={`/projects/${p.slug}`} className="tlink">
-                      {moreLabel.project}
-                      <span className="arrow" aria-hidden="true">
-                        →
-                      </span>
-                    </Link>
-                    {p.siteUrl && (
-                      <a className="tlink" href={p.siteUrl} target="_blank" rel="noreferrer">
-                        Live Demo
-                      </a>
-                    )}
-                    {p.codeUrl && (
-                      <a className="tlink" href={p.codeUrl} target="_blank" rel="noreferrer">
-                        GitHub
-                      </a>
-                    )}
-                  </div>
-                </>
-              )}
-            </article>
-          ))}
-        </section>
+          <ListSection k="face" note={sectionNotes.face}>
+            <IndexGroup ids={leadership.map((l) => l.slug)} label="Leadership roles">
+              {leadership.map((l, i) => (
+                <IndexRow
+                  key={l.slug}
+                  id={l.slug}
+                  rank={l.face}
+                  suit={faceSuitAt(i)}
+                  title={l.role}
+                  subtitle={l.organization}
+                  meta={l.dates}
+                  tags={l.tags}
+                >
+                  <LeadershipBack l={l} />
+                </IndexRow>
+              ))}
+            </IndexGroup>
+          </ListSection>
 
-        <section id="education" className="list__section" aria-labelledby="l-edu">
-          <h2 id="l-edu" className="list__title">
-            Education
-          </h2>
-          <article className="list__item">
-            <h3 className="list__item-title">
-              {education.degree}{SEP}{education.school}
-            </h3>
-            <p className="list__meta mono">
-              {education.dates}{SEP}{education.location}
-            </p>
-            <p className="list__p">
-              Minors in {education.minors.join(' and ')}.
-            </p>
-            <p className="list__meta mono">{education.courseworkNote}</p>
-            <ul className="dlist list__bullets">
-              {education.coursework.map((c) => (
-                <li key={c.code}>
-                  {c.code}{SEP}{c.name}{SEP}{c.status}
+          <ListSection k="fan" note={sectionNotes.fan}>
+            <IndexGroup ids={projects.map((p) => p.slug)} label="Projects">
+              {projects.map((p, i) => {
+                const down = p.status === 'idea'
+                return (
+                  <IndexRow
+                    key={p.slug}
+                    id={p.slug}
+                    rank={rankAt(FAN_RANKS, i)}
+                    suit="diamonds"
+                    title={p.title}
+                    subtitle={down ? undefined : p.subtitle}
+                    meta={p.meta}
+                    corner={down ? undefined : p.status === 'live' ? 'Live' : 'Shipped'}
+                    tags={p.tags}
+                    down={down}
+                    more={down ? undefined : { label: moreLabel.project, to: `/projects/${p.slug}` }}
+                  >
+                    <ProjectBack p={p} />
+                  </IndexRow>
+                )
+              })}
+            </IndexGroup>
+          </ListSection>
+
+          <ListSection k="chips" note={sectionNotes.chips}>
+            <ul className="list__skills">
+              {skills.map((s) => (
+                <li key={s.id} className="list__skill reveal">
+                  <span className="list__skill-pip" aria-hidden="true">
+                    <SuitGlyph suit="clubs" />
+                  </span>
+                  <span className="list__skill-label">{s.label}</span>
+                  <span className="list__skill-count mono mono--sm">×{s.skills.length}</span>
+                  <p className="list__skill-items">{s.skills.join(SEP)}</p>
                 </li>
               ))}
             </ul>
-          </article>
-        </section>
+            <Certifications />
+          </ListSection>
 
-        <section id="chips" className="list__section" aria-labelledby="l-skills">
-          <h2 id="l-skills" className="list__title">
-            Skills
-          </h2>
-          <p className="list__p list__p--muted">{sectionNotes.chips}</p>
-          <dl className="list__skills">
-            {skills.map((s) => (
-              <div key={s.id}>
-                <dt className="list__item-title">{s.label}</dt>
-                <dd className="list__meta mono">{s.skills.join(SEP)}</dd>
-              </div>
-            ))}
-          </dl>
-        </section>
+          <ListSection k="flop" note={sectionNotes.flop}>
+            <p className="lede list__intro">{personalIntro}</p>
+            <IndexGroup ids={flop.map((c) => c.slug)} label="Personal interests">
+              {flop.map((c, i) => (
+                <IndexRow
+                  key={c.slug}
+                  id={c.slug}
+                  rank={rankAt(FLOP_RANKS, i)}
+                  suit="hearts"
+                  title={c.title}
+                  subtitle={c.subtitle}
+                  meta={c.meta}
+                  tags={c.tags}
+                >
+                  <PersonalBack c={c} />
+                </IndexRow>
+              ))}
+            </IndexGroup>
+            <p className="flop__extras mono mono--sm">Also in rotation: {personalExtras.join(SEP)}</p>
+          </ListSection>
 
-        <section className="list__section" aria-labelledby="l-certs">
-          <h2 id="l-certs" className="list__title">
-            Certifications
-          </h2>
-          {certifications.map((c) => (
-            <article key={c.url} className="list__item">
-              <h3 className="list__item-title">{c.name}</h3>
-              <p className="list__meta mono">
-                {c.issuer}{SEP}Issued {c.issued}
-              </p>
-              <a className="tlink" href={c.url} target="_blank" rel="noreferrer">
-                View Credential
-                <span className="arrow" aria-hidden="true">
-                  →
-                </span>
-              </a>
-            </article>
-          ))}
-        </section>
-
-        <section id="flop" className="list__section" aria-labelledby="l-personal">
-          <h2 id="l-personal" className="list__title">
-            Personal
-          </h2>
-          <p className="list__p list__p--muted">{sectionNotes.flop}</p>
-          <p className="list__p">{personalIntro}</p>
-          {personal.map((c) => (
-            <article key={c.slug} className="list__item">
-              <h3 className="list__item-title">{c.title}</h3>
-              <p className="list__meta mono">{c.subtitle}</p>
-              {c.intro && <p className="list__p">{c.intro}</p>}
-              <ol className="list__entries">
-                {c.entries.map((e) => (
-                  <li key={e.name}>
-                    <p className="list__p">
-                      <strong>{e.name}</strong>
-                      {e.detail && <span className="list__p--muted">{SEP}{e.detail}</span>}
-                    </p>
-                    {e.address && <p className="list__meta mono">{e.address}</p>}
-                    {e.pick && <p className="list__p list__p--muted">Order: {e.pick}</p>}
-                    <p className="list__p">{e.note}</p>
-                  </li>
-                ))}
-              </ol>
-            </article>
-          ))}
-          <p className="list__meta mono">Also in rotation: {personalExtras.join(SEP)}</p>
-        </section>
-
-        <section id="contact" className="list__section" aria-labelledby="l-contact">
-          <h2 id="l-contact" className="list__title">
-            Contact
-          </h2>
-          <div className="list__contact">
-            <ContactLinks />
-            <div>
-              <p className="list__p">{site.contactLede}</p>
-              <p className="list__p">{site.availability}</p>
-            </div>
-          </div>
-        </section>
+          <ListSection k="contact" note={site.availability}>
+            <ContactBody />
+          </ListSection>
+        </div>
       </div>
     </main>
   )

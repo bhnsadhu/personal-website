@@ -1,7 +1,7 @@
+import { Certifications } from '../components/Certifications'
 import { ChipStack } from '../components/Chips'
 import { Section } from '../components/Section'
-import { certifications, sectionNotes, skills } from '../data'
-import { SEP } from '../lib/sep'
+import { sectionNotes, skills } from '../data'
 
 /** The chips: one stack per skill category, product first. Certifications sit beneath. */
 export function ChipsSection() {
@@ -21,27 +21,7 @@ export function ChipsSection() {
         ))}
       </ul>
 
-      <div className="certs" aria-labelledby="certs-title">
-        <h3 id="certs-title" className="eyebrow">
-          Certifications
-        </h3>
-        <ul className="certs__list">
-          {certifications.map((c) => (
-            <li key={c.url} className="cert">
-              <span className="cert__name">{c.name}</span>
-              <span className="cert__meta mono mono--sm">
-                {c.issuer}{SEP}Issued {c.issued}
-              </span>
-              <a className="tlink" href={c.url} target="_blank" rel="noreferrer">
-                View Credential
-                <span className="arrow" aria-hidden="true">
-                  →
-                </span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <Certifications />
     </Section>
   )
 }

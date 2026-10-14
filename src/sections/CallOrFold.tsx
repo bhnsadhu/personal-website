@@ -1,108 +1,12 @@
-import { useState, type FormEvent } from 'react'
+import { ContactBody } from '../components/ContactBody'
 import { Section } from '../components/Section'
-import { ContactLinks } from '../components/ContactLinks'
 import { site } from '../data'
 
-type Status = { state: 'idle' } | { state: 'sending' } | { state: 'sent' } | { state: 'error'; message: string }
-
-/** A dropped connection surfaces as a bare "Failed to fetch"; say it plainly instead. */
-function readError(err: unknown): string {
-  if (err instanceof TypeError) return 'the connection dropped'
-  if (err instanceof Error && err.message) return err.message
-  return 'something went wrong'
-}
-
-/**
- * Contact. The form posts to /api/contact, which delivers by email from the
- * server through Resend. Success shows only after the server confirms the
- * send; on failure the typed message is kept so nothing is lost.
- */
+/** Contact: let's talk. The body is shared with the list view. */
 export function CallOrFold() {
-  const [status, setStatus] = useState<Status>({ state: 'idle' })
-
-  async function onSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    const form = e.currentTarget
-    const data = new FormData(form)
-    const payload = {
-      name: String(data.get('name') ?? '').trim(),
-      email: String(data.get('email') ?? '').trim(),
-      message: String(data.get('message') ?? '').trim(),
-      company: String(data.get('company') ?? ''),
-    }
-    setStatus({ state: 'sending' })
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      })
-      const body = (await res.json().catch(() => null)) as { ok?: boolean; error?: string } | null
-      if (!res.ok || !body?.ok) throw new Error(body?.error || `the server answered ${res.status}`)
-      setStatus({ state: 'sent' })
-      form.reset()
-    } catch (err) {
-      setStatus({ state: 'error', message: readError(err) })
-    }
-  }
-
-  const sending = status.state === 'sending'
-
   return (
-    <Section
-      id="contact"
-      note={site.availability}
-    >
-      <div className="contact">
-        <div className="contact__aside">
-          <p className="lede">{site.contactLede}</p>
-          <ContactLinks />
-        </div>
-
-        <form className="form" onSubmit={onSubmit}>
-          {/* Honeypot: hidden from people, filled by bots. The server drops anything that fills it. */}
-          <label className="form__hp" aria-hidden="true">
-            Company
-            <input name="company" type="text" tabIndex={-1} autoComplete="off" />
-          </label>
-          <div className="form__row">
-            <label className="field">
-              <span className="mono mono--sm">Name</span>
-              <input name="name" type="text" required autoComplete="name" placeholder="Your name" disabled={sending} />
-            </label>
-            <label className="field">
-              <span className="mono mono--sm">Email</span>
-              <input name="email" type="email" required autoComplete="email" placeholder="you@example.com" disabled={sending} />
-            </label>
-          </div>
-          <label className="field">
-            <span className="mono mono--sm">Message</span>
-            <textarea
-              name="message"
-              required
-              placeholder="Tell me about the opportunity or what you'd like to build together."
-              disabled={sending}
-            />
-          </label>
-          <div className="form__actions">
-            <button type="submit" className="btn btn--wine" disabled={sending}>
-              {sending ? 'Sending…' : 'Send Message'}
-            </button>
-            <p
-              className={`mono mono--sm form__note ${status.state === 'error' ? 'form__note--error' : ''} ${
-                status.state === 'sent' ? 'form__note--ok' : ''
-              }`.trim()}
-              role="status"
-              aria-live="polite"
-            >
-              {status.state === 'idle' && 'Goes straight to my inbox.'}
-              {status.state === 'sending' && 'Sending your message…'}
-              {status.state === 'sent' && "Sent. Thanks, I'll get back to you soon."}
-              {status.state === 'error' && `Couldn't send: ${status.message}. Email me directly at ${site.email}.`}
-            </p>
-          </div>
-        </form>
-      </div>
+    <Section id="contact" note={site.availability}>
+      <ContactBody />
     </Section>
   )
 }

@@ -70,9 +70,9 @@ export function CommandPalette() {
 
   const commands = useMemo<Command[]>(() => {
     const go = (anchor: string) => () => navigate(`${base}#${anchor}`)
-    // In the card view a picked card flips open; the list view just scrolls to it.
+    // A picked card flips open in the card view and its row opens in the list view.
     const flip = (slug: string, anchor: string) => () => {
-      if (!onList) deal(slug)
+      deal(slug)
       navigate(`${base}#${anchor}`)
     }
 
@@ -90,7 +90,7 @@ export function CommandPalette() {
         hint: 'University of Illinois Urbana-Champaign',
         mark: '♠',
         keywords: [site.major],
-        run: onList ? go('education') : flip('education', 'hand'),
+        run: flip('education', 'hand'),
       },
       { id: 's-contact', group: 'Sections', label: 'Contact', hint: 'Let’s talk', mark: '♥', markClass: 'red', run: go('contact') },
 

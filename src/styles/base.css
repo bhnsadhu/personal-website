@@ -204,7 +204,6 @@ svg {
 .nav__brand,
 .cert__name,
 .stack__label,
-.list__item-title,
 .entry__name {
   font-family: var(--serif);
   font-weight: 600;
