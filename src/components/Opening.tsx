@@ -8,16 +8,14 @@ import { createPortal } from 'react-dom'
  * real ones, so when the overlay fades the hand is already there.
  *
  * index.html decides whether it plays (`data-intro="play"`): once per visit,
- * on the home page only, never for a section link or reduced motion. Any
- * click, key, or scroll skips it. While it plays, motion.css holds the
- * hero's own entrance until it hands over.
+ * on the home page only, never for a section link or reduced motion. It
+ * cannot be skipped: it is short, and it is the way in. While it plays,
+ * motion.css holds the hero's own entrance until it hands over.
  */
 
 const DECK = 10
 const CARD_W = 152
 const EASE = 'cubic-bezier(0.2, 0.7, 0.2, 1)'
-
-const SCROLL_KEYS = new Set([' ', 'ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Home', 'End'])
 
 const wait = (ms: number) => new Promise<void>((r) => window.setTimeout(r, ms))
 
@@ -26,7 +24,6 @@ export function Opening() {
   const [leaving, setLeaving] = useState(false)
   const [caption, setCaption] = useState('Shuffling…')
   const stageRef = useRef<HTMLDivElement>(null)
-  const skipRef = useRef<() => void>(() => {})
 
   useEffect(() => {
     if (!on) return
@@ -51,25 +48,13 @@ export function Opening() {
       return a.finished.catch(() => undefined)
     }
 
-    const finish = (quick: boolean) => {
+    const finish = () => {
       if (done) return
       done = true
       root.dataset.intro = 'done'
       setLeaving(true)
-      window.setTimeout(() => setOn(false), quick ? 260 : 620)
+      window.setTimeout(() => setOn(false), 620)
     }
-
-    const skip = (e?: Event) => {
-      if (done) return
-      // A key that skips should not also scroll the page it reveals.
-      if (e instanceof KeyboardEvent && SCROLL_KEYS.has(e.key)) e.preventDefault()
-      anims.forEach((a) => a.finish())
-      finish(true)
-    }
-    skipRef.current = skip
-    window.addEventListener('keydown', skip)
-    window.addEventListener('wheel', skip, { passive: true })
-    window.addEventListener('touchmove', skip, { passive: true })
 
     const deck = Array.from(stage.querySelectorAll<HTMLElement>('.opening__card'))
 
@@ -192,7 +177,7 @@ export function Opening() {
       )
       if (done || !alive) return
       await wait(140)
-      if (alive) finish(false)
+      if (alive) finish()
     }
     run()
 
@@ -202,23 +187,19 @@ export function Opening() {
       anims.forEach((a) => a.cancel())
       clones.forEach((c) => c.remove())
       deck.forEach((c) => (c.style.opacity = ''))
-      window.removeEventListener('keydown', skip)
-      window.removeEventListener('wheel', skip)
-      window.removeEventListener('touchmove', skip)
     }
   }, [on])
 
   if (!on) return null
 
   return createPortal(
-    <div className={`opening ${leaving ? 'is-leaving' : ''}`.trim()} aria-hidden="true" onClick={() => skipRef.current()}>
+    <div className={`opening ${leaving ? 'is-leaving' : ''}`.trim()} aria-hidden="true">
       <div className="opening__deck" ref={stageRef}>
         {Array.from({ length: DECK }, (_, i) => (
           <span key={i} className="opening__card" style={{ transform: rest(i), zIndex: i + 1 }} />
         ))}
       </div>
       <p className="opening__caption">{caption}</p>
-      <span className="opening__skip">Skip</span>
     </div>,
     document.body,
   )

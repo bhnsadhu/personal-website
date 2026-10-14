@@ -355,7 +355,6 @@ html[data-intro='play'] .intro > * {
   inset: 0;
   z-index: 200;
   background: var(--bg);
-  cursor: pointer;
   transition: opacity 0.5s var(--ease);
 }
 
@@ -366,10 +365,7 @@ html[data-intro='play'] .intro > * {
 
 .opening.is-leaving .opening__deck,
 .opening.is-leaving .opening__caption,
-.opening.is-leaving .opening__skip {
-  opacity: 0;
-  transition: opacity 0.25s var(--ease);
-}
+.opening.is-leaving 
 
 .opening__deck {
   position: absolute;
@@ -424,15 +420,4 @@ html[data-intro='play'] .intro > * {
 
 .opening__caption:empty {
   opacity: 0;
-}
-
-.opening__skip {
-  position: absolute;
-  right: 28px;
-  bottom: 24px;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--gray);
 }
