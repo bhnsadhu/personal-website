@@ -57,13 +57,15 @@ function inList(to: string) {
 
 function ListSection({ k, note, children }: { k: SectionKey; note?: string; children: ReactNode }) {
   return (
-    <section id={k} className="list__section" aria-labelledby={`l-${k}`} data-suit={sectionHeads[k].eyebrow.charAt(0)}>
-      <header className="list__sechead reveal">
-        <p className="eyebrow">{sectionHeads[k].eyebrow}</p>
-        <h2 id={`l-${k}`} className="list__title">
-          <SectionTitle k={k} />
-        </h2>
-        {note && <p className="list__note">{note}</p>}
+    <section id={k} className="section list__section" aria-labelledby={`l-${k}`} data-suit={sectionHeads[k].eyebrow.charAt(0)}>
+      <header className="section__head reveal">
+        <div>
+          <p className="eyebrow">{sectionHeads[k].eyebrow}</p>
+          <h2 id={`l-${k}`} className="section__title">
+            <SectionTitle k={k} />
+          </h2>
+        </div>
+        {note && <p className="section__note">{note}</p>}
       </header>
       {children}
     </section>

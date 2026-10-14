@@ -169,7 +169,6 @@
 /* The top is the card view's hero (.hero, .hero__head, .hero__title), so
    both views open at the same size and height; the aces follow as rows. */
 .list__hand {
-  max-width: 860px;
   margin-top: 40px;
 }
 
@@ -184,13 +183,14 @@
 
 .list__main {
   min-width: 0;
-  max-width: 860px;
 }
 
 .list__rail {
   position: sticky;
-  top: calc(var(--nav-h) + 48px);
-  padding-top: 48px;
+  top: calc(var(--nav-h) + 24px);
+  /* A section's top padding less the link's own, so the first link's label
+     sits level with the first section's eyebrow. */
+  padding-top: 88px;
 }
 
 .list__rail ol {
@@ -292,38 +292,10 @@
 
 /* scroll-margin matches .section, so a nav suit lands the heading clear of
    the fixed header in either view. */
+/* A list section is a card-view section (.section) in the rail's column:
+   same padding, same head, same note. Only the column differs. */
 .list__section {
-  position: relative;
-  padding: 56px 0;
   scroll-margin-top: calc(var(--nav-h) + 8px);
-}
-
-.list__sechead {
-  display: grid;
-  gap: 8px;
-  margin-bottom: 28px;
-}
-
-.list__title {
-  font-family: var(--serif);
-  font-weight: 500;
-  font-size: clamp(32px, 3.6vw, 44px);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-}
-
-.list__title em {
-  font-style: italic;
-  font-weight: 400;
-  color: var(--brass-2);
-}
-
-.list__note {
-  max-width: 62ch;
-  font-family: var(--mono);
-  font-size: 13px;
-  line-height: 1.7;
-  color: var(--gray);
 }
 
 .list__intro {

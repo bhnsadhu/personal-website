@@ -41,7 +41,6 @@ export function Nav() {
       frame = requestAnimationFrame(() => {
         const max = document.documentElement.scrollHeight - window.innerHeight
         barRef.current?.style.setProperty('--p', String(max > 0 ? Math.min(1, window.scrollY / max) : 0))
-        barRef.current?.parentElement?.toggleAttribute('data-scrolled', window.scrollY > 8)
       })
     }
     update()

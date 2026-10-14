@@ -60,15 +60,6 @@
   color: var(--cream);
 }
 
-/* Once the page moves, the nav lifts off it with a soft shadow. */
-.nav {
-  transition: box-shadow 0.3s var(--ease);
-}
-
-.nav[data-scrolled] {
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
-}
-
 /* Scroll progress: a brass hairline along the foot of the nav. */
 .nav__progress {
   position: absolute;
@@ -228,8 +219,7 @@
   }
 
   /* The accent word catches the light once its heading arrives. */
-  .js .reveal[data-in] .section__title em,
-  .js .reveal[data-in] .list__title em {
+  .js .reveal[data-in] .section__title em {
     background: linear-gradient(100deg, var(--brass-2) 0 42%, #fff4dc 50%, var(--brass-2) 58% 100%);
     background-size: 260% 100%;
     background-position: 0% 0;
