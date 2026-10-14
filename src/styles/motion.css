@@ -383,8 +383,16 @@ html[data-intro='play'] .intro > * {
   --group-top: calc(50% - (var(--cap-h) + var(--cap-gap) + var(--pile) + var(--deck-h)) / 2);
 }
 
+/* Before the deal, the deck and caption rise together (--lift, set by
+   Opening.tsx) so the aces land clear of the deck. */
+.opening__deck,
+.opening__caption {
+  translate: 0 var(--lift, 0px);
+}
+
 .opening__deck {
   position: absolute;
+  transition: translate 0.62s var(--ease);
   left: calc(50% - var(--deck-w) / 2 + 1.8px);
   top: calc(var(--group-top) + var(--cap-h) + var(--cap-gap) + var(--pile));
   width: var(--deck-w);
@@ -438,7 +446,9 @@ html[data-intro='play'] .intro > * {
   text-transform: uppercase;
   color: var(--brass-2);
   text-shadow: 0 0 6px var(--bg), 0 0 14px var(--bg), 0 2px 18px var(--bg);
-  transition: opacity 0.3s var(--ease);
+  transition:
+    opacity 0.4s var(--ease),
+    translate 0.62s var(--ease);
   animation: caption-in 0.35s var(--ease) backwards;
 }
 
@@ -450,6 +460,7 @@ html[data-intro='play'] .intro > * {
   }
 }
 
+.opening.is-dealt .opening__caption,
 .opening__caption:empty {
   opacity: 0;
 }

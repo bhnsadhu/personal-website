@@ -70,12 +70,13 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   baseline with their labels aligned. The `×N` beside it is the real
   number.
 - `src/components/Opening.tsx` — the opening deal: a deck riffle-shuffles,
-  then the four aces are dealt to the exact spots the hero's hand occupies
-  and turn face up; they are clones of the real cards, so the overlay fades
+  rises clear of where the hand lands, then the four aces are dealt to the
+  exact spots the hero's hand occupies and turn face up while the rest of
+  the deck and its caption fade, so no ace rests on the deck; they are clones of the real cards, so the overlay fades
   onto a hand already in place. An inline script in `index.html` decides
   before first paint (`data-intro="play"`): once per visit
   (`sessionStorage` `dealt`), only when landing on `/` itself, never for a
-  `#section` link or reduced motion. It cannot be skipped (about 2.5s; the
+  `#section` link or reduced motion. It cannot be skipped (about 4.5s; the
   page is locked until it hands over). While it plays, motion.css hides the real hand and pauses the name's
   rise; afterwards (`data-intro="done"`) the hand is not dealt in twice.
 - `src/components/IndexList.tsx` — the list view's rows. A row is a card

@@ -15,6 +15,10 @@ import { createPortal } from 'react-dom'
 
 const DECK = 10
 const CARD_W = 152
+const DEAL_MS = 920
+const DEAL_GAP = 190
+/** Matches the --lift transition in motion.css. */
+const LIFT_MS = 620
 const EASE = 'cubic-bezier(0.2, 0.7, 0.2, 1)'
 
 const wait = (ms: number) => new Promise<void>((r) => window.setTimeout(r, ms))
@@ -22,8 +26,10 @@ const wait = (ms: number) => new Promise<void>((r) => window.setTimeout(r, ms))
 export function Opening() {
   const [on, setOn] = useState(() => document.documentElement.dataset.intro === 'play')
   const [leaving, setLeaving] = useState(false)
+  const [dealt, setDealt] = useState(false)
   const [caption, setCaption] = useState('Shuffling…')
   const stageRef = useRef<HTMLDivElement>(null)
+  const overlayRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (!on) return
@@ -31,6 +37,7 @@ export function Opening() {
     const stageEl = stageRef.current
     if (!stageEl) return
     const stage: HTMLDivElement = stageEl
+    const overlay = overlayRef.current
     try {
       sessionStorage.setItem('dealt', '1')
     } catch {
@@ -53,7 +60,7 @@ export function Opening() {
       done = true
       root.dataset.intro = 'done'
       setLeaving(true)
-      window.setTimeout(() => setOn(false), 620)
+      window.setTimeout(() => setOn(false), 720)
     }
 
     const deck = Array.from(stage.querySelectorAll<HTMLElement>('.opening__card'))
@@ -64,8 +71,8 @@ export function Opening() {
       await Promise.all(
         deck.map((c, i) =>
           play(c, [{ transform: rest(i) }, { transform: i < half ? cut(-1, i) : cut(1, i - half) }], {
-            duration: 380,
-            delay: 80 + (i % half) * 12,
+            duration: 560,
+            delay: 100 + (i % half) * 18,
           }),
         ),
       )
@@ -84,27 +91,51 @@ export function Opening() {
               { transform: `translate(${i < half ? -24 : 24}px, -28px) rotate(0deg)`, offset: 0.5 },
               { transform: rest(slot) },
             ],
-            { duration: 300, delay: slot * 52 },
+            { duration: 440, delay: 80 + slot * 66 },
           )
         }),
       )
       if (done || !alive) return
       await play(stage, [{ transform: 'scale(1)' }, { transform: 'scale(1.03)' }, { transform: 'scale(1)' }], {
-        duration: 260,
+        duration: 380,
       })
       if (done || !alive) return
 
-      // 2. The deal: the top four go to where the hero's aces sit.
+      // 2. The deal: the top four go to where the hero's aces sit. First the
+      // deck and its caption rise clear of where the hand lands, so no ace
+      // comes to rest on the deck; never past the top of the screen.
       setCaption('Dealing your hand')
       const targets = Array.from(document.querySelectorAll<HTMLElement>('.hero__fan > .card'))
+      const handTop = Math.min(...targets.map((t) => t.getBoundingClientRect().top))
+      const pile = stage.getBoundingClientRect()
+      const capTop = pile.top - 60
+      const lift = Math.min(0, Math.max(handTop - 40 - pile.bottom, 32 - capTop))
+      if (lift < 0 && overlay) {
+        overlay.style.setProperty('--lift', `${lift}px`)
+        await wait(LIFT_MS)
+      } else {
+        await wait(240)
+      }
+      if (done || !alive) return
       const deckBox = stage.getBoundingClientRect()
       const dcx = deckBox.left + deckBox.width / 2
       const dcy = deckBox.top + deckBox.height / 2
       const byStack = deck.slice().sort((a, b) => Number(b.style.zIndex) - Number(a.style.zIndex))
 
+      // What is left of the deck, and the caption, clear away as the last ace
+      // leaves it, so the hand comes to rest alone before the page comes in.
+      const lastLands = (targets.length - 1) * DEAL_GAP + 160
+      window.setTimeout(() => {
+        if (!alive || done) return
+        setDealt(true)
+        byStack.slice(targets.length).forEach((c, k) =>
+          play(c, [{ opacity: 1 }, { opacity: 0 }], { duration: 420, delay: k * 24 }),
+        )
+      }, lastLands)
+
       await Promise.all(
         targets.map(async (card, i) => {
-          await wait(i * 130)
+          await wait(i * DEAL_GAP)
           if (done || !alive) return
           // The card's own box, without the fan's rotation. The fan eases its
           // transform, so the transition is off while it is measured.
@@ -159,7 +190,7 @@ export function Opening() {
                 { transform: `matrix(${s}, 0, 0, ${s}, ${dx}, ${dy})` },
                 { transform: finalTransform },
               ],
-              { duration: 680 },
+              { duration: DEAL_MS },
             ),
             inner &&
               play(
@@ -169,13 +200,13 @@ export function Opening() {
                   { transform: 'rotateY(180deg)', offset: 0.35 },
                   { transform: 'rotateY(0deg)' },
                 ],
-                { duration: 680 },
+                { duration: DEAL_MS },
               ),
           ])
         }),
       )
       if (done || !alive) return
-      await wait(140)
+      await wait(440)
       if (alive) finish()
     }
     run()
@@ -192,7 +223,7 @@ export function Opening() {
   if (!on) return null
 
   return createPortal(
-    <div className={`opening ${leaving ? 'is-leaving' : ''}`.trim()} aria-hidden="true">
+    <div ref={overlayRef} className={['opening', dealt && 'is-dealt', leaving && 'is-leaving'].filter(Boolean).join(' ')} aria-hidden="true">
       <div className="opening__deck" ref={stageRef}>
         {Array.from({ length: DECK }, (_, i) => (
           <span key={i} className="opening__card" style={{ transform: rest(i), zIndex: i + 1 }} />
