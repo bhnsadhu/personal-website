@@ -151,6 +151,51 @@ svg {
   color: var(--ink);
 }
 
+/* ---------------- Line breaks ---------------- */
+
+/* No line left holding one or two stray words. Short blocks (headings,
+   titles, notes, labels, bullets) balance their lines so each carries a
+   fair share. Running paragraphs keep an ordinary wrap, which reads best at
+   length, and lib/widows.ts keeps their last three words together so the
+   last line is never a stray word or two. Inherited by everything inside. */
+p,
+dd,
+figcaption,
+blockquote {
+  text-wrap: pretty;
+}
+
+li,
+dt,
+h1,
+h2,
+h3,
+h4,
+.eyebrow,
+.section__note,
+.list__note,
+.card__title,
+.card__subtitle,
+.card__back-title,
+.ix__title,
+.band__label,
+.stack__label,
+.cert__name,
+.hero__seeking,
+.plate__title,
+.palette__label,
+.toast,
+.entry__head,
+.entry__line,
+.plate__lede,
+.card__summary,
+.card__context,
+.entry__note,
+.list__skill-items,
+.lede {
+  text-wrap: balance;
+}
+
 /* ---------------- Section frame ---------------- */
 
 .section {

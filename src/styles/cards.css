@@ -689,11 +689,14 @@
   color: var(--wine);
 }
 
+/* One run of text, not two flex items, so the brand never wraps onto a
+   line by itself and the pair balances like any other short line. */
 .entry__head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 4px 10px;
+  display: block;
+}
+
+.entry__head .entry__detail {
+  margin-left: 10px;
 }
 
 .entry__name {

@@ -9,8 +9,10 @@ import './styles/pages.css'
 import './styles/palette.css'
 import './styles/motion.css'
 import { installReveal } from './lib/motion'
+import { installWidows } from './lib/widows'
 
 installReveal()
+installWidows()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

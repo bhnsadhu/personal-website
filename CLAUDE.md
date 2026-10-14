@@ -156,7 +156,13 @@ dot (`LiveDot`) beside "Live", every "Live Demo", and the nav's
 "Currently @" pill, and a "Live Demo" link always has "GitHub" beside it.
 
 Type: Fraunces for headlines and card titles (optical sizing on), IBM Plex
-Mono for metadata, dates, tags, stat numbers, nav, buttons. Red suits use
+Mono for metadata, dates, tags, stat numbers, nav, buttons. No line of
+text is left holding a stray word or two: headings, titles, notes, labels,
+bullets, and short paragraphs use `text-wrap: balance` (the list in
+base.css), long paragraphs keep an ordinary wrap (`pretty`), and
+`src/lib/widows.ts` glues the last three words of each paragraph with
+no-break spaces, only when that tail fits in half the line, so a narrow
+column never overflows. Add a new short-text class to the balance list. Red suits use
 wine, black suits use ink, on cream.
 
 Motion: flips 0.55s, row slide 0.5s, hover 0.18s, one ease. Reduced motion
