@@ -1,3 +1,4 @@
+import { HandBack } from '../components/Backs'
 import { Card } from '../components/Card'
 import { CardRow } from '../components/CardRow'
 import { hand, HAND_SUITS, site } from '../data'
@@ -59,22 +60,7 @@ export function Hand() {
                 className="deal"
                 style={{ ['--i' as string]: i, ['--rot' as string]: `${(i - 1.5) * 9}deg` }}
               >
-                <p className="card__summary">{h.summary}</p>
-                {h.body.length > 0 && (
-                  <ul className="dlist">
-                    {h.body.map((b, j) => (
-                      <li key={j}>{b}</li>
-                    ))}
-                  </ul>
-                )}
-                {h.links?.map((l) => (
-                  <a key={l.href} className="tlink card__extlink" href={l.href} target="_blank" rel="noreferrer">
-                    {l.label}
-                    <span className="arrow" aria-hidden="true">
-                      →
-                    </span>
-                  </a>
-                ))}
+                <HandBack h={h} />
               </Card>
             ))
           }

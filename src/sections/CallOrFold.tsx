@@ -51,12 +51,6 @@ export function CallOrFold() {
   return (
     <Section
       id="contact"
-      eyebrow="♥ Contact"
-      title={
-        <>
-          Let’s <em>talk</em>
-        </>
-      }
       note={site.availability}
     >
       <div className="contact">

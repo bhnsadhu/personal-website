@@ -13,12 +13,6 @@ export function ChipsSection() {
   return (
     <Section
       id="chips"
-      eyebrow="♣ Skills"
-      title={
-        <>
-          The <em>chips</em>
-        </>
-      }
       note={sectionNotes.chips}
     >
       <ul className="stacks">

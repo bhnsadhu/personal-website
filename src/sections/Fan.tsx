@@ -1,3 +1,4 @@
+import { ProjectBack } from '../components/Backs'
 import { useEffect, useRef, useState } from 'react'
 import { Card } from '../components/Card'
 import { CardRow } from '../components/CardRow'
@@ -20,12 +21,6 @@ export function Fan() {
   return (
     <Section
       id="fan"
-      eyebrow="♦ Projects"
-      title={
-        <>
-          The <em>fan</em>
-        </>
-      }
       note={sectionNotes.fan}
     >
       <CardRow ids={projects.map((p) => p.slug)} ariaLabel="Projects">
@@ -51,30 +46,7 @@ export function Fan() {
                 onFaceDownClick={() => notDealt(p.title)}
                 more={down ? undefined : { label: moreLabel.project, to: `/projects/${p.slug}` }}
               >
-                <p className="card__summary">{p.summary}</p>
-                <ul className="dlist">
-                  {p.body.map((b, j) => (
-                    <li key={j}>{b}</li>
-                  ))}
-                </ul>
-                <div className="linkrow">
-                  {p.siteUrl && (
-                    <a className="tlink" href={p.siteUrl} target="_blank" rel="noreferrer">
-                      Live Demo
-                      <span className="arrow" aria-hidden="true">
-                        →
-                      </span>
-                    </a>
-                  )}
-                  {p.codeUrl && (
-                    <a className="tlink" href={p.codeUrl} target="_blank" rel="noreferrer">
-                      GitHub
-                      <span className="arrow" aria-hidden="true">
-                        →
-                      </span>
-                    </a>
-                  )}
-                </div>
+                <ProjectBack p={p} />
               </Card>
             )
           })

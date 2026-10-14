@@ -1,9 +1,9 @@
+import { LeadershipBack } from '../components/Backs'
 import { Card } from '../components/Card'
 import { CardRow } from '../components/CardRow'
 import { Section } from '../components/Section'
 import { SUIT_NAME } from '../components/Suit'
 import { FACES, faceSuitAt, leadership, sectionNotes, type Leadership } from '../data'
-import { Link } from '../lib/router'
 
 /**
  * Face cards: campus leadership. Dealt three to a suit (King, Queen, Jack),
@@ -16,12 +16,6 @@ export function FaceCards() {
   return (
     <Section
       id="face"
-      eyebrow="♠ Leadership"
-      title={
-        <>
-          The <em>face cards</em>
-        </>
-      }
       note={sectionNotes.face}
       className="section--face"
     >
@@ -52,36 +46,7 @@ export function FaceCards() {
                     onOpen={() => row.open(l.slug)}
                     onClose={row.close}
                   >
-                    <p className="card__summary">{l.summary}</p>
-                    <p className="card__context mono mono--sm">{l.location}</p>
-                    {l.progression && (
-                      <ol className="card__steps" aria-label="Roles held">
-                        {l.progression.map((s) => (
-                          <li key={s.role}>
-                            <span className="card__step-role">{s.role}</span>
-                            <span className="card__step-dates mono mono--sm">{s.dates}</span>
-                          </li>
-                        ))}
-                      </ol>
-                    )}
-                    <ul className="dlist">
-                      {l.body.map((b, j) => (
-                        <li key={j}>{b}</li>
-                      ))}
-                    </ul>
-                    {l.related && (
-                      <p className="card__related">
-                        <span className="mono mono--sm">Engagements</span>
-                        {l.related.map((link) => (
-                          <Link key={link.to} to={link.to} className="tlink">
-                            {link.label}
-                            <span className="arrow" aria-hidden="true">
-                              →
-                            </span>
-                          </Link>
-                        ))}
-                      </p>
-                    )}
+                    <LeadershipBack l={l} />
                   </Card>
                 ))
               }

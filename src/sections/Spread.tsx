@@ -1,3 +1,4 @@
+import { ExperienceBack } from '../components/Backs'
 import { Card } from '../components/Card'
 import { CardRow } from '../components/CardRow'
 import { Section } from '../components/Section'
@@ -8,12 +9,6 @@ export function Spread() {
   return (
     <Section
       id="spread"
-      eyebrow="♠ Experience"
-      title={
-        <>
-          The <em>spread</em>
-        </>
-      }
       note={sectionNotes.spread}
     >
       <CardRow ids={experience.map((e) => e.slug)} ariaLabel="Work experience">
@@ -35,13 +30,7 @@ export function Spread() {
               onClose={row.close}
               more={{ label: moreLabel.experience, to: `/experience/${e.slug}` }}
             >
-              <p className="card__summary">{e.summary}</p>
-              {e.context && <p className="card__context">{e.context}</p>}
-              <ul className="dlist">
-                {e.body.map((b, j) => (
-                  <li key={j}>{b}</li>
-                ))}
-              </ul>
+              <ExperienceBack e={e} />
             </Card>
           ))
         }

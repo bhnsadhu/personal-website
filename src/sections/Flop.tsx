@@ -1,3 +1,4 @@
+import { PersonalBack } from '../components/Backs'
 import { Card } from '../components/Card'
 import { CardRow } from '../components/CardRow'
 import { Section } from '../components/Section'
@@ -10,12 +11,6 @@ export function Flop() {
   return (
     <Section
       id="flop"
-      eyebrow="♥ Personal"
-      title={
-        <>
-          The <em>flop</em>
-        </>
-      }
       note={sectionNotes.flop}
       className="section--flop"
     >
@@ -38,25 +33,7 @@ export function Flop() {
                 onOpen={() => row.open(c.slug)}
                 onClose={row.close}
               >
-                {c.intro && <p className="card__summary">{c.intro}</p>}
-                <ol className="card__entries">
-                  {c.entries.map((e) => (
-                    <li key={e.name} className="entry">
-                      <p className="entry__head">
-                        <span className="entry__name">{e.name}</span>
-                        {e.detail && <span className="entry__detail">{e.detail}</span>}
-                      </p>
-                      {e.address && <p className="entry__line mono mono--sm">{e.address}</p>}
-                      {e.pick && (
-                        <p className="entry__line">
-                          <span className="entry__key mono mono--sm">Order</span>
-                          {e.pick}
-                        </p>
-                      )}
-                      <p className="entry__note">{e.note}</p>
-                    </li>
-                  ))}
-                </ol>
+                <PersonalBack c={c} />
               </Card>
             ))
           }

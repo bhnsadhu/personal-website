@@ -14,3 +14,18 @@ export const sectionNotes = {
   flop:
     'A little of what fills my time outside of work. Favorite meals, fragrances, films, and places, each with a story behind it.',
 }
+
+/**
+ * Each section's eyebrow and title, so the card view and the list view
+ * head every section with the same words. `em` is the italic accent word.
+ */
+export const sectionHeads = {
+  spread: { eyebrow: '♠ Experience', pre: 'The', em: 'spread' },
+  face: { eyebrow: '♠ Leadership', pre: 'The', em: 'face cards' },
+  fan: { eyebrow: '♦ Projects', pre: 'The', em: 'fan' },
+  chips: { eyebrow: '♣ Skills', pre: 'The', em: 'chips' },
+  flop: { eyebrow: '♥ Personal', pre: 'The', em: 'flop' },
+  contact: { eyebrow: '♥ Contact', pre: 'Let’s', em: 'talk' },
+} as const
+
+export type SectionKey = keyof typeof sectionHeads
