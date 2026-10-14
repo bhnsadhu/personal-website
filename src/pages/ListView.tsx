@@ -314,7 +314,7 @@ export function ListView() {
           </h2>
           <p className="list__p">{site.contactLede}</p>
           <p className="list__p">{site.availability}</p>
-          <ContactLinks className="list__contact" />
+          <ContactLinks />
         </section>
       </div>
     </main>

@@ -181,26 +181,6 @@
   margin-top: 8px;
 }
 
-/* The same label-over-value list as the card view, three to a line so the
-   section does not run long. Two to a line, then one, as the width drops. */
-.list__contact {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px 32px;
-  margin-top: 24px;
-}
-
-@media (max-width: 720px) {
-  .list__contact {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 480px) {
-  .list__contact {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* scroll-margin matches .section, so a nav suit lands the heading clear of
    the fixed header in either view. */
 .list__section {
