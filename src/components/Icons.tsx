@@ -88,3 +88,23 @@ export function PinIcon(props: IconProps) {
     </Icon>
   )
 }
+
+/** Magnifier: the search palette. */
+export function SearchIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <circle cx="11" cy="11" r="8" />
+      <line x1="21" y1="21" x2="16.65" y2="16.65" />
+    </Icon>
+  )
+}
+
+/** Up arrow: back to top. */
+export function ArrowUpIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <line x1="12" y1="19" x2="12" y2="5" />
+      <polyline points="5 12 12 5 19 12" />
+    </Icon>
+  )
+}

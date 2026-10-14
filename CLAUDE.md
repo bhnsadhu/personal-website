@@ -46,6 +46,16 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   `status: 'idea'` renders face down and shows a toast), ChipsSection
   (skills plus certifications), Flop (personal: flop and turn, four cards),
   CallOrFold (contact form posting to `/api/contact`).
+- `src/components/CommandPalette.tsx` — search. A "Search ⌘K" pill in the
+  bottom-left corner, Cmd/Ctrl+K, or "/" opens a native `<dialog>` that finds
+  any section, role, project, skill, credential, personal card, or link,
+  built from `src/data`. Experience and projects open their pages;
+  leadership, personal, and Education flip their card open in the card view
+  through `src/lib/deal.ts` (CardRow claims the request, then scrolls the card
+  under the nav) and just scroll to the section in the list view.
+  `BackToTop.tsx` is the bottom-right arrow, shown after one screen of scroll.
+- The nav's "Currently @" pill names the role whose slug is `site.currently`
+  and links to its page. Hidden at 1149px and below.
 - `src/components/Chips.tsx` — a chip stack is a rough indicator, not a
   count: `chipsFor()` scales the longest category to `MAX_CHIPS` and the
   rest down to `MIN_CHIPS`, so no stack towers. ChipsSection passes the
@@ -135,7 +145,9 @@ The fan (projects) · The chips (skills) · The flop (personal) · Let's talk
 (contact). Buttons and links: "Explore My Work", "View Resume", "Contact
 Me" (hero), "Resume" (nav, footer), "Send Message" (submit), "Back to the
 hand", "View experience", "Explore the project", "List view" / "Card view", "Live Demo",
-"GitHub", "View Credential". Face-down cards say "Not dealt yet". 404 is
+"GitHub", "View Credential", "Search", "Back to top" (aria), "Currently @ …". The
+search placeholder is "Search the deck…" and an empty search reads "Not in
+the deck: “…”". Face-down cards say "Not dealt yet". 404 is
 "Not in the deck". Footer sign-off: "Shuffled, not stirred."
 
 ## Routes

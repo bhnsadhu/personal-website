@@ -24,6 +24,81 @@
   white-space: nowrap;
 }
 
+.nav__start {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+/* "Currently @": a quiet pill beside the name. Hidden before it can crowd
+   the suits. */
+.nav__now {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg-2);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cream-2);
+  white-space: nowrap;
+  transition:
+    border-color var(--fast) var(--ease),
+    color var(--fast) var(--ease);
+}
+
+.nav__now:hover,
+.nav__now:focus-visible {
+  border-color: var(--brass);
+  color: var(--cream);
+}
+
+.nav__now-dot {
+  position: relative;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--brass-2);
+}
+
+.nav__now-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--brass-2);
+  animation: now-pulse 2s var(--ease) infinite;
+}
+
+@keyframes now-pulse {
+  from {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  to {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav__now-dot::after {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+@media (max-width: 1149px) {
+  .nav__now {
+    display: none;
+  }
+}
+
 /* Equal side columns, so the suits sit on the page's center line rather
    than midway between a short name and the wider buttons. */
 @media (min-width: 721px) {
@@ -31,7 +106,7 @@
     display: grid;
     grid-template-columns: 1fr auto 1fr;
   }
-  .nav__brand {
+  .nav__start {
     justify-self: start;
   }
   .nav__end {

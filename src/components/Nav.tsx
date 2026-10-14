@@ -1,5 +1,5 @@
 import { Link, usePath } from '../lib/router'
-import { site, type Suit } from '../data'
+import { experience, site, type Suit } from '../data'
 import { SUIT_GLYPH } from './Suit'
 
 interface SuitLink {
@@ -23,13 +23,22 @@ export const SUIT_NAV: SuitLink[] = [
 export function Nav() {
   const path = usePath()
   const onList = path === '/list'
+  const current = experience.find((e) => e.slug === site.currently)
 
   return (
     <header className="nav">
       <div className="nav__inner container">
-        <Link to="/" className="nav__brand" aria-label={`${site.shortName}, back to your hand`}>
-          {site.shortName}
-        </Link>
+        <div className="nav__start">
+          <Link to="/" className="nav__brand" aria-label={`${site.shortName}, back to your hand`}>
+            {site.shortName}
+          </Link>
+          {current && (
+            <Link to={`/experience/${current.slug}`} className="nav__now mono" aria-label={`Currently at ${current.company}`}>
+              <span className="nav__now-dot" aria-hidden="true" />
+              Currently @ {current.company}
+            </Link>
+          )}
+        </div>
 
         <nav className="nav__suits" aria-label="Sections">
           <ul>

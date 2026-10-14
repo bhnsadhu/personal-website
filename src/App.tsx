@@ -1,3 +1,5 @@
+import { BackToTop } from './components/BackToTop'
+import { CommandPalette } from './components/CommandPalette'
 import { Footer } from './components/Footer'
 import { Nav } from './components/Nav'
 import { Router } from './lib/router'
@@ -21,6 +23,8 @@ export function App() {
       <Nav />
       <Router routes={routes} />
       <Footer />
+      <CommandPalette />
+      <BackToTop />
     </>
   )
 }

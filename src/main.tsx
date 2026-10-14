@@ -6,6 +6,7 @@ import './styles/base.css'
 import './styles/cards.css'
 import './styles/sections.css'
 import './styles/pages.css'
+import './styles/palette.css'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

@@ -1,4 +1,5 @@
-import { useCallback, useState, type KeyboardEvent, type ReactNode } from 'react'
+import { useCallback, useEffect, useRef, useState, type KeyboardEvent, type ReactNode } from 'react'
+import { onDeal, takeDeal } from '../lib/deal'
 
 export interface RowState {
   openId: string | null
@@ -19,7 +20,8 @@ interface CardRowProps {
 
 /**
  * Owns which card in a row is open. Columns animate so the open card
- * fills the row and the others slide back. Escape closes.
+ * fills the row and the others slide back. Escape closes. A card picked in
+ * the search palette opens through `deal`.
  */
 export function CardRow({ ids, layout = 'row', className = '', ariaLabel, children }: CardRowProps) {
   const [openId, setOpenId] = useState<string | null>(null)
@@ -28,6 +30,34 @@ export function CardRow({ ids, layout = 'row', className = '', ariaLabel, childr
   const close = useCallback(() => setOpenId(null), [])
   const isOpen = useCallback((id: string) => openId === id, [openId])
   const isAside = useCallback((id: string) => openId !== null && openId !== id, [openId])
+
+  const rowRef = useRef<HTMLDivElement>(null)
+  const dealt = useRef(false)
+  const key = ids.join(' ')
+  useEffect(() => {
+    const claim = () => {
+      const id = takeDeal(key.split(' '))
+      if (!id) return
+      dealt.current = true
+      setOpenId(id)
+    }
+    claim()
+    return onDeal(claim)
+  }, [key])
+
+  // A dealt card is brought into view under the nav, after any anchor scroll has landed.
+  useEffect(() => {
+    if (!dealt.current || !openId) return
+    dealt.current = false
+    const card = rowRef.current?.querySelector(`[data-card="${openId}"]`)
+    requestAnimationFrame(() =>
+      requestAnimationFrame(() => {
+        if (!card) return
+        const nav = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 0
+        window.scrollTo({ top: card.getBoundingClientRect().top + window.scrollY - nav - 16 })
+      }),
+    )
+  }, [openId])
 
   function onKeyDown(e: KeyboardEvent<HTMLDivElement>) {
     if (e.key === 'Escape' && openId !== null) {
@@ -42,6 +72,7 @@ export function CardRow({ ids, layout = 'row', className = '', ariaLabel, childr
 
   return (
     <div
+      ref={rowRef}
       className={`row row--${layout} ${openId ? 'has-open' : ''} ${className}`.trim()}
       style={{ gridTemplateColumns: columns, ['--n' as string]: ids.length }}
       role="group"
