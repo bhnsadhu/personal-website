@@ -150,9 +150,10 @@ base.css). The footer opens with the same ornament around all four suits;
 Certifications opens with its label and a rule out to the right edge.
 Stats are parted by small brass dots; list rows by space, with a soft
 `--bg-2` panel on hover and while open; panels (certs, the form) by a lift
-and shadow; the list rail by a track that fades at both ends; the nav by a
-shadow once the page scrolls. Rules printed on the cream card stock stay. `--live` (green) is reserved for the pulsing
-dot (`LiveDot`) beside "Live", every "Live Demo", and the nav's
+and shadow; the list rail by a track that fades at both ends; the nav keeps
+its plain hairline, with the brass scroll-progress line riding on it. Rules
+printed on the cream card stock stay. `--live` (green) is reserved for the
+pulsing dot (`LiveDot`) beside "Live", every "Live Demo", and the nav's
 "Currently @" pill, and a "Live Demo" link always has "GitHub" beside it.
 
 Type: Fraunces for headlines and card titles (optical sizing on), IBM Plex
