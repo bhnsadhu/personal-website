@@ -232,7 +232,49 @@
   display: grid;
   gap: 18px;
   max-width: 920px;
+}
+
+/* The intro on the left, the photo beside the name on the right. */
+.hero__top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 40px;
   margin-bottom: 24px;
+}
+
+/* A print on the cards' cream stock, set a few degrees off square like a
+   card in the fan, with the caption in its wider bottom margin. */
+.hero__photo {
+  width: 232px;
+  margin: 0;
+  padding: 10px 10px 0;
+  background: var(--cream);
+  border-radius: 6px;
+  box-shadow: var(--card-shadow);
+  transform: rotate(2.5deg);
+  transition: transform 0.18s var(--ease);
+}
+
+.hero__photo:hover {
+  transform: rotate(0deg);
+}
+
+.hero__photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 3px;
+}
+
+.hero__photo figcaption {
+  padding: 10px 4px 12px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.35;
+  text-align: center;
+  color: var(--ink-2);
 }
 
 .hero__title {
@@ -264,9 +306,27 @@
   color: var(--gray);
 }
 
+@media (max-width: 1023px) {
+  .hero__top {
+    gap: 28px;
+  }
+  .hero__photo {
+    width: 184px;
+  }
+}
+
+/* Phones: the photo drops under the intro, centred above the hand. */
 @media (max-width: 720px) {
   .hero {
     padding: 40px 0 24px;
+  }
+  .hero__top {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+  .hero__photo {
+    justify-self: center;
+    width: min(220px, 70%);
   }
   .hero__fan {
     min-height: 0;

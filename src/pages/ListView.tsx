@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import { ExperienceBack, HandBack, LeadershipBack, PersonalBack, PersonalExtras, ProjectBack } from '../components/Backs'
 import { Certifications } from '../components/Certifications'
 import { ContactBody } from '../components/ContactBody'
+import { HeroPhoto } from '../components/HeroPhoto'
 import { IndexGroup, IndexRow } from '../components/IndexList'
 import { MetricBand } from '../components/MetricBand'
 import { SectionTitle } from '../components/Section'
@@ -85,30 +86,33 @@ export function ListView() {
     <main className="list">
       <section id="hand" className="hero" aria-labelledby="l-hand">
         <div className="container">
-          <div className="hero__head intro">
-            <p className="eyebrow">
-              Your hand{SEP}{site.schoolShort}{SEP}{site.major}{SEP}{site.focus}
-            </p>
-            <h1 id="l-hand" className="display hero__title">
-              <SplitText text={site.name} />
-            </h1>
-            <p className="lede">{site.tagline}</p>
-            <div className="actions">
-              <Link to="/list#spread" className="btn">
-                Explore My Work
-              </Link>
-              <a className="btn btn--ghost" href={site.resume} target="_blank" rel="noreferrer">
-                View Resume
-                <span className="sr-only">(opens PDF in a new tab)</span>
-              </a>
-              <Link to="/list#contact" className="btn btn--ghost">
-                Contact Me
-              </Link>
+          <div className="hero__top">
+            <div className="hero__head intro">
+              <p className="eyebrow">
+                Your hand{SEP}{site.schoolShort}{SEP}{site.major}{SEP}{site.focus}
+              </p>
+              <h1 id="l-hand" className="display hero__title">
+                <SplitText text={site.name} />
+              </h1>
+              <p className="lede">{site.tagline}</p>
+              <div className="actions">
+                <Link to="/list#spread" className="btn">
+                  Explore My Work
+                </Link>
+                <a className="btn btn--ghost" href={site.resume} target="_blank" rel="noreferrer">
+                  View Resume
+                  <span className="sr-only">(opens PDF in a new tab)</span>
+                </a>
+                <Link to="/list#contact" className="btn btn--ghost">
+                  Contact Me
+                </Link>
+              </div>
+              <p className="hero__seeking mono mono--sm">
+                <span className="hero__seeking-lead">Seeking {site.seeking}</span> in{' '}
+                <span className="hero__seeking-focus">{site.interests.lead}</span>, {site.interests.rest}
+              </p>
             </div>
-            <p className="hero__seeking mono mono--sm">
-              <span className="hero__seeking-lead">Seeking {site.seeking}</span> in{' '}
-              <span className="hero__seeking-focus">{site.interests.lead}</span>, {site.interests.rest}
-            </p>
+            <HeroPhoto />
           </div>
 
           <div className="list__hand">

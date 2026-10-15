@@ -20,6 +20,14 @@ export const site = {
   /** Slug of the role in `experience` shown as "Currently @" beside the name in the nav. */
   currently: 'replit',
   interests,
+  /** The one photo on the site: beside the name in the hero, in both views. */
+  photo: {
+    src: '/grainger-bob.jpg',
+    width: 720,
+    height: 960,
+    alt: 'Bhanu sitting on a ledge beside the Grainger Bob statue, a bronze student reading a book, against a brick wall at night.',
+    caption: "Here's me & Grainger Bob, my first night on campus.",
+  },
   tagline:
     "I turn ideas into products and research into decisions. I'm studying Computer Science + Economics at the University of Illinois Urbana-Champaign, with a focus on product management and building useful software.",
   about: [

@@ -1,6 +1,7 @@
 import { HandBack } from '../components/Backs'
 import { Card } from '../components/Card'
 import { CardRow } from '../components/CardRow'
+import { HeroPhoto } from '../components/HeroPhoto'
 import { hand, HAND_SUITS, site } from '../data'
 import { Link } from '../lib/router'
 import { SplitText } from '../components/SplitText'
@@ -14,30 +15,33 @@ export function Hand() {
   return (
     <section id="hand" className="hero" aria-labelledby="hand-title">
       <div className="container">
-        <div className="hero__head intro">
-          <p className="eyebrow">
-            Your hand{SEP}{site.schoolShort}{SEP}{site.major}{SEP}{site.focus}
-          </p>
-          <h1 id="hand-title" className="display hero__title">
-            <SplitText text={site.name} />
-          </h1>
-          <p className="lede">{site.tagline}</p>
-          <div className="actions">
-            <Link to="/#spread" className="btn">
-              Explore My Work
-            </Link>
-            <a className="btn btn--ghost" href={site.resume} target="_blank" rel="noreferrer">
-              View Resume
-              <span className="sr-only">(opens PDF in a new tab)</span>
-            </a>
-            <Link to="/#contact" className="btn btn--ghost">
-              Contact Me
-            </Link>
+        <div className="hero__top">
+          <div className="hero__head intro">
+            <p className="eyebrow">
+              Your hand{SEP}{site.schoolShort}{SEP}{site.major}{SEP}{site.focus}
+            </p>
+            <h1 id="hand-title" className="display hero__title">
+              <SplitText text={site.name} />
+            </h1>
+            <p className="lede">{site.tagline}</p>
+            <div className="actions">
+              <Link to="/#spread" className="btn">
+                Explore My Work
+              </Link>
+              <a className="btn btn--ghost" href={site.resume} target="_blank" rel="noreferrer">
+                View Resume
+                <span className="sr-only">(opens PDF in a new tab)</span>
+              </a>
+              <Link to="/#contact" className="btn btn--ghost">
+                Contact Me
+              </Link>
+            </div>
+            <p className="hero__seeking mono mono--sm">
+              <span className="hero__seeking-lead">Seeking {site.seeking}</span> in{' '}
+              <span className="hero__seeking-focus">{site.interests.lead}</span>, {site.interests.rest}
+            </p>
           </div>
-          <p className="hero__seeking mono mono--sm">
-            <span className="hero__seeking-lead">Seeking {site.seeking}</span> in{' '}
-            <span className="hero__seeking-focus">{site.interests.lead}</span>, {site.interests.rest}
-          </p>
+          <HeroPhoto />
         </div>
 
         <CardRow ids={hand.map((h) => h.slug)} layout="fan" className="hero__fan" ariaLabel="Top highlights">

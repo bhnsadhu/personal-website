@@ -47,8 +47,8 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   721 to 1149 a closed row of four or more wraps (three per line, two for
   exactly four), and from 721 to 1023 the hero fan tightens, so nothing
   crushes or scrolls sideways on a tablet or small laptop.
-- `src/sections/` — Hand (hero: intro, actions, seeking line, four
-  aces), Spread (experience), FaceCards (leadership, dealt three to a suit
+- `src/sections/` — Hand (hero: intro, actions, seeking line, and
+  beside them `HeroPhoto`, then four aces), Spread (experience), FaceCards (leadership, dealt three to a suit
   in one row per suit: K/Q/J spades, then clubs), Fan (projects;
   `status: 'idea'` renders face down and shows a toast), ChipsSection
   (skills plus certifications), Flop (personal: flop and turn, four cards),
@@ -140,7 +140,11 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
 - Team results belong to the team. Ongoing work is present tense; proposed
   or idea-stage things (AviLux pilot, the AI learnathon, the
   apartment-chores product) are never described as launched.
-- No GPA, grades, honors, photos, ratings, or invented metrics and dates.
+- No GPA, grades, honors, ratings, or invented metrics and dates. One
+  photo only: `site.photo` (`public/grainger-bob.jpg`, metadata
+  stripped), rendered by `src/components/HeroPhoto.tsx` beside the name
+  in both heroes as a cream print with its caption in the bottom margin;
+  under the intro on phones.
 - No class year and no graduation date, expected or otherwise. Education
   shows the start date only (`Aug 2025 — Present`).
   "As of" and "last updated" dates are static strings, never the clock.
