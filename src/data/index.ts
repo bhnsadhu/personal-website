@@ -11,7 +11,7 @@ export { skills } from './skills'
 export { certifications } from './certifications'
 export { personal, personalExtras, personalIntro } from './personal'
 export { sectionHeads, sectionNotes, type SectionKey } from './sections'
-export { metrics } from './metrics'
+export { metrics, CAMBIO_PLAYERS_FALLBACK } from './metrics'
 
 /** Experience ranks: Ace first, then 10 downward. Face cards are reserved for leadership. */
 export const SPREAD_RANKS: Rank[] = ['A', '10', '9', '8', '7', '6', '5', '4', '3', '2']

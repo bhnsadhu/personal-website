@@ -1,4 +1,5 @@
-import { FAN_RANKS, findBySlug, projects, rankAt } from '../data'
+import { CAMBIO_PLAYERS_FALLBACK, FAN_RANKS, findBySlug, projects, rankAt } from '../data'
+import { useCambioPlayers } from '../lib/cambioPlayers'
 import { useParams } from '../lib/router'
 import { SEP } from '../lib/sep'
 import { useTitle } from '../lib/useTitle'
@@ -10,6 +11,7 @@ export function ProjectDetail() {
   const { slug } = useParams()
   const item = findBySlug(projects, slug)
   useTitle(item ? item.title : 'Not in the deck')
+  const players = useCambioPlayers(CAMBIO_PLAYERS_FALLBACK)
   // Ideas are face down: no page to show.
   if (!item || item.status === 'idea') return <NotFound />
   const i = projects.indexOf(item)
@@ -60,7 +62,7 @@ export function ProjectDetail() {
       )}
       {item.usage && (
         <PlateSection label="Who uses it">
-          <p className="plate__p">{item.usage}</p>
+          <p className="plate__p">{item.usage.replace('{cambioPlayers}', String(players))}</p>
         </PlateSection>
       )}
       {item.features && (

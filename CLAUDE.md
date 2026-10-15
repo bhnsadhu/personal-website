@@ -114,6 +114,15 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   address as `reply_to`. Any sender must sit on a domain verified in
   Resend. Secrets live in `.env`, which is gitignored; `.env.example`
   documents the keys.
+- `api/cambio-players.ts` — Vercel Function. Asks Cambio's public
+  `/api/stats` route for its player count and passes on only that integer
+  (anything else is a 502), cached at the CDN for 60 seconds. The stats band's
+  Cambio figure and the Cambio project's "Who uses it" line read it through
+  `src/lib/cambioPlayers.ts` (one request per page load). Before it answers,
+  or if it never does (local `npm run dev` has no `/api`), they show
+  `CAMBIO_PLAYERS_FALLBACK` in `src/data/metrics.ts`. That number is only a
+  fallback: keep it near the real count, never rely on it. The project's
+  `usage` text holds a `{cambioPlayers}` placeholder, not a number.
 - `public/Bhanu_Sadhu_Resume.pdf` — the resume every "Resume" link opens in
   a new tab. Not in the repo until the real file is dropped in.
   `og.png` is the social preview, 1200x630; index.html points `og:image`

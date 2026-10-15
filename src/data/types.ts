@@ -123,4 +123,6 @@ export interface PersonalCard extends CardContent {
 export interface Metric {
   value: string
   label: string
+  /** Shown live: the figure is replaced by Cambio's current player count, and `value` is the fallback. */
+  live?: 'cambioPlayers'
 }

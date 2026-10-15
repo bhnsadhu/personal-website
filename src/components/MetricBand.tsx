@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import type { Metric } from '../data'
+import { CAMBIO_PLAYERS_FALLBACK, type Metric } from '../data'
+import { useCambioPlayers } from '../lib/cambioPlayers'
 import { useReducedMotion } from '../lib/useReducedMotion'
 
 /**
@@ -41,7 +42,10 @@ function CountUp({ value }: { value: string }) {
   }, [animate, target])
 
   if (!m) return <>{value}</>
-  const shown = m[2].includes(',') ? n.toLocaleString('en-US') : String(n)
+  // Without motion the count is simply its target, so a live figure that
+  // arrives late replaces the built-in one instead of staying behind.
+  const current = animate ? n : target
+  const shown = m[2].includes(',') ? current.toLocaleString('en-US') : String(current)
   return (
     <>
       <span ref={ref} aria-hidden="true">
@@ -56,6 +60,7 @@ function CountUp({ value }: { value: string }) {
 
 /** A thin stat strip. Deliberately not cards. Figures stay separate; never summed. */
 export function MetricBand({ metrics, label, note }: { metrics: Metric[]; label: string; note?: string }) {
+  const players = useCambioPlayers(CAMBIO_PLAYERS_FALLBACK)
   return (
     <section className="band" aria-label={label}>
       <div className="container">
@@ -63,7 +68,7 @@ export function MetricBand({ metrics, label, note }: { metrics: Metric[]; label:
           {metrics.map((m) => (
             <div className="band__item" key={m.label}>
               <dd className="band__value">
-                <CountUp value={m.value} />
+                <CountUp value={m.live === 'cambioPlayers' ? String(players) : m.value} />
               </dd>
               <dt className="band__label mono mono--sm">{m.label}</dt>
             </div>
