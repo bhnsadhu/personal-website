@@ -5,7 +5,7 @@
 }
 
 .plate__back {
-  color: var(--cream);
+  color: var(--fg);
   margin-bottom: 24px;
 }
 
@@ -111,7 +111,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 16px;
-  color: var(--cream);
+  color: var(--fg);
 }
 
 /* Client names run long. These links wrap inside the column instead of
@@ -238,7 +238,7 @@
 }
 
 .list__rail-link .suit--black {
-  color: var(--cream-3);
+  color: var(--fg-3);
 }
 
 .list__rail-link .suit--red {
@@ -268,7 +268,7 @@
 
 .list__rail-link:hover,
 .list__rail-link.is-active {
-  color: var(--cream);
+  color: var(--fg);
 }
 
 .list__rail-link:hover .list__rail-title,
@@ -315,7 +315,7 @@
 }
 
 .ix__all:hover {
-  color: var(--cream);
+  color: var(--fg);
 }
 
 .ix {
@@ -363,7 +363,7 @@
   font-weight: 600;
   font-size: 15px;
   line-height: 1;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset, 0 4px 10px rgba(0, 0, 0, 0.35);
+  box-shadow: var(--pip-shadow);
   transition: transform var(--fast) var(--ease);
 }
 
@@ -497,7 +497,7 @@
   display: grid;
   gap: 14px;
   padding: 4px 52px 28px 72px;
-  color: var(--cream-2);
+  color: var(--fg-2);
   font-size: 16px;
   line-height: 1.6;
   opacity: 0;
@@ -516,7 +516,7 @@
 .ix__back .card__summary {
   font-style: italic;
   font-size: 17px;
-  color: var(--cream);
+  color: var(--fg);
 }
 
 .ix__back .card__context,
@@ -537,7 +537,7 @@
 }
 
 .ix__back .entry__name {
-  color: var(--cream);
+  color: var(--fg);
 }
 
 .ix__back .card__extlink,
@@ -610,11 +610,11 @@
   display: grid;
   place-items: center;
   font-size: 18px;
-  color: var(--cream-3);
+  color: var(--fg-3);
 }
 
 .list__skill-pip .suit--black {
-  color: var(--cream-3);
+  color: var(--fg-3);
 }
 
 .list__skill-label {

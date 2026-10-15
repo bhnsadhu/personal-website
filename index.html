@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#100E0C" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="color-scheme" content="dark light" />
     <meta name="description" content="Bhanu Sadhu studies Computer Science + Economics at the University of Illinois Urbana-Champaign and builds products across software, digital health, and AI. Explore his projects, experience, and interests." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://bhanusadhu.com/" />
@@ -39,6 +39,18 @@
             document.documentElement.setAttribute('data-intro', 'play');
           }
         } catch (e) {}
+      })();
+      // The theme: dark unless the visitor chose light with the nav's sun.
+      // Set before first paint so the page never flashes the other one.
+      (function () {
+        var theme = 'dark';
+        try {
+          if (localStorage.getItem('theme') === 'light') theme = 'light';
+        } catch (e) {}
+        document.documentElement.setAttribute('data-theme', theme);
+        if (theme === 'light') {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#F5F0E8');
+        }
       })();
     </script>
   </head>

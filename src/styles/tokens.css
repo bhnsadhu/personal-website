@@ -1,12 +1,21 @@
 /* ------------------------------------------------------------------
    Tokens. Desaturated editorial casino: near-black, cream stock,
-   wine, brass, warm gray. Dark is the only mode.
+   wine, brass, warm gray. Dark by default; light is the same table in
+   daylight, chosen with the nav's sun/moon button.
+
+   Page text is `--fg`; `--cream` is card stock. They match in dark and
+   part in light, where the page turns to paper and the cards lift off it.
    ------------------------------------------------------------------ */
 :root {
+  color-scheme: dark;
+
   --bg: #100e0c;
   --bg-2: #171411;
   --bg-3: #1f1b17;
   --line: #2b2622;
+  --fg: #f3ede2;
+  --fg-2: #e6ddcd;
+  --fg-3: #d6cbb7;
   --cream: #f3ede2;
   --cream-2: #e6ddcd;
   --cream-3: #d6cbb7;
@@ -17,9 +26,17 @@
   --wine-text: #d1706c;
   --brass: #b08d57;
   --brass-2: #cfae78;
+  /* Brass behind ink: buttons and chips. Same in both themes. */
+  --brass-fill: #b08d57;
+  --brass-fill-2: #cfae78;
   --gray: #9a9287;
   /* Live status only: the dot beside "Live" and "Live Demo". */
   --live: #3fae6a;
+  /* The glint that crosses a section title's accent word. */
+  --shine: #fff4dc;
+
+  --nav-bg: rgba(16, 14, 12, 0.86);
+  --scrim: rgba(10, 8, 6, 0.6);
 
   --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
   --mono: 'IBM Plex Mono', 'SF Mono', Menlo, Consolas, monospace;
@@ -32,10 +49,54 @@
   --card-radius: 12px;
   --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 12px 30px rgba(0, 0, 0, 0.45);
   --card-shadow-hover: 0 1px 0 rgba(255, 255, 255, 0.08) inset, 0 22px 44px rgba(0, 0, 0, 0.55), 0 0 0 1px var(--brass);
+  --panel-shadow: inset 0 1px 0 rgba(243, 237, 226, 0.06), 0 12px 30px rgba(0, 0, 0, 0.35);
+  --pop-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+  --pip-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset, 0 4px 10px rgba(0, 0, 0, 0.35);
+  --chip-shadow: 0 3px 0 rgba(0, 0, 0, 0.55), 0 1px 0 rgba(255, 255, 255, 0.12) inset;
 
   --container: 1240px;
   --gutter: 32px;
   --nav-h: 72px;
+}
+
+/* Light: warm paper, ink type, brass darkened a step so it still reads
+   as text. Every pairing holds 4.5:1 or better. */
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --bg: #f5f0e8;
+  --bg-2: #ece5d9;
+  --bg-3: #e3dbcd;
+  --line: #d9cfbf;
+  --fg: #1a1714;
+  --fg-2: #3a342d;
+  --fg-3: #5c554c;
+  --cream: #fffcf6;
+  --cream-2: #f3ede2;
+  --cream-3: #e3d9c8;
+  --wine-text: #9c3b38;
+  --brass: #7d5f2c;
+  --brass-2: #6e5224;
+  --brass-fill-2: #c4a26c;
+  --gray: #665d52;
+  --shine: #d9b97f;
+
+  --nav-bg: rgba(245, 240, 232, 0.86);
+  --scrim: rgba(40, 30, 18, 0.35);
+
+  --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 1px 2px rgba(60, 42, 20, 0.1), 0 12px 28px rgba(60, 42, 20, 0.16);
+  --card-shadow-hover: 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 22px 44px rgba(60, 42, 20, 0.22), 0 0 0 1px var(--brass);
+  --panel-shadow: 0 1px 2px rgba(60, 42, 20, 0.06), 0 12px 30px rgba(60, 42, 20, 0.1);
+  --pop-shadow: 0 24px 60px rgba(60, 42, 20, 0.25);
+  --pip-shadow: 0 1px 2px rgba(60, 42, 20, 0.15), 0 3px 8px rgba(60, 42, 20, 0.12);
+  --chip-shadow: 0 3px 0 rgba(60, 42, 20, 0.45), 0 1px 0 rgba(255, 255, 255, 0.25) inset;
+}
+
+/* A face-down card keeps its dark back in daylight, like a real deck. */
+:root[data-theme='light'] :is(.card.is-down .card__front, .opening__card, .opening__back) {
+  --bg-2: #171411;
+  --brass: #b08d57;
+  --brass-2: #cfae78;
 }
 
 @media (max-width: 720px) {

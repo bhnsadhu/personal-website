@@ -1,7 +1,9 @@
 import { useEffect, useRef } from 'react'
 import { Link, usePath } from '../lib/router'
 import { useScrollSpy } from '../lib/useScrollSpy'
+import { setTheme, useTheme } from '../lib/theme'
 import { experience, site, type Suit } from '../data'
+import { MoonIcon, SunIcon } from './Icons'
 import { LiveDot } from './LiveDot'
 import { SUIT_GLYPH } from './Suit'
 
@@ -27,6 +29,8 @@ export function Nav() {
   const path = usePath()
   const onList = path === '/list'
   const current = experience.find((e) => e.slug === site.currently)
+  const theme = useTheme()
+  const next = theme === 'dark' ? 'light' : 'dark'
   const active = useScrollSpy(
     SUIT_NAV.map((s) => s.anchor),
     path,
@@ -97,6 +101,15 @@ export function Nav() {
             Resume
             <span className="sr-only">(opens PDF in a new tab)</span>
           </a>
+          <button
+            type="button"
+            className="btn btn--ghost nav__theme"
+            aria-label={`Switch to ${next} theme`}
+            title={`Switch to ${next} theme`}
+            onClick={() => setTheme(next)}
+          >
+            {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+          </button>
         </div>
       </div>
       <span ref={barRef} className="nav__progress" aria-hidden="true" />

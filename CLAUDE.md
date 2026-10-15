@@ -153,7 +153,21 @@ cream), wine-text `#D1706C` (small text on dark), brass `#B08D57` /
 `#CFAE78` (accents on dark only; brass fails contrast on cream), gray
 `#9A9287` (secondary on dark, 6.3:1 on bg), ink-2 `#5C554C` (secondary on
 cream).
-Dark is the only mode. No full-width divider rules on the dark page.
+Dark by default, with a light theme ("the same table in daylight") behind
+the nav's round sun/moon button, the last thing in the nav, top right.
+`src/lib/theme.ts` sets `data-theme` on `<html>`, saves it to
+`localStorage` `theme`, and updates `theme-color`; the inline script in
+`index.html` applies it before first paint, so nothing flashes. Dark
+unless the visitor chose light; no system-preference switch. Every color
+comes from `tokens.css`: page text is `--fg`/`--fg-2`/`--fg-3`, card stock
+is `--cream`/`--cream-2`/`--cream-3` (they match in dark and part in
+light, where the cards turn brighter than the paper). `--brass-fill` is
+brass behind ink (buttons, chips), the same in both themes; `--brass` and
+`--brass-2` darken in light so brass text holds 4.5:1. Shadows, the nav
+glass, and the scrim are tokens too. Face-down cards and the opening deal's
+deck keep their dark backs in light. Never hardcode a page color outside
+`tokens.css`.
+No full-width divider rules on the page.
 Sections, in both views, are parted by an ornament: the next section's
 suit centered, with a brass rule running out to both edges of the content
 and fading at the ends (`data-suit`, `.section + .section::before` in
@@ -198,7 +212,8 @@ The fan (projects) · The chips (skills) · The flop (personal) · Let's talk
 (contact). Buttons and links: "Explore My Work", "View Resume", "Contact
 Me" (hero), "Resume" (nav, footer), "Send Message" (submit), "Back to the
 hand", "View experience", "Explore the project", "List view" / "Card view", "Live Demo",
-"Repository" (a project's code), "GitHub" (his own profile: footer, contact, search), "View Credential", "Search", "Back to top" (aria), "Currently @ …". The
+"Repository" (a project's code), "GitHub" (his own profile: footer, contact, search), "View Credential", "Search", "Back to top" (aria), "Switch to light theme" / "Switch to dark theme"
+(aria and title on the sun/moon), "Currently @ …". The
 search placeholder is "Search the deck…" and an empty search reads "Not in
 the deck: “…”". Face-down cards say "Not dealt yet". 404 is
 "Not in the deck". Footer sign-off: "Shuffled, not stirred."

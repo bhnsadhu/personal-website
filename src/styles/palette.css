@@ -13,7 +13,7 @@
   border: 1px solid var(--line);
   border-radius: 999px;
   background: var(--bg-3);
-  color: var(--cream);
+  color: var(--fg);
   box-shadow: var(--card-shadow);
   transition:
     transform var(--fast) var(--ease),
@@ -106,13 +106,13 @@
   border: 1px solid var(--line);
   border-radius: 14px;
   background: var(--bg-2);
-  color: var(--cream);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+  color: var(--fg);
+  box-shadow: var(--pop-shadow);
   overflow: hidden;
 }
 
 .palette::backdrop {
-  background: rgba(10, 8, 6, 0.6);
+  background: var(--scrim);
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
 }
@@ -144,7 +144,7 @@
   background: transparent;
   font-family: var(--serif);
   font-size: 18px;
-  color: var(--cream);
+  color: var(--fg);
 }
 
 .palette__input::placeholder {
@@ -181,7 +181,7 @@
   border-radius: 999px;
   font-family: var(--mono);
   font-size: 11px;
-  color: var(--cream-2);
+  color: var(--fg-2);
   transition: border-color var(--fast) var(--ease);
 }
 
@@ -228,7 +228,7 @@
   font-size: 16px;
   line-height: 1;
   text-align: center;
-  color: var(--cream);
+  color: var(--fg);
 }
 
 .palette__mark--red {
