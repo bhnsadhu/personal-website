@@ -204,8 +204,9 @@ first and last on the content edges); list rows by space, with a soft
 (centred, and the same under the rows in the list view), set like the hero's
 seeking line, label in brass and interests in cream; the list rail by a track that fades at both ends; the nav keeps
 its plain hairline, with the brass scroll-progress line riding on it and
-his chip rolling at its head, hung from the line so it never touches the
-nav's suits or the active dot (`ChipMark` in Nav.tsx: the favicon's brass B
+his chip rolling at its head, centred on the line; `--nav-h` is tall
+enough that it never touches the nav's suits or the active dot
+(`ChipMark` in Nav.tsx: the favicon's brass B
 on an ink chip with brass edge inlays, turning as far as it travels; drag it left or right and the page scrolls
 to match).
 `favicon.svg` is the same chip. Rules

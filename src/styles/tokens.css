@@ -56,7 +56,9 @@
 
   --container: 1240px;
   --gutter: 32px;
-  --nav-h: 72px;
+  /* Tall enough that the chip, centred on the nav's foot line, clears the
+     lowest thing in the nav (the active suit's dot) with room to spare. */
+  --nav-h: 84px;
 }
 
 /* Light: warm paper, ink type, brass darkened a step so it still reads
@@ -102,6 +104,6 @@
 @media (max-width: 720px) {
   :root {
     --gutter: 18px;
-    --nav-h: 60px;
+    --nav-h: 68px;
   }
 }
