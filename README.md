@@ -2,52 +2,56 @@
 
 [![Your Hand: Bhanu Sadhu, dealt in.](public/og.png)](https://bhanusadhu.com)
 
-A poker-themed portfolio. Every section is a deck of cards, and the one you open fills the row while the rest slide back.
+My experience, projects, and interests, dealt as interactive cards. Check it out!
 
-**Live: [bhanusadhu.com](https://bhanusadhu.com)**
-
----
-
-## About
-
-The portfolio of **Bhanu Sadhu**, a Computer Science + Economics student at the University of Illinois Urbana-Champaign, with minors in Statistics and Advertising.
-
-Currently recruiting for **Summer 2027 internships** in **Product**, Software, & Strategy.
-
-For recruiters and hiring managers, the [live site](https://bhanusadhu.com) is the fastest way to explore my experience, projects, and leadership. The resume is one click from the top of the page.
-
-| Find me | Link |
-| --- | --- |
-| Portfolio | [bhanusadhu.com](https://bhanusadhu.com) |
-| Email | [sadhubhanu07@gmail.com](mailto:sadhubhanu07@gmail.com) |
-| LinkedIn | [linkedin.com/in/bhanusadhu](https://www.linkedin.com/in/bhanusadhu) |
+**Live: [bhanusadhu.com](https://bhanusadhu.com)** · [Resume](https://bhanusadhu.com/Bhanu_Sadhu_Resume.pdf) · [LinkedIn](https://www.linkedin.com/in/bhanusadhu) · [Email](mailto:sadhubhanu07@gmail.com)
 
 ---
 
-## The Concept
+## Hi, I'm Bhanu
 
-A resume is a hand you're dealt and how you play it. So the whole site is a deck.
+A Computer Science + Economics student at the University of Illinois Urbana-Champaign, with minors in Statistics and Advertising. I build products and then try to break them.
+
+**Recruiting for Summer 2027 internships in Product, Software, & Strategy.**
+
+---
+
+## Recruiters: a 60-second tour
+
+No install, no login. Open the [live site](https://bhanusadhu.com) and:
+
+1. **Start at the top.** The four aces are my strongest work, each linking to its full entry.
+2. **Want it fast?** Hit **List view** for the same content laid flat, easy to skim.
+3. **Looking for something specific?** Press **⌘K** (or **/**) and search any role, project, skill, or credential.
+4. **Need the resume?** **View Resume** is in the hero and the nav.
+5. **Want to reach me?** The last section is a contact form that emails me directly.
 
 | Section | On the site | What's in it |
 | --- | --- | --- |
-| Hero | **Your hand** | Introduction, what I'm seeking, and four aces linking to fuller entries |
+| Hero | **Your hand** | Who I am, what I'm seeking, and four aces linking to fuller entries |
 | Experience | **The spread** | Roles laid out as a row of cards |
 | Leadership | **The face cards** | Kings, queens, and jacks, dealt three to a suit |
-| Projects | **The fan** | Fanned cards, with unbuilt ideas face down as “Not dealt yet” |
+| Projects | **The fan** | Things I've built, with unbuilt ideas face down as “Not dealt yet” |
 | Skills + certifications | **The chips** | Chip stacks with the real count beside each |
 | Personal | **The flop** | Four cards covering interests |
 | Contact | **Let's talk** | The contact form |
 
-The hero also carries a Polaroid-style photo beside the name, and a “Currently @” pill in the nav links to the current role.
+A resume is a hand you're dealt and how you play it, so the whole site is a deck. Each experience and project also has its own shareable page at `/experience/:slug` or `/projects/:slug`.
 
-Missing pages get “Not in the deck.” The footer says “Shuffled, not stirred.”
+---
+
+## What the build shows
+
+The site is also a project, built end to end by me: design, front end, and a small backend, deployed on Vercel.
+
+- **Product sense:** one content source feeds the card view, the list view, search, and the sitemap, so nothing drifts between them.
+- **Craft:** custom design system with a dark and a light theme, an opening deal animation, keyboard and screen-reader support, and reduced-motion fallbacks.
+- **Engineering:** React 19 + TypeScript with a custom router and only two runtime dependencies. Two Vercel Functions: a contact form that validates, filters bots, and sends mail through Resend, and a live player count for Cambio.
 
 ---
 
 ## Highlights
 
-| Feature | What it does |
-| --- | --- |
 | **Interactive cards** | Click a card to flip it open, fill its row, and slide neighboring cards into slivers. Escape closes it. |
 | **Two ways to browse** | Switch between the card layout and a flat `/list` view of the same content, plus Education. Navigation follows the active view. |
 | **Shareable detail pages** | Each experience and project has its own URL at `/experience/:slug` or `/projects/:slug`. |
