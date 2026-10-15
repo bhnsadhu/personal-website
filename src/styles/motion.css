@@ -61,7 +61,9 @@
 }
 
 /* Scroll progress: a brass hairline along the foot of the nav, with his
-   chip rolling at its head. Nav.tsx sets --x (how far the chip has
+   chip rolling at its head, hung from the line: its top edge rides the
+   line and the chip sits below it, so it never reaches into the nav or
+   touches a suit, its highlight, or the dot under the active one. Nav.tsx sets --x (how far the chip has
    travelled), --fill (the line, up to the chip's centre), and --roll (the
    turn that distance gives a chip of this size), so everything here is a
    transform and nothing lays out on scroll. */
@@ -86,10 +88,13 @@
 .nav__chip {
   position: absolute;
   left: 0;
-  top: 50%;
+  top: 0;
   width: var(--chip);
   height: var(--chip);
-  transform: translate3d(var(--x, 0px), -50%, 0);
+  transform: translate3d(var(--x, 0px), 0, 0);
+  transform-origin: 50% 0;
+  scale: 1;
+  transition: scale var(--fast) var(--ease);
   will-change: transform;
   pointer-events: auto;
   cursor: grab;
@@ -98,21 +103,28 @@
   -webkit-user-select: none;
 }
 
-/* A wider ring to catch the pointer than the chip itself. */
+/* A wider area to catch the pointer than the chip itself, on every side
+   but the top, so it never sits over the nav's links. */
 .nav__chip::before {
   content: '';
   position: absolute;
-  inset: -9px;
-  border-radius: 50%;
+  inset: 0 -9px -9px;
+  border-radius: 0 0 50% 50%;
 }
 
 .nav__progress.is-dragging .nav__chip {
   cursor: grabbing;
 }
 
-/* The face turns; the holder above only travels. Picked up, it lifts a
-   little, on its own scale property so the lift can ease while the roll
-   stays locked to the scroll. */
+/* Picked up, the chip grows a little, from its top edge down, so it still
+   hangs from the line. Its own scale property, so the growth can ease
+   while the travel stays locked to the scroll. */
+.nav__chip:hover,
+.nav__progress.is-dragging .nav__chip {
+  scale: 1.18;
+}
+
+/* The face turns; the holder above only travels. */
 .nav__chip-face {
   display: block;
   width: 100%;
@@ -120,13 +132,6 @@
   border-radius: 50%;
   box-shadow: var(--pip-shadow);
   transform: rotate(var(--roll, 0deg));
-  scale: 1;
-  transition: scale var(--fast) var(--ease);
-}
-
-.nav__chip:hover .nav__chip-face,
-.nav__progress.is-dragging .nav__chip-face {
-  scale: 1.18;
 }
 
 .nav__chip-body {
