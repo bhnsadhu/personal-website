@@ -84,19 +84,24 @@
   gap: 4px;
 }
 
+/* Each box hugs its own word with the same padding, so the space between
+   any two labels is the same. The padding is uneven on purpose: the suit
+   glyph sits low in its line and the label high in its own, and these
+   numbers put the visible suit-and-label exactly midway between the top
+   and bottom of the box (measured from the rendered pixels). */
 .nav__suit {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 3px;
-  width: 80px;
-  padding: 7px 0 6px;
+  padding: 4.5px 14px 8.5px;
   border-radius: 8px;
   font-family: var(--serif);
   font-size: 22px;
   line-height: 1;
   transition:
     background var(--fast) var(--ease),
+    box-shadow var(--fast) var(--ease),
     transform var(--fast) var(--ease);
 }
 
@@ -119,7 +124,18 @@
 .nav__suit-label {
   font-size: 10px;
   letter-spacing: 0.1em;
+  /* Cancels the tracking after the last letter, so the word's ink, not its
+     box, is centred under the suit. */
+  margin-right: -0.1em;
   color: var(--gray);
+}
+
+/* Narrower boxes, so the suits still fit the middle column and stay on the
+   page's centre line down to where the labels drop away. */
+@media (max-width: 1149px) {
+  .nav__suit {
+    padding-inline: 10px;
+  }
 }
 
 .nav__end {
@@ -150,9 +166,10 @@
   .nav__suit-label {
     display: none;
   }
+  /* Suits alone: each box hugs its glyph with the same padding, the glyph
+     lifted to sit midway (it rides low in its line). */
   .nav__suit {
-    width: 40px;
-    padding: 6px 0;
+    padding: 4.5px 14px 7.5px;
   }
   .nav__resume {
     display: none;
@@ -172,7 +189,7 @@
     gap: 0;
   }
   .nav__suit {
-    width: 32px;
+    padding: 5px 10px 7px;
     font-size: 19px;
   }
   .nav__toggle {
@@ -194,7 +211,7 @@
     font-size: 16px;
   }
   .nav__suit {
-    width: 28px;
+    padding-inline: 8px;
     font-size: 18px;
   }
   .nav__toggle {

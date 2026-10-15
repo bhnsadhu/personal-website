@@ -68,6 +68,10 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   the tokens and re-read when `data-theme` changes. Decorative only:
   `aria-hidden`, 30fps, paused off screen and in a hidden tab, one still
   frame under reduced motion.
+- The nav's suits: each box hugs its word (or, below 901px, its glyph)
+  with the same padding, so the gaps between labels are equal, and the
+  suit and label sit exactly midway in the box (measured from pixels).
+  The section in view is lit with a faint brass edge; no dot.
 - The nav's "Currently @" pill names the role whose slug is `site.currently`
   and links to its page. Hidden at 1149px and below.
 - `src/components/Chips.tsx` — a chip stack is a rough indicator, not a
@@ -205,7 +209,7 @@ first and last on the content edges); list rows by space, with a soft
 seeking line, label in brass and interests in cream; the list rail by a track that fades at both ends; the nav keeps
 its plain hairline, with the brass scroll-progress line riding on it and
 his chip rolling at its head, centred on the line; `--nav-h` is tall
-enough that it never touches the nav's suits or the active dot
+enough that it never touches the nav's suits
 (`ChipMark` in Nav.tsx: the favicon's brass B
 on an ink chip with brass edge inlays, turning as far as it travels; drag it left or right and the page scrolls
 to match).
