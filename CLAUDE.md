@@ -61,6 +61,13 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   through `src/lib/deal.ts` (CardRow claims the request, then scrolls the card
   under the nav) and just scroll to the section in the list view.
   `BackToTop.tsx` is the bottom-right arrow, shown after one screen of scroll.
+- `src/components/Felt.tsx` — the felt: a canvas strip closing the footer
+  on every page, a slow swell of IBM Plex Mono characters in noise patches
+  with suits riding the crest (wine for red, `--fg` for black), brass
+  highlights, and a ripple that follows the cursor. Colors are read from
+  the tokens and re-read when `data-theme` changes. Decorative only:
+  `aria-hidden`, 30fps, paused off screen and in a hidden tab, one still
+  frame under reduced motion.
 - The nav's "Currently @" pill names the role whose slug is `site.currently`
   and links to its page. Hidden at 1149px and below.
 - `src/components/Chips.tsx` — a chip stack is a rough indicator, not a
@@ -205,7 +212,7 @@ hover, card tilt with glare, scroll reveals (`.reveal` for one element,
 `.reveal-group` for staggered children, marked with `data-in` rather than
 a class so React's className updates cannot undo them), rows of cards dealt in on
 scroll, count-up stats, chips dropping onto stacks, the nav's progress
-line and active suit. Anything hidden before it reveals needs both
+line and active suit, and the felt's swell (`Felt.tsx`). Anything hidden before it reveals needs both
 `html.js` and `prefers-reduced-motion: no-preference`, so it can never
 stay invisible.
 

@@ -1,4 +1,5 @@
 import { site } from '../data'
+import { Felt } from './Felt'
 import { SEP } from '../lib/sep'
 import { FileIcon, GitHubIcon, LinkedInIcon, MailIcon } from './Icons'
 import { SUIT_GLYPH } from './Suit'
@@ -38,6 +39,7 @@ export function Footer() {
         </p>
         <p className="footer__note mono mono--sm">Content last updated {site.updated}</p>
       </div>
+      <Felt />
     </footer>
   )
 }
