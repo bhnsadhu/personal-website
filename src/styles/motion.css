@@ -89,10 +89,44 @@
   top: 50%;
   width: var(--chip);
   height: var(--chip);
+  transform: translate3d(var(--x, 0px), -50%, 0);
+  will-change: transform;
+  pointer-events: auto;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* A wider ring to catch the pointer than the chip itself. */
+.nav__chip::before {
+  content: '';
+  position: absolute;
+  inset: -9px;
+  border-radius: 50%;
+}
+
+.nav__progress.is-dragging .nav__chip {
+  cursor: grabbing;
+}
+
+/* The face turns; the holder above only travels. Picked up, it lifts a
+   little, on its own scale property so the lift can ease while the roll
+   stays locked to the scroll. */
+.nav__chip-face {
+  display: block;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   box-shadow: var(--pip-shadow);
-  transform: translate3d(var(--x, 0px), -50%, 0) rotate(var(--roll, 0deg));
-  will-change: transform;
+  transform: rotate(var(--roll, 0deg));
+  scale: 1;
+  transition: scale var(--fast) var(--ease);
+}
+
+.nav__chip:hover .nav__chip-face,
+.nav__progress.is-dragging .nav__chip-face {
+  scale: 1.18;
 }
 
 .nav__chip-body {

@@ -205,7 +205,8 @@ first and last on the content edges); list rows by space, with a soft
 seeking line, label in brass and interests in cream; the list rail by a track that fades at both ends; the nav keeps
 its plain hairline, with the brass scroll-progress line riding on it and
 his chip rolling at its head (`ChipMark` in Nav.tsx: the favicon's brass B
-on an ink chip with brass edge inlays, turning as far as it travels).
+on an ink chip with brass edge inlays, turning as far as it travels; drag it left or right and the page scrolls
+to match).
 `favicon.svg` is the same chip. Rules
 printed on the cream card stock stay. `--live` (green) is reserved for the
 pulsing dot (`LiveDot`) beside "Live", every "Live Demo", and the nav's

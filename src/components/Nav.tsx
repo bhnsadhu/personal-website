@@ -35,7 +35,7 @@ const INLAYS = [0, 60, 120, 180, 240, 300]
  */
 function ChipMark() {
   return (
-    <svg className="nav__chip" viewBox="0 0 32 32" focusable="false">
+    <svg className="nav__chip-face" viewBox="0 0 32 32" focusable="false">
       <circle className="nav__chip-body" cx="16" cy="16" r="15.5" />
       <g className="nav__chip-inlay">
         {INLAYS.map((deg) => (
@@ -96,6 +96,35 @@ export function Nav() {
     }
   }, [path])
 
+  // The chip can be pulled: drag it along the line and the page scrolls to
+  // match, as a scrubber. The scroll listener above then rolls it, so the
+  // chip follows the pointer by the same path as it follows the wheel. The
+  // offset keeps the grab point under the pointer, so it never jumps.
+  const grab = useRef<number | null>(null)
+  const onChipDown = (e: React.PointerEvent<HTMLSpanElement>) => {
+    if (e.button !== 0) return
+    const box = e.currentTarget.getBoundingClientRect()
+    grab.current = e.clientX - (box.left + box.width / 2)
+    e.currentTarget.setPointerCapture(e.pointerId)
+    barRef.current?.classList.add('is-dragging')
+    e.preventDefault()
+  }
+  const onChipMove = (e: React.PointerEvent<HTMLSpanElement>) => {
+    const bar = barRef.current
+    if (grab.current === null || !bar) return
+    const box = bar.getBoundingClientRect()
+    const chip = parseFloat(getComputedStyle(bar).getPropertyValue('--chip')) || 0
+    const travel = box.width - chip
+    const p = travel > 0 ? Math.min(1, Math.max(0, (e.clientX - grab.current - box.left - chip / 2) / travel)) : 0
+    const max = document.documentElement.scrollHeight - window.innerHeight
+    window.scrollTo({ top: p * max, behavior: 'instant' })
+  }
+  const onChipUp = (e: React.PointerEvent<HTMLSpanElement>) => {
+    grab.current = null
+    barRef.current?.classList.remove('is-dragging')
+    if (e.currentTarget.hasPointerCapture(e.pointerId)) e.currentTarget.releasePointerCapture(e.pointerId)
+  }
+
   return (
     <header className="nav">
       <div className="nav__inner container">
@@ -153,7 +182,16 @@ export function Nav() {
       </div>
       <span ref={barRef} className="nav__progress" aria-hidden="true">
         <span className="nav__progress-fill" />
-        <ChipMark />
+        <span
+          className="nav__chip"
+          title="Drag to scroll"
+          onPointerDown={onChipDown}
+          onPointerMove={onChipMove}
+          onPointerUp={onChipUp}
+          onPointerCancel={onChipUp}
+        >
+          <ChipMark />
+        </span>
       </span>
     </header>
   )
