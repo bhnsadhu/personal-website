@@ -61,6 +61,7 @@ The site is also a project, built end to end by me: design, front end, and a sma
 | **Opening deal** | On the first visit to `/` a deck riffle-shuffles and deals the four aces into the hero's hand. Once per session, never for a `#section` link or reduced motion. |
 | **Light and dark** | Dark by default, with a light theme behind the sun/moon button in the nav. The choice is saved and applied before first paint, so nothing flashes. |
 | **Motion** | The name rises letter by letter, cards tilt with glare, sections reveal on scroll, stats count up, and chips drop onto their stacks. |
+| **Scroll chip** | A monogram chip, the same mark as the favicon, rolls along the line under the nav as you scroll. Drag it left or right and the page scrolls with it. |
 | **The felt** | The footer closes on a canvas strip of drifting characters with suits on the crest and a ripple that follows the cursor. Decorative, paused off screen. |
 | **Live numbers** | Cambio's player count is fetched at page load through `/api/cambio-players`, falling back to the built-in number if the request fails. |
 | **Resume in one click** | “View Resume” opens the PDF in a new tab. |
