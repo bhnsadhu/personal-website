@@ -234,41 +234,50 @@
   max-width: 920px;
 }
 
-/* The intro on the left, the photo beside the name on the right. */
+/* The intro on the left, the photo beside the name on the right, its right
+   edge on the content edge (the theme button's, and the hand's). The
+   photo stretches to the intro's height, inset 5px at each end so it runs
+   from the eyebrow's cap top to the seeking line's baseline. 256px is the
+   most the column can take before the name, 875px of ink at 104px, wraps. */
 .hero__top {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
+  align-items: stretch;
   gap: 40px;
   margin-bottom: 24px;
 }
 
-/* A print on the cards' cream stock, set a few degrees off square like a
-   card in the fan, with the caption in its wider bottom margin. */
+/* A Polaroid on the cards' cream stock, set straight: a thin even border
+   on three sides and the caption written in the deep strip along the
+   bottom. The window takes whatever height the intro leaves (near square
+   on a desktop); `height: 0` keeps the image's own height out of the row's
+   sizing, so the intro alone sets it. The crop sits low, where the two of
+   them are, not on the wall above. */
 .hero__photo {
-  width: 232px;
-  margin: 0;
-  padding: 10px 10px 0;
+  display: flex;
+  flex-direction: column;
+  width: 256px;
+  margin: 5px 0;
+  padding: 14px 14px 0;
   background: var(--cream);
-  border-radius: 6px;
+  border-radius: 4px;
   box-shadow: var(--card-shadow);
-  transform: rotate(2.5deg);
-  transition: transform 0.18s var(--ease);
-}
-
-.hero__photo:hover {
-  transform: rotate(0deg);
 }
 
 .hero__photo img {
   display: block;
+  flex: 1 1 auto;
   width: 100%;
-  height: auto;
-  border-radius: 3px;
+  height: 0;
+  object-fit: cover;
+  object-position: 50% 90%;
 }
 
 .hero__photo figcaption {
-  padding: 10px 4px 12px;
+  display: grid;
+  place-items: center;
+  min-height: 64px;
+  padding: 8px 4px 10px;
   font-family: var(--serif);
   font-style: italic;
   font-size: 14px;
@@ -306,27 +315,44 @@
   color: var(--gray);
 }
 
-@media (max-width: 1023px) {
+/* A narrower print from 1149 down, so the name and the eyebrow keep one
+   line each to 1024. Below that there is no room beside the name, so the
+   photo drops under the intro, square at its own height, centred above
+   the hand. */
+@media (max-width: 1149px) {
   .hero__top {
     gap: 28px;
   }
   .hero__photo {
-    width: 184px;
+    width: 224px;
+    padding: 12px 12px 0;
+  }
+  .hero__photo figcaption {
+    min-height: 58px;
+    font-size: 13px;
   }
 }
 
-/* Phones: the photo drops under the intro, centred above the hand. */
-@media (max-width: 720px) {
-  .hero {
-    padding: 40px 0 24px;
-  }
+@media (max-width: 1023px) {
   .hero__top {
     grid-template-columns: minmax(0, 1fr);
     gap: 32px;
   }
   .hero__photo {
     justify-self: center;
-    width: min(220px, 70%);
+    width: min(256px, 72%);
+    margin: 0;
+  }
+  .hero__photo img {
+    flex: none;
+    height: auto;
+    aspect-ratio: 1;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero {
+    padding: 40px 0 24px;
   }
   .hero__fan {
     min-height: 0;
