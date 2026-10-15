@@ -583,7 +583,7 @@
 }
 
 /* Also in rotation: one quiet line close under the cards, set like the
-   hero's seeking line: the label in brass, the interests in cream, the dots
+   hero's seeking line: the label in brass, the interests in page ink, the dots
    in gray. No panel, no rule. */
 .flop__extras {
   margin-top: 20px;
@@ -596,7 +596,7 @@
 }
 
 .flop__extras-items {
-  color: var(--cream);
+  color: var(--fg);
 }
 
 .flop__extras-sep {
