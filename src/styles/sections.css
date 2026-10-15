@@ -348,21 +348,15 @@
    drift apart.
 
    The whole strip is tuned from the custom properties on .band: type sizes,
-   the gap under each number, the padding around a stat and around the
-   caption. Change them here and every instance of the band moves together.
-   --band-row is a floor, not a fixed height: it keeps the strip from
-   collapsing when the labels are short, and the content sets the height
-   when they are long. */
+   the gap under each number, and the padding around a stat. Change them here
+   and every instance of the band moves together. The padding above and below
+   is equal, and the content sets the height, so the stats sit centered in it. */
 .band {
-  --band-row: 110px;
   --band-value: 25px;
   --band-label: 11px;
-  --band-note: 10px;
   --band-gap: 5px;
   --band-pad-x: 16px;
-  --band-pad-top: 14px;
-  --band-pad-bottom: 15px;
-  --band-note-pad: 10px;
+  --band-pad-y: 26px;
   background: var(--bg-2);
 }
 
@@ -371,7 +365,6 @@
   display: flex;
   align-items: stretch;
   justify-content: center;
-  min-height: var(--band-row);
 }
 
 /* flex-basis 0 rather than auto: every stat takes the same width whatever
@@ -385,7 +378,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--band-gap);
-  padding: var(--band-pad-top) var(--band-pad-x) var(--band-pad-bottom);
+  padding: var(--band-pad-y) var(--band-pad-x);
   text-align: center;
 }
 
@@ -421,25 +414,15 @@
   color: var(--gray);
 }
 
-/* A step below the labels, so the caption stays subordinate to them. */
-.band__note {
-  font-size: var(--band-note);
-  padding: calc(var(--band-note-pad) / 2) 0;
-  text-align: center;
-  color: var(--gray);
-}
-
 /* Too narrow for four across: wrap to two by two, with a dot only between
    the two stats on each row, never hanging off the start of a row. */
 @media (max-width: 720px) {
   .band {
     --band-pad-x: 10px;
-    --band-pad-top: 13px;
-    --band-pad-bottom: 14px;
+    --band-pad-y: 20px;
   }
   .band__inner {
     flex-wrap: wrap;
-    min-height: 0;
   }
   .band__item {
     flex: 1 1 45%;

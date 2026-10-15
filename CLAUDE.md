@@ -16,7 +16,7 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
 
 - `src/data/*.ts` — all content, one source for card, list, and detail
   views. `site.ts` holds identity, what he's seeking (`seeking`,
-  `interests`), links, and the static "as of" / "last updated" dates.
+  `interests`), links, and the static "last updated" date.
   `hand.ts` (four aces, each links to its fuller entry), `experience.ts`
   (the spread; `via` names the consulting org, kept separate from the
   client), `leadership.ts` (face cards, fixed order, `progression` and
@@ -166,7 +166,7 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   From 1023 down it drops under the intro, square and centred.
 - No class year and no graduation date, expected or otherwise. Education
   shows the start date only (`Aug 2025 — Present`).
-  "As of" and "last updated" dates are static strings, never the clock.
+  The "last updated" date (footer only) is a static string, never the clock.
 - Spell "resume" plain, no accent, everywhere.
 
 ## Design system

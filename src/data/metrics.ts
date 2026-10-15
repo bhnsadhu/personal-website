@@ -2,7 +2,7 @@ import type { Metric } from './types'
 
 /**
  * The thin stat strip. Separate, contextualized figures; never summed.
- * The "as of" date beside the band comes from site.asOf. Each figure is
+ * Each figure is
  * the one already stated in experience.ts, projects.ts or leadership.ts,
  * so the wording stays as careful here: "potential" opportunities, and an
  * attendance figure that belongs to the events, not to one person.

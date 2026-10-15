@@ -59,7 +59,7 @@ function CountUp({ value }: { value: string }) {
 }
 
 /** A thin stat strip. Deliberately not cards. Figures stay separate; never summed. */
-export function MetricBand({ metrics, label, note }: { metrics: Metric[]; label: string; note?: string }) {
+export function MetricBand({ metrics, label }: { metrics: Metric[]; label: string }) {
   const players = useCambioPlayers(CAMBIO_PLAYERS_FALLBACK)
   return (
     <section className="band" aria-label={label}>
@@ -74,7 +74,6 @@ export function MetricBand({ metrics, label, note }: { metrics: Metric[]; label:
             </div>
           ))}
         </dl>
-        {note && <p className="band__note mono mono--sm">{note}</p>}
       </div>
     </section>
   )

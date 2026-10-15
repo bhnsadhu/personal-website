@@ -138,7 +138,7 @@ export function ListView() {
         </div>
       </section>
 
-      <MetricBand metrics={metrics} label="Headline numbers" note={`As of ${site.asOf}`} />
+      <MetricBand metrics={metrics} label="Headline numbers" />
 
       <div className="container list__body">
         <nav className="list__rail" aria-label="Sections">
