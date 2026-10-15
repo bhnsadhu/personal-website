@@ -26,7 +26,6 @@ export const site = {
     width: 916,
     height: 1100,
     alt: 'Bhanu in a charcoal suit and white shirt against a plain gray backdrop.',
-    caption: 'Bhanu Sadhu',
   },
   tagline:
     "I turn ideas into products and research into decisions. I'm studying Computer Science + Economics at the University of Illinois Urbana-Champaign, with a focus on product management and building useful software.",
