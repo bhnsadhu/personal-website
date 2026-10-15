@@ -562,68 +562,37 @@
   margin-bottom: 8px;
 }
 
-/* Also in rotation: a soft pill tucked close under the cards, the label in
-   brass and the interests in the cards' italic, parted by brass dots. No
-   rule: the panel itself sets it apart. */
+/* Also in rotation: one quiet line close under the cards, set like the
+   hero's seeking line: the label in brass, the interests in cream, the dots
+   in gray. No panel, no rule. */
 .flop__extras {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: baseline;
-  column-gap: 14px;
-  row-gap: 4px;
-  width: fit-content;
-  max-width: 100%;
-  margin: 20px auto 0;
-  padding: 12px 24px 11px;
-  border-radius: 999px;
-  background: var(--bg-2);
-  box-shadow:
-    inset 0 0 0 1px rgba(176, 141, 87, 0.16),
-    0 10px 24px rgba(0, 0, 0, 0.28);
+  margin-top: 20px;
   text-align: center;
+  color: var(--gray);
 }
 
 .flop__extras-label {
   color: var(--brass);
-  letter-spacing: 0.14em;
 }
 
 .flop__extras-items {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 16px;
-  line-height: 1.45;
   color: var(--cream);
 }
 
 .flop__extras-sep {
-  color: var(--brass);
-  font-style: normal;
+  color: var(--gray);
 }
 
-/* The list view: a panel the width of the rows, its text starting on the
-   rows' pip edge (.ix__head's 12px left padding). */
+/* The list view: left, on the rows' pip edge (.ix__head's left padding). */
 .flop__extras--flat {
-  justify-content: flex-start;
-  width: auto;
-  margin-top: 12px;
-  padding: 15px 16px 14px 12px;
-  border-radius: 12px;
+  margin-top: 16px;
+  padding-left: 12px;
   text-align: left;
 }
 
-/* On a phone the rows' pips sit only 4px in, so the panel reaches 8px into
-   the gutter to keep its text on that edge with room to breathe. */
 @media (max-width: 720px) {
-  .flop__extras:not(.flop__extras--flat) {
-    padding: 14px 20px 11px;
-    border-radius: 18px;
-  }
   .flop__extras--flat {
-    max-width: none;
-    margin-inline: -8px;
-    padding: 16px 12px 13px;
+    padding-left: 4px;
   }
 }
 
