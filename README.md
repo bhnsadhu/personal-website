@@ -52,6 +52,8 @@ The site is also a project, built end to end by me: design, front end, and a sma
 
 ## Highlights
 
+| Feature | What it does |
+| --- | --- |
 | **Interactive cards** | Click a card to flip it open, fill its row, and slide neighboring cards into slivers. Escape closes it. |
 | **Two ways to browse** | Switch between the card layout and a flat `/list` view of the same content, plus Education. Navigation follows the active view. |
 | **Shareable detail pages** | Each experience and project has its own URL at `/experience/:slug` or `/projects/:slug`. |
