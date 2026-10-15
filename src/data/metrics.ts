@@ -9,7 +9,7 @@ import type { Metric } from './types'
  */
 export const metrics: Metric[] = [
   { value: '12', label: 'Potential expansion opportunities for a Berkshire Hathaway affiliate' },
-  { value: '~18', label: 'Active players testing Cambio' },
+  { value: '24', label: 'Players on Cambio, live and deployed' },
   { value: '750+', label: 'Contacts in an Ingenio Care outreach pipeline' },
   { value: '3,000+', label: 'Combined Diwali Night and India Night attendance' },
 ]

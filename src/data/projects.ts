@@ -40,7 +40,7 @@ export const projects: Project[] = [
       "Cambio is a game I play with my friends a lot. Sometimes we'd have a few minutes between classes or during a library break and want to play, but nobody had cards. I built a version we could open anywhere, and a way for new players to learn a game I love.",
     ownership:
       "I built Cambio independently, from implementing the game's rules and interface to accounts, real-time sync, and deployment.",
-    usage: 'Early testing with approximately 18 players, primarily friends.',
+    usage: 'Live and deployed, with 24 players so far.',
     features: [
       'Multiplayer for up to 4 players, with bots filling any empty seats.',
       'Guest access, or create an account to keep a record.',
