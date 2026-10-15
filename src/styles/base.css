@@ -516,3 +516,41 @@ h4,
     animation: none;
   }
 }
+
+/* ---------------- Touch ---------------- */
+
+/* Fingers, not cursors. The small nav controls and text links keep their
+   look; an invisible pseudo-element stretches each hit area to about 44px
+   tall. */
+@media (pointer: coarse) {
+  .nav__suit,
+  .nav__toggle,
+  .nav__theme,
+  .nav__brand,
+  .tlink {
+    position: relative;
+  }
+
+  .nav__suit::before,
+  .nav__toggle::before,
+  .nav__theme::before,
+  .nav__brand::before,
+  .tlink::before {
+    content: '';
+    position: absolute;
+    inset: -7px 0;
+  }
+
+  .nav__toggle::before,
+  .nav__theme::before {
+    inset: -7px -3px;
+  }
+
+  .nav__brand::before {
+    inset: -10px 0;
+  }
+
+  .tlink::before {
+    inset: -13px -4px;
+  }
+}

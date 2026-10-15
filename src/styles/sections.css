@@ -225,13 +225,21 @@
 
 @media (max-width: 340px) {
   .nav__inner {
-    gap: 6px;
+    gap: 4px;
   }
   .nav__brand {
-    font-size: 15px;
+    font-size: 14px;
+  }
+  .nav__end {
+    gap: 6px;
   }
   .nav__suit {
-    width: 24px;
+    width: 18px;
+    padding-inline: 0;
+    font-size: 16px;
+  }
+  .nav__toggle {
+    padding-inline: 6px;
   }
 }
 
@@ -752,6 +760,14 @@
   transition:
     border-color var(--fast) var(--ease),
     box-shadow var(--fast) var(--ease);
+}
+
+/* 16px on touch screens: below that, iOS Safari zooms the page on focus. */
+@media (pointer: coarse) {
+  .field input,
+  .field textarea {
+    font-size: 16px;
+  }
 }
 
 .field textarea {
