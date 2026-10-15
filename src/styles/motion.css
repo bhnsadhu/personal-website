@@ -60,17 +60,63 @@
   color: var(--fg);
 }
 
-/* Scroll progress: a brass hairline along the foot of the nav. */
+/* Scroll progress: a brass hairline along the foot of the nav, with his
+   chip rolling at its head. Nav.tsx sets --x (how far the chip has
+   travelled), --fill (the line, up to the chip's centre), and --roll (the
+   turn that distance gives a chip of this size), so everything here is a
+   transform and nothing lays out on scroll. */
 .nav__progress {
+  --chip: 22px;
   position: absolute;
   left: 0;
   right: 0;
   bottom: -1px;
   height: 2px;
-  background: linear-gradient(90deg, var(--brass), var(--brass-2));
-  transform: scaleX(var(--p, 0));
-  transform-origin: 0 50%;
   pointer-events: none;
+}
+
+.nav__progress-fill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--brass), var(--brass-2));
+  transform: scaleX(var(--fill, 0));
+  transform-origin: 0 50%;
+}
+
+.nav__chip {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: var(--chip);
+  height: var(--chip);
+  border-radius: 50%;
+  box-shadow: var(--pip-shadow);
+  transform: translate3d(var(--x, 0px), -50%, 0) rotate(var(--roll, 0deg));
+  will-change: transform;
+}
+
+.nav__chip-body {
+  fill: var(--ink);
+}
+
+.nav__chip-inlay,
+.nav__chip-b {
+  fill: var(--brass-fill-2);
+}
+
+.nav__chip-rim,
+.nav__chip-ring {
+  fill: none;
+  stroke: var(--brass-fill);
+}
+
+.nav__chip-rim {
+  stroke-width: 0.8;
+}
+
+.nav__chip-ring {
+  stroke-width: 0.6;
+  stroke-dasharray: 1 1.2;
 }
 
 /* Card glare: a soft highlight that tracks the cursor across the stock. */

@@ -203,7 +203,10 @@ first and last on the content edges); list rows by space, with a soft
 "Also in rotation" by nothing at all: one line 20px under the flop's cards
 (centred, and the same under the rows in the list view), set like the hero's
 seeking line, label in brass and interests in cream; the list rail by a track that fades at both ends; the nav keeps
-its plain hairline, with the brass scroll-progress line riding on it. Rules
+its plain hairline, with the brass scroll-progress line riding on it and
+his chip rolling at its head (`ChipMark` in Nav.tsx: the favicon's brass B
+on an ink chip with brass edge inlays, turning as far as it travels).
+`favicon.svg` is the same chip. Rules
 printed on the cream card stock stay. `--live` (green) is reserved for the
 pulsing dot (`LiveDot`) beside "Live", every "Live Demo", and the nav's
 "Currently @" pill, and a "Live Demo" link always has "Repository" beside it.
@@ -226,7 +229,7 @@ hover, card tilt with glare, scroll reveals (`.reveal` for one element,
 `.reveal-group` for staggered children, marked with `data-in` rather than
 a class so React's className updates cannot undo them), rows of cards dealt in on
 scroll, count-up stats, chips dropping onto stacks, the nav's progress
-line and active suit, and the felt's swell (`Felt.tsx`). Anything hidden before it reveals needs both
+line and rolling chip and active suit, and the felt's swell (`Felt.tsx`). Anything hidden before it reveals needs both
 `html.js` and `prefers-reduced-motion: no-preference`, so it can never
 stay invisible.
 
