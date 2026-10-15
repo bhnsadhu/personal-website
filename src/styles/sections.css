@@ -689,19 +689,6 @@
   color: var(--gray);
 }
 
-/* The list view: left, on the rows' pip edge (.ix__head's left padding). */
-.flop__extras--flat {
-  margin-top: 16px;
-  padding-left: 12px;
-  text-align: left;
-}
-
-@media (max-width: 720px) {
-  .flop__extras--flat {
-    padding-left: 4px;
-  }
-}
-
 .table {
   position: relative;
   padding: 24px 0 0;

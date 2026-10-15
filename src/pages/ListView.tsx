@@ -261,7 +261,7 @@ export function ListView() {
                 </IndexRow>
               ))}
             </IndexGroup>
-            <PersonalExtras flat />
+            <PersonalExtras />
           </ListSection>
 
           <ListSection k="contact" note={site.availability}>

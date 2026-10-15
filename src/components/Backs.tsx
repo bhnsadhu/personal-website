@@ -142,11 +142,12 @@ export function PersonalBack({ c }: { c: PersonalCard }) {
 
 /**
  * The line under the flop: interests that did not get a card. Centred under
- * the cards in the card view; `flat` sets it left, on the list rows' edge.
+ * the cards in the card view and under the rows in the list view, set the
+ * same in both.
  */
-export function PersonalExtras({ flat = false }: { flat?: boolean }) {
+export function PersonalExtras() {
   return (
-    <p className={`flop__extras mono mono--sm ${flat ? 'flop__extras--flat' : ''}`.trim()}>
+    <p className="flop__extras mono mono--sm">
       <span className="flop__extras-label">Also in rotation:</span>{' '}
       <span className="flop__extras-items">
         {personalExtras.map((x, i) => (
