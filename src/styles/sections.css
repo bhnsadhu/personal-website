@@ -251,8 +251,7 @@
    on three sides and the caption written in the deep strip along the
    bottom. The window takes whatever height the intro leaves (near square
    on a desktop); `height: 0` keeps the image's own height out of the row's
-   sizing, so the intro alone sets it. The crop sits low, where the two of
-   them are, not on the wall above. */
+   sizing, so the intro alone sets it. The crop sits high, on the face. */
 .hero__photo {
   display: flex;
   flex-direction: column;
@@ -270,7 +269,7 @@
   width: 100%;
   height: 0;
   object-fit: cover;
-  object-position: 50% 90%;
+  object-position: 50% 28%;
 }
 
 .hero__photo figcaption {

@@ -148,7 +148,7 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   or idea-stage things (AviLux pilot, the AI learnathon, the
   apartment-chores product) are never described as launched.
 - No GPA, grades, honors, ratings, or invented metrics and dates. One
-  photo only: `site.photo` (`public/grainger-bob.jpg`, metadata
+  photo only: `site.photo` (`public/bhanu.jpg`, metadata
   stripped), rendered by `src/components/HeroPhoto.tsx` beside the name
   in both heroes as a straight Polaroid on cream stock, caption in the
   deep bottom strip. It stretches to the intro, top on the eyebrow's cap
