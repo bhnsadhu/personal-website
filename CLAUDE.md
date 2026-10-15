@@ -196,7 +196,9 @@ suit centered, with a brass rule running out to both edges of the content
 and fading at the ends (`data-suit`, `.section + .section::before` in
 base.css). The footer opens with the same ornament around all four suits;
 Certifications opens with its label and a rule out to the right edge.
-Stats are parted by small brass dots; list rows by space, with a soft
+Stats are parted by short vertical brass rules fading at both ends, each
+at the exact middle of its gap (`MetricBand` fits each stat to its words,
+first and last on the content edges); list rows by space, with a soft
 `--bg-2` panel on hover and while open; panels (certs, the form) by a lift and shadow;
 "Also in rotation" by nothing at all: one line 20px under the flop's cards
 (centred, and the same under the rows in the list view), set like the hero's
