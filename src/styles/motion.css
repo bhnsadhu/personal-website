@@ -7,24 +7,6 @@
 
 /* ---------------- Always on: small hover feedback ---------------- */
 
-/* Contact rows: an arrow slides in on hover, the way a link to elsewhere should. */
-.contact__go {
-  display: inline-block;
-  margin-left: 2px;
-  color: var(--brass);
-  opacity: 0;
-  transform: translate(-4px, 4px);
-  transition:
-    opacity var(--fast) var(--ease),
-    transform var(--fast) var(--ease);
-}
-
-.contact__links a:hover .contact__go,
-.contact__links a:focus-visible .contact__go {
-  opacity: 1;
-  transform: none;
-}
-
 /* The nav suit for the section in view: lit, with a faint brass edge, so
    it reads as "you are here" rather than as a hover. */
 .nav__suit.is-active {
