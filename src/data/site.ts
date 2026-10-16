@@ -23,7 +23,7 @@ export const site = {
   /** The one photo on the site: beside the name in the hero, in both views. */
   photo: {
     src: '/bhanu.jpg',
-    width: 916,
+    width: 842,
     height: 1100,
     alt: 'Bhanu in a charcoal suit and white shirt against a plain gray backdrop.',
   },

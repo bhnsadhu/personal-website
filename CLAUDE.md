@@ -163,8 +163,12 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
 - No GPA, grades, honors, ratings, or invented metrics and dates. One
   photo only: `site.photo` (`public/bhanu.jpg`, metadata
   stripped), rendered by `src/components/HeroPhoto.tsx` beside the name
-  in both heroes as a straight Polaroid on cream stock, no caption, an even
-  border all round. It stretches to the intro, top on the eyebrow's cap
+  in both heroes as a straight Polaroid on cream stock, no caption: an even
+  border on the top and sides, a square print, and a deep blank chin below.
+  The file is cropped so his face sits on the print's vertical centre line.
+  The print is glossy and the frame matte: a soft band of shine slides
+  across the print with the pointer (fine pointers only, still under
+  reduced motion). It stretches to the intro, top on the eyebrow's cap
   top and bottom on the seeking line's baseline, right edge on the content
   edge; 256px wide (224 at 1149 and below) so the name keeps one line.
   From 1023 down it drops under the intro, square and centred.
