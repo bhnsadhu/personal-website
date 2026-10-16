@@ -272,69 +272,28 @@
   margin-bottom: 24px;
 }
 
-/* A Polaroid on the cards' cream stock, set straight: an even border on
-   the top and both sides, a square print, and the deep blank chin below,
-   which takes whatever height the intro leaves. The picture is cropped
-   in the file so his face sits on the print's vertical centre line. */
+/* A Polaroid on the cards' cream stock, set straight: a thin even border
+   on all four sides. The window takes whatever height the intro leaves (near square
+   on a desktop); `height: 0` keeps the image's own height out of the row's
+   sizing, so the intro alone sets it. The crop sits high, on the face. */
 .hero__photo {
-  --side: 13px;
   display: flex;
   flex-direction: column;
   width: 256px;
   margin: 5px 0;
-  padding: var(--side) var(--side) calc(var(--side) * 3);
+  padding: 14px;
   background: var(--cream);
-  border-radius: 3px;
+  border-radius: 4px;
   box-shadow: var(--card-shadow);
 }
 
-/* The print: square, set a hair into the frame by a soft inner shadow,
-   with its gloss on top. The shine is a diagonal band of light, faint at
-   rest; HeroPhoto.tsx sets --shine-x and --shine-y from the pointer, so it
-   slides across the print as the visitor moves. */
-.hero__print {
-  position: relative;
+.hero__photo img {
   display: block;
-  aspect-ratio: 1;
-  overflow: hidden;
-}
-
-.hero__print img {
-  display: block;
+  flex: 1 1 auto;
   width: 100%;
-  height: 100%;
+  height: 0;
   object-fit: cover;
   object-position: 50% 28%;
-}
-
-.hero__print::before,
-.hero__print::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.hero__print::before {
-  background: linear-gradient(
-    118deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.1) 38%,
-    rgba(255, 255, 255, 0.34) 44%,
-    rgba(255, 255, 255, 0.08) 49%,
-    rgba(255, 255, 255, 0.16) 52%,
-    transparent 60%
-  );
-  background-size: 300% 300%;
-  background-position: calc(85% - var(--shine-x, 0.35) * 70%) calc(70% - var(--shine-y, 0.3) * 40%);
-  mix-blend-mode: screen;
-  transition: background-position 0.6s var(--ease);
-}
-
-.hero__print::after {
-  box-shadow:
-    inset 0 0 0 1px rgba(0, 0, 0, 0.18),
-    inset 0 1px 3px rgba(0, 0, 0, 0.25);
 }
 
 .hero__title {
@@ -375,8 +334,8 @@
     gap: 28px;
   }
   .hero__photo {
-    --side: 12px;
     width: 224px;
+    padding: 12px;
   }
 }
 
@@ -389,7 +348,11 @@
     justify-self: center;
     width: min(256px, 72%);
     margin: 0;
-    padding-bottom: calc(var(--side) * 4.6);
+  }
+  .hero__photo img {
+    flex: none;
+    height: auto;
+    aspect-ratio: 1;
   }
 }
 
