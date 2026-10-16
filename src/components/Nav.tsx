@@ -89,8 +89,13 @@ export function Nav() {
     update()
     window.addEventListener('scroll', update, { passive: true })
     window.addEventListener('resize', update)
+    // The page grows and shrinks without a scroll (a card opens, a row
+    // unfolds, "Open all"), which moves the same scroll to a new fraction.
+    const grow = new ResizeObserver(update)
+    grow.observe(document.body)
     return () => {
       cancelAnimationFrame(frame)
+      grow.disconnect()
       window.removeEventListener('scroll', update)
       window.removeEventListener('resize', update)
     }
@@ -119,6 +124,8 @@ export function Nav() {
     const max = document.documentElement.scrollHeight - window.innerHeight
     window.scrollTo({ top: p * max, behavior: 'instant' })
   }
+  // Up, cancel, or a capture lost some other way (a window switch, a
+  // dialog) all put the chip down, so it is never left held.
   const onChipUp = (e: React.PointerEvent<HTMLSpanElement>) => {
     grab.current = null
     barRef.current?.classList.remove('is-dragging')
@@ -189,6 +196,7 @@ export function Nav() {
           onPointerMove={onChipMove}
           onPointerUp={onChipUp}
           onPointerCancel={onChipUp}
+          onLostPointerCapture={onChipUp}
         >
           <ChipMark />
         </span>

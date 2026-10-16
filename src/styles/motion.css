@@ -42,7 +42,10 @@
    under the active one, even picked up. Nav.tsx sets --x (how far the chip has
    travelled), --fill (the line, up to the chip's centre), and --roll (the
    turn that distance gives a chip of this size), so everything here is a
-   transform and nothing lays out on scroll. */
+   transform and nothing lays out on scroll. The travel is the translate
+   property, not transform: scale composes inside translate but outside
+   transform, so a transform would grow the travel with the chip and throw
+   it off the pointer. */
 .nav__progress {
   --chip: 22px;
   position: absolute;
@@ -67,10 +70,10 @@
   top: calc(50% - var(--chip) / 2);
   width: var(--chip);
   height: var(--chip);
-  transform: translate3d(var(--x, 0px), 0, 0);
+  translate: var(--x, 0px) 0;
   scale: 1;
   transition: scale var(--fast) var(--ease);
-  will-change: transform;
+  will-change: translate;
   pointer-events: auto;
   cursor: grab;
   touch-action: none;
@@ -93,8 +96,13 @@
 
 /* Picked up, the chip grows a little about its centre. Its own scale
    property, so the growth can ease while the travel stays locked to the
-   scroll. */
-.nav__chip:hover,
+   scroll. Hover only where there is one, so a tap does not leave it big. */
+@media (hover: hover) {
+  .nav__chip:hover {
+    scale: 1.1;
+  }
+}
+
 .nav__progress.is-dragging .nav__chip {
   scale: 1.1;
 }
