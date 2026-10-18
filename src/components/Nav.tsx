@@ -156,7 +156,8 @@ export function Nav() {
                   className={`nav__suit nav__suit--${s.suit} ${active === s.anchor ? 'is-active' : ''}`.trim()}
                   aria-current={active === s.anchor ? 'location' : undefined}
                   aria-label={`${s.label} (${s.suit})`}
-                  title={s.label}
+                  data-tip={s.label}
+                  data-tip-unless=".nav__suit-label"
                 >
                   <span aria-hidden="true">{SUIT_GLYPH[s.suit]}</span>
                   <span className="nav__suit-label mono mono--sm" aria-hidden="true">
@@ -180,7 +181,7 @@ export function Nav() {
             type="button"
             className="btn btn--ghost nav__theme"
             aria-label={`Switch to ${next} theme`}
-            title={`Switch to ${next} theme`}
+            data-tip={`Switch to ${next} theme`}
             onClick={() => setTheme(next)}
           >
             {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
@@ -191,7 +192,7 @@ export function Nav() {
         <span className="nav__progress-fill" />
         <span
           className="nav__chip"
-          title="Drag to scroll"
+          data-tip="Drag to scroll"
           onPointerDown={onChipDown}
           onPointerMove={onChipMove}
           onPointerUp={onChipUp}

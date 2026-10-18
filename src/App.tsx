@@ -3,6 +3,7 @@ import { CommandPalette } from './components/CommandPalette'
 import { Footer } from './components/Footer'
 import { Nav } from './components/Nav'
 import { Opening } from './components/Opening'
+import { Tooltip } from './components/Tooltip'
 import { Router } from './lib/router'
 import { ExperienceDetail } from './pages/ExperienceDetail'
 import { Home } from './pages/Home'
@@ -27,6 +28,7 @@ export function App() {
       <CommandPalette />
       <BackToTop />
       <Opening />
+      <Tooltip />
     </>
   )
 }

@@ -64,6 +64,18 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   through `src/lib/deal.ts` (CardRow claims the request, then scrolls the card
   under the nav) and just scroll to the section in the list view.
   `BackToTop.tsx` is the bottom-right arrow, shown after one screen of scroll.
+- `src/components/Tooltip.tsx` — one tag for the few things that show a
+  symbol in place of a word: an element with `data-tip` is named on a real
+  hover (never a tap) and on keyboard focus. `data-tip-unless` keeps it away
+  while the element's own words are on screen. Used only on card slivers
+  beside an open card, the nav suits when they drop to glyphs, the hero's
+  "UIUC" (`<abbr>`, `site.school`), the theme button, back to top, and the
+  nav chip. Never on anything that already shows its words. Placement is
+  measured from the ink: centred on the trigger (on the letters, not the
+  tracking after them), 8px off it, on whole device pixels; the nav's tags
+  hang on one line 8px under the bar; a tag that would come within 24px of
+  the screen's edge lines up with its trigger's edge instead. The intro's
+  Skip shares the corner buttons' 24px inset and centre line.
 - `src/components/Felt.tsx` — the felt: a canvas strip closing the footer
   on every page, a slow swell of IBM Plex Mono characters in noise patches
   with suits riding the crest (wine for red, `--fg` for black), brass
@@ -91,8 +103,11 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   onto a hand already in place. An inline script in `index.html` decides
   before first paint (`data-intro="play"`): once per visit
   (`sessionStorage` `dealt`), only when landing on `/` itself, never for a
-  `#section` link or reduced motion. It cannot be skipped (about 4.5s; the
-  page is locked until it hands over). While it plays, motion.css hides the real hand and pauses the name's
+  `#section` link or reduced motion. It runs about 4.5s with the page locked.
+  Watching is the default: stray clicks do nothing, but a quiet "Skip" fades
+  into the bottom-right corner after a second, and it, Escape, or any key
+  that types (not a modifier alone) fades the overlay in 0.3s onto the hand
+  already in place. While it plays, motion.css hides the real hand and pauses the name's
   rise; afterwards (`data-intro="done"`) the hand is not dealt in twice.
 - `src/components/IndexList.tsx` — the list view's rows. A row is a card
   laid flat: the same rank and suit (a small cream pip), title, italic
@@ -251,7 +266,7 @@ The fan (projects) · The chips (skills) · The flop (personal) · Let's talk
 (contact). Buttons and links: "Explore My Work", "View Resume", "Contact
 Me" (hero), "Resume" (nav, footer), "Send Message" (submit), "Back to the
 hand", "View experience", "Explore the project", "List view" / "Card view", "Live Demo",
-"Repository" (a project's code), "GitHub" (his own profile: footer, contact, search), "More on Beli" (Favorite Tables) / "Beli" (search), "View Credential", "Search", "Back to top" (aria), "Switch to light theme" / "Switch to dark theme"
+"Repository" (a project's code), "GitHub" (his own profile: footer, contact, search), "More on Beli" (Favorite Tables) / "Beli" (search), "View Credential", "Search", "Back to top" (aria), "Skip" (the opening deal), "Switch to light theme" / "Switch to dark theme"
 (aria and title on the sun/moon), "Currently @ …". The
 search placeholder is "Search the deck…" and an empty search reads "Not in
 the deck: “…”". Face-down cards say "Not dealt yet". 404 is

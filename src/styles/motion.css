@@ -520,3 +520,46 @@ html[data-intro='play'] .hero__photo {
 .opening__caption:empty {
   opacity: 0;
 }
+
+/* Skipping clears the table faster than the deal's own hand-over. */
+.opening.is-skipped,
+.opening.is-skipped .opening__deck,
+.opening.is-skipped .opening__caption {
+  transition-duration: 0.3s;
+}
+
+/* Skip: quiet, in the corner, and only after the deal has begun, so the
+   way in is offered first. Clear of the landing aces. It sits where back to
+   top will: centred on the corner buttons' centre line (their 24px inset
+   plus half their 44px box), and the arrow's ink, not the tracking and
+   side bearing after it, ends on the inset. Measured from the ink: the
+   capitals sit half a pixel low in their line, hence the half pixel up. */
+.opening__skip {
+  position: absolute;
+  right: 24px;
+  bottom: 46.5px;
+  translate: 0 50%;
+  margin-right: calc(-0.1em - 0.5px);
+  z-index: 70;
+  color: var(--fg-3);
+  animation: skip-in 0.4s var(--ease) 1s backwards;
+}
+
+.opening__skip:hover,
+.opening__skip:focus-visible {
+  color: var(--brass-2);
+}
+
+@media (max-width: 720px) {
+  .opening__skip {
+    right: 16px;
+    bottom: 38.5px;
+  }
+}
+
+@keyframes skip-in {
+  from {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

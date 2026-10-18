@@ -8,9 +8,11 @@ import { createPortal } from 'react-dom'
  * real ones, so when the overlay fades the hand is already there.
  *
  * index.html decides whether it plays (`data-intro="play"`): once per visit,
- * on the home page only, never for a section link or reduced motion. It
- * cannot be skipped: it is short, and it is the way in. While it plays,
- * motion.css holds the hero's own entrance until it hands over.
+ * on the home page only, never for a section link or reduced motion. It is
+ * the way in, so a stray click does not end it; a quiet Skip in the corner,
+ * Escape, or any key that types does, so nobody who needs the page is held.
+ * While it plays, motion.css holds the hero's own entrance until it hands
+ * over.
  */
 
 const DECK = 10
@@ -26,6 +28,8 @@ const wait = (ms: number) => new Promise<void>((r) => window.setTimeout(r, ms))
 export function Opening() {
   const [on, setOn] = useState(() => document.documentElement.dataset.intro === 'play')
   const [leaving, setLeaving] = useState(false)
+  const [skipped, setSkipped] = useState(false)
+  const skipRef = useRef<() => void>(() => undefined)
   const [dealt, setDealt] = useState(false)
   const [caption, setCaption] = useState('Shuffling…')
   const stageRef = useRef<HTMLDivElement>(null)
@@ -55,13 +59,28 @@ export function Opening() {
       return a.finished.catch(() => undefined)
     }
 
-    const finish = () => {
+    const finish = (skip = false) => {
       if (done) return
       done = true
       root.dataset.intro = 'done'
+      if (skip) {
+        // The hand is already in place under the overlay; the aces in flight
+        // go at once so they never sit beside it, and the rest fades quickly.
+        clones.forEach((c) => (c.style.visibility = 'hidden'))
+        setSkipped(true)
+      }
       setLeaving(true)
-      window.setTimeout(() => setOn(false), 720)
+      window.setTimeout(() => setOn(false), skip ? 340 : 720)
     }
+    skipRef.current = () => finish(true)
+
+    // Any key that types or Escape skips; a modifier held alone (switching
+    // apps, say) does not.
+    const onKey = (e: KeyboardEvent) => {
+      if (['Shift', 'Control', 'Alt', 'Meta', 'CapsLock', 'Fn'].includes(e.key)) return
+      finish(true)
+    }
+    window.addEventListener('keydown', onKey)
 
     const deck = Array.from(stage.querySelectorAll<HTMLElement>('.opening__card'))
 
@@ -214,6 +233,7 @@ export function Opening() {
     return () => {
       // Development mounts twice; the first run must leave nothing behind.
       alive = false
+      window.removeEventListener('keydown', onKey)
       anims.forEach((a) => a.cancel())
       clones.forEach((c) => c.remove())
       deck.forEach((c) => (c.style.opacity = ''))
@@ -223,15 +243,24 @@ export function Opening() {
   if (!on) return null
 
   return createPortal(
-    <div ref={overlayRef} className={['opening', dealt && 'is-dealt', leaving && 'is-leaving'].filter(Boolean).join(' ')} aria-hidden="true">
-      <div className="opening__deck" ref={stageRef}>
+    <div
+      ref={overlayRef}
+      className={['opening', dealt && 'is-dealt', leaving && 'is-leaving', skipped && 'is-skipped'].filter(Boolean).join(' ')}
+    >
+      <div className="opening__deck" ref={stageRef} aria-hidden="true">
         {Array.from({ length: DECK }, (_, i) => (
           <span key={i} className="opening__card" style={{ transform: rest(i), zIndex: i + 1 }} />
         ))}
       </div>
-      <p key={caption} className="opening__caption">
+      <p key={caption} className="opening__caption" aria-hidden="true">
         {caption}
       </p>
+      <button type="button" className="opening__skip tlink" onClick={() => skipRef.current()}>
+        Skip
+        <span className="arrow" aria-hidden="true">
+          →
+        </span>
+      </button>
     </div>,
     document.body,
   )
