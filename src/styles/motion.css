@@ -524,40 +524,54 @@ html[data-intro='play'] .hero__photo {
 /* Skipping clears the table faster than the deal's own hand-over. */
 .opening.is-skipped,
 .opening.is-skipped .opening__deck,
-.opening.is-skipped .opening__caption {
+.opening.is-skipped .opening__caption,
+.opening.is-skipped .opening__hint {
   transition-duration: 0.3s;
 }
 
-/* Skip: quiet, in the corner, and only after the deal has begun, so the
-   way in is offered first. Clear of the landing aces. It sits where back to
-   top will: centred on the corner buttons' centre line (their 24px inset
-   plus half their 44px box), and the arrow's ink, not the tracking and
-   side bearing after it, ends on the inset. Measured from the ink: the
-   capitals sit half a pixel low in their line, hence the half pixel up. */
-.opening__skip {
+/* The way out, offered quietly: centred at the top, on the nav's own centre
+   line, so the page's nav takes its place when the overlay hands over. Set
+   like the caption (the same capitals, tracking, and glow), smaller and
+   dimmer; it comes in once the deal has begun and leaves with the caption. */
+.opening__hint {
   position: absolute;
-  right: 24px;
-  bottom: 46.5px;
-  translate: 0 50%;
-  margin-right: calc(-0.1em - 0.5px);
-  z-index: 70;
-  color: var(--fg-3);
-  animation: skip-in 0.4s var(--ease) 1s backwards;
-}
-
-.opening__skip:hover,
-.opening__skip:focus-visible {
+  left: 0;
+  right: 0;
+  /* The nav's hairline takes its last pixel; its contents centre on the
+     rest (measured: brand, suits, and buttons all at 41.5px of 84). */
+  top: calc((var(--nav-h) - 1px) / 2);
+  translate: 0 -50%;
+  z-index: 60;
+  margin: 0 auto;
+  width: fit-content;
+  padding: 6px 0 6px 0.22em;
+  border: 0;
+  background: none;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 14px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
   color: var(--brass-2);
+  text-shadow: 0 0 6px var(--bg), 0 0 14px var(--bg), 0 2px 18px var(--bg);
+  opacity: 0.6;
+  cursor: pointer;
+  transition: opacity 0.4s var(--ease);
+  animation: hint-in 0.4s var(--ease) 1s backwards;
 }
 
-@media (max-width: 720px) {
-  .opening__skip {
-    right: 16px;
-    bottom: 38.5px;
-  }
+.opening__hint:hover,
+.opening__hint:focus-visible {
+  opacity: 1;
+  transition-duration: var(--fast);
 }
 
-@keyframes skip-in {
+.opening.is-dealt .opening__hint {
+  opacity: 0;
+}
+
+@keyframes hint-in {
   from {
     opacity: 0;
     visibility: hidden;

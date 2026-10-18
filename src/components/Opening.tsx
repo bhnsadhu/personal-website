@@ -9,10 +9,10 @@ import { createPortal } from 'react-dom'
  *
  * index.html decides whether it plays (`data-intro="play"`): once per visit,
  * on the home page only, never for a section link or reduced motion. It is
- * the way in, so a stray click does not end it; a quiet Skip in the corner,
- * Escape, or any key that types does, so nobody who needs the page is held.
- * While it plays, motion.css holds the hero's own entrance until it hands
- * over.
+ * the way in, so a stray click or key does not end it; a quiet line at the
+ * top offers the way out: space twice (a double tap on a phone), Escape, or
+ * the line itself. While it plays, motion.css holds the hero's own entrance
+ * until it hands over.
  */
 
 const DECK = 10
@@ -22,6 +22,10 @@ const DEAL_GAP = 190
 /** Matches the --lift transition in motion.css. */
 const LIFT_MS = 620
 const EASE = 'cubic-bezier(0.2, 0.7, 0.2, 1)'
+/** Two presses of space, or two taps, this close together skip. */
+const DOUBLE_MS = 450
+/** --cap-gap in motion.css: the caption keeps it below the skip line too. */
+const CAP_GAP = 28
 
 const wait = (ms: number) => new Promise<void>((r) => window.setTimeout(r, ms))
 
@@ -30,6 +34,8 @@ export function Opening() {
   const [leaving, setLeaving] = useState(false)
   const [skipped, setSkipped] = useState(false)
   const skipRef = useRef<() => void>(() => undefined)
+  const hintRef = useRef<HTMLButtonElement>(null)
+  const [touch] = useState(() => window.matchMedia('(pointer: coarse)').matches)
   const [dealt, setDealt] = useState(false)
   const [caption, setCaption] = useState('Shuffling…')
   const stageRef = useRef<HTMLDivElement>(null)
@@ -74,13 +80,27 @@ export function Opening() {
     }
     skipRef.current = () => finish(true)
 
-    // Any key that types or Escape skips; a modifier held alone (switching
-    // apps, say) does not.
+    // Space twice or Escape skips; one press, a held key, or any other key
+    // does not. On a touch screen, two taps in the same spot.
+    let lastSpace = -Infinity
     const onKey = (e: KeyboardEvent) => {
-      if (['Shift', 'Control', 'Alt', 'Meta', 'CapsLock', 'Fn'].includes(e.key)) return
-      finish(true)
+      if (e.key === 'Escape') return finish(true)
+      if (e.key !== ' ') return
+      e.preventDefault()
+      if (e.repeat) return
+      const now = performance.now()
+      if (now - lastSpace < DOUBLE_MS) finish(true)
+      lastSpace = now
+    }
+    let lastTap = { t: -Infinity, x: 0, y: 0 }
+    const onTap = (e: PointerEvent) => {
+      if (e.pointerType !== 'touch') return
+      const now = performance.now()
+      if (now - lastTap.t < DOUBLE_MS && Math.hypot(e.clientX - lastTap.x, e.clientY - lastTap.y) < 40) finish(true)
+      lastTap = { t: now, x: e.clientX, y: e.clientY }
     }
     window.addEventListener('keydown', onKey)
+    window.addEventListener('pointerdown', onTap)
 
     const deck = Array.from(stage.querySelectorAll<HTMLElement>('.opening__card'))
 
@@ -128,7 +148,10 @@ export function Opening() {
       const handTop = Math.min(...targets.map((t) => t.getBoundingClientRect().top))
       const pile = stage.getBoundingClientRect()
       const capTop = pile.top - 60
-      const lift = Math.min(0, Math.max(handTop - 40 - pile.bottom, 32 - capTop))
+      // Never past the skip line at the top: the caption keeps the same gap
+      // below it that it keeps above the deck.
+      const ceiling = (hintRef.current?.getBoundingClientRect().bottom ?? 4) + CAP_GAP
+      const lift = Math.min(0, Math.max(handTop - 40 - pile.bottom, ceiling - capTop))
       if (lift < 0 && overlay) {
         overlay.style.setProperty('--lift', `${lift}px`)
         await wait(LIFT_MS)
@@ -234,6 +257,7 @@ export function Opening() {
       // Development mounts twice; the first run must leave nothing behind.
       alive = false
       window.removeEventListener('keydown', onKey)
+      window.removeEventListener('pointerdown', onTap)
       anims.forEach((a) => a.cancel())
       clones.forEach((c) => c.remove())
       deck.forEach((c) => (c.style.opacity = ''))
@@ -255,11 +279,8 @@ export function Opening() {
       <p key={caption} className="opening__caption" aria-hidden="true">
         {caption}
       </p>
-      <button type="button" className="opening__skip tlink" onClick={() => skipRef.current()}>
-        Skip
-        <span className="arrow" aria-hidden="true">
-          →
-        </span>
+      <button ref={hintRef} type="button" className="opening__hint" onClick={() => skipRef.current()}>
+        {touch ? 'Double-tap to skip' : 'Double-tap space to skip'}
       </button>
     </div>,
     document.body,
