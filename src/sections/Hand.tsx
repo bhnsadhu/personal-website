@@ -18,12 +18,7 @@ export function Hand() {
         <div className="hero__top">
           <div className="hero__head intro">
             <p className="eyebrow">
-              Your hand{SEP}
-              <abbr data-tip={site.school}>
-                {site.schoolShort}
-                <span className="sr-only"> ({site.school})</span>
-              </abbr>
-              {SEP}{site.major}{SEP}{site.focus}
+              Your hand{SEP}{site.schoolShort}{SEP}{site.major}{SEP}{site.focus}
             </p>
             <h1 id="hand-title" className="display hero__title">
               <SplitText text={site.name} />

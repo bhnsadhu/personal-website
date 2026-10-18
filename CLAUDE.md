@@ -64,18 +64,6 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   through `src/lib/deal.ts` (CardRow claims the request, then scrolls the card
   under the nav) and just scroll to the section in the list view.
   `BackToTop.tsx` is the bottom-right arrow, shown after one screen of scroll.
-- `src/components/Tooltip.tsx` — one tag for the few things that show a
-  symbol in place of a word: an element with `data-tip` is named on a real
-  hover (never a tap) and on keyboard focus. `data-tip-unless` keeps it away
-  while the element's own words are on screen. Used only on card slivers
-  beside an open card, the nav suits when they drop to glyphs, the hero's
-  "UIUC" (`<abbr>`, `site.school`), the theme button, back to top, and the
-  nav chip. Never on anything that already shows its words. Placement is
-  measured from the ink: centred on the trigger (on the letters, not the
-  tracking after them), 8px off it, on whole device pixels; the nav's tags
-  hang on one line 8px under the bar; a tag that would come within 24px of
-  the screen's edge lines up with its trigger's edge instead. The intro's
-  Skip shares the corner buttons' 24px inset and centre line.
 - `src/components/Felt.tsx` — the felt: a canvas strip closing the footer
   on every page, a slow swell of IBM Plex Mono characters in noise patches
   with suits riding the crest (wine for red, `--fg` for black), brass
@@ -107,7 +95,8 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   Watching is the default: stray clicks do nothing, but a quiet "Skip" fades
   into the bottom-right corner after a second, and it, Escape, or any key
   that types (not a modifier alone) fades the overlay in 0.3s onto the hand
-  already in place. While it plays, motion.css hides the real hand and pauses the name's
+  already in place. Skip shares the corner buttons' 24px inset and centre
+  line, measured from its ink. While it plays, motion.css hides the real hand and pauses the name's
   rise; afterwards (`data-intro="done"`) the hand is not dealt in twice.
 - `src/components/IndexList.tsx` — the list view's rows. A row is a card
   laid flat: the same rank and suit (a small cream pip), title, italic

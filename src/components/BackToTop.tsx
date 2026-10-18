@@ -28,7 +28,7 @@ export function BackToTop() {
       type="button"
       className={`fab to-top ${shown ? 'is-shown' : ''}`.trim()}
       aria-label="Back to top"
-      data-tip="Back to top"
+      title="Back to top"
       onClick={() => window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' })}
     >
       <ArrowUpIcon className="icon--brass" />

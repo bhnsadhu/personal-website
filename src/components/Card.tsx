@@ -115,8 +115,6 @@ export function Card({
           aria-disabled={faceDown || undefined}
           onClick={faceDown ? onFaceDownClick : onOpen}
           inert={open}
-          data-tip={aside ? (faceDown ? 'Not dealt yet' : title) : undefined}
-          data-tip-unless=".card__face-body, .card__down-label"
         >
           <span className="card__corner card__corner--tl" aria-hidden="true">
             <span className="card__rank">{rank}</span>

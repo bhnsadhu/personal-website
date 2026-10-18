@@ -12,7 +12,6 @@ export const site = {
   location: 'Hawthorn Woods, Illinois',
   /** The short form, used only in the hero eyebrow and the list view's About line. Everywhere else spells the school out. */
   schoolShort: 'UIUC',
-  school: 'University of Illinois Urbana-Champaign',
   education: 'Computer Science + Economics, University of Illinois Urbana-Champaign',
   major: 'Computer Science + Economics',
   /** With `major` and `schoolShort`, the labels beside "Your hand" in the hero and under About in the list view. */
