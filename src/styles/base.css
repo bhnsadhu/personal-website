@@ -527,7 +527,8 @@ h4,
   .nav__toggle,
   .nav__theme,
   .nav__brand,
-  .tlink {
+  .tlink,
+  .entry__map {
     position: relative;
   }
 
@@ -535,7 +536,8 @@ h4,
   .nav__toggle::before,
   .nav__theme::before,
   .nav__brand::before,
-  .tlink::before {
+  .tlink::before,
+  .entry__map::before {
     content: '';
     position: absolute;
     inset: -7px 0;

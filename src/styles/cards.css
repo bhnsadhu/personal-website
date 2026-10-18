@@ -713,6 +713,24 @@
   color: var(--ink-2);
 }
 
+/* The address opens Google Maps. It keeps its quiet ink; the underline
+   and wine arrive on hover. */
+.entry__map {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+  transition:
+    color var(--fast) var(--ease),
+    text-decoration-color var(--fast) var(--ease);
+}
+
+.entry__map:hover,
+.entry__map:focus-visible {
+  color: var(--wine);
+  text-decoration-color: currentColor;
+}
+
 .entry__key {
   color: var(--wine);
   margin-right: 8px;

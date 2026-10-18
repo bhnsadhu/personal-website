@@ -22,7 +22,10 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   client), `leadership.ts` (face cards, fixed order, `progression` and
   `related` optional), `projects.ts` (the fan), `education.ts`,
   `certifications.ts`, `skills.ts`, `personal.ts` (four cards, five
-  `entries` each), `metrics.ts`, `sections.ts` (`sectionHeads`: each
+  `entries` each; a restaurant's address opens Google Maps, and Favorite
+  Tables ends with "More on Beli", `site.beli`, which search also lists
+  under Links. Beli goes nowhere else: no ranks, scores, or photos),
+  `metrics.ts`, `sections.ts` (`sectionHeads`: each
   section's eyebrow and title, and `sectionNotes`: the note beside it,
   rendered by both the card view and the list view).
 - `src/components/Backs.tsx` — what each entry says when it opens, one
@@ -248,7 +251,7 @@ The fan (projects) · The chips (skills) · The flop (personal) · Let's talk
 (contact). Buttons and links: "Explore My Work", "View Resume", "Contact
 Me" (hero), "Resume" (nav, footer), "Send Message" (submit), "Back to the
 hand", "View experience", "Explore the project", "List view" / "Card view", "Live Demo",
-"Repository" (a project's code), "GitHub" (his own profile: footer, contact, search), "View Credential", "Search", "Back to top" (aria), "Switch to light theme" / "Switch to dark theme"
+"Repository" (a project's code), "GitHub" (his own profile: footer, contact, search), "More on Beli" (Favorite Tables) / "Beli" (search), "View Credential", "Search", "Back to top" (aria), "Switch to light theme" / "Switch to dark theme"
 (aria and title on the sun/moon), "Currently @ …". The
 search placeholder is "Search the deck…" and an empty search reads "Not in
 the deck: “…”". Face-down cards say "Not dealt yet". 404 is

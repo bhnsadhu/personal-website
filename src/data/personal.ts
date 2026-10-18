@@ -1,3 +1,4 @@
+import { site } from './site'
 import type { PersonalCard } from './types'
 
 /** Opens the flop. First person. */
@@ -20,6 +21,7 @@ export const personal: PersonalCard[] = [
     summary: "Five places I'd happily eat at again.",
     body: [],
     tags: ['Food'],
+    links: [{ label: 'More on Beli', href: site.beli }],
     entries: [
       {
         name: "Nando's PERi-PERi",

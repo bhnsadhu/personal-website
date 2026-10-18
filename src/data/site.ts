@@ -43,6 +43,9 @@ export const site = {
   linkedinHandle: 'bhanusadhu',
   github: 'https://github.com/bhnsadhu',
   githubHandle: 'bhnsadhu',
+  /** Where the rest of the restaurants live. Linked from Favorite Tables and search only. */
+  beli: 'https://beliapp.co/account/bhnsadhu',
+  beliHandle: 'bhnsadhu',
   /** Drop the real PDF at public/Bhanu_Sadhu_Resume.pdf. */
   resume: '/Bhanu_Sadhu_Resume.pdf',
   contactLede: "Have a product internship, a project idea, or something interesting to build? I'd love to hear from you.",

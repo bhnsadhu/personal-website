@@ -155,13 +155,22 @@ export function CommandPalette() {
         hint: c.subtitle,
         mark: SUIT_GLYPH.hearts,
         markClass: 'red',
-        keywords: c.entries.flatMap((x) => [x.name, x.detail ?? '']),
+        keywords: [...c.tags, ...c.entries.flatMap((x) => [x.name, x.detail ?? ''])],
         run: flip(c.slug, 'flop'),
       })),
 
       { id: 'x-resume', group: 'Links', label: 'Resume', hint: 'PDF', mark: '↗', run: () => openTab(site.resume) },
       { id: 'x-linkedin', group: 'Links', label: 'LinkedIn', hint: `in/${site.linkedinHandle}`, mark: '↗', run: () => openTab(site.linkedin) },
       { id: 'x-github', group: 'Links', label: 'GitHub', hint: `@${site.githubHandle}`, mark: '↗', run: () => openTab(site.github) },
+      {
+        id: 'x-beli',
+        group: 'Links',
+        label: 'Beli',
+        hint: `@${site.beliHandle}`,
+        mark: '↗',
+        keywords: ['food', 'restaurants'],
+        run: () => openTab(site.beli),
+      },
       {
         id: 'x-email',
         group: 'Links',

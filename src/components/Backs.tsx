@@ -1,4 +1,4 @@
-import type { Experience, Highlight, Leadership, PersonalCard, Project } from '../data'
+import type { Experience, Highlight, Leadership, Link as LinkData, PersonalCard, Project } from '../data'
 import { personalExtras } from '../data'
 import { Link } from '../lib/router'
 import { SEP } from '../lib/sep'
@@ -29,22 +29,32 @@ function Arrow() {
   )
 }
 
+function Links({ links }: { links?: LinkData[] }) {
+  if (!links || links.length === 0) return null
+  return (
+    <div className="linkrow">
+      {links.map((l) => (
+        <a key={l.href} className="tlink" href={l.href} target="_blank" rel="noreferrer">
+          {l.label === 'Live Demo' && <LiveDot />}
+          {l.label}
+          <Arrow />
+        </a>
+      ))}
+    </div>
+  )
+}
+
+/** A restaurant's address, opened in Google Maps. */
+function mapsHref(name: string, address: string) {
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${name}, ${address}`)}`
+}
+
 export function HandBack({ h }: { h: Highlight }) {
   return (
     <>
       <p className="card__summary">{h.summary}</p>
       <Bullets items={h.body} />
-      {h.links && h.links.length > 0 && (
-        <div className="linkrow">
-          {h.links.map((l) => (
-            <a key={l.href} className="tlink" href={l.href} target="_blank" rel="noreferrer">
-              {l.label === 'Live Demo' && <LiveDot />}
-              {l.label}
-              <Arrow />
-            </a>
-          ))}
-        </div>
-      )}
+      <Links links={h.links} />
     </>
   )
 }
@@ -125,7 +135,14 @@ export function PersonalBack({ c }: { c: PersonalCard }) {
               <span className="entry__name">{e.name}</span>
               {e.detail && <span className="entry__detail">{e.detail}</span>}
             </p>
-            {e.address && <p className="entry__line mono mono--sm">{e.address}</p>}
+            {e.address && (
+              <p className="entry__line mono mono--sm">
+                <a className="entry__map" href={mapsHref(e.name, e.address)} target="_blank" rel="noreferrer">
+                  {e.address}
+                  <span className="sr-only"> (Google Maps)</span>
+                </a>
+              </p>
+            )}
             {e.pick && (
               <p className="entry__line">
                 <span className="entry__key mono mono--sm">Order</span>
@@ -136,6 +153,7 @@ export function PersonalBack({ c }: { c: PersonalCard }) {
           </li>
         ))}
       </ol>
+      <Links links={c.links} />
     </>
   )
 }
