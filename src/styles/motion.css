@@ -532,7 +532,9 @@ html[data-intro='play'] .hero__photo {
 /* The way out, offered quietly: centred at the top, on the nav's own centre
    line, so the page's nav takes its place when the overlay hands over. Set
    like the caption (the same capitals, tracking, and glow), smaller and
-   dimmer; it comes in once the deal has begun and leaves with the caption. */
+   dimmer; it comes in once the deal has begun and leaves with the caption.
+   Holding fills it with brass from the first letter to the last over the
+   hold (--hold, from Opening.tsx); letting go drains it back. */
 .opening__hint {
   position: absolute;
   left: 0;
@@ -545,8 +547,6 @@ html[data-intro='play'] .hero__photo {
   margin: 0 auto;
   width: fit-content;
   padding: 6px 0 6px 0.22em;
-  border: 0;
-  background: none;
   font-family: var(--mono);
   font-size: 11px;
   font-weight: 600;
@@ -555,20 +555,41 @@ html[data-intro='play'] .hero__photo {
   text-transform: uppercase;
   color: var(--brass-2);
   text-shadow: 0 0 6px var(--bg), 0 0 14px var(--bg), 0 2px 18px var(--bg);
-  opacity: 0.6;
-  cursor: pointer;
+  white-space: nowrap;
+  pointer-events: none;
   transition: opacity 0.4s var(--ease);
   animation: hint-in 0.4s var(--ease) 1s backwards;
 }
 
-.opening__hint:hover,
-.opening__hint:focus-visible {
-  opacity: 1;
-  transition-duration: var(--fast);
+.opening__hint-base {
+  opacity: 0.6;
+}
+
+/* The same words laid exactly over the dim ones, shown up to the hold's
+   progress. */
+.opening__hint-fill {
+  position: absolute;
+  inset: 0;
+  padding: inherit;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.25s var(--ease);
+}
+
+.opening__hint.is-holding .opening__hint-fill {
+  clip-path: inset(0 0 0 0);
+  transition: clip-path var(--hold) linear;
 }
 
 .opening.is-dealt .opening__hint {
   opacity: 0;
+}
+
+/* A long press is the way out, so it must not select or call a menu. */
+.opening {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  touch-action: none;
 }
 
 @keyframes hint-in {

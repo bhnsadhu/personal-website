@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { createPortal } from 'react-dom'
 
 /**
@@ -9,10 +9,10 @@ import { createPortal } from 'react-dom'
  *
  * index.html decides whether it plays (`data-intro="play"`): once per visit,
  * on the home page only, never for a section link or reduced motion. It is
- * the way in, so a stray click or key does not end it; a quiet line at the
- * top offers the way out: space twice (a double tap on a phone), Escape, or
- * the line itself. While it plays, motion.css holds the hero's own entrance
- * until it hands over.
+ * the way in, so a stray click or key does not end it. One thing does: a
+ * hold, of space or of a press anywhere, while the quiet line at the top
+ * fills with brass; let go early and it drains back. While it plays,
+ * motion.css holds the hero's own entrance until it hands over.
  */
 
 const DECK = 10
@@ -22,8 +22,8 @@ const DEAL_GAP = 190
 /** Matches the --lift transition in motion.css. */
 const LIFT_MS = 620
 const EASE = 'cubic-bezier(0.2, 0.7, 0.2, 1)'
-/** Two presses of space, or two taps, this close together skip. */
-const DOUBLE_MS = 450
+/** How long a hold takes to skip; the line's fill runs over the same time. */
+const HOLD_MS = 800
 /** --cap-gap in motion.css: the caption keeps it below the skip line too. */
 const CAP_GAP = 28
 
@@ -33,9 +33,9 @@ export function Opening() {
   const [on, setOn] = useState(() => document.documentElement.dataset.intro === 'play')
   const [leaving, setLeaving] = useState(false)
   const [skipped, setSkipped] = useState(false)
-  const skipRef = useRef<() => void>(() => undefined)
-  const hintRef = useRef<HTMLButtonElement>(null)
-  const [touch] = useState(() => window.matchMedia('(pointer: coarse)').matches)
+  const hintRef = useRef<HTMLParagraphElement>(null)
+  const [holding, setHolding] = useState(false)
+  const [hint] = useState(() => (window.matchMedia('(pointer: coarse)').matches ? 'Hold to skip' : 'Hold space to skip'))
   const [dealt, setDealt] = useState(false)
   const [caption, setCaption] = useState('Shuffling…')
   const stageRef = useRef<HTMLDivElement>(null)
@@ -78,29 +78,41 @@ export function Opening() {
       setLeaving(true)
       window.setTimeout(() => setOn(false), skip ? 340 : 720)
     }
-    skipRef.current = () => finish(true)
 
-    // Space twice or Escape skips; one press, a held key, or any other key
-    // does not. On a touch screen, two taps in the same spot.
-    let lastSpace = -Infinity
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') return finish(true)
+    // Hold to skip: space, or a press anywhere (mouse or finger), held for
+    // HOLD_MS. A tap, a click, or any other key does nothing; letting go
+    // early drains the line back.
+    let holdTimer = 0
+    const hold = () => {
+      if (done || holdTimer) return
+      setHolding(true)
+      holdTimer = window.setTimeout(() => finish(true), HOLD_MS)
+    }
+    const release = () => {
+      window.clearTimeout(holdTimer)
+      holdTimer = 0
+      if (!done) setHolding(false)
+    }
+    const onKeyDown = (e: KeyboardEvent) => {
       if (e.key !== ' ') return
       e.preventDefault()
-      if (e.repeat) return
-      const now = performance.now()
-      if (now - lastSpace < DOUBLE_MS) finish(true)
-      lastSpace = now
+      if (!e.repeat) hold()
     }
-    let lastTap = { t: -Infinity, x: 0, y: 0 }
-    const onTap = (e: PointerEvent) => {
-      if (e.pointerType !== 'touch') return
-      const now = performance.now()
-      if (now - lastTap.t < DOUBLE_MS && Math.hypot(e.clientX - lastTap.x, e.clientY - lastTap.y) < 40) finish(true)
-      lastTap = { t: now, x: e.clientX, y: e.clientY }
+    const onKeyUp = (e: KeyboardEvent) => {
+      if (e.key === ' ') release()
     }
-    window.addEventListener('keydown', onKey)
-    window.addEventListener('pointerdown', onTap)
+    const onDown = (e: PointerEvent) => {
+      if (e.button === 0) hold()
+    }
+    // A long press on a phone would otherwise open a menu or select text.
+    const noMenu = (e: Event) => e.preventDefault()
+    window.addEventListener('keydown', onKeyDown)
+    window.addEventListener('keyup', onKeyUp)
+    window.addEventListener('pointerdown', onDown)
+    window.addEventListener('pointerup', release)
+    window.addEventListener('pointercancel', release)
+    window.addEventListener('blur', release)
+    window.addEventListener('contextmenu', noMenu)
 
     const deck = Array.from(stage.querySelectorAll<HTMLElement>('.opening__card'))
 
@@ -256,8 +268,14 @@ export function Opening() {
     return () => {
       // Development mounts twice; the first run must leave nothing behind.
       alive = false
-      window.removeEventListener('keydown', onKey)
-      window.removeEventListener('pointerdown', onTap)
+      window.clearTimeout(holdTimer)
+      window.removeEventListener('keydown', onKeyDown)
+      window.removeEventListener('keyup', onKeyUp)
+      window.removeEventListener('pointerdown', onDown)
+      window.removeEventListener('pointerup', release)
+      window.removeEventListener('pointercancel', release)
+      window.removeEventListener('blur', release)
+      window.removeEventListener('contextmenu', noMenu)
       anims.forEach((a) => a.cancel())
       clones.forEach((c) => c.remove())
       deck.forEach((c) => (c.style.opacity = ''))
@@ -270,6 +288,7 @@ export function Opening() {
     <div
       ref={overlayRef}
       className={['opening', dealt && 'is-dealt', leaving && 'is-leaving', skipped && 'is-skipped'].filter(Boolean).join(' ')}
+      style={{ '--hold': `${HOLD_MS}ms` } as CSSProperties}
     >
       <div className="opening__deck" ref={stageRef} aria-hidden="true">
         {Array.from({ length: DECK }, (_, i) => (
@@ -279,9 +298,10 @@ export function Opening() {
       <p key={caption} className="opening__caption" aria-hidden="true">
         {caption}
       </p>
-      <button ref={hintRef} type="button" className="opening__hint" onClick={() => skipRef.current()}>
-        {touch ? 'Double-tap to skip' : 'Double-tap space to skip'}
-      </button>
+      <p ref={hintRef} className={`opening__hint ${holding ? 'is-holding' : ''}`.trim()} aria-hidden="true">
+        <span className="opening__hint-base">{hint}</span>
+        <span className="opening__hint-fill">{hint}</span>
+      </p>
     </div>,
     document.body,
   )

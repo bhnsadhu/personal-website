@@ -95,10 +95,12 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   Watching is the default: stray clicks and keys do nothing. After a second
   a quiet line fades in, centred at the top on the nav's own centre line
   (`(--nav-h - 1px) / 2`, where the nav's contents measure), set like the
-  caption, smaller and dimmer: "Double-tap space to skip" ("Double-tap to
-  skip" on touch). Space twice within 450ms, a double tap, Escape, or
-  clicking the line fades the overlay in 0.3s onto the hand already in
-  place. The caption never rises closer to that line than it sits above
+  caption, smaller and dimmer: "Hold space to skip" ("Hold to skip" on
+  touch). One thing skips: a hold of space, or of a press anywhere, for
+  0.8s (`HOLD_MS`), while the line fills with brass from its first letter
+  to its last; let go early and it drains back. Then the overlay fades in
+  0.3s onto the hand already in place. Clicks, taps, and other keys do
+  nothing. The caption never rises closer to that line than it sits above
   the deck. While it plays, motion.css hides the real hand and pauses the name's
   rise; afterwards (`data-intro="done"`) the hand is not dealt in twice.
 - `src/components/IndexList.tsx` — the list view's rows. A row is a card
@@ -258,7 +260,7 @@ The fan (projects) · The chips (skills) · The flop (personal) · Let's talk
 (contact). Buttons and links: "Explore My Work", "View Resume", "Contact
 Me" (hero), "Resume" (nav, footer), "Send Message" (submit), "Back to the
 hand", "View experience", "Explore the project", "List view" / "Card view", "Live Demo",
-"Repository" (a project's code), "GitHub" (his own profile: footer, contact, search), "More on Beli" (Favorite Tables) / "Beli" (search), "View Credential", "Search", "Back to top" (aria), "Double-tap space to skip" / "Double-tap to skip" (the opening deal), "Switch to light theme" / "Switch to dark theme"
+"Repository" (a project's code), "GitHub" (his own profile: footer, contact, search), "More on Beli" (Favorite Tables) / "Beli" (search), "View Credential", "Search", "Back to top" (aria), "Hold space to skip" / "Hold to skip" (the opening deal), "Switch to light theme" / "Switch to dark theme"
 (aria and title on the sun/moon), "Currently @ …". The
 search placeholder is "Search the deck…" and an empty search reads "Not in
 the deck: “…”". Face-down cards say "Not dealt yet". 404 is
