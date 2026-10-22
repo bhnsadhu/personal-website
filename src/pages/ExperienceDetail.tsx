@@ -1,4 +1,5 @@
 import { experience, findBySlug, nextOf, rankAt, SPREAD_RANKS } from '../data'
+import { LiveDot } from '../components/LiveDot'
 import { useParams } from '../lib/router'
 import { SEP } from '../lib/sep'
 import { useTitle } from '../lib/useTitle'
@@ -29,6 +30,24 @@ export function ExperienceDetail() {
       <PlateSection label="In one line">
         <p className="plate__lede">{item.summary}</p>
       </PlateSection>
+      {item.links && item.links.length > 0 && (
+        <PlateSection label="Links">
+          <div className="actions">
+            {item.links.map((l) => (
+              <a
+                key={l.href}
+                className={l.label === 'Live Demo' ? 'btn' : 'btn btn--ghost'}
+                href={l.href}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {l.label === 'Live Demo' && <LiveDot />}
+                {l.label}
+              </a>
+            ))}
+          </div>
+        </PlateSection>
+      )}
       {item.context && (
         <PlateSection label="The engagement">
           <p className="plate__p">{item.context}</p>

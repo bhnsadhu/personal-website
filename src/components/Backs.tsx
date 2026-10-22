@@ -65,6 +65,7 @@ export function ExperienceBack({ e }: { e: Experience }) {
       <p className="card__summary">{e.summary}</p>
       {e.context && <p className="card__context">{e.context}</p>}
       <Bullets items={e.body} />
+      <Links links={e.links} />
     </>
   )
 }

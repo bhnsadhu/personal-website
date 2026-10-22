@@ -1,4 +1,5 @@
 import { education } from './education'
+import { experience } from './experience'
 import { projects } from './projects'
 import { SEP } from '../lib/sep'
 import { moreLabel } from './site'
@@ -17,17 +18,26 @@ function projectLinks(slug: string) {
   ]
 }
 
+/** A role's links, from its entry in experience.ts, so the ace and the spread card cannot drift. */
+function experienceLinks(slug: string) {
+  return experience.find((x) => x.slug === slug)?.links ?? []
+}
+
 export const hand: Highlight[] = [
   {
     kind: 'role',
     slug: 'replit',
     corner: 'Current',
     title: 'Replit',
-    subtitle: 'Product Strategy Consultant',
+    subtitle: 'Product Strategy & Development Consultant',
     meta: 'Aug 2026 — Present',
-    summary: 'Turning campus AI-literacy problems into product direction for Replit Agent across 4+ colleges at the University of Illinois Urbana-Champaign.',
-    body: ['Conceived an AI learnathon to help beginners build AI fluency by creating a working project with Replit Agent.'],
-    tags: ['Product Strategy', 'User Research', 'AI Adoption'],
+    summary: 'Turning campus AI-literacy problems into product direction for Replit Agent across the University of Illinois Urbana-Champaign.',
+    body: [
+      'Conceived an AI learnathon to help beginners build AI fluency by creating a working project with Replit Agent.',
+      'Built and deployed a Next.js learnathon platform with event guidance, app showcases, and automated screenshots.',
+    ],
+    tags: ['Product Strategy', 'Product Development', 'AI Adoption'],
+    links: experienceLinks('replit'),
     more: { label: moreLabel.experience, to: '/experience/replit' },
   },
   {
