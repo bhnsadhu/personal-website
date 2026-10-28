@@ -167,7 +167,9 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   never "UIUC" or "Illinois" alone, in text, metadata, and docs. The one
   exception is the hero eyebrow, in both views, which says
   "UIUC" (`site.schoolShort`) to stay short.
-- Fixed wording in fixed places. The hero eyebrow reads "Your hand ·
+- Fixed wording in fixed places. The hero's headline is "Hi, I'm
+  Bhanu." (`site.greeting`) over one line, `site.tagline`; the full name
+  lives in the nav, the tab title, and the footer. The hero eyebrow reads "Your hand ·
   UIUC · Computer Science + Economics · Builder & breaker of products"
   (`site.schoolShort`, `site.major`, `site.focus`), no location; the list view's header says the same. Every list of the three is "Product, Software, &
   Strategy" (`site.title`, split as `site.interests`): tab title, social
@@ -187,9 +189,9 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   fallback, metadata stripped), rendered by `src/components/HeroPhoto.tsx`
   beside the name in both heroes as a cut-out headshot standing on the
   page: background removed (macOS Vision), no frame, no caption, a faint
-  brass glow behind, the sides and waist fading into the table. It fills
-  the intro's height, head at the top, right edge on the content edge;
-  256px wide (224 at 1149 and below) so the name keeps one line.
+  brass glow behind, the sides and waist fading into the table. It keeps
+  the image's proportions, 360px wide (280 at 1149 and below), right edge
+  on the content edge, with the intro centred against it.
   From 1023 down it drops under the intro, square and centred.
 - No class year and no graduation date, expected or otherwise. Education
   shows the start date only (`Aug 2025 — Present`).

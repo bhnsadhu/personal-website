@@ -21,7 +21,7 @@ export function Hand() {
               Your hand{SEP}{site.schoolShort}{SEP}{site.major}{SEP}{site.focus}
             </p>
             <h1 id="hand-title" className="display hero__title">
-              <SplitText text={site.name} />
+              <SplitText text={site.greeting} />
             </h1>
             <p className="lede">{site.tagline}</p>
             <div className="actions">

@@ -249,37 +249,32 @@
   padding: 72px 0 32px;
 }
 
-/* Wide enough for the full name on one line at the largest display size,
-   which needs about 875px. The lede keeps its own 58ch measure, so only the
-   headline uses the extra room. Left as a max-width rather than nowrap: on a
-   phone the name is wider than the screen and still has to wrap. */
+/* The intro holds its own measure; the lede keeps 58ch, and the long
+   eyebrow sets the column's width. */
 .hero__head {
   display: grid;
   gap: 18px;
-  max-width: 920px;
 }
 
-/* The intro on the left, the photo beside the name on the right, its right
-   edge on the content edge (the theme button's, and the hand's). The
-   photo stretches to the intro's height, inset 5px at each end so it runs
-   from the eyebrow's cap top to the seeking line's baseline. 256px is the
-   most the column can take before the name, 875px of ink at 104px, wraps. */
+/* The intro on the left, a large photo on the right, centred against each
+   other the way a portrait sits beside its caption. The photo keeps its own
+   height (taller than the intro), so the intro rides at its middle. */
 .hero__top {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  align-items: stretch;
-  gap: 40px;
+  align-items: center;
+  gap: 56px;
   margin-bottom: 24px;
 }
 
-/* A cut-out headshot standing on the page, no frame: it fills the column
-   to the intro's height (the picture is absolute, so its own height stays
-   out of the row's sizing and the intro alone sets it), head at the top,
-   and fades into the table at the waist. A faint brass glow behind keeps
-   the dark suit from sinking into the dark page. */
+/* A cut-out headshot standing on the page, no frame, at the image's own
+   proportions, head at the top and fading into the table at the sides and
+   waist. A faint brass glow behind keeps the dark suit from sinking into
+   the dark page. */
 .hero__photo {
   position: relative;
-  width: 256px;
+  width: 360px;
+  aspect-ratio: 720 / 941;
   margin: 0;
 }
 
@@ -322,6 +317,12 @@
   line-height: 0.98;
 }
 
+/* One line under the greeting, a step up from an ordinary lede. */
+.hero .lede {
+  font-size: 21px;
+  color: var(--fg-2);
+}
+
 /* Seeking line: when, then what, in one sentence. Product is marked as the lead. */
 .hero__seeking {
   color: var(--gray);
@@ -346,16 +347,15 @@
   color: var(--gray);
 }
 
-/* A narrower print from 1149 down, so the name and the eyebrow keep one
-   line each to 1024. Below that there is no room beside the name, so the
-   photo drops under the intro, square at its own height, centred above
-   the hand. */
+/* A smaller photo from 1149 down. Below 1024 there is no room beside the
+   intro, so the photo drops under it, cropped to head and shoulders,
+   centred above the hand. */
 @media (max-width: 1149px) {
   .hero__top {
-    gap: 28px;
+    gap: 32px;
   }
   .hero__photo {
-    width: 224px;
+    width: 280px;
   }
 }
 
@@ -366,7 +366,7 @@
   }
   .hero__photo {
     justify-self: center;
-    width: min(256px, 72%);
+    width: min(300px, 80%);
     aspect-ratio: 1;
   }
 }

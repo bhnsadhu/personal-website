@@ -28,8 +28,9 @@ export const site = {
     height: 941,
     alt: 'Bhanu in a charcoal suit and white shirt.',
   },
-  tagline:
-    "I turn ideas into products and research into decisions. I'm studying Computer Science + Economics at the University of Illinois Urbana-Champaign, with a focus on product management and building useful software.",
+  /** The hero's headline, in both views. The full name is in the nav, the tab title, and the footer. */
+  greeting: "Hi, I'm Bhanu.",
+  tagline: 'I turn ideas into products and research into decisions.',
   about: [
     "I'm Bhanu, a Computer Science + Economics student at the University of Illinois Urbana-Champaign, with minors in Statistics and Advertising. My experience spans digital health, AI adoption, consulting, and building products of my own. I enjoy understanding what people need, deciding what matters most, and turning those decisions into something they can use.",
     "Outside of work, I'm usually playing cards with friends, trying a restaurant, collecting fragrances, or watching a movie.",
