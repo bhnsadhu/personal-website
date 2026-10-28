@@ -145,16 +145,8 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   `CAMBIO_PLAYERS_FALLBACK` in `src/data/metrics.ts`. That number is only a
   fallback: keep it near the real count, never rely on it. The project's
   `usage` text holds a `{cambioPlayers}` placeholder, not a number.
-- `public/Bhanu_Sadhu_Resume.pdf` — the resume. Every "Resume" link
-  (hero, nav, footer, list view, search) is a `ResumeLink`
-  (`src/components/ResumeDrawer.tsx`): a plain click opens `ResumeDrawer`, a
-  native `<dialog>` sliding in from the right at the row slide's pace with
-  the PDF, "Download", and Close, its bar the nav's height so both sit on
-  the nav's centre line; Escape or a click outside closes it and focus
-  returns to the link. The PDF loads on first open. At 720px and below, or
-  on a modified click, the link opens the PDF in a new tab instead.
-  `src/lib/resume.ts` opens it from anywhere. No "last updated" date in
-  the drawer: `site.updated` is the site's date, not the PDF's.
+- `public/Bhanu_Sadhu_Resume.pdf` — the resume every "Resume" link opens in
+  a new tab. Not in the repo until the real file is dropped in.
   `og.png` is the social preview, 1200x630; index.html points `og:image`
   and `twitter:image` at `https://bhanusadhu.com/og.png`, absolute because
   crawlers do not resolve relative ones. `og:title` and `twitter:title`
@@ -277,7 +269,7 @@ The fan (projects) · The chips (skills) · The flop (personal) · Let's talk
 (contact). Buttons and links: "Explore My Work", "View Resume", "Contact
 Me" (hero), "Resume" (nav, footer), "Send Message" (submit), "Back to the
 hand", "View experience", "Explore the project", "List view" / "Card view", "Live Demo",
-"Repository" (a project's code), "App Store" (Ingenio Care's listing), "GitHub" (his own profile: footer, contact, search), "More on Beli" (Favorite Tables) / "Beli" (search), "View Credential", "Search", "Back to top" (aria), "Download" (the resume drawer), "Close" / "Previous screenshot" / "Next screenshot" (aria, the enlarged screenshot; "Close" also closes the resume drawer), "Hold space to skip" / "Hold to skip" (the opening deal), "Switch to light theme" / "Switch to dark theme"
+"Repository" (a project's code), "App Store" (Ingenio Care's listing), "GitHub" (his own profile: footer, contact, search), "More on Beli" (Favorite Tables) / "Beli" (search), "View Credential", "Search", "Back to top" (aria), "Close" / "Previous screenshot" / "Next screenshot" (aria, the enlarged screenshot), "Hold space to skip" / "Hold to skip" (the opening deal), "Switch to light theme" / "Switch to dark theme"
 (aria and title on the sun/moon), "Currently @ …". The
 search placeholder is "Search the deck…" and an empty search reads "Not in
 the deck: “…”". Face-down cards say "Not dealt yet". 404 is
