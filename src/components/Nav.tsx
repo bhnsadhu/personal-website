@@ -66,6 +66,11 @@ export function Nav() {
     path,
   )
 
+  // Arriving in a section riffles its suit's label, as a hover does.
+  useEffect(() => {
+    riffles.current[SUIT_NAV.findIndex((s) => s.anchor === active)]?.play()
+  }, [active])
+
   // A brass line under the nav fills as the page scrolls, with his chip
   // rolling at its head: it turns exactly as far as it travels, so it rolls
   // rather than slides.

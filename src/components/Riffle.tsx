@@ -1,5 +1,4 @@
 import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react'
-import { richPointer } from '../lib/motion'
 
 /** What a word riffles through: ranks, suits, and a few glitch marks. */
 const DECK = [...'AKQJ♠♥♣♦!@#$%^&*']
@@ -14,8 +13,8 @@ export interface RiffleHandle {
  * A word that riffles like a deck: on `play()` every letter shuffles through
  * ranks, suits, and glitch marks, then settles back left to right (about
  * 0.8s). Red suits show in wine, black in brass. The box is held at its
- * resting width so nothing beside it moves. Skipped for coarse pointers and
- * reduced motion.
+ * resting width so nothing beside it moves. A play already running is not
+ * restarted. Skipped under reduced motion.
  */
 export const Riffle = forwardRef<RiffleHandle, { text: string; className?: string }>(function Riffle(
   { text, className },
@@ -29,7 +28,7 @@ export const Riffle = forwardRef<RiffleHandle, { text: string; className?: strin
   useImperativeHandle(ref, () => ({
     play() {
       const el = box.current
-      if (!el || timer.current !== null || !richPointer()) return
+      if (!el || timer.current !== null || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
       const letters = [...el.children] as HTMLElement[]
       el.style.width = `${el.getBoundingClientRect().width}px`
       let frame = 0
