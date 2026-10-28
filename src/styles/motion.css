@@ -18,6 +18,21 @@
   color: var(--fg);
 }
 
+/* A label riffling on hover (Riffle.tsx): held to one line and centred in
+   its resting width, red suits in wine and black in brass as they pass. */
+.riffle {
+  white-space: nowrap;
+  text-align: center;
+}
+
+.riffle [data-suit='red'] {
+  color: var(--wine-text);
+}
+
+.riffle [data-suit='black'] {
+  color: var(--brass);
+}
+
 /* Scroll progress: a brass hairline along the foot of the nav, with his
    chip rolling at its head, centred on the line. The nav is tall enough
    (--nav-h) that the chip never touches a suit, its highlight, or the dot

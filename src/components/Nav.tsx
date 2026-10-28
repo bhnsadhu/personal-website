@@ -5,6 +5,7 @@ import { setTheme, useTheme } from '../lib/theme'
 import { experience, site, type Suit } from '../data'
 import { MoonIcon, SunIcon } from './Icons'
 import { LiveDot } from './LiveDot'
+import { Riffle, type RiffleHandle } from './Riffle'
 import { SUIT_GLYPH } from './Suit'
 
 interface SuitLink {
@@ -59,6 +60,7 @@ export function Nav() {
   const current = experience.find((e) => e.slug === site.currently)
   const theme = useTheme()
   const next = theme === 'dark' ? 'light' : 'dark'
+  const riffles = useRef<(RiffleHandle | null)[]>([])
   const active = useScrollSpy(
     SUIT_NAV.map((s) => s.anchor),
     path,
@@ -149,19 +151,24 @@ export function Nav() {
 
         <nav className="nav__suits" aria-label="Sections">
           <ul>
-            {SUIT_NAV.map((s) => (
+            {SUIT_NAV.map((s, i) => (
               <li key={s.suit}>
                 <Link
                   to={`${onList ? '/list' : '/'}#${s.anchor}`}
+                  onMouseEnter={() => riffles.current[i]?.play()}
                   className={`nav__suit nav__suit--${s.suit} ${active === s.anchor ? 'is-active' : ''}`.trim()}
                   aria-current={active === s.anchor ? 'location' : undefined}
                   aria-label={`${s.label} (${s.suit})`}
                   title={s.label}
                 >
                   <span aria-hidden="true">{SUIT_GLYPH[s.suit]}</span>
-                  <span className="nav__suit-label mono mono--sm" aria-hidden="true">
-                    {s.label}
-                  </span>
+                  <Riffle
+                    ref={(r) => {
+                      riffles.current[i] = r
+                    }}
+                    text={s.label}
+                    className="nav__suit-label mono mono--sm"
+                  />
                 </Link>
               </li>
             ))}
