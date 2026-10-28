@@ -56,9 +56,12 @@
 
   --container: 1240px;
   --gutter: 32px;
-  /* Tall enough that the chip, centred on the nav's foot line, clears the
-     lowest thing in the nav (the active suit's dot) with room to spare. */
-  --nav-h: 84px;
+  /* Tall enough that the chip, centred on the floating bar's foot, clears
+     the suits above it (measured: 2px at 96) and ends inside the nav. */
+  --nav-h: 96px;
+  /* The floating bar's inset from the top of the screen, and the room kept
+     under it for the chip's lower half. */
+  --nav-gap: 10px;
 }
 
 /* Light: warm paper, ink type, brass darkened a step so it still reads
@@ -104,6 +107,7 @@
 @media (max-width: 720px) {
   :root {
     --gutter: 18px;
-    --nav-h: 68px;
+    --nav-h: 82px;
+    --nav-gap: 8px;
   }
 }

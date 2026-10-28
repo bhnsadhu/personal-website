@@ -135,72 +135,74 @@ export function Nav() {
   return (
     <header className="nav">
       <div className="nav__inner container">
-        <div className="nav__start">
-          <Link to="/" className="nav__brand" aria-label={`${site.shortName}, back to your hand`}>
-            {site.shortName}
-          </Link>
-          {current && (
-            <Link to={`/experience/${current.slug}`} className="nav__now mono" aria-label={`Currently at ${current.company}`}>
-              <LiveDot />
-              Currently @ {current.company}
+        <div className="nav__bar">
+          <div className="nav__start">
+            <Link to="/" className="nav__brand" aria-label={`${site.shortName}, back to your hand`}>
+              {site.shortName}
             </Link>
-          )}
-        </div>
+            {current && (
+              <Link to={`/experience/${current.slug}`} className="nav__now mono" aria-label={`Currently at ${current.company}`}>
+                <LiveDot />
+                Currently @ {current.company}
+              </Link>
+            )}
+          </div>
 
-        <nav className="nav__suits" aria-label="Sections">
-          <ul>
-            {SUIT_NAV.map((s) => (
-              <li key={s.suit}>
-                <Link
-                  to={`${onList ? '/list' : '/'}#${s.anchor}`}
-                  className={`nav__suit nav__suit--${s.suit} ${active === s.anchor ? 'is-active' : ''}`.trim()}
-                  aria-current={active === s.anchor ? 'location' : undefined}
-                  aria-label={`${s.label} (${s.suit})`}
-                  title={s.label}
-                >
-                  <span aria-hidden="true">{SUIT_GLYPH[s.suit]}</span>
-                  <span className="nav__suit-label mono mono--sm" aria-hidden="true">
-                    {s.label}
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+          <nav className="nav__suits" aria-label="Sections">
+            <ul>
+              {SUIT_NAV.map((s) => (
+                <li key={s.suit}>
+                  <Link
+                    to={`${onList ? '/list' : '/'}#${s.anchor}`}
+                    className={`nav__suit nav__suit--${s.suit} ${active === s.anchor ? 'is-active' : ''}`.trim()}
+                    aria-current={active === s.anchor ? 'location' : undefined}
+                    aria-label={`${s.label} (${s.suit})`}
+                    title={s.label}
+                  >
+                    <span aria-hidden="true">{SUIT_GLYPH[s.suit]}</span>
+                    <span className="nav__suit-label mono mono--sm" aria-hidden="true">
+                      {s.label}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-        <div className="nav__end">
-          <Link to={onList ? '/' : '/list'} className="btn btn--ghost nav__toggle" aria-current={onList ? 'page' : undefined}>
-            {onList ? 'Card view' : 'List view'}
-          </Link>
-          <a className="btn nav__resume" href={site.resume} target="_blank" rel="noreferrer">
-            Resume
-            <span className="sr-only">(opens PDF in a new tab)</span>
-          </a>
-          <button
-            type="button"
-            className="btn btn--ghost nav__theme"
-            aria-label={`Switch to ${next} theme`}
-            title={`Switch to ${next} theme`}
-            onClick={() => setTheme(next)}
-          >
-            {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
-          </button>
+          <div className="nav__end">
+            <Link to={onList ? '/' : '/list'} className="btn btn--ghost nav__toggle" aria-current={onList ? 'page' : undefined}>
+              {onList ? 'Card view' : 'List view'}
+            </Link>
+            <a className="btn nav__resume" href={site.resume} target="_blank" rel="noreferrer">
+              Resume
+              <span className="sr-only">(opens PDF in a new tab)</span>
+            </a>
+            <button
+              type="button"
+              className="btn btn--ghost nav__theme"
+              aria-label={`Switch to ${next} theme`}
+              title={`Switch to ${next} theme`}
+              onClick={() => setTheme(next)}
+            >
+              {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+            </button>
+          </div>
+          <span ref={barRef} className="nav__progress" aria-hidden="true">
+            <span className="nav__progress-fill" />
+            <span
+              className="nav__chip"
+              title="Drag to scroll"
+              onPointerDown={onChipDown}
+              onPointerMove={onChipMove}
+              onPointerUp={onChipUp}
+              onPointerCancel={onChipUp}
+              onLostPointerCapture={onChipUp}
+            >
+              <ChipMark />
+            </span>
+          </span>
         </div>
       </div>
-      <span ref={barRef} className="nav__progress" aria-hidden="true">
-        <span className="nav__progress-fill" />
-        <span
-          className="nav__chip"
-          title="Drag to scroll"
-          onPointerDown={onChipDown}
-          onPointerMove={onChipMove}
-          onPointerUp={onChipUp}
-          onPointerCancel={onChipUp}
-          onLostPointerCapture={onChipUp}
-        >
-          <ChipMark />
-        </span>
-      </span>
     </header>
   )
 }

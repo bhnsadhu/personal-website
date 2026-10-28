@@ -104,7 +104,7 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   `#section` link or reduced motion. It runs about 2.5s with the page locked.
   Watching is the default: stray clicks and keys do nothing. After a second
   a quiet line fades in, centred at the top on the nav's own centre line
-  (`(--nav-h - 1px) / 2`, where the nav's contents measure), set like the
+  (`--nav-h / 2 - 1px`, the floating bar's centre), set like the
   caption, smaller and dimmer: "Hold space to skip" ("Hold to skip" on
   touch). One thing skips: a hold of space, or of a press anywhere, for
   0.8s (`HOLD_MS`), while the line fills with brass from its first letter
@@ -231,10 +231,12 @@ first and last on the content edges); list rows by space, with a soft
 `--bg-2` panel on hover and while open; panels (certs, the form) by a lift and shadow;
 "Also in rotation" by nothing at all: one line 20px under the flop's cards
 (centred, and the same under the rows in the list view), set like the hero's
-seeking line, label in brass and interests in cream; the list rail by a track that fades at both ends; the nav keeps
-its plain hairline, with the brass scroll-progress line riding on it and
-his chip rolling at its head, centred on the line; `--nav-h` is tall
-enough that it never touches the nav's suits
+seeking line, label in brass and interests in cream; the list rail by a track that fades at both ends; the nav floats: a
+rounded glass bar (`.nav__bar`) inset `--nav-gap` from the top, as wide as
+the content plus its own padding so what is inside sits on the content
+edges, with the brass scroll-progress line riding its foot and his chip
+rolling at its head, centred on the line; `--nav-h` is tall enough that the
+chip never touches the nav's suits and ends inside the nav
 (`ChipMark` in Nav.tsx: the favicon's brass B
 on an ink chip with brass edge inlays, turning as far as it travels; drag it left or right and the page scrolls
 to match).
