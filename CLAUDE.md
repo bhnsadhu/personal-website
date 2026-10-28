@@ -89,7 +89,9 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   shortest and longest lengths in. Every stack reserves the tallest box
   (`--max` in CSS) and chips sit from the bottom up, so all six rest on one
   baseline with their labels aligned. The `×N` beside it is the real
-  number.
+  number. The top chip of each stack can be picked up with a mouse or pen
+  (`useLiftable`): it follows the pointer, tilting as it is pulled, and
+  springs back onto its stack when let go. Touch still scrolls the page.
 - `src/components/Opening.tsx` — the opening deal: a deck riffle-shuffles,
   rises clear of where the hand lands, then the four aces are dealt to the
   exact spots the hero's hand occupies and turn face up while the rest of
@@ -179,13 +181,13 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   or idea-stage things (AviLux pilot, the AI learnathon, the
   apartment-chores product) are never described as launched.
 - No GPA, grades, honors, ratings, or invented metrics and dates. One
-  photo only: `site.photo` (`public/bhanu.jpg`, metadata
-  stripped), rendered by `src/components/HeroPhoto.tsx` beside the name
-  in both heroes as a straight Polaroid on cream stock, no caption, an even
-  border all round. The file is cropped so his face sits on the print's
-  vertical centre line. It stretches to the intro, top on the eyebrow's cap
-  top and bottom on the seeking line's baseline, right edge on the content
-  edge; 256px wide (224 at 1149 and below) so the name keeps one line.
+  photo only: `site.photo` (`public/bhanu.avif`, `bhanu.png` as the
+  fallback, metadata stripped), rendered by `src/components/HeroPhoto.tsx`
+  beside the name in both heroes as a cut-out headshot standing on the
+  page: background removed (macOS Vision), no frame, no caption, a faint
+  brass glow behind, the sides and waist fading into the table. It fills
+  the intro's height, head at the top, right edge on the content edge;
+  256px wide (224 at 1149 and below) so the name keeps one line.
   From 1023 down it drops under the intro, square and centred.
 - No class year and no graduation date, expected or otherwise. Education
   shows the start date only (`Aug 2025 — Present`).

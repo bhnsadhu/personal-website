@@ -272,28 +272,49 @@
   margin-bottom: 24px;
 }
 
-/* A Polaroid on the cards' cream stock, set straight: a thin even border
-   on all four sides. The window takes whatever height the intro leaves (near square
-   on a desktop); `height: 0` keeps the image's own height out of the row's
-   sizing, so the intro alone sets it. The crop sits high, on the face. */
+/* A cut-out headshot standing on the page, no frame: it fills the column
+   to the intro's height (the picture is absolute, so its own height stays
+   out of the row's sizing and the intro alone sets it), head at the top,
+   and fades into the table at the waist. A faint brass glow behind keeps
+   the dark suit from sinking into the dark page. */
 .hero__photo {
-  display: flex;
-  flex-direction: column;
+  position: relative;
   width: 256px;
-  margin: 5px 0;
-  padding: 14px;
-  background: var(--cream);
-  border-radius: 4px;
-  box-shadow: var(--card-shadow);
+  margin: 0;
+}
+
+.hero__photo::before {
+  content: '';
+  position: absolute;
+  inset: 4% -14% 0;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--brass) 20%, transparent),
+    transparent
+  );
+  pointer-events: none;
+}
+
+.hero__photo picture {
+  position: absolute;
+  inset: 0;
 }
 
 .hero__photo img {
   display: block;
-  flex: 1 1 auto;
   width: 100%;
-  height: 0;
+  height: 100%;
   object-fit: cover;
-  object-position: 50% 28%;
+  object-position: 50% 0;
+  /* The shoulders run off the frame, so the sides fade as well as the waist. */
+  -webkit-mask-image:
+    linear-gradient(to bottom, #000 62%, transparent 96%),
+    linear-gradient(to right, transparent, #000 14%, #000 86%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to bottom, #000 62%, transparent 96%),
+    linear-gradient(to right, transparent, #000 14%, #000 86%, transparent);
+  mask-composite: intersect;
 }
 
 .hero__title {
@@ -335,7 +356,6 @@
   }
   .hero__photo {
     width: 224px;
-    padding: 12px;
   }
 }
 
@@ -347,11 +367,6 @@
   .hero__photo {
     justify-self: center;
     width: min(256px, 72%);
-    margin: 0;
-  }
-  .hero__photo img {
-    flex: none;
-    height: auto;
     aspect-ratio: 1;
   }
 }
@@ -542,7 +557,40 @@
   border-radius: 50%;
   background: repeating-conic-gradient(from 0deg, var(--stripe) 0 14deg, var(--chip) 14deg 45deg);
   box-shadow: var(--chip-shadow);
-  transition: transform var(--fast) var(--ease);
+  translate: var(--dx, 0) var(--dy, 0);
+  rotate: var(--tilt, 0deg);
+  transition:
+    transform var(--fast) var(--ease),
+    translate 0.55s cubic-bezier(0.3, 1.45, 0.55, 1),
+    rotate 0.4s var(--ease),
+    scale var(--fast) var(--ease);
+}
+
+/* The top chip can be picked up (useLiftable in Chips.tsx). Held, it rides
+   above the other stacks, a little larger, tracking the pointer with no
+   lag; let go, it springs back onto its stack with the bounce it dropped
+   in with. */
+@media (hover: hover) and (pointer: fine) {
+  .chip--top {
+    cursor: grab;
+    touch-action: none;
+  }
+}
+
+.chip.is-held {
+  z-index: 2;
+  cursor: grabbing;
+  scale: 1.06;
+  box-shadow: var(--chip-shadow), var(--pop-shadow);
+  transition:
+    rotate 0.2s var(--ease),
+    scale var(--fast) var(--ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip {
+    transition: none;
+  }
 }
 
 .chip::after {
