@@ -17,10 +17,10 @@ import { createPortal } from 'react-dom'
 
 const DECK = 10
 const CARD_W = 152
-const DEAL_MS = 920
-const DEAL_GAP = 190
+const DEAL_MS = 640
+const DEAL_GAP = 110
 /** Matches the --lift transition in motion.css. */
-const LIFT_MS = 620
+const LIFT_MS = 400
 const EASE = 'cubic-bezier(0.2, 0.7, 0.2, 1)'
 /** How long a hold takes to skip; the line's fill runs over the same time. */
 const HOLD_MS = 800
@@ -122,8 +122,8 @@ export function Opening() {
       await Promise.all(
         deck.map((c, i) =>
           play(c, [{ transform: rest(i) }, { transform: i < half ? cut(-1, i) : cut(1, i - half) }], {
-            duration: 560,
-            delay: 100 + (i % half) * 18,
+            duration: 340,
+            delay: 60 + (i % half) * 12,
           }),
         ),
       )
@@ -142,14 +142,10 @@ export function Opening() {
               { transform: `translate(${i < half ? -24 : 24}px, -28px) rotate(0deg)`, offset: 0.5 },
               { transform: rest(slot) },
             ],
-            { duration: 440, delay: 80 + slot * 66 },
+            { duration: 300, delay: 40 + slot * 40 },
           )
         }),
       )
-      if (done || !alive) return
-      await play(stage, [{ transform: 'scale(1)' }, { transform: 'scale(1.03)' }, { transform: 'scale(1)' }], {
-        duration: 380,
-      })
       if (done || !alive) return
 
       // 2. The deal: the top four go to where the hero's aces sit. First the
@@ -168,7 +164,7 @@ export function Opening() {
         overlay.style.setProperty('--lift', `${lift}px`)
         await wait(LIFT_MS)
       } else {
-        await wait(240)
+        await wait(160)
       }
       if (done || !alive) return
       const deckBox = stage.getBoundingClientRect()
@@ -260,7 +256,7 @@ export function Opening() {
         }),
       )
       if (done || !alive) return
-      await wait(440)
+      await wait(200)
       if (alive) finish()
     }
     run()

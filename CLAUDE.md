@@ -101,7 +101,7 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   onto a hand already in place. An inline script in `index.html` decides
   before first paint (`data-intro="play"`): once per visit
   (`sessionStorage` `dealt`), only when landing on `/` itself, never for a
-  `#section` link or reduced motion. It runs about 4.5s with the page locked.
+  `#section` link or reduced motion. It runs about 2.5s with the page locked.
   Watching is the default: stray clicks and keys do nothing. After a second
   a quiet line fades in, centred at the top on the nav's own centre line
   (`(--nav-h - 1px) / 2`, where the nav's contents measure), set like the
