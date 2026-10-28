@@ -92,7 +92,7 @@ export function Plate({ eyebrow, rank, suit, title, subtitle, meta, tags, childr
 
 export function PlateSection({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <section className="plate__section">
+    <section className="plate__section reveal">
       <h2 className="mono plate__label">{label}</h2>
       {children}
     </section>
@@ -111,17 +111,36 @@ export function PlateShots({ shots }: { shots: Shot[] }) {
 
   useEffect(() => {
     const d = boxRef.current
-    if (!d) return
-    if (at !== null && !d.open) d.showModal()
-    else if (at === null && d.open) d.close()
+    if (d && at !== null && !d.open) d.showModal()
   }, [at])
+
+  // Fade out, then close; at once when motion is reduced.
+  const close = () => {
+    const d = boxRef.current
+    if (!d?.open || d.classList.contains('is-closing')) return
+    const done = () => {
+      d.classList.remove('is-closing')
+      if (d.open) d.close()
+    }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return done()
+    d.classList.add('is-closing')
+    // The fade's own end, not a swap fading inside it; a timer in case it never runs.
+    const timer = window.setTimeout(done, 400)
+    const onEnd = (e: AnimationEvent) => {
+      if (e.target !== d) return
+      d.removeEventListener('animationend', onEnd)
+      window.clearTimeout(timer)
+      done()
+    }
+    d.addEventListener('animationend', onEnd)
+  }
 
   const step = (by: number) => setAt((i) => (i === null ? i : (i + by + shots.length) % shots.length))
   const shot = at === null ? null : shots[at]
 
   return (
     <PlateSection label="What it looks like">
-      <ul className="plate__shots">
+      <ul className="plate__shots reveal-group">
         {shots.map((s, i) => (
           <li key={s.src}>
             <figure className="plate__shot">
@@ -149,9 +168,13 @@ export function PlateShots({ shots }: { shots: Shot[] }) {
         className="shotbox"
         aria-label="Screenshot"
         onClose={() => setAt(null)}
+        onCancel={(e) => {
+          e.preventDefault()
+          close()
+        }}
         onClick={(e) => {
           // The dialog box itself, not its content, is the backdrop.
-          if (e.target === e.currentTarget) boxRef.current?.close()
+          if (e.target === e.currentTarget) close()
         }}
         onKeyDown={(e) => {
           if (e.key === 'ArrowLeft') step(-1)
@@ -162,11 +185,11 @@ export function PlateShots({ shots }: { shots: Shot[] }) {
           <figure className="shotbox__figure">
             <div className="shotbox__bar">
               <figcaption className="mono shotbox__caption">{shot.caption}</figcaption>
-              <button type="button" className="shotbox__btn" aria-label="Close" onClick={() => setAt(null)}>
+              <button type="button" className="shotbox__btn" aria-label="Close" onClick={close}>
                 <CloseIcon className="icon--brass" />
               </button>
             </div>
-            <img className="shotbox__img" src={shot.src} alt={shot.alt} width={1408} height={827} />
+            <img key={shot.src} className="shotbox__img" src={shot.src} alt={shot.alt} width={1408} height={827} />
             {shots.length > 1 && (
               <div className="shotbox__bar">
                 <button type="button" className="shotbox__btn" aria-label="Previous screenshot" onClick={() => step(-1)}>

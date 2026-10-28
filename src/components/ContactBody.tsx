@@ -91,10 +91,13 @@ export function ContactBody() {
             role="status"
             aria-live="polite"
           >
-            {status.state === 'idle' && 'Goes straight to my inbox.'}
-            {status.state === 'sending' && 'Sending your message…'}
-            {status.state === 'sent' && "Sent. Thanks, I'll get back to you soon."}
-            {status.state === 'error' && `Couldn't send: ${status.message}. Email me directly at ${site.email}.`}
+            {/* Keyed so each new line eases in; the live region itself stays put. */}
+            <span key={status.state} className="form__note-text">
+              {status.state === 'idle' && 'Goes straight to my inbox.'}
+              {status.state === 'sending' && 'Sending your message…'}
+              {status.state === 'sent' && "Sent. Thanks, I'll get back to you soon."}
+              {status.state === 'error' && `Couldn't send: ${status.message}. Email me directly at ${site.email}.`}
+            </span>
           </p>
         </div>
       </form>

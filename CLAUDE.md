@@ -254,7 +254,10 @@ rising letter by letter (`SplitText`), the hero hand fanning wider on
 hover, card tilt with glare, scroll reveals (`.reveal` for one element,
 `.reveal-group` for staggered children, marked with `data-in` rather than
 a class so React's className updates cannot undo them), rows of cards dealt in on
-scroll, count-up stats, chips dropping onto stacks, the nav's progress
+scroll, count-up stats, chips dropping onto stacks, a detail page's
+sections rising as they arrive and its screenshots laid down one by one
+(the enlarged one fades in, cross-fades between shots, and fades out),
+each new contact-form status line easing in like the opening's caption, the nav's progress
 line and rolling chip and active suit, and the felt's swell (`Felt.tsx`). Anything hidden before it reveals needs both
 `html.js` and `prefers-reduced-motion: no-preference`, so it can never
 stay invisible.

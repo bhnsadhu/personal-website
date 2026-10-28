@@ -4,9 +4,12 @@
   padding: 40px 0 96px;
 }
 
+/* On the card's own left edge, like the "Back to the hand" under it, not
+   the page's. */
 .plate__back {
   color: var(--fg);
-  margin-bottom: 24px;
+  margin-bottom: 28px;
+  margin-left: max(0px, (100% - 880px) / 2);
 }
 
 .plate__card {
@@ -173,11 +176,15 @@
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 0 0 1px var(--cream-3), var(--pip-shadow);
-  transition: box-shadow var(--fast) var(--ease);
+  transition:
+    transform var(--fast) var(--ease),
+    box-shadow var(--fast) var(--ease);
 }
 
+/* The same lift as the round buttons. */
 .plate__shot a:hover,
 .plate__shot a:focus-visible {
+  transform: translateY(-2px);
   box-shadow: 0 0 0 1px var(--brass), var(--pip-shadow);
 }
 
@@ -277,9 +284,19 @@
   border-color: var(--brass);
 }
 
+/* In with a small rise in scale, out the same way back; each new shot
+   fades over the last. */
 @media (prefers-reduced-motion: no-preference) {
-  .shotbox[open] {
+  .shotbox[open],
+  .shotbox[open]::backdrop {
     animation: shotbox-in var(--fast) var(--ease);
+  }
+  .shotbox.is-closing,
+  .shotbox.is-closing::backdrop {
+    animation: shotbox-out var(--fast) var(--ease) forwards;
+  }
+  .shotbox__img {
+    animation: shot-swap var(--fast) var(--ease);
   }
 }
 
@@ -287,6 +304,19 @@
   from {
     opacity: 0;
     transform: scale(0.98);
+  }
+}
+
+@keyframes shotbox-out {
+  to {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+}
+
+@keyframes shot-swap {
+  from {
+    opacity: 0;
   }
 }
 

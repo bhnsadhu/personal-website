@@ -328,6 +328,24 @@
     animation-delay: calc(var(--i, 0) * 70ms);
   }
 
+  /* The contact form's status line: each new message eases in, like the
+     opening deal's caption. */
+  .form__note-text {
+    display: inline-block;
+    animation: caption-in 0.35s var(--ease) backwards;
+  }
+
+  /* A detail page's screenshots, laid down one after another once their
+     section has risen. */
+  .js .plate__shots.reveal-group:not([data-in]) > li {
+    opacity: 0;
+  }
+
+  .plate__shots.reveal-group[data-in] > li {
+    animation: fade-up 0.6s var(--ease) backwards;
+    animation-delay: calc(var(--i, 0) * 90ms + 0.2s);
+  }
+
   /* Chips drop onto their stacks with a small bounce, stack by stack. */
   .js .stacks.reveal-group:not([data-in]) .chip {
     opacity: 0;
