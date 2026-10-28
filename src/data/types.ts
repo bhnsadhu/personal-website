@@ -61,6 +61,13 @@ export interface Leadership extends CardContent {
   related?: InternalLink[]
 }
 
+/** A screenshot on a project's page, taken from the live product. */
+export interface Shot {
+  src: string
+  alt: string
+  caption: string
+}
+
 export interface Project extends CardContent {
   status: 'live' | 'shipped' | 'idea'
   stack: string[]
@@ -69,6 +76,7 @@ export interface Project extends CardContent {
   origin?: string
   ownership?: string
   usage?: string
+  shots?: Shot[]
   features?: string[]
   decisions?: string[]
   technical?: string[]

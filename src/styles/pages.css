@@ -160,6 +160,45 @@
   margin-top: 10px;
 }
 
+/* Screenshots from the live product, three across the plate's column and
+   one per line on phones. Each opens full size. */
+.plate__shots {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.plate__shot a {
+  display: block;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px var(--cream-3), var(--pip-shadow);
+  transition: box-shadow var(--fast) var(--ease);
+}
+
+.plate__shot a:hover,
+.plate__shot a:focus-visible {
+  box-shadow: 0 0 0 1px var(--brass), var(--pip-shadow);
+}
+
+.plate__shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.plate__shot-caption {
+  margin-top: 10px;
+  color: var(--ink-2);
+}
+
+@media (max-width: 720px) {
+  .plate__shots {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+}
+
 /* ---------------- List view: the card view laid flat ---------------- */
 
 .list {

@@ -50,6 +50,23 @@ export function ProjectDetail() {
           </div>
         </PlateSection>
       )}
+      {item.shots && (
+        <PlateSection label="What it looks like">
+          <ul className="plate__shots">
+            {item.shots.map((s) => (
+              <li key={s.src}>
+                <figure className="plate__shot">
+                  <a href={s.src} target="_blank" rel="noreferrer">
+                    <img src={s.src} alt={s.alt} width={1408} height={827} loading="lazy" decoding="async" />
+                    <span className="sr-only">(opens full size in a new tab)</span>
+                  </a>
+                  <figcaption className="mono plate__shot-caption">{s.caption}</figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
+        </PlateSection>
+      )}
       {item.origin && (
         <PlateSection label="Why it exists">
           <p className="plate__p">{item.origin}</p>

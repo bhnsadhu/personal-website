@@ -45,6 +45,23 @@ export const projects: Project[] = [
     ownership:
       "I built Cambio independently, from implementing the game's rules and interface to accounts, real-time sync, and deployment.",
     usage: 'Live and deployed, with {cambioPlayers} players so far.',
+    shots: [
+      {
+        src: '/cambio/home.jpg',
+        alt: 'Cambio home page: the logo, a C made of playing cards, above the headline "The memory card game, live with friends."',
+        caption: 'Home',
+      },
+      {
+        src: '/cambio/table.jpg',
+        alt: 'A new Cambio table with its join code and four seats, three left open for house bots set to easy, medium, or hard.',
+        caption: 'A new table',
+      },
+      {
+        src: '/cambio/round.jpg',
+        alt: 'A Cambio round in play: four hands face down, the deck and pile, a table log, and a drawn queen of clubs waiting for a move.',
+        caption: 'A round in play',
+      },
+    ],
     features: [
       'Multiplayer for up to 4 players, with bots filling any empty seats.',
       'Guest access, or create an account to keep a record.',

@@ -20,7 +20,9 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   `hand.ts` (four aces, each links to its fuller entry), `experience.ts`
   (the spread; `via` names the consulting org, kept separate from the
   client), `leadership.ts` (face cards, fixed order, `progression` and
-  `related` optional), `projects.ts` (the fan), `education.ts`,
+  `related` optional), `projects.ts` (the fan; `shots` are screenshots
+  of the live product in `public/<slug>/`, three across on its page, each
+  opening full size, never anyone else's name in frame), `education.ts`,
   `certifications.ts`, `skills.ts`, `personal.ts` (four cards, five
   `entries` each; a restaurant's address opens Google Maps, and Favorite
   Tables ends with "More on Beli", `site.beli`, which search also lists
