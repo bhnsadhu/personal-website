@@ -25,6 +25,7 @@ export const experience: Experience[] = [
       'Built a patient and provider outreach pipeline spanning 750+ contacts across eight healthcare networks.',
     ],
     tags: ['Product Management', 'Product Requirements', 'UX', 'Digital Health', 'Outreach'],
+    links: [{ label: 'App Store', href: 'https://apps.apple.com/us/app/ingenio-care/id6798790795' }],
   },
   {
     slug: 'replit',
@@ -47,6 +48,23 @@ export const experience: Experience[] = [
     links: [
       { label: 'Live Demo', href: 'https://learnathon.bhanusadhu.com' },
       { label: 'Repository', href: 'https://github.com/bhnsadhu/replit-learnathon' },
+    ],
+    shots: [
+      {
+        src: '/replit/home.jpg',
+        alt: 'Learnathon home page: "Built with Replit" in large type, presented by Disruption Lab at UIUC and Replit, with a countdown to build day.',
+        caption: 'Home',
+      },
+      {
+        src: '/replit/guide.jpg',
+        alt: 'The event guide: interest, pre-event, and post-event forms, then the itinerary, prizes, and food.',
+        caption: 'Event guide',
+      },
+      {
+        src: '/replit/wall.jpg',
+        alt: 'The project wall before build day, with search, a tour, and reserved slots waiting for builds.',
+        caption: 'Project wall',
+      },
     ],
   },
   {

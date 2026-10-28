@@ -1,6 +1,6 @@
 import { useEffect, type ReactNode } from 'react'
 import { SuitGlyph } from '../components/Suit'
-import type { Rank, Suit } from '../data'
+import type { Rank, Shot, Suit } from '../data'
 import { goBack, Link } from '../lib/router'
 
 interface PlateProps {
@@ -94,5 +94,26 @@ export function PlateSection({ label, children }: { label: string; children: Rea
       <h2 className="mono plate__label">{label}</h2>
       {children}
     </section>
+  )
+}
+
+/** Screenshots of the live product, each opening full size. */
+export function PlateShots({ shots }: { shots: Shot[] }) {
+  return (
+    <PlateSection label="What it looks like">
+      <ul className="plate__shots">
+        {shots.map((s) => (
+          <li key={s.src}>
+            <figure className="plate__shot">
+              <a href={s.src} target="_blank" rel="noreferrer">
+                <img src={s.src} alt={s.alt} width={1408} height={827} loading="lazy" decoding="async" />
+                <span className="sr-only">(opens full size in a new tab)</span>
+              </a>
+              <figcaption className="mono plate__shot-caption">{s.caption}</figcaption>
+            </figure>
+          </li>
+        ))}
+      </ul>
+    </PlateSection>
   )
 }

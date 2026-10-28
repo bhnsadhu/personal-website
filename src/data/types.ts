@@ -42,6 +42,7 @@ export interface Experience extends CardContent {
   via?: string
   /** One line of context on the client or the engagement. */
   context?: string
+  shots?: Shot[]
 }
 
 export interface RoleStep {
@@ -61,7 +62,7 @@ export interface Leadership extends CardContent {
   related?: InternalLink[]
 }
 
-/** A screenshot on a project's page, taken from the live product. */
+/** A screenshot on a project's or role's page, taken from the live product. */
 export interface Shot {
   src: string
   alt: string

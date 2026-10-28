@@ -4,7 +4,7 @@ import { useParams } from '../lib/router'
 import { SEP } from '../lib/sep'
 import { useTitle } from '../lib/useTitle'
 import { NotFound } from './NotFound'
-import { Plate, PlateSection } from './Plate'
+import { Plate, PlateSection, PlateShots } from './Plate'
 
 export function ExperienceDetail() {
   const { slug } = useParams()
@@ -48,6 +48,7 @@ export function ExperienceDetail() {
           </div>
         </PlateSection>
       )}
+      {item.shots && <PlateShots shots={item.shots} />}
       {item.context && (
         <PlateSection label="The engagement">
           <p className="plate__p">{item.context}</p>
