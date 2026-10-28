@@ -476,6 +476,57 @@ h4,
   color: var(--pip);
 }
 
+/* ---------------- Cover print ---------------- */
+
+/* The first screenshot of an entry, beside its text on the open card and
+   in the open list row (Cover in Backs.tsx). Sized against the back it
+   sits in, not the screen: side by side from 720px of back, gone below,
+   where the text needs the whole width. Framed like the detail page's
+   prints, with the same lift. */
+.cover {
+  container-type: inline-size;
+}
+
+.cover__grid,
+.cover__text {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+
+.cover__print {
+  display: none;
+}
+
+@container (min-width: 720px) {
+  .cover__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 40%);
+    align-items: start;
+    gap: 32px;
+  }
+
+  .cover__print {
+    display: block;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px var(--cream-3), var(--pip-shadow);
+    transition:
+      transform var(--fast) var(--ease),
+      box-shadow var(--fast) var(--ease);
+  }
+
+  .cover__print:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 1px var(--brass), var(--pip-shadow);
+  }
+
+  .cover__print img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
 /* ---------------- Theme swap ---------------- */
 
 /* Held for the frame the theme changes, so every color moves at once. */

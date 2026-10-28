@@ -22,7 +22,9 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   client), `leadership.ts` (face cards, fixed order, `progression` and
   `related` optional), `projects.ts` (the fan; a project or role may
   carry `shots`, screenshots of the live product in `public/<slug>/`,
-  rendered by `PlateShots` on its page three across, never anyone else's
+  rendered by `PlateShots` on its page three across (a project's first
+  shot is also its cover print, `Cover` in Backs.tsx, beside the text on
+  the open card and list row when the back is 720px or wider), never anyone else's
   name in frame; a click enlarges one in a native `<dialog>` with the
   caption and a close button above, back/next and "2 / 3" below, both bars
   exactly the image's width; arrows step, Escape closes only the dialog),
