@@ -224,7 +224,10 @@ No full-width divider rules on the page.
 Sections, in both views, are parted by an ornament: the next section's
 suit centered, with a brass rule running out to both edges of the content
 and fading at the ends (`data-suit`, `.section + .section::before` in
-base.css). The footer opens with the same ornament around all four suits;
+base.css). The footer opens with the same ornament around all four suits, then a
+bar that is the nav's twin (`.footer__bar`: the same glass and width, the
+copyright and "last updated" on the left, the links on the right, stacked
+on a phone), then the felt;
 Certifications opens with its label and a rule out to the right edge.
 Stats are parted by short vertical brass rules fading at both ends, each
 at the exact middle of its gap (`MetricBand` fits each stat to its words,

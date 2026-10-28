@@ -62,6 +62,9 @@
   /* The floating bar's inset from the top of the screen, and the room kept
      under it for the chip's lower half. */
   --nav-gap: 10px;
+  /* The floating bars' own padding (nav and footer): they sit this far
+     outside the content edges so what is inside them lands on those edges. */
+  --bar-pad: 20px;
 }
 
 /* Light: warm paper, ink type, brass darkened a step so it still reads
@@ -109,5 +112,6 @@
     --gutter: 18px;
     --nav-h: 82px;
     --nav-gap: 8px;
+    --bar-pad: 12px;
   }
 }
