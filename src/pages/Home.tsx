@@ -16,8 +16,8 @@ export function Home() {
       <Hand />
       <MetricBand metrics={metrics} label="Headline numbers" />
       <Spread />
-      <FaceCards />
       <Fan />
+      <FaceCards />
       <ChipsSection />
       <Flop />
       <CallOrFold />

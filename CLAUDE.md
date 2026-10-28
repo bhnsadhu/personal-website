@@ -58,10 +58,11 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   721 to 1149 a closed row of four or more wraps (three per line, two for
   exactly four), and from 721 to 1023 the hero fan tightens, so nothing
   crushes or scrolls sideways on a tablet or small laptop.
-- `src/sections/` — Hand (hero: intro, actions, seeking line, and
-  beside them `HeroPhoto`, then four aces), Spread (experience), FaceCards (leadership, dealt three to a suit
-  in one row per suit: K/Q/J spades, then clubs), Fan (projects;
-  `status: 'idea'` renders face down and shows a toast), ChipsSection
+- `src/sections/`, in page order — Hand (hero: intro, actions, seeking
+  line, and beside them `HeroPhoto`, then four aces), Spread (experience),
+  Fan (projects; `status: 'idea'` renders face down and shows a toast),
+  FaceCards (leadership, dealt three to a suit in one row per suit: K/Q/J
+  spades, then clubs), ChipsSection
   (skills plus certifications), Flop (personal: flop and turn, four cards),
   CallOrFold (contact form posting to `/api/contact`).
 - `src/components/CommandPalette.tsx` — search. A "Search ⌘K" pill in the
@@ -272,8 +273,8 @@ stay invisible.
 
 ## Vocabulary — keep it airtight
 
-Your hand (hero) · The spread (experience) · The face cards (leadership) ·
-The fan (projects) · The chips (skills) · The flop (personal) · Let's talk
+Your hand (hero) · The spread (experience) · The fan (projects) · The face
+cards (leadership) · The chips (skills) · The flop (personal) · Let's talk
 (contact). Buttons and links: "Explore My Work", "View Resume", "Contact
 Me" (hero), "Resume" (nav, footer), "Send Message" (submit), "Back to the
 hand", "View experience", "Explore the project", "List view" / "Card view", "Live Demo",
@@ -286,7 +287,7 @@ the deck: “…”". Face-down cards say "Not dealt yet". 404 is
 ## Routes
 
 `/` · `/list` · `/experience/:slug` · `/projects/:slug` · `/sitemap.xml` ·
-the `#spread`, `#face`, `#fan`, `#chips`, `#flop`, `#contact` anchors, which
+the `#spread`, `#fan`, `#face`, `#chips`, `#flop`, `#contact` anchors, which
 the card view and the list view both carry, so a nav suit scrolls within
 whichever view you are in ·
 `POST /api/contact` · anything else → 404.

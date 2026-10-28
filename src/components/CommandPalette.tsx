@@ -5,9 +5,9 @@ import { navigate, usePath } from '../lib/router'
 import { SearchIcon } from './Icons'
 import { SUIT_GLYPH } from './Suit'
 
-type Group = 'Sections' | 'Experience' | 'Leadership' | 'Projects' | 'Skills' | 'Personal' | 'Links' | 'Actions'
+type Group = 'Sections' | 'Experience' | 'Projects' | 'Leadership' | 'Skills' | 'Personal' | 'Links' | 'Actions'
 
-const GROUPS: Group[] = ['Sections', 'Experience', 'Leadership', 'Projects', 'Skills', 'Personal', 'Links', 'Actions']
+const GROUPS: Group[] = ['Sections', 'Experience', 'Projects', 'Leadership', 'Skills', 'Personal', 'Links', 'Actions']
 
 /** Shown under the input before anything is typed. Each one finds something. */
 const SUGGESTIONS = ['Product', 'Replit', 'Python', 'Resume']
@@ -79,8 +79,8 @@ export function CommandPalette() {
     return [
       { id: 's-hand', group: 'Sections', label: 'Your hand', hint: 'The top', mark: '♠', run: go('hand') },
       { id: 's-spread', group: 'Sections', label: 'Experience', hint: 'The spread', mark: '♠', run: go('spread') },
-      { id: 's-face', group: 'Sections', label: 'Leadership', hint: 'The face cards', mark: 'K', markClass: 'face', run: go('face') },
       { id: 's-fan', group: 'Sections', label: 'Projects', hint: 'The fan', mark: '♦', markClass: 'red', run: go('fan') },
+      { id: 's-face', group: 'Sections', label: 'Leadership', hint: 'The face cards', mark: 'K', markClass: 'face', run: go('face') },
       { id: 's-chips', group: 'Sections', label: 'Skills', hint: 'The chips', mark: '♣', run: go('chips') },
       { id: 's-flop', group: 'Sections', label: 'Personal', hint: 'The flop', mark: '♥', markClass: 'red', run: go('flop') },
       {

@@ -38,8 +38,8 @@ import { useTitle } from '../lib/useTitle'
 /** The rail, in page order. Same sections, same order, as the card view. */
 const RAIL: { k: SectionKey; suit: Suit }[] = [
   { k: 'spread', suit: 'spades' },
-  { k: 'face', suit: 'spades' },
   { k: 'fan', suit: 'diamonds' },
+  { k: 'face', suit: 'spades' },
   { k: 'chips', suit: 'clubs' },
   { k: 'flop', suit: 'hearts' },
   { k: 'contact', suit: 'hearts' },
@@ -183,25 +183,6 @@ export function ListView() {
             </IndexGroup>
           </ListSection>
 
-          <ListSection k="face" note={sectionNotes.face}>
-            <IndexGroup ids={leadership.map((l) => l.slug)} label="Leadership roles">
-              {leadership.map((l, i) => (
-                <IndexRow
-                  key={l.slug}
-                  id={l.slug}
-                  rank={l.face}
-                  suit={faceSuitAt(i)}
-                  title={l.role}
-                  subtitle={l.organization}
-                  meta={l.dates}
-                  tags={l.tags}
-                >
-                  <LeadershipBack l={l} />
-                </IndexRow>
-              ))}
-            </IndexGroup>
-          </ListSection>
-
           <ListSection k="fan" note={sectionNotes.fan}>
             <IndexGroup ids={projects.map((p) => p.slug)} label="Projects">
               {projects.map((p, i) => {
@@ -224,6 +205,25 @@ export function ListView() {
                   </IndexRow>
                 )
               })}
+            </IndexGroup>
+          </ListSection>
+
+          <ListSection k="face" note={sectionNotes.face}>
+            <IndexGroup ids={leadership.map((l) => l.slug)} label="Leadership roles">
+              {leadership.map((l, i) => (
+                <IndexRow
+                  key={l.slug}
+                  id={l.slug}
+                  rank={l.face}
+                  suit={faceSuitAt(i)}
+                  title={l.role}
+                  subtitle={l.organization}
+                  meta={l.dates}
+                  tags={l.tags}
+                >
+                  <LeadershipBack l={l} />
+                </IndexRow>
+              ))}
             </IndexGroup>
           </ListSection>
 
