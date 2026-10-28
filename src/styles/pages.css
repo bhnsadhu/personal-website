@@ -320,6 +320,95 @@
   }
 }
 
+/* The resume, in a drawer down the right edge. Its bar is as tall as the
+   nav, so Download and Close sit on the nav's centre line. */
+.resumebox {
+  /* The close button's size, as in the screenshot box. */
+  --bar: 44px;
+  position: fixed;
+  inset: 0 0 0 auto;
+  width: min(760px, 100vw - 64px);
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--bg-2);
+  color: var(--fg);
+  box-shadow: var(--pop-shadow);
+}
+
+.resumebox[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.resumebox::backdrop {
+  background: var(--scrim);
+}
+
+.resumebox__bar {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 12px;
+  /* Less the nav's hairline, where its contents measure. */
+  height: calc(var(--nav-h) - 1px);
+  padding: 0 var(--gutter);
+}
+
+.resumebox__label {
+  margin: 0 auto 0 0;
+}
+
+.resumebox__pdf {
+  flex: 1;
+  width: 100%;
+  border: 0;
+  background: var(--cream);
+}
+
+/* In from the right edge and back out, the row slide's pace. */
+@media (prefers-reduced-motion: no-preference) {
+  .resumebox[open] {
+    animation: resumebox-in var(--slide) var(--ease);
+  }
+  .resumebox[open]::backdrop {
+    animation: resumebox-fade var(--slide) var(--ease);
+  }
+  .resumebox.is-closing {
+    animation: resumebox-out var(--slide) var(--ease) forwards;
+  }
+  .resumebox.is-closing::backdrop {
+    animation: resumebox-unfade var(--slide) var(--ease) forwards;
+  }
+}
+
+@keyframes resumebox-in {
+  from {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes resumebox-out {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes resumebox-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes resumebox-unfade {
+  to {
+    opacity: 0;
+  }
+}
+
 /* ---------------- List view: the card view laid flat ---------------- */
 
 .list {

@@ -2,6 +2,7 @@ import { HandBack } from '../components/Backs'
 import { Card } from '../components/Card'
 import { CardRow } from '../components/CardRow'
 import { HeroPhoto } from '../components/HeroPhoto'
+import { ResumeLink } from '../components/ResumeDrawer'
 import { hand, HAND_SUITS, site } from '../data'
 import { Link } from '../lib/router'
 import { SplitText } from '../components/SplitText'
@@ -28,10 +29,7 @@ export function Hand() {
               <Link to="/#spread" className="btn">
                 Explore My Work
               </Link>
-              <a className="btn btn--ghost" href={site.resume} target="_blank" rel="noreferrer">
-                View Resume
-                <span className="sr-only">(opens PDF in a new tab)</span>
-              </a>
+              <ResumeLink className="btn btn--ghost">View Resume</ResumeLink>
               <Link to="/#contact" className="btn btn--ghost">
                 Contact Me
               </Link>

@@ -5,6 +5,7 @@ import { setTheme, useTheme } from '../lib/theme'
 import { experience, site, type Suit } from '../data'
 import { MoonIcon, SunIcon } from './Icons'
 import { LiveDot } from './LiveDot'
+import { ResumeLink } from './ResumeDrawer'
 import { SUIT_GLYPH } from './Suit'
 
 interface SuitLink {
@@ -172,10 +173,7 @@ export function Nav() {
           <Link to={onList ? '/' : '/list'} className="btn btn--ghost nav__toggle" aria-current={onList ? 'page' : undefined}>
             {onList ? 'Card view' : 'List view'}
           </Link>
-          <a className="btn nav__resume" href={site.resume} target="_blank" rel="noreferrer">
-            Resume
-            <span className="sr-only">(opens PDF in a new tab)</span>
-          </a>
+          <ResumeLink className="btn nav__resume">Resume</ResumeLink>
           <button
             type="button"
             className="btn btn--ghost nav__theme"

@@ -1,6 +1,7 @@
 import { useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from 'react'
 import { certifications, experience, leadership, personal, projects, site, skills } from '../data'
 import { deal } from '../lib/deal'
+import { drawerFits, openResume } from '../lib/resume'
 import { navigate, usePath } from '../lib/router'
 import { SearchIcon } from './Icons'
 import { SUIT_GLYPH } from './Suit'
@@ -159,7 +160,7 @@ export function CommandPalette() {
         run: flip(c.slug, 'flop'),
       })),
 
-      { id: 'x-resume', group: 'Links', label: 'Resume', hint: 'PDF', mark: '↗', run: () => openTab(site.resume) },
+      { id: 'x-resume', group: 'Links', label: 'Resume', hint: 'PDF', mark: '↗', run: () => (drawerFits() ? openResume() : openTab(site.resume)) },
       { id: 'x-linkedin', group: 'Links', label: 'LinkedIn', hint: `in/${site.linkedinHandle}`, mark: '↗', run: () => openTab(site.linkedin) },
       { id: 'x-github', group: 'Links', label: 'GitHub', hint: `@${site.githubHandle}`, mark: '↗', run: () => openTab(site.github) },
       {

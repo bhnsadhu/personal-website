@@ -5,6 +5,7 @@ import { ContactBody } from '../components/ContactBody'
 import { HeroPhoto } from '../components/HeroPhoto'
 import { IndexGroup, IndexRow } from '../components/IndexList'
 import { MetricBand } from '../components/MetricBand'
+import { ResumeLink } from '../components/ResumeDrawer'
 import { SectionTitle } from '../components/Section'
 import { SplitText } from '../components/SplitText'
 import { SuitGlyph } from '../components/Suit'
@@ -99,10 +100,7 @@ export function ListView() {
                 <Link to="/list#spread" className="btn">
                   Explore My Work
                 </Link>
-                <a className="btn btn--ghost" href={site.resume} target="_blank" rel="noreferrer">
-                  View Resume
-                  <span className="sr-only">(opens PDF in a new tab)</span>
-                </a>
+                <ResumeLink className="btn btn--ghost">View Resume</ResumeLink>
                 <Link to="/list#contact" className="btn btn--ghost">
                   Contact Me
                 </Link>

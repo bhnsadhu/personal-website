@@ -2,6 +2,7 @@ import { site } from '../data'
 import { Felt } from './Felt'
 import { SEP } from '../lib/sep'
 import { FileIcon, GitHubIcon, LinkedInIcon, MailIcon } from './Icons'
+import { ResumeLink } from './ResumeDrawer'
 import { SUIT_GLYPH } from './Suit'
 
 /** Year and "last updated" are static on purpose: they change with the content, not the clock. */
@@ -29,10 +30,10 @@ export function Footer() {
             <GitHubIcon className="icon--brass" />
             GitHub
           </a>
-          <a className="tlink" href={site.resume} target="_blank" rel="noreferrer">
+          <ResumeLink className="tlink">
             <FileIcon className="icon--brass" />
             Resume
-          </a>
+          </ResumeLink>
         </nav>
         <p className="footer__note mono mono--sm">
           © {site.copyrightYear} {site.name}{SEP}{site.signoff}

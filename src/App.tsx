@@ -3,6 +3,7 @@ import { CommandPalette } from './components/CommandPalette'
 import { Footer } from './components/Footer'
 import { Nav } from './components/Nav'
 import { Opening } from './components/Opening'
+import { ResumeDrawer } from './components/ResumeDrawer'
 import { Router } from './lib/router'
 import { ExperienceDetail } from './pages/ExperienceDetail'
 import { Home } from './pages/Home'
@@ -26,6 +27,7 @@ export function App() {
       <Footer />
       <CommandPalette />
       <BackToTop />
+      <ResumeDrawer />
       <Opening />
     </>
   )
