@@ -18,13 +18,12 @@
   color: var(--fg);
 }
 
-/* Scroll progress: a brass hairline along the foot of the floating bar,
-   with his chip rolling at its head, centred on the line. The nav is tall
-   enough (--nav-h) that the chip never touches a suit or its highlight,
-   even picked up, and the chip's lower half stays inside it. Nav.tsx sets
-   --x (how far the chip has travelled), --fill (the line, up to the chip's
-   centre), and --roll (the turn that distance gives a chip of this size),
-   so everything here is a
+/* Scroll progress: a brass hairline along the foot of the nav, with his
+   chip rolling at its head, centred on the line. The nav is tall enough
+   (--nav-h) that the chip never touches a suit, its highlight, or the dot
+   under the active one, even picked up. Nav.tsx sets --x (how far the chip has
+   travelled), --fill (the line, up to the chip's centre), and --roll (the
+   turn that distance gives a chip of this size), so everything here is a
    transform and nothing lays out on scroll. The travel is the translate
    property, not transform: scale composes inside translate but outside
    transform, so a transform would grow the travel with the chip and throw
@@ -32,9 +31,9 @@
 .nav__progress {
   --chip: 22px;
   position: absolute;
-  left: 16px;
-  right: 16px;
-  bottom: -2px;
+  left: 0;
+  right: 0;
+  bottom: -1px;
   height: 2px;
   pointer-events: none;
 }
@@ -467,7 +466,7 @@ html[data-intro='play'] .hero__photo {
 
 .opening__deck {
   position: absolute;
-  transition: translate 0.4s var(--ease);
+  transition: translate 0.62s var(--ease);
   left: calc(50% - var(--deck-w) / 2 + 1.8px);
   top: calc(var(--group-top) + var(--cap-h) + var(--cap-gap) + var(--pile));
   width: var(--deck-w);
@@ -523,7 +522,7 @@ html[data-intro='play'] .hero__photo {
   text-shadow: 0 0 6px var(--bg), 0 0 14px var(--bg), 0 2px 18px var(--bg);
   transition:
     opacity 0.4s var(--ease),
-    translate 0.4s var(--ease);
+    translate 0.62s var(--ease);
   animation: caption-in 0.35s var(--ease) backwards;
 }
 
@@ -558,9 +557,9 @@ html[data-intro='play'] .hero__photo {
   position: absolute;
   left: 0;
   right: 0;
-  /* The floating bar's centre: --nav-gap above it, as much below, and
-     its height between (--nav-h less both gaps and the 2px of border). */
-  top: calc(var(--nav-h) / 2 - 1px);
+  /* The nav's hairline takes its last pixel; its contents centre on the
+     rest (measured: brand, suits, and buttons all at 41.5px of 84). */
+  top: calc((var(--nav-h) - 1px) / 2);
   translate: 0 -50%;
   z-index: 60;
   margin: 0 auto;

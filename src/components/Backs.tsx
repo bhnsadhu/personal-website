@@ -1,5 +1,4 @@
-import type { ReactNode } from 'react'
-import type { Experience, Highlight, Leadership, Link as LinkData, PersonalCard, Project, Shot } from '../data'
+import type { Experience, Highlight, Leadership, Link as LinkData, PersonalCard, Project } from '../data'
 import { personalExtras } from '../data'
 import { Link } from '../lib/router'
 import { SEP } from '../lib/sep'
@@ -41,28 +40,6 @@ function Links({ links }: { links?: LinkData[] }) {
           <Arrow />
         </a>
       ))}
-    </div>
-  )
-}
-
-/**
- * A project with screenshots opens with the first one beside what it says,
- * a print on the card stock that leads to its page. The back's own
- * "Explore the project" link says the same in words, so the print stays
- * out of the tab order and the accessibility tree. Where the back is too
- * narrow to sit them side by side, the print drops. Roles keep theirs to
- * their pages: an open card in the spread is never wide enough.
- */
-function Cover({ shots, to, children }: { shots?: Shot[]; to: string; children: ReactNode }) {
-  if (!shots || shots.length === 0) return <>{children}</>
-  return (
-    <div className="cover">
-      <div className="cover__grid">
-        <div className="cover__text">{children}</div>
-        <Link to={to} className="cover__print" tabIndex={-1} aria-hidden="true">
-          <img src={shots[0].src} alt="" loading="lazy" decoding="async" />
-        </Link>
-      </div>
     </div>
   )
 }
@@ -126,7 +103,7 @@ export function LeadershipBack({ l }: { l: Leadership }) {
 
 export function ProjectBack({ p }: { p: Project }) {
   return (
-    <Cover shots={p.shots} to={`/projects/${p.slug}`}>
+    <>
       <p className="card__summary">{p.summary}</p>
       <Bullets items={p.body} />
       <div className="linkrow">
@@ -144,7 +121,7 @@ export function ProjectBack({ p }: { p: Project }) {
           </a>
         )}
       </div>
-    </Cover>
+    </>
   )
 }
 

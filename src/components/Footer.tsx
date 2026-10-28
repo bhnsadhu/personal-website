@@ -16,32 +16,28 @@ export function Footer() {
             </span>
           ))}
         </p>
-        <div className="footer__bar">
-          <div className="footer__notes">
-            <p className="footer__note mono mono--sm">
-              © {site.copyrightYear} {site.name}{SEP}{site.signoff}
-            </p>
-            <p className="footer__note mono mono--sm">Content last updated {site.updated}</p>
-          </div>
-          <nav className="linkrow footer__links" aria-label="Elsewhere">
-            <a className="tlink" href={`mailto:${site.email}`}>
-              <MailIcon className="icon--brass" />
-              Email
-            </a>
-            <a className="tlink" href={site.linkedin} target="_blank" rel="noreferrer">
-              <LinkedInIcon className="icon--brass" />
-              LinkedIn
-            </a>
-            <a className="tlink" href={site.github} target="_blank" rel="noreferrer">
-              <GitHubIcon className="icon--brass" />
-              GitHub
-            </a>
-            <a className="tlink" href={site.resume} target="_blank" rel="noreferrer">
-              <FileIcon className="icon--brass" />
-              Resume
-            </a>
-          </nav>
-        </div>
+        <nav className="linkrow footer__links" aria-label="Elsewhere">
+          <a className="tlink" href={`mailto:${site.email}`}>
+            <MailIcon className="icon--brass" />
+            Email
+          </a>
+          <a className="tlink" href={site.linkedin} target="_blank" rel="noreferrer">
+            <LinkedInIcon className="icon--brass" />
+            LinkedIn
+          </a>
+          <a className="tlink" href={site.github} target="_blank" rel="noreferrer">
+            <GitHubIcon className="icon--brass" />
+            GitHub
+          </a>
+          <a className="tlink" href={site.resume} target="_blank" rel="noreferrer">
+            <FileIcon className="icon--brass" />
+            Resume
+          </a>
+        </nav>
+        <p className="footer__note mono mono--sm">
+          © {site.copyrightYear} {site.name}{SEP}{site.signoff}
+        </p>
+        <p className="footer__note mono mono--sm">Content last updated {site.updated}</p>
       </div>
       <Felt />
     </footer>

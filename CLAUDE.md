@@ -22,9 +22,7 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   client), `leadership.ts` (face cards, fixed order, `progression` and
   `related` optional), `projects.ts` (the fan; a project or role may
   carry `shots`, screenshots of the live product in `public/<slug>/`,
-  rendered by `PlateShots` on its page three across (a project's first
-  shot is also its cover print, `Cover` in Backs.tsx, beside the text on
-  the open card and list row when the back is 720px or wider), never anyone else's
+  rendered by `PlateShots` on its page three across, never anyone else's
   name in frame; a click enlarges one in a native `<dialog>` with the
   caption and a close button above, back/next and "2 / 3" below, both bars
   exactly the image's width; arrows step, Escape closes only the dialog),
@@ -58,11 +56,10 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   721 to 1149 a closed row of four or more wraps (three per line, two for
   exactly four), and from 721 to 1023 the hero fan tightens, so nothing
   crushes or scrolls sideways on a tablet or small laptop.
-- `src/sections/`, in page order — Hand (hero: intro, actions, seeking
-  line, and beside them `HeroPhoto`, then four aces), Spread (experience),
-  Fan (projects; `status: 'idea'` renders face down and shows a toast),
-  FaceCards (leadership, dealt three to a suit in one row per suit: K/Q/J
-  spades, then clubs), ChipsSection
+- `src/sections/` — Hand (hero: intro, actions, seeking line, and
+  beside them `HeroPhoto`, then four aces), Spread (experience), FaceCards (leadership, dealt three to a suit
+  in one row per suit: K/Q/J spades, then clubs), Fan (projects;
+  `status: 'idea'` renders face down and shows a toast), ChipsSection
   (skills plus certifications), Flop (personal: flop and turn, four cards),
   CallOrFold (contact form posting to `/api/contact`).
 - `src/components/CommandPalette.tsx` — search. A "Search ⌘K" pill in the
@@ -92,9 +89,7 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   shortest and longest lengths in. Every stack reserves the tallest box
   (`--max` in CSS) and chips sit from the bottom up, so all six rest on one
   baseline with their labels aligned. The `×N` beside it is the real
-  number. The top chip of each stack can be picked up with a mouse or pen
-  (`useLiftable`): it follows the pointer, tilting as it is pulled, and
-  springs back onto its stack when let go. Touch still scrolls the page.
+  number.
 - `src/components/Opening.tsx` — the opening deal: a deck riffle-shuffles,
   rises clear of where the hand lands, then the four aces are dealt to the
   exact spots the hero's hand occupies and turn face up while the rest of
@@ -102,10 +97,10 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   onto a hand already in place. An inline script in `index.html` decides
   before first paint (`data-intro="play"`): once per visit
   (`sessionStorage` `dealt`), only when landing on `/` itself, never for a
-  `#section` link or reduced motion. It runs about 2.5s with the page locked.
+  `#section` link or reduced motion. It runs about 4.5s with the page locked.
   Watching is the default: stray clicks and keys do nothing. After a second
   a quiet line fades in, centred at the top on the nav's own centre line
-  (`--nav-h / 2 - 1px`, the floating bar's centre), set like the
+  (`(--nav-h - 1px) / 2`, where the nav's contents measure), set like the
   caption, smaller and dimmer: "Hold space to skip" ("Hold to skip" on
   touch). One thing skips: a hold of space, or of a press anywhere, for
   0.8s (`HOLD_MS`), while the line fills with brass from its first letter
@@ -168,9 +163,7 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   never "UIUC" or "Illinois" alone, in text, metadata, and docs. The one
   exception is the hero eyebrow, in both views, which says
   "UIUC" (`site.schoolShort`) to stay short.
-- Fixed wording in fixed places. The hero's headline is "Hi, I'm
-  Bhanu." (`site.greeting`) over one line, `site.tagline`; the full name
-  lives in the nav, the tab title, and the footer. The hero eyebrow reads "Your hand ·
+- Fixed wording in fixed places. The hero eyebrow reads "Your hand ·
   UIUC · Computer Science + Economics · Builder & breaker of products"
   (`site.schoolShort`, `site.major`, `site.focus`), no location; the list view's header says the same. Every list of the three is "Product, Software, &
   Strategy" (`site.title`, split as `site.interests`): tab title, social
@@ -186,13 +179,13 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   or idea-stage things (AviLux pilot, the AI learnathon, the
   apartment-chores product) are never described as launched.
 - No GPA, grades, honors, ratings, or invented metrics and dates. One
-  photo only: `site.photo` (`public/bhanu.avif`, `bhanu.png` as the
-  fallback, metadata stripped), rendered by `src/components/HeroPhoto.tsx`
-  beside the name in both heroes as a cut-out headshot standing on the
-  page: background removed (macOS Vision), no frame, no caption, a faint
-  brass glow behind, the sides and waist fading into the table. It keeps
-  the image's proportions, 360px wide (280 at 1149 and below), right edge
-  on the content edge, with the intro centred against it.
+  photo only: `site.photo` (`public/bhanu.jpg`, metadata
+  stripped), rendered by `src/components/HeroPhoto.tsx` beside the name
+  in both heroes as a straight Polaroid on cream stock, no caption, an even
+  border all round. The file is cropped so his face sits on the print's
+  vertical centre line. It stretches to the intro, top on the eyebrow's cap
+  top and bottom on the seeking line's baseline, right edge on the content
+  edge; 256px wide (224 at 1149 and below) so the name keeps one line.
   From 1023 down it drops under the intro, square and centred.
 - No class year and no graduation date, expected or otherwise. Education
   shows the start date only (`Aug 2025 — Present`).
@@ -224,10 +217,7 @@ No full-width divider rules on the page.
 Sections, in both views, are parted by an ornament: the next section's
 suit centered, with a brass rule running out to both edges of the content
 and fading at the ends (`data-suit`, `.section + .section::before` in
-base.css). The footer opens with the same ornament around all four suits, then a
-bar that is the nav's twin (`.footer__bar`: the same glass and width, the
-copyright and "last updated" on the left, the links on the right, stacked
-on a phone), then the felt;
+base.css). The footer opens with the same ornament around all four suits;
 Certifications opens with its label and a rule out to the right edge.
 Stats are parted by short vertical brass rules fading at both ends, each
 at the exact middle of its gap (`MetricBand` fits each stat to its words,
@@ -235,12 +225,10 @@ first and last on the content edges); list rows by space, with a soft
 `--bg-2` panel on hover and while open; panels (certs, the form) by a lift and shadow;
 "Also in rotation" by nothing at all: one line 20px under the flop's cards
 (centred, and the same under the rows in the list view), set like the hero's
-seeking line, label in brass and interests in cream; the list rail by a track that fades at both ends; the nav floats: a
-rounded glass bar (`.nav__bar`) inset `--nav-gap` from the top, as wide as
-the content plus its own padding so what is inside sits on the content
-edges, with the brass scroll-progress line riding its foot and his chip
-rolling at its head, centred on the line; `--nav-h` is tall enough that the
-chip never touches the nav's suits and ends inside the nav
+seeking line, label in brass and interests in cream; the list rail by a track that fades at both ends; the nav keeps
+its plain hairline, with the brass scroll-progress line riding on it and
+his chip rolling at its head, centred on the line; `--nav-h` is tall
+enough that it never touches the nav's suits
 (`ChipMark` in Nav.tsx: the favicon's brass B
 on an ink chip with brass edge inlays, turning as far as it travels; drag it left or right and the page scrolls
 to match).
@@ -276,8 +264,8 @@ stay invisible.
 
 ## Vocabulary — keep it airtight
 
-Your hand (hero) · The spread (experience) · The fan (projects) · The face
-cards (leadership) · The chips (skills) · The flop (personal) · Let's talk
+Your hand (hero) · The spread (experience) · The face cards (leadership) ·
+The fan (projects) · The chips (skills) · The flop (personal) · Let's talk
 (contact). Buttons and links: "Explore My Work", "View Resume", "Contact
 Me" (hero), "Resume" (nav, footer), "Send Message" (submit), "Back to the
 hand", "View experience", "Explore the project", "List view" / "Card view", "Live Demo",
@@ -290,7 +278,7 @@ the deck: “…”". Face-down cards say "Not dealt yet". 404 is
 ## Routes
 
 `/` · `/list` · `/experience/:slug` · `/projects/:slug` · `/sitemap.xml` ·
-the `#spread`, `#fan`, `#face`, `#chips`, `#flop`, `#contact` anchors, which
+the `#spread`, `#face`, `#fan`, `#chips`, `#flop`, `#contact` anchors, which
 the card view and the list view both carry, so a nav suit scrolls within
 whichever view you are in ·
 `POST /api/contact` · anything else → 404.
