@@ -1,4 +1,5 @@
-import { useEffect, type ReactNode } from 'react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { ArrowLeftIcon, ArrowRightIcon, CloseIcon } from '../components/Icons'
 import { SuitGlyph } from '../components/Suit'
 import type { Rank, Shot, Suit } from '../data'
 import { goBack, Link } from '../lib/router'
@@ -24,7 +25,8 @@ interface PlateProps {
 export function Plate({ eyebrow, rank, suit, title, subtitle, meta, tags, children, nextTo, nextLabel }: PlateProps) {
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
-      if (e.key === 'Escape') goBack('/')
+      // Escape inside an open dialog (search, a screenshot) closes only that.
+      if (e.key === 'Escape' && !document.querySelector('dialog[open]')) goBack('/')
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
@@ -97,23 +99,90 @@ export function PlateSection({ label, children }: { label: string; children: Rea
   )
 }
 
-/** Screenshots of the live product, each opening full size. */
+/**
+ * Screenshots of the live product. A click enlarges one in place over the
+ * page; arrows step through the set, Escape or a click outside closes.
+ * Each thumbnail stays a real link, so a modified click still opens the
+ * file in a new tab.
+ */
 export function PlateShots({ shots }: { shots: Shot[] }) {
+  const [at, setAt] = useState<number | null>(null)
+  const boxRef = useRef<HTMLDialogElement>(null)
+
+  useEffect(() => {
+    const d = boxRef.current
+    if (!d) return
+    if (at !== null && !d.open) d.showModal()
+    else if (at === null && d.open) d.close()
+  }, [at])
+
+  const step = (by: number) => setAt((i) => (i === null ? i : (i + by + shots.length) % shots.length))
+  const shot = at === null ? null : shots[at]
+
   return (
     <PlateSection label="What it looks like">
       <ul className="plate__shots">
-        {shots.map((s) => (
+        {shots.map((s, i) => (
           <li key={s.src}>
             <figure className="plate__shot">
-              <a href={s.src} target="_blank" rel="noreferrer">
+              <a
+                href={s.src}
+                target="_blank"
+                rel="noreferrer"
+                onClick={(e) => {
+                  if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return
+                  e.preventDefault()
+                  setAt(i)
+                }}
+              >
                 <img src={s.src} alt={s.alt} width={1408} height={827} loading="lazy" decoding="async" />
-                <span className="sr-only">(opens full size in a new tab)</span>
+                <span className="sr-only">(enlarge)</span>
               </a>
               <figcaption className="mono plate__shot-caption">{s.caption}</figcaption>
             </figure>
           </li>
         ))}
       </ul>
+
+      <dialog
+        ref={boxRef}
+        className="shotbox"
+        aria-label="Screenshot"
+        onClose={() => setAt(null)}
+        onClick={(e) => {
+          // The dialog box itself, not its content, is the backdrop.
+          if (e.target === e.currentTarget) boxRef.current?.close()
+        }}
+        onKeyDown={(e) => {
+          if (e.key === 'ArrowLeft') step(-1)
+          if (e.key === 'ArrowRight') step(1)
+        }}
+      >
+        {shot && (
+          <figure className="shotbox__figure">
+            <div className="shotbox__bar">
+              <figcaption className="mono shotbox__caption">{shot.caption}</figcaption>
+              <button type="button" className="shotbox__btn" aria-label="Close" onClick={() => setAt(null)}>
+                <CloseIcon className="icon--brass" />
+              </button>
+            </div>
+            <img className="shotbox__img" src={shot.src} alt={shot.alt} width={1408} height={827} />
+            {shots.length > 1 && (
+              <div className="shotbox__bar">
+                <button type="button" className="shotbox__btn" aria-label="Previous screenshot" onClick={() => step(-1)}>
+                  <ArrowLeftIcon className="icon--brass" />
+                </button>
+                <span className="mono shotbox__count" aria-live="polite">
+                  {at! + 1} / {shots.length}
+                </span>
+                <button type="button" className="shotbox__btn" aria-label="Next screenshot" onClick={() => step(1)}>
+                  <ArrowRightIcon className="icon--brass" />
+                </button>
+              </div>
+            )}
+          </figure>
+        )}
+      </dialog>
     </PlateSection>
   )
 }

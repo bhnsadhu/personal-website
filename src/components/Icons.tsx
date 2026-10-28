@@ -109,6 +109,36 @@ export function ArrowUpIcon(props: IconProps) {
   )
 }
 
+/** Left arrow: the previous screenshot. */
+export function ArrowLeftIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <line x1="19" y1="12" x2="5" y2="12" />
+      <polyline points="12 19 5 12 12 5" />
+    </Icon>
+  )
+}
+
+/** Right arrow: the next screenshot. */
+export function ArrowRightIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <line x1="5" y1="12" x2="19" y2="12" />
+      <polyline points="12 5 19 12 12 19" />
+    </Icon>
+  )
+}
+
+/** Cross: close an enlarged screenshot. */
+export function CloseIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <line x1="18" y1="6" x2="6" y2="18" />
+      <line x1="6" y1="6" x2="18" y2="18" />
+    </Icon>
+  )
+}
+
 /** Sun: switch to the light theme. */
 export function SunIcon(props: IconProps) {
   return (

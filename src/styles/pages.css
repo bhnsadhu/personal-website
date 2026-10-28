@@ -199,6 +199,97 @@
   }
 }
 
+/* A screenshot enlarged over the page. The figure takes the image's width,
+   capped by the screen's width and by its height less the two bars, so
+   both bars run exactly edge to edge with the image. */
+.shotbox {
+  --bar: 44px;
+  --gap: 12px;
+  max-width: none;
+  max-height: none;
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--fg);
+  overflow: visible;
+}
+
+/* Nearly the page itself, so the caption and count never sit on top of
+   page text; the blur keeps a hint of where you were. */
+.shotbox::backdrop {
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.shotbox__figure {
+  display: grid;
+  gap: var(--gap);
+  width: min(1200px, 100vw - 32px, (100dvh - 32px - 2 * (var(--bar) + var(--gap))) * 1408 / 827);
+}
+
+.shotbox__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--bar);
+}
+
+.shotbox__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 0 1px var(--line), var(--pop-shadow);
+}
+
+.shotbox__caption,
+.shotbox__count {
+  color: var(--fg);
+}
+
+/* The same round button as back to top: brass icon, lift on hover. */
+.shotbox__btn {
+  display: grid;
+  place-items: center;
+  width: var(--bar);
+  height: var(--bar);
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--bg-3);
+  box-shadow: var(--card-shadow);
+  cursor: pointer;
+  transition:
+    transform var(--fast) var(--ease),
+    border-color var(--fast) var(--ease);
+}
+
+.shotbox__btn .icon {
+  width: 18px;
+  height: 18px;
+}
+
+.shotbox__btn:hover,
+.shotbox__btn:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--brass);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .shotbox[open] {
+    animation: shotbox-in var(--fast) var(--ease);
+  }
+}
+
+@keyframes shotbox-in {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+}
+
 /* ---------------- List view: the card view laid flat ---------------- */
 
 .list {

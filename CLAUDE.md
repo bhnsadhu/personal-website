@@ -22,8 +22,11 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   client), `leadership.ts` (face cards, fixed order, `progression` and
   `related` optional), `projects.ts` (the fan; a project or role may
   carry `shots`, screenshots of the live product in `public/<slug>/`,
-  rendered by `PlateShots` on its page three across, each opening full
-  size, never anyone else's name in frame), `education.ts`,
+  rendered by `PlateShots` on its page three across, never anyone else's
+  name in frame; a click enlarges one in a native `<dialog>` with the
+  caption and a close button above, back/next and "2 / 3" below, both bars
+  exactly the image's width; arrows step, Escape closes only the dialog),
+  `education.ts`,
   `certifications.ts`, `skills.ts`, `personal.ts` (four cards, five
   `entries` each; a restaurant's address opens Google Maps, and Favorite
   Tables ends with "More on Beli", `site.beli`, which search also lists
@@ -263,7 +266,7 @@ The fan (projects) · The chips (skills) · The flop (personal) · Let's talk
 (contact). Buttons and links: "Explore My Work", "View Resume", "Contact
 Me" (hero), "Resume" (nav, footer), "Send Message" (submit), "Back to the
 hand", "View experience", "Explore the project", "List view" / "Card view", "Live Demo",
-"Repository" (a project's code), "App Store" (Ingenio Care's listing), "GitHub" (his own profile: footer, contact, search), "More on Beli" (Favorite Tables) / "Beli" (search), "View Credential", "Search", "Back to top" (aria), "Hold space to skip" / "Hold to skip" (the opening deal), "Switch to light theme" / "Switch to dark theme"
+"Repository" (a project's code), "App Store" (Ingenio Care's listing), "GitHub" (his own profile: footer, contact, search), "More on Beli" (Favorite Tables) / "Beli" (search), "View Credential", "Search", "Back to top" (aria), "Close" / "Previous screenshot" / "Next screenshot" (aria, the enlarged screenshot), "Hold space to skip" / "Hold to skip" (the opening deal), "Switch to light theme" / "Switch to dark theme"
 (aria and title on the sun/moon), "Currently @ …". The
 search placeholder is "Search the deck…" and an empty search reads "Not in
 the deck: “…”". Face-down cards say "Not dealt yet". 404 is
