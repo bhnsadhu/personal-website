@@ -258,7 +258,7 @@ scroll, count-up stats, chips dropping onto stacks, a detail page's
 sections rising as they arrive and its screenshots laid down one by one
 (the enlarged one fades in, cross-fades between shots, and fades out),
 each new contact-form status line easing in like the opening's caption, the nav's progress
-line and rolling chip and active suit, and the felt's swell (`Felt.tsx`). Anything hidden before it reveals needs both
+line and rolling chip and active suit, its labels riffling on hover through ranks, suits, and glitch marks for about 0.8s (`Riffle.tsx`, the nav never shifts), and the felt's swell (`Felt.tsx`). Anything hidden before it reveals needs both
 `html.js` and `prefers-reduced-motion: no-preference`, so it can never
 stay invisible.
 
