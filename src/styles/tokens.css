@@ -30,6 +30,9 @@
   --brass-fill: #b08d57;
   --brass-fill-2: #cfae78;
   --gray: #9a9287;
+  /* The Places map's route: brass in the west, wine in the east. */
+  --map-west: var(--brass-fill);
+  --map-east: var(--wine);
   /* Live status only: the dot beside "Live" and "Live Demo". */
   --live: #3fae6a;
   /* The glint that crosses a section title's accent word. */

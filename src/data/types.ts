@@ -121,11 +121,17 @@ export interface PersonalEntry {
   /** What to order. Restaurants only. */
   pick?: string
   note: string
+  /** Latitude and longitude, for a card laid out as a map. */
+  at?: [number, number]
+  /** The country's flag, shown in the place's bubble on the map. */
+  flag?: string
 }
 
 export interface PersonalCard extends CardContent {
   /** A first-person line that opens the category. */
   intro?: string
+  /** How the back lays out the entries: a numbered list (default) or a map. */
+  view?: 'list' | 'map'
   entries: PersonalEntry[]
 }
 

@@ -30,7 +30,8 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   `certifications.ts`, `skills.ts`, `personal.ts` (four cards, five
   `entries` each; a restaurant's address opens Google Maps, and Favorite
   Tables ends with "More on Beli", `site.beli`, which search also lists
-  under Links. Beli goes nowhere else: no ranks, scores, or photos),
+  under Links. Beli goes nowhere else: no ranks, scores, or photos;
+  Places has `view: 'map'`, each entry an `at` [lat, lon] and `flag`),
   `metrics.ts`, `sections.ts` (`sectionHeads`: each
   section's eyebrow and title, and `sectionNotes`: the note beside it,
   rendered by both the card view and the list view).
@@ -40,6 +41,18 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   two views cannot drift. `ContactBody`, `ContactLinks`,
   `Certifications`, and `PersonalExtras` (the "Also in rotation" line under
   the flop) are shared the same way.
+- `src/components/PlacesMap.tsx` — the Places card's back, as close to
+  Gauri Menon's "Where" map as the site allows: the world as dots, Antarctica
+  included (`src/lib/worldDots.ts`, Natural Earth land on a 2.7° grid, dots
+  a third of their spacing), a dashed wavy route west to east from
+  `--map-west` (brass) to `--map-east` (wine) whose dashes flow west and
+  whose wave eases out at each pin so it enters dead centre, and a
+  solid pin on each place, snapped to its nearest land dot, with a halo that
+  breathes. Hover, tap, or tab to a pin (an invisible 28px button over it)
+  for a bubble above it: the pin's color, darkened only as far as cream type
+  needs for 4.5:1, with flag, place, and note. No chips, no legend. Dots shy
+  from the cursor. Draws only while on screen and open; still under reduced
+  motion. Dot color from `--pmap-dot`, re-pointed for the list view.
 - `src/components/Card.tsx` — one playing card: front is a `<button>`, back
   is a `role="region"` with the full content, always in the DOM, `inert`
   until open. Focus moves into the back on open and returns on close. The

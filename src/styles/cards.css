@@ -740,3 +740,92 @@
   font-size: 15px;
   line-height: 1.5;
 }
+
+/* Places, drawn as a map (PlacesMap.tsx) after Gauri Menon's "Where" card.
+   The canvas reads its dot color from --pmap-dot, which the list view
+   re-points for the dark table; the route runs --map-west to --map-east. */
+.pmap {
+  --pmap-dot: var(--ink-2);
+  display: grid;
+  gap: 12px;
+}
+
+.pmap__label {
+  color: var(--ink-2);
+}
+
+.pmap__stage {
+  position: relative;
+}
+
+.pmap__map {
+  display: block;
+  width: 100%;
+}
+
+/* Each pin's tap target: invisible, centred on the drawn pin. */
+.pmap__pin {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  margin: -14px 0 0 -14px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+}
+
+.pmap__pin:focus-visible {
+  outline: 2px solid var(--ink-2);
+  outline-offset: 0;
+}
+
+/* The bubble: the pin's own color, white type, fitted to its words, 12px
+   above the pin. Darkened only as far as the type needs to stay legible. */
+.pmap__tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: max-content;
+  max-width: min(232px, 100%);
+  display: grid;
+  justify-items: center;
+  padding: 9px 12px 10px;
+  border-radius: 11px;
+  color: var(--cream);
+  text-align: center;
+  box-shadow: var(--pip-shadow);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.2s var(--ease),
+    visibility 0s linear 0.2s;
+}
+
+.pmap__tip.is-on {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.2s var(--ease);
+}
+
+.pmap__flag {
+  font-size: 21px;
+  line-height: 1;
+}
+
+.pmap__place {
+  margin-top: 4px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.pmap__note {
+  margin-top: 4px;
+  font-size: 12.5px;
+  line-height: 1.4;
+  opacity: 0.92;
+}

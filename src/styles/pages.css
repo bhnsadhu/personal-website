@@ -700,6 +700,18 @@
   color: var(--fg);
 }
 
+.ix__back .pmap {
+  --pmap-dot: var(--gray);
+}
+
+.ix__back .pmap__label {
+  color: var(--gray);
+}
+
+.ix__back .pmap__pin:focus-visible {
+  outline-color: var(--gray);
+}
+
 .ix__back .card__extlink,
 .ix__more {
   justify-self: start;

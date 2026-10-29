@@ -3,6 +3,7 @@ import { personalExtras } from '../data'
 import { Link } from '../lib/router'
 import { SEP } from '../lib/sep'
 import { LiveDot } from './LiveDot'
+import { PlacesMap } from './PlacesMap'
 
 /**
  * What each entry says when it opens. One component per kind, rendered on
@@ -129,31 +130,35 @@ export function PersonalBack({ c }: { c: PersonalCard }) {
   return (
     <>
       {c.intro && <p className="card__summary">{c.intro}</p>}
-      <ol className="card__entries">
-        {c.entries.map((e) => (
-          <li key={e.name} className="entry">
-            <p className="entry__head">
-              <span className="entry__name">{e.name}</span>
-              {e.detail && <span className="entry__detail">{e.detail}</span>}
-            </p>
-            {e.address && (
-              <p className="entry__line mono mono--sm">
-                <a className="entry__map" href={mapsHref(e.name, e.address)} target="_blank" rel="noreferrer">
-                  {e.address}
-                  <span className="sr-only"> (Google Maps)</span>
-                </a>
+      {c.view === 'map' ? (
+        <PlacesMap entries={c.entries} />
+      ) : (
+        <ol className="card__entries">
+          {c.entries.map((e) => (
+            <li key={e.name} className="entry">
+              <p className="entry__head">
+                <span className="entry__name">{e.name}</span>
+                {e.detail && <span className="entry__detail">{e.detail}</span>}
               </p>
-            )}
-            {e.pick && (
-              <p className="entry__line">
-                <span className="entry__key mono mono--sm">Order</span>
-                {e.pick}
-              </p>
-            )}
-            <p className="entry__note">{e.note}</p>
-          </li>
-        ))}
-      </ol>
+              {e.address && (
+                <p className="entry__line mono mono--sm">
+                  <a className="entry__map" href={mapsHref(e.name, e.address)} target="_blank" rel="noreferrer">
+                    {e.address}
+                    <span className="sr-only"> (Google Maps)</span>
+                  </a>
+                </p>
+              )}
+              {e.pick && (
+                <p className="entry__line">
+                  <span className="entry__key mono mono--sm">Order</span>
+                  {e.pick}
+                </p>
+              )}
+              <p className="entry__note">{e.note}</p>
+            </li>
+          ))}
+        </ol>
+      )}
       <Links links={c.links} />
     </>
   )
