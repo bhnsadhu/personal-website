@@ -88,6 +88,7 @@
 }
 
 .plate__lede {
+  max-width: 36em;
   font-size: 19px;
   line-height: 1.5;
 }
@@ -153,8 +154,11 @@
   }
 }
 
-/* Prose on a plate. */
+/* Prose on a plate, held to about 70 characters a line (the full column
+   ran 85). In em, not ch: Fraunces' zero is wide enough that 66ch spans
+   the whole column. Bullets keep the full width; they wrap short already. */
 .plate__p {
+  max-width: 36em;
   font-size: 17px;
   line-height: 1.55;
 }

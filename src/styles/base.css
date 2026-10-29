@@ -268,7 +268,8 @@ h4,
 .section__note {
   font-family: var(--mono);
   font-size: 12px;
-  letter-spacing: 0.06em;
+  /* A sentence, not a label: only a touch of tracking. */
+  letter-spacing: 0.02em;
   color: var(--gray);
   max-width: 44ch;
 }
