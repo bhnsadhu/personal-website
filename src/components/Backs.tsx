@@ -3,6 +3,7 @@ import { personalExtras } from '../data'
 import { Link } from '../lib/router'
 import { SEP } from '../lib/sep'
 import { LiveDot } from './LiveDot'
+import { FragranceShelf } from './FragranceShelf'
 import { PlacesMap } from './PlacesMap'
 import { PosterRow } from './PosterRow'
 
@@ -193,6 +194,8 @@ export function PersonalBack({ c }: { c: PersonalCard }) {
         <RankedEntries entries={c.entries} />
       ) : c.view === 'posters' ? (
         <PosterRow entries={c.entries} />
+      ) : c.view === 'shelf' ? (
+        <FragranceShelf entries={c.entries} />
       ) : (
         <ol className="card__entries">
           {c.entries.map((e) => (

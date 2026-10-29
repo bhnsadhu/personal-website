@@ -263,8 +263,9 @@
     animation-delay: 0.8s;
   }
 
-  /* A film's note eases in when another poster is chosen. */
-  .posters__review {
+  /* A film's or fragrance's note eases in when another one is chosen. */
+  .posters__review,
+  .shelf__review {
     animation: fade-up 0.35s var(--ease) both;
   }
 

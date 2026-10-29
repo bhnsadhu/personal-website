@@ -129,6 +129,10 @@ export interface PersonalEntry {
   flag?: string
   /** A film's poster, 2:3, in public/posters/. */
   poster?: string
+  /** A fragrance's bottle, photographed and cut out, in public/fragrances/. */
+  photo?: string
+  /** The bottle's real height, so the shelf keeps them in proportion. */
+  cm?: number
 }
 
 export interface PersonalCard extends CardContent {
@@ -136,8 +140,8 @@ export interface PersonalCard extends CardContent {
   intro?: string
   /** A closing line on the back naming what the layout borrows from. */
   inspiredBy?: string
-  /** How the back lays out the entries: a numbered list (default), a ranked list with scores, a row of posters, or a map. */
-  view?: 'list' | 'ranked' | 'posters' | 'map'
+  /** How the back lays out the entries: a numbered list (default), a ranked list with scores, a row of posters, a shelf of bottles, or a map. */
+  view?: 'list' | 'ranked' | 'posters' | 'shelf' | 'map'
   entries: PersonalEntry[]
 }
 

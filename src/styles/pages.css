@@ -713,6 +713,27 @@
   background: var(--wine-text);
 }
 
+.ix__back .shelf__head {
+  border-color: var(--line);
+  color: var(--gray);
+}
+
+.ix__back .shelf__label {
+  color: var(--gray);
+}
+
+.ix__back .shelf__label.is-on {
+  color: var(--fg);
+}
+
+.ix__back .shelf__label.is-on::after {
+  background: var(--wine-text);
+}
+
+.ix__back .shelf__slot:focus-visible {
+  outline-color: var(--gray);
+}
+
 .ix__back .posters__year {
   color: var(--gray);
 }

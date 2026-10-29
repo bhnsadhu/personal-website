@@ -951,6 +951,177 @@
   color: var(--ink-2);
 }
 
+/* The Fragrance Shelf (FragranceShelf.tsx): photographs of the five
+   bottles, cut out, on a brass shelf at their real heights against one
+   another, each house's name on the ledge below. Hover
+   lifts a bottle; the chosen one rises further, glows, and gets the wine
+   bar under its name, and its note sits beneath. */
+.shelf {
+  container-type: inline-size;
+  display: grid;
+}
+
+.shelf__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--cream-3);
+  color: var(--ink-2);
+}
+
+.shelf__hint {
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+.shelf__bottles,
+.shelf__labels {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+/* The bottles sink a few pixels into the ledge, so they stand on its top
+   face rather than float above it. */
+.shelf__bottles {
+  position: relative;
+  z-index: 1;
+  margin-bottom: -4px;
+}
+
+.shelf__slot {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  aspect-ratio: 144 / 200;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.shelf__bottle {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: auto;
+  max-width: 92%;
+  object-fit: contain;
+  transition: transform 0.3s var(--ease);
+}
+
+/* A soft brass glow behind the chosen bottle. */
+.shelf__glow {
+  position: absolute;
+  inset: 8% 4% 0;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--brass-2) 45%, transparent), transparent);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease);
+}
+
+/* The bottle lifts; its shadow stays on the shelf and fades as it rises. */
+.shelf__shadow {
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 62%;
+  height: 7px;
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--ink) 34%, transparent), transparent);
+  transition: opacity 0.3s var(--ease);
+}
+
+.shelf__slot:hover .shelf__bottle,
+.shelf__slot:focus-visible .shelf__bottle {
+  transform: translateY(-5px);
+}
+
+.shelf__slot:hover .shelf__shadow,
+.shelf__slot:focus-visible .shelf__shadow {
+  opacity: 0.6;
+}
+
+.shelf__slot[aria-pressed='true'] .shelf__bottle {
+  transform: translateY(-10px);
+}
+
+.shelf__slot[aria-pressed='true'] .shelf__shadow {
+  opacity: 0.35;
+}
+
+.shelf__slot[aria-pressed='true'] .shelf__glow {
+  opacity: 1;
+}
+
+.shelf__slot:focus-visible {
+  outline: 2px solid var(--ink-2);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* The shelf itself: a brass ledge with a darker front edge. */
+.shelf__plank {
+  height: 12px;
+  border-radius: 2px;
+  background: linear-gradient(var(--brass-2), var(--brass-fill) 45%, color-mix(in srgb, var(--brass-fill) 70%, var(--ink)));
+  box-shadow:
+    0 5px 0 color-mix(in srgb, var(--brass-fill) 50%, var(--ink)),
+    var(--pip-shadow);
+}
+
+.shelf__labels {
+  margin-top: 16px;
+}
+
+.shelf__label {
+  position: relative;
+  padding: 0 4px 10px;
+  font-size: 10px;
+  text-align: center;
+  color: var(--ink-2);
+  text-wrap: balance;
+}
+
+.shelf__label.is-on {
+  color: var(--ink);
+}
+
+/* Narrow: the house names tighten so the longest word fits its column. */
+@container (max-width: 480px) {
+  .shelf__label {
+    padding-inline: 1px;
+    font-size: 8px;
+    letter-spacing: 0;
+  }
+}
+
+.shelf__label.is-on::after {
+  content: '';
+  position: absolute;
+  left: 30%;
+  right: 30%;
+  bottom: 0;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--wine);
+}
+
+.shelf__review {
+  display: grid;
+  gap: 4px;
+  margin-top: 14px;
+}
+
+.shelf__title .entry__name {
+  font-weight: 600;
+}
+
+.shelf__title .entry__detail {
+  margin-left: 10px;
+}
+
 /* Places, drawn as a map (PlacesMap.tsx) after Gauri Menon's "Where" card.
    The canvas reads its dot color from --pmap-dot, which the list view
    re-points for the dark table; the route runs --map-west to --map-east. */
