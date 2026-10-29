@@ -1,6 +1,15 @@
 import { useState } from 'react'
 import type { PersonalEntry } from '../data'
 
+/** A soft hyphen midway through any word of ten letters or more, so a long
+ *  house name can break in a narrow column. Browsers won't hyphenate
+ *  capitals on their own. Only the label gets it; search reads the data. */
+const breakable = (s: string) =>
+  s.replace(/\p{L}{10,}/gu, (w) => {
+    const mid = Math.ceil(w.length / 2)
+    return `${w.slice(0, mid)}­${w.slice(mid)}`
+  })
+
 /**
  * The Fragrance Shelf: photographs of the five bottles, cut out and stood on
  * a brass shelf at their real heights against one another, each house's name
@@ -48,7 +57,7 @@ export function FragranceShelf({ entries }: { entries: PersonalEntry[] }) {
       <div className="shelf__labels" aria-hidden="true">
         {entries.map((e, i) => (
           <span key={e.name} className={`shelf__label mono${open === i ? ' is-on' : ''}`}>
-            {e.detail}
+            {e.detail && breakable(e.detail)}
           </span>
         ))}
       </div>

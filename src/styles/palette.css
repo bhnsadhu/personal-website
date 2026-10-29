@@ -303,4 +303,11 @@
   .palette__foot {
     justify-content: flex-end;
   }
+  /* 11px is the floor for type on a phone. */
+  .palette__try-label,
+  .palette__group,
+  .palette__foot,
+  .palette kbd {
+    font-size: 11px;
+  }
 }

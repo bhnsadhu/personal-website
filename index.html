@@ -40,13 +40,17 @@
           }
         } catch (e) {}
       })();
-      // The theme: dark unless the visitor chose light with the nav's sun.
-      // Set before first paint so the page never flashes the other one.
+      // The theme: whatever the visitor chose with the nav's sun or moon,
+      // else the system's appearance, else dark. Set before first paint so
+      // the page never flashes the other one.
       (function () {
         var theme = 'dark';
+        var saved = null;
         try {
-          if (localStorage.getItem('theme') === 'light') theme = 'light';
+          saved = localStorage.getItem('theme');
         } catch (e) {}
+        if (saved === 'light' || saved === 'dark') theme = saved;
+        else if (window.matchMedia('(prefers-color-scheme: light)').matches) theme = 'light';
         document.documentElement.setAttribute('data-theme', theme);
         if (theme === 'light') {
           document.querySelector('meta[name="theme-color"]').setAttribute('content', '#F5F0E8');

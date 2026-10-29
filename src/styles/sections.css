@@ -202,11 +202,11 @@
   }
   .nav__toggle {
     padding: 8px 10px;
-    font-size: 10px;
+    font-size: 11px;
   }
   .nav__theme {
     padding: calc(8px + (1lh - 13px) / 2);
-    font-size: 10px;
+    font-size: 11px;
   }
   .nav__theme .icon {
     width: 13px;
@@ -214,7 +214,9 @@
   }
 }
 
-@media (max-width: 400px) {
+/* Each step below starts where the one above would let the suits run into
+   the name (measured every 5px from 320 to 470). */
+@media (max-width: 420px) {
   .nav__brand {
     font-size: 16px;
   }
@@ -231,7 +233,25 @@
   }
 }
 
-@media (max-width: 340px) {
+@media (max-width: 380px) {
+  .nav__suit {
+    padding-inline: 6px;
+  }
+  .nav__end {
+    gap: 6px;
+  }
+}
+
+@media (max-width: 365px) {
+  .nav__inner {
+    gap: 6px;
+  }
+  .nav__brand {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 350px) {
   .nav__inner {
     gap: 4px;
   }

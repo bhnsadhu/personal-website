@@ -1088,12 +1088,15 @@
   color: var(--ink);
 }
 
-/* Narrow: the house names tighten so the longest word fits its column. */
+/* Narrow: the house names tighten and break a long word with a hyphen
+   rather than shrink below 11px, the floor for type on a phone. */
 @container (max-width: 480px) {
   .shelf__label {
     padding-inline: 1px;
-    font-size: 8px;
+    font-size: 11px;
     letter-spacing: 0;
+    hyphens: manual;
+    overflow-wrap: anywhere;
   }
 }
 

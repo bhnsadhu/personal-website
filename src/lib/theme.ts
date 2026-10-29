@@ -12,16 +12,34 @@ function read(): Theme {
   return document.documentElement.dataset.theme === 'light' ? 'light' : 'dark'
 }
 
-function apply(theme: Theme) {
+function apply(theme: Theme, save = true) {
   document.documentElement.dataset.theme = theme
   document.querySelector('meta[name="theme-color"]')?.setAttribute('content', CHROME[theme])
-  try {
-    localStorage.setItem('theme', theme)
-  } catch {
-    // Private mode: the choice lasts until the tab closes.
+  if (save) {
+    try {
+      localStorage.setItem('theme', theme)
+    } catch {
+      // Private mode: the choice lasts until the tab closes.
+    }
   }
   listeners.forEach((cb) => cb())
 }
+
+function chosen(): boolean {
+  try {
+    const saved = localStorage.getItem('theme')
+    return saved === 'light' || saved === 'dark'
+  } catch {
+    return false
+  }
+}
+
+/* Until the visitor picks one with the sun or moon, the page follows the
+   system's appearance, live, as it switches at dusk. */
+const system = window.matchMedia('(prefers-color-scheme: light)')
+system.addEventListener('change', (e) => {
+  if (!chosen()) apply(e.matches ? 'light' : 'dark', false)
+})
 
 /**
  * Switch themes. Hover and focus transitions would otherwise fade some
