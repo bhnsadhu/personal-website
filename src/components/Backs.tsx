@@ -4,6 +4,7 @@ import { Link } from '../lib/router'
 import { SEP } from '../lib/sep'
 import { LiveDot } from './LiveDot'
 import { PlacesMap } from './PlacesMap'
+import { PosterRow } from './PosterRow'
 
 /**
  * What each entry says when it opens. One component per kind, rendered on
@@ -190,6 +191,8 @@ export function PersonalBack({ c }: { c: PersonalCard }) {
         <PlacesMap entries={c.entries} />
       ) : c.view === 'ranked' ? (
         <RankedEntries entries={c.entries} />
+      ) : c.view === 'posters' ? (
+        <PosterRow entries={c.entries} />
       ) : (
         <ol className="card__entries">
           {c.entries.map((e) => (

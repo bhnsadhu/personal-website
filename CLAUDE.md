@@ -34,8 +34,13 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   to his Beli profile anywhere. Favorite Tables has `view: 'ranked'`: laid
   out like a Beli list, "Ranked on Beli" over rows of rank, place, and his
   Beli `score` in a ring (green `--score`, on cream in both views), in his
-  order; no photos.
-  Places has `view: 'map'`, each entry an `at` [lat, lon] and `flag`),
+  order; no photos. Indian Cinema has `view: 'posters'` (`PosterRow.tsx`):
+  Letterboxd's favorite films, a "Favorite films" label over a rule, five
+  TMDB posters (`public/posters/`, 342x513, 2:3, cover-cropped so all
+  match) with title and year (`detail`) along a poster's foot on hover,
+  "Click a poster to read why" beside the label; hover only lifts, the
+  chosen film gets the wine ring and a bar under it, and its note fades in
+  below. Places has `view: 'map'`, each entry an `at` [lat, lon] and `flag`),
   `metrics.ts`, `sections.ts` (`sectionHeads`: each
   section's eyebrow and title, and `sectionNotes`: the note beside it,
   rendered by both the card view and the list view).
@@ -197,7 +202,8 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   apartment-chores product) are never described as launched.
 - No GPA, grades, honors, ratings (his own Beli scores on Favorite Tables
   aside), or invented metrics and dates. One
-  photo only: `site.photo` (`public/bhanu.jpg`, metadata
+  photo of him only (film posters on Indian Cinema are the one other kind
+  of image): `site.photo` (`public/bhanu.jpg`, metadata
   stripped), rendered by `src/components/HeroPhoto.tsx` beside the name
   in both heroes as a straight Polaroid on cream stock, no caption, an even
   border all round. The file is cropped so his face sits on the print's

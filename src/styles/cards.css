@@ -822,6 +822,135 @@
   letter-spacing: 0;
 }
 
+/* Indian Cinema, laid out like Letterboxd's favorite films (PosterRow.tsx):
+   a label over a rule, five posters at 2:3 with small corners and a thin
+   inner edge, the title and year along a poster's foot on hover, the
+   chosen film's note below. Hover lifts; only the chosen film gets the
+   wine ring and the bar beneath, like a selected tab. */
+.posters {
+  display: grid;
+  gap: 14px;
+}
+
+.posters__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--cream-3);
+  color: var(--ink-2);
+}
+
+.posters__hint {
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+.posters__row {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  padding-bottom: 8px;
+}
+
+.posters__item {
+  position: relative;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.posters__frame {
+  position: relative;
+  display: block;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--cream-3);
+  transition: transform var(--fast) var(--ease);
+}
+
+.posters__frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* The thin inner edge; the chosen film's turns into a wine ring. */
+.posters__frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ink) 22%, transparent);
+  transition: box-shadow var(--fast) var(--ease);
+}
+
+.posters__item:hover .posters__frame,
+.posters__item:focus-visible .posters__frame,
+.posters__item[aria-pressed='true'] .posters__frame {
+  transform: translateY(-3px);
+}
+
+.posters__item[aria-pressed='true'] .posters__frame::after {
+  box-shadow: inset 0 0 0 2px var(--wine);
+}
+
+.posters__item:focus-visible {
+  outline: none;
+}
+
+.posters__item:focus-visible .posters__frame::after {
+  box-shadow: inset 0 0 0 2px var(--ink-2);
+}
+
+/* The bar under the chosen film, tying it to the note below. */
+.posters__item[aria-pressed='true']::after {
+  content: '';
+  position: absolute;
+  left: 30%;
+  right: 30%;
+  bottom: -8px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--wine);
+}
+
+/* Title and year along the poster's foot, inside it, on hover. */
+.posters__cap {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 18px 8px 7px;
+  background: linear-gradient(to top, color-mix(in srgb, var(--ink) 88%, transparent), transparent);
+  color: var(--cream);
+  font-size: 10.5px;
+  line-height: 1.3;
+  text-align: left;
+  opacity: 0;
+  transition: opacity var(--fast) var(--ease);
+}
+
+.posters__item:hover .posters__cap,
+.posters__item:focus-visible .posters__cap {
+  opacity: 1;
+}
+
+.posters__review {
+  display: grid;
+  gap: 4px;
+}
+
+.posters__title .entry__name {
+  font-weight: 600;
+}
+
+.posters__year {
+  margin-left: 10px;
+  color: var(--ink-2);
+}
+
 /* Places, drawn as a map (PlacesMap.tsx) after Gauri Menon's "Where" card.
    The canvas reads its dot color from --pmap-dot, which the list view
    re-points for the dark table; the route runs --map-west to --map-east. */

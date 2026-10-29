@@ -263,6 +263,11 @@
     animation-delay: 0.8s;
   }
 
+  /* A film's note eases in when another poster is chosen. */
+  .posters__review {
+    animation: fade-up 0.35s var(--ease) both;
+  }
+
   /* The photo beside the name lands last. */
   .hero__photo {
     animation: fade-up 0.8s var(--ease) 0.95s backwards;

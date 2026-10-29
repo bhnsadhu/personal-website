@@ -110,6 +110,8 @@ export const personal: PersonalCard[] = [
     subtitle: 'Films I carry with me.',
     meta: 'Five favorites',
     summary: 'Films I carry with me.',
+    view: 'posters',
+    inspiredBy: 'Inspired by Letterboxd, one of my favorite products.',
     intro:
       "Vijay was a huge part of what I watched growing up, and he's still one of my favorite actors. I love films that leave me thinking about the characters, the choices they make, or a moment I shared watching with family.",
     body: [],
@@ -117,22 +119,32 @@ export const personal: PersonalCard[] = [
     entries: [
       {
         name: 'Velaiilla Pattadhari (VIP)',
+        detail: '2014',
+        poster: '/posters/vip.jpg',
         note: "The story of an unemployed graduate finding his direction really stayed with me. It's a reminder that feeling stuck doesn't mean that's where your story ends.",
       },
       {
         name: 'Mersal',
+        detail: '2017',
+        poster: '/posters/mersal.jpg',
         note: 'One of my favorite Vijay films. I love the range of his performance and the way the story brings in a message about healthcare.',
       },
       {
         name: 'Leo',
+        detail: '2023',
+        poster: '/posters/leo.jpg',
         note: 'I like the tension between the life someone builds and the past that follows them. It makes the consequences of earlier choices feel very real.',
       },
       {
         name: 'Vishwanath and Sons',
+        detail: '2026',
+        poster: '/posters/vishwanath-and-sons.jpg',
         note: 'A recent favorite I watched with my family. Warm, funny, and the kind of film that becomes a good memory because of who you watched it with.',
       },
       {
         name: 'Ghajini',
+        detail: '2005',
+        poster: '/posters/ghajini.jpg',
         note: "I love the direction and the way memory and the character's past shape the story. Watching the pieces come together is a big part of what makes it memorable for me.",
       },
     ],

@@ -127,6 +127,8 @@ export interface PersonalEntry {
   at?: [number, number]
   /** The country's flag, shown in the place's bubble on the map. */
   flag?: string
+  /** A film's poster, 2:3, in public/posters/. */
+  poster?: string
 }
 
 export interface PersonalCard extends CardContent {
@@ -134,8 +136,8 @@ export interface PersonalCard extends CardContent {
   intro?: string
   /** A closing line on the back naming what the layout borrows from. */
   inspiredBy?: string
-  /** How the back lays out the entries: a numbered list (default), a ranked list with scores, or a map. */
-  view?: 'list' | 'ranked' | 'map'
+  /** How the back lays out the entries: a numbered list (default), a ranked list with scores, a row of posters, or a map. */
+  view?: 'list' | 'ranked' | 'posters' | 'map'
   entries: PersonalEntry[]
 }
 
