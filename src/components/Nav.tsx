@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useSyncExternalStore } from 'react'
 import { Link, usePath } from '../lib/router'
 import { useScrollSpy } from '../lib/useScrollSpy'
 import { setTheme, useTheme } from '../lib/theme'
@@ -54,8 +54,22 @@ function ChipMark() {
   )
 }
 
+/* Below 901px the suits drop their printed labels (sections.css); only
+   then does a suit need a tooltip naming its section. Wider, the tooltip
+   would repeat the label and cover it. */
+const GLYPHS_ONLY = '(max-width: 900px)'
+
+function subscribeGlyphsOnly(cb: () => void) {
+  const mq = window.matchMedia(GLYPHS_ONLY)
+  mq.addEventListener('change', cb)
+  return () => mq.removeEventListener('change', cb)
+}
+
+const readGlyphsOnly = () => window.matchMedia(GLYPHS_ONLY).matches
+
 export function Nav() {
   const path = usePath()
+  const glyphsOnly = useSyncExternalStore(subscribeGlyphsOnly, readGlyphsOnly, () => false)
   const onList = path === '/list'
   const current = experience.find((e) => e.slug === site.currently)
   const theme = useTheme()
@@ -164,7 +178,7 @@ export function Nav() {
                   className={`nav__suit nav__suit--${s.suit} ${active === s.anchor ? 'is-active' : ''}`.trim()}
                   aria-current={active === s.anchor ? 'location' : undefined}
                   aria-label={`${s.label} (${s.suit})`}
-                  title={s.label}
+                  title={glyphsOnly ? s.label : undefined}
                 >
                   <span aria-hidden="true">{SUIT_GLYPH[s.suit]}</span>
                   <Riffle
