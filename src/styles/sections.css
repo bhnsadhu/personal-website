@@ -11,6 +11,14 @@
   border-bottom: 1px solid var(--line);
 }
 
+/* Reduce Transparency: solid, no glass (`--nav-bg` turns opaque too). */
+@media (prefers-reduced-transparency: reduce) {
+  .nav {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
 .nav__inner {
   height: 100%;
   display: flex;

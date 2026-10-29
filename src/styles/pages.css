@@ -230,6 +230,14 @@
   backdrop-filter: blur(8px);
 }
 
+@media (prefers-reduced-transparency: reduce) {
+  .shotbox::backdrop {
+    background: var(--bg);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
 .shotbox__figure {
   display: grid;
   gap: var(--gap);

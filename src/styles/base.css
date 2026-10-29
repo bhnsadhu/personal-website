@@ -67,6 +67,12 @@ svg {
   outline-offset: 3px;
 }
 
+/* Brass is 2.7:1 on card stock, short of the 3:1 a focus ring needs; wine
+   holds 5.2:1. Zero specificity on the card, so a control's own ring wins. */
+:where(.card__back) :focus-visible {
+  outline-color: var(--wine);
+}
+
 ::selection {
   background: var(--wine);
   color: var(--cream);

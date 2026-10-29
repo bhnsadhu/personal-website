@@ -117,6 +117,14 @@
   backdrop-filter: blur(4px);
 }
 
+/* Reduce Transparency: `--scrim` turns nearly solid; the blur goes. */
+@media (prefers-reduced-transparency: reduce) {
+  .palette::backdrop {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
 .palette__inner {
   display: flex;
   flex-direction: column;

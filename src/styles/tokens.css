@@ -106,6 +106,44 @@
   --brass-2: #cfae78;
 }
 
+/* Increase Contrast: secondary type and rules step toward the text color,
+   so gray clears 9:1 and borders clear 3:1. The table looks the same
+   until someone asks for more. */
+@media (prefers-contrast: more) {
+  :root {
+    --line: #6b6157;
+    --fg-2: #f3ede2;
+    --fg-3: #e6ddcd;
+    --ink-2: #403a33;
+    --wine-text: #e3918d;
+    --brass: #cfae78;
+    --gray: #c4bcae;
+  }
+
+  :root[data-theme='light'] {
+    --line: #8c8170;
+    --fg-2: #1a1714;
+    --fg-3: #3a342d;
+    --wine-text: #7e2e2b;
+    --brass: #5c4520;
+    --brass-2: #4a371a;
+    --gray: #4a433b;
+  }
+}
+
+/* Reduce Transparency: the nav and the scrims turn solid. */
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --nav-bg: var(--bg);
+    --scrim: rgba(10, 8, 6, 0.92);
+  }
+
+  :root[data-theme='light'] {
+    --nav-bg: var(--bg);
+    --scrim: rgba(40, 30, 18, 0.8);
+  }
+}
+
 @media (max-width: 720px) {
   :root {
     --gutter: 18px;
