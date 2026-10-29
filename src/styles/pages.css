@@ -425,9 +425,10 @@
   grid-column: 2;
   font-family: var(--serif);
   font-size: 15px;
+  /* Full gray, 6.3:1; dimmed further it fell to 3.7:1. The lit one turns
+     brass. */
   color: var(--gray);
-  opacity: 0.7;
-  transition: opacity var(--fast) var(--ease);
+  transition: color var(--fast) var(--ease);
 }
 
 .list__rail-title em {

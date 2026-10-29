@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "gradient-text",
+        "value": "*",
+        "files": [
+          "src/styles/motion.css"
+        ],
+        "createdAt": "2026-10-29T21:28:30.024Z",
+        "reason": "Section-title glint (--shine) is documented brand motion in CLAUDE.md; user declined motion changes when offered, 2026-10-29"
+      }
+    ]
+  }
+}

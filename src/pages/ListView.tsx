@@ -116,6 +116,7 @@ export function ListView() {
           </div>
 
           <div className="list__hand">
+            <h2 className="sr-only">Top highlights</h2>
             <IndexGroup ids={hand.map((h) => h.slug)} label="Top highlights">
               {hand.map((h, i) => (
                 <IndexRow

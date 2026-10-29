@@ -600,8 +600,10 @@ html[data-intro='play'] .hero__photo {
   animation: hint-in 0.4s var(--ease) 1s backwards;
 }
 
+/* Gray until filled: 6.3:1 in dark and 5.7:1 in light, where brass at 60%
+   fell to 3.9:1 and 2.7:1. */
 .opening__hint-base {
-  opacity: 0.6;
+  color: var(--gray);
 }
 
 /* The same words laid exactly over the dim ones, shown up to the hold's

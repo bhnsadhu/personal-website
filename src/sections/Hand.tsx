@@ -44,6 +44,8 @@ export function Hand() {
           <HeroPhoto />
         </div>
 
+        {/* The aces' titles are h3s; this keeps the outline from jumping h1 to h3. */}
+        <h2 className="sr-only">Top highlights</h2>
         <CardRow ids={hand.map((h) => h.slug)} layout="fan" className="hero__fan" ariaLabel="Top highlights">
           {(row) =>
             hand.map((h, i) => (
