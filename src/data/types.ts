@@ -120,6 +120,8 @@ export interface PersonalEntry {
   address?: string
   /** What to order. Restaurants only. */
   pick?: string
+  /** His Beli score out of 10, for a ranked card. */
+  score?: number
   note: string
   /** Latitude and longitude, for a card laid out as a map. */
   at?: [number, number]
@@ -130,8 +132,10 @@ export interface PersonalEntry {
 export interface PersonalCard extends CardContent {
   /** A first-person line that opens the category. */
   intro?: string
-  /** How the back lays out the entries: a numbered list (default) or a map. */
-  view?: 'list' | 'map'
+  /** A closing line on the back naming what the layout borrows from. */
+  inspiredBy?: string
+  /** How the back lays out the entries: a numbered list (default), a ranked list with scores, or a map. */
+  view?: 'list' | 'ranked' | 'map'
   entries: PersonalEntry[]
 }
 

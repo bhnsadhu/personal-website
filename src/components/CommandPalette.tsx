@@ -163,15 +163,6 @@ export function CommandPalette() {
       { id: 'x-linkedin', group: 'Links', label: 'LinkedIn', hint: `in/${site.linkedinHandle}`, mark: '↗', run: () => openTab(site.linkedin) },
       { id: 'x-github', group: 'Links', label: 'GitHub', hint: `@${site.githubHandle}`, mark: '↗', run: () => openTab(site.github) },
       {
-        id: 'x-beli',
-        group: 'Links',
-        label: 'Beli',
-        hint: `@${site.beliHandle}`,
-        mark: '↗',
-        keywords: ['food', 'restaurants'],
-        run: () => openTab(site.beli),
-      },
-      {
         id: 'x-email',
         group: 'Links',
         label: 'Email',

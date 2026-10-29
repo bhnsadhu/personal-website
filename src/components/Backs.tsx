@@ -1,4 +1,4 @@
-import type { Experience, Highlight, Leadership, Link as LinkData, PersonalCard, Project } from '../data'
+import type { Experience, Highlight, Leadership, Link as LinkData, PersonalCard, PersonalEntry, Project } from '../data'
 import { personalExtras } from '../data'
 import { Link } from '../lib/router'
 import { SEP } from '../lib/sep'
@@ -126,12 +126,70 @@ export function ProjectBack({ p }: { p: Project }) {
   )
 }
 
+/** A favorite's address (to Google Maps), what to order, and the note. */
+function EntryDetails({ e }: { e: PersonalEntry }) {
+  return (
+    <>
+      {e.address && (
+        <p className="entry__line mono mono--sm">
+          <a className="entry__map" href={mapsHref(e.name, e.address)} target="_blank" rel="noreferrer">
+            {e.address}
+            <span className="sr-only"> (Google Maps)</span>
+          </a>
+        </p>
+      )}
+      {e.pick && (
+        <p className="entry__line">
+          <span className="entry__key mono mono--sm">Order</span>
+          {e.pick}
+        </p>
+      )}
+      <p className="entry__note">{e.note}</p>
+    </>
+  )
+}
+
+/**
+ * Favorite Tables, laid out like a Beli list: one tab-style label over the
+ * rows, each row its rank, the place, and his Beli score in a ring on the right.
+ */
+function RankedEntries({ entries }: { entries: PersonalEntry[] }) {
+  return (
+    <>
+      <p className="ranked__tabs mono mono--sm">
+        <span className="ranked__tab">Ranked on Beli</span>
+      </p>
+      <ol className="ranked">
+        {entries.map((e, i) => (
+          <li key={e.name} className="ranked__row">
+            <span className="ranked__rank" aria-hidden="true">
+              {i + 1}
+            </span>
+            <div className="ranked__body">
+              <p className="entry__name">{e.name}</p>
+              <EntryDetails e={e} />
+            </div>
+            {e.score !== undefined && (
+              <span className="ranked__score mono">
+                {e.score.toFixed(1)}
+                <span className="sr-only"> out of 10 on Beli</span>
+              </span>
+            )}
+          </li>
+        ))}
+      </ol>
+    </>
+  )
+}
+
 export function PersonalBack({ c }: { c: PersonalCard }) {
   return (
     <>
       {c.intro && <p className="card__summary">{c.intro}</p>}
       {c.view === 'map' ? (
         <PlacesMap entries={c.entries} />
+      ) : c.view === 'ranked' ? (
+        <RankedEntries entries={c.entries} />
       ) : (
         <ol className="card__entries">
           {c.entries.map((e) => (
@@ -140,26 +198,13 @@ export function PersonalBack({ c }: { c: PersonalCard }) {
                 <span className="entry__name">{e.name}</span>
                 {e.detail && <span className="entry__detail">{e.detail}</span>}
               </p>
-              {e.address && (
-                <p className="entry__line mono mono--sm">
-                  <a className="entry__map" href={mapsHref(e.name, e.address)} target="_blank" rel="noreferrer">
-                    {e.address}
-                    <span className="sr-only"> (Google Maps)</span>
-                  </a>
-                </p>
-              )}
-              {e.pick && (
-                <p className="entry__line">
-                  <span className="entry__key mono mono--sm">Order</span>
-                  {e.pick}
-                </p>
-              )}
-              <p className="entry__note">{e.note}</p>
+              <EntryDetails e={e} />
             </li>
           ))}
         </ol>
       )}
       <Links links={c.links} />
+      {c.inspiredBy && <p className="card__credit">{c.inspiredBy}</p>}
     </>
   )
 }

@@ -28,9 +28,13 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   exactly the image's width; arrows step, Escape closes only the dialog),
   `education.ts`,
   `certifications.ts`, `skills.ts`, `personal.ts` (four cards, five
-  `entries` each; a restaurant's address opens Google Maps, and Favorite
-  Tables ends with "More on Beli", `site.beli`, which search also lists
-  under Links. Beli goes nowhere else: no ranks, scores, or photos;
+  `entries` each; a restaurant's address opens Google Maps. A card's
+  `inspiredBy` closes its back in one italic line naming what its layout
+  borrows from ("Inspired by Beli, one of my favorite products."); no link
+  to his Beli profile anywhere. Favorite Tables has `view: 'ranked'`: laid
+  out like a Beli list, "Ranked on Beli" over rows of rank, place, and his
+  Beli `score` in a ring (green `--score`, on cream in both views), in his
+  order; no photos.
   Places has `view: 'map'`, each entry an `at` [lat, lon] and `flag`),
   `metrics.ts`, `sections.ts` (`sectionHeads`: each
   section's eyebrow and title, and `sectionNotes`: the note beside it,
@@ -191,7 +195,8 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
 - Team results belong to the team. Ongoing work is present tense; proposed
   or idea-stage things (AviLux pilot, the AI learnathon, the
   apartment-chores product) are never described as launched.
-- No GPA, grades, honors, ratings, or invented metrics and dates. One
+- No GPA, grades, honors, ratings (his own Beli scores on Favorite Tables
+  aside), or invented metrics and dates. One
   photo only: `site.photo` (`public/bhanu.jpg`, metadata
   stripped), rendered by `src/components/HeroPhoto.tsx` beside the name
   in both heroes as a straight Polaroid on cream stock, no caption, an even
@@ -282,7 +287,7 @@ The fan (projects) · The chips (skills) · The flop (personal) · Let's talk
 (contact). Buttons and links: "Explore My Work", "View Resume", "Contact
 Me" (hero), "Resume" (nav, footer), "Send Message" (submit), "Back to the
 hand", "View experience", "Explore the project", "List view" / "Card view", "Live Demo",
-"Repository" (a project's code), "App Store" (Ingenio Care's listing), "GitHub" (his own profile: footer, contact, search), "More on Beli" (Favorite Tables) / "Beli" (search), "View Credential", "Search", "Back to top" (aria), "Close" / "Previous screenshot" / "Next screenshot" (aria, the enlarged screenshot), "Hold space to skip" / "Hold to skip" (the opening deal), "Switch to light theme" / "Switch to dark theme"
+"Repository" (a project's code), "App Store" (Ingenio Care's listing), "GitHub" (his own profile: footer, contact, search), "View Credential", "Search", "Back to top" (aria), "Close" / "Previous screenshot" / "Next screenshot" (aria, the enlarged screenshot), "Hold space to skip" / "Hold to skip" (the opening deal), "Switch to light theme" / "Switch to dark theme"
 (aria and title on the sun/moon), "Currently @ …". The
 search placeholder is "Search the deck…" and an empty search reads "Not in
 the deck: “…”". Face-down cards say "Not dealt yet". 404 is

@@ -30,6 +30,8 @@
   --brass-fill: #b08d57;
   --brass-fill-2: #cfae78;
   --gray: #9a9287;
+  /* A Beli score, green as Beli prints it; set on cream only (5.1:1). */
+  --score: #2a7047;
   /* The Places map's route: brass in the west, wine in the east. */
   --map-west: var(--brass-fill);
   --map-east: var(--wine);

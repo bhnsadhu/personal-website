@@ -700,6 +700,24 @@
   color: var(--fg);
 }
 
+.ix__back .card__credit {
+  color: var(--gray);
+}
+
+.ix__back .ranked__tabs,
+.ix__back .ranked__row {
+  border-color: var(--line);
+}
+
+.ix__back .ranked__tab {
+  border-bottom-color: var(--wine-text);
+  color: var(--fg);
+}
+
+.ix__back .ranked__rank {
+  color: var(--wine-text);
+}
+
 .ix__back .pmap {
   --pmap-dot: var(--gray);
 }

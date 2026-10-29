@@ -389,6 +389,14 @@
   color: var(--ink-2);
 }
 
+/* What a personal card's layout borrows from: one quiet italic line at the
+   foot of its back. */
+.card__credit {
+  font-style: italic;
+  font-size: 14px;
+  color: var(--ink-2);
+}
+
 .card__extlink {
   justify-self: start;
 }
@@ -739,6 +747,79 @@
 .entry__note {
   font-size: 15px;
   line-height: 1.5;
+}
+
+/* Favorite Tables, ranked like a Beli list: one tab-style label over the
+   rows, then each row its rank, the place, and his score in a ring on the
+   right. */
+.ranked__tabs {
+  display: flex;
+  border-bottom: 1px solid var(--cream-3);
+}
+
+.ranked__tab {
+  margin-bottom: -1px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--wine);
+  color: var(--ink);
+}
+
+.ranked {
+  display: grid;
+  list-style: none;
+}
+
+/* Rank, name, and score share one baseline. */
+.ranked__row {
+  display: grid;
+  grid-template-columns: 34px 1fr 48px;
+  align-items: baseline;
+  gap: 14px;
+  padding: 16px 0;
+  border-top: 1px solid var(--cream-3);
+}
+
+.ranked__row:first-child {
+  padding-top: 4px;
+  border-top: 0;
+}
+
+.ranked__rank {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--wine);
+}
+
+.ranked__body {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.ranked__body .entry__name {
+  font-weight: 600;
+}
+
+/* The address reads like Beli's neighbourhood line: small and quiet. */
+.ranked__body .entry__line.mono {
+  font-size: 12px;
+}
+
+/* The score ring sits on cream in both views, like Beli's white disc. */
+.ranked__score {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1.5px solid var(--cream-3);
+  border-radius: 50%;
+  background: var(--cream);
+  color: var(--score);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0;
 }
 
 /* Places, drawn as a map (PlacesMap.tsx) after Gauri Menon's "Where" card.

@@ -1,4 +1,3 @@
-import { site } from './site'
 import type { PersonalCard } from './types'
 
 /** Opens the flop. First person. */
@@ -9,25 +8,28 @@ export const personalIntro =
 export const personalExtras = ['Card games', 'Cooking', 'Fitness', 'Badminton', 'Indian music']
 
 /**
- * The flop: four community cards, five favorites each. Favorites, not
- * rankings; no ratings, visit counts, or photos.
+ * The flop: four community cards, five favorites each. Favorite Tables is
+ * ranked, in order, with his own Beli scores; the rest are favorites, not
+ * rankings. No visit counts or photos.
  */
 export const personal: PersonalCard[] = [
   {
     slug: 'favorite-tables',
     title: 'Favorite Tables',
     subtitle: "Five places I'd happily eat at again.",
-    meta: 'Five favorites',
+    meta: 'My top five, ranked',
     summary: "Five places I'd happily eat at again.",
+    view: 'ranked',
     body: [],
     tags: ['Food'],
-    links: [{ label: 'More on Beli', href: site.beli }],
+    inspiredBy: 'Inspired by Beli, one of my favorite products.',
     entries: [
       {
         name: "Nando's PERi-PERi",
         detail: 'Oak Brook, IL',
         address: '523 Oakbrook Center, Oak Brook, IL 60523',
         pick: 'PERi-PERi chicken and PERi-PERi Saka sauce',
+        score: 10,
         note: 'My all-time favorite. I love the chicken, and the PERi-PERi Saka sauce is a big part of why I keep thinking about it.',
       },
       {
@@ -35,6 +37,7 @@ export const personal: PersonalCard[] = [
         detail: 'Princeton, NJ',
         address: '110 Nassau Street, Princeton, NJ 08542',
         pick: 'Chicken bowl with chipotle sauce',
+        score: 9.9,
         note: 'One of my favorite chicken bowls, especially with the chipotle sauce. I went with friends over the summer, which made it one of those meals I remember for more than just the food.',
       },
       {
@@ -42,6 +45,7 @@ export const personal: PersonalCard[] = [
         detail: 'Rolling Meadows, IL',
         address: '1673 Algonquin Road, Rolling Meadows, IL 60008',
         pick: 'The sushi, across the board',
+        score: 9.7,
         note: "A favorite for the quality of the sushi. I try to go with my brother whenever I'm back home.",
       },
       {
@@ -49,6 +53,7 @@ export const personal: PersonalCard[] = [
         detail: 'Lombard, IL',
         address: '413 E Roosevelt Road, Lombard, IL 60148',
         pick: 'Chicken sandwich',
+        score: 9.6,
         note: 'This was near where I worked over the summer, and the chicken sandwich became a regular stop. Really satisfying and consistently good.',
       },
       {
@@ -56,6 +61,7 @@ export const personal: PersonalCard[] = [
         detail: 'Palatine, IL',
         address: '732 E Dundee Road, Palatine, IL 60074',
         pick: 'Butter chicken and paneer paratha',
+        score: 9.5,
         note: "A favorite close to home. My mom didn't cook meat at home growing up, so eating it outside was a treat. Butter chicken and paneer paratha are my picks here.",
       },
     ],
@@ -138,6 +144,7 @@ export const personal: PersonalCard[] = [
     meta: 'Five favorites',
     summary: 'Five places that stayed with me.',
     view: 'map',
+    inspiredBy: 'Inspired by a dotted world map.',
     body: [],
     tags: ['Travel'],
     entries: [
