@@ -131,7 +131,9 @@ export interface PersonalEntry {
   poster?: string
   /** A fragrance's bottle, photographed and cut out, in public/fragrances/. */
   photo?: string
-  /** The bottle's real height, so the shelf keeps them in proportion. */
+  /** Frame an uncropped source photograph without changing its pixels. */
+  photoFrame?: { width: number; height: number; viewBox: string }
+  /** Approximate bottle height, used only for the shelf's visual proportions. */
   cm?: number
 }
 

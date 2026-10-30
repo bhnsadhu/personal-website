@@ -718,12 +718,8 @@
   color: var(--gray);
 }
 
-.ix__back .posters__item[aria-pressed='true'] .posters__frame::after {
-  box-shadow: inset 0 0 0 2px var(--wine-text);
-}
-
-.ix__back .posters__item[aria-pressed='true']::after {
-  background: var(--wine-text);
+.ix__back .posters__item:focus-visible .posters__frame {
+  outline-color: var(--gray);
 }
 
 .ix__back .shelf__head {
@@ -731,16 +727,14 @@
   color: var(--gray);
 }
 
-.ix__back .shelf__label {
+.ix__back .shelf__label,
+.ix__back .posters__label {
   color: var(--gray);
 }
 
-.ix__back .shelf__label.is-on {
+.ix__back .shelf__label.is-on,
+.ix__back .posters__item[aria-pressed='true'] .posters__label {
   color: var(--fg);
-}
-
-.ix__back .shelf__label.is-on::after {
-  background: var(--wine-text);
 }
 
 .ix__back .shelf__slot:focus-visible {

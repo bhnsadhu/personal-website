@@ -2,7 +2,7 @@ import type { PersonalCard } from './types'
 
 /** Opens the flop. First person. */
 export const personalIntro =
-  'A few things I keep coming back to: a good meal, a sweet fragrance, a film that stays with me, and somewhere new to explore.'
+  'A few things I keep coming back to: a good meal, a new fragrance, a film that stays with me, and somewhere new to explore.'
 
 /** The compact line under the table. */
 export const personalExtras = ['Card games', 'Cooking', 'Fitness', 'Badminton', 'Indian music']
@@ -69,13 +69,13 @@ export const personal: PersonalCard[] = [
   {
     slug: 'fragrance-shelf',
     title: 'Fragrance Shelf',
-    subtitle: 'A clear preference for sweet.',
-    meta: 'Five favorites',
-    summary: 'A clear preference for sweet.',
+    subtitle: 'A few favorites in rotation.',
+    meta: 'In rotation',
+    summary: 'A few favorites in rotation.',
     view: 'shelf',
     inspiredBy: 'Inspired by my fragrance shelf at home.',
     intro:
-      "I tend to gravitate toward sweet, warm fragrances, especially vanilla. Looking at this list, I guess I'm just a sweet guy.",
+      "I love all things fragrance, from trying something new to appreciating the art behind a scent. What I wear changes with the day, the occasion, and my mood. These are a few favorites in my rotation right now.",
     body: [],
     tags: ['Fragrance'],
     entries: [
@@ -84,35 +84,37 @@ export const personal: PersonalCard[] = [
         detail: 'Emporio Armani',
         photo: '/fragrances/stronger-with-you.webp',
         cm: 12.5,
-        note: 'My favorite. Sweet, warm, and especially meaningful because my uncle gave it to me when I graduated.',
+        note: 'Probably my favorite fragrance ever. I love the warmth of the vanilla and chestnut, with a little peppery spice to balance it out. It has that comforting, familiar smell I keep coming back to.',
       },
       {
-        name: 'Bianco Latte',
-        detail: 'Giardini di Toscana',
-        photo: '/fragrances/bianco-latte.webp',
-        cm: 15,
-        note: 'One of the first fragrances I bought with my own money. I love its rich, sweet vanilla character.',
+        name: 'Santal 33',
+        detail: 'Le Labo',
+        photo: '/fragrances/santal-33.png',
+        photoFrame: { width: 600, height: 600, viewBox: '188 42 242 492' },
+        cm: 12,
+        note: 'I love the dry sandalwood and cedar, with a little cardamom and that smoky, leathery edge. There’s a lot going on, but it all feels easy together. I reach for it when I’m in the mood for something woody.',
       },
       {
-        name: 'The Most Wanted Eau de Parfum Intense',
-        detail: 'Azzaro',
-        photo: '/fragrances/most-wanted.webp',
-        cm: 11.5,
-        note: 'Warm, sweet, and one I keep coming back to.',
+        name: 'Cypress & Grapevine',
+        detail: 'Jo Malone London',
+        photo: '/fragrances/cypress-grapevine.png',
+        cm: 14,
+        note: 'The fresh, green cypress is what draws me in, and I love the warmer woods and earthy moss underneath. It feels like a change of pace in my collection: fresh, but with some depth to it.',
       },
       {
-        name: 'Vanille Supermassive',
-        detail: 'Les Eaux Primordiales',
-        photo: '/fragrances/vanille-supermassive.webp',
-        cm: 13.5,
-        note: 'One of the most distinctive fragrances I own. I picked it up on a trip to Poland, so it carries a travel memory too.',
+        name: 'Ombré Leather',
+        detail: 'Tom Ford',
+        photo: '/fragrances/ombre-leather.png',
+        photoFrame: { width: 600, height: 600, viewBox: '140 56 320 487' },
+        cm: 11,
+        note: 'I love how the leather stands out, then softens with jasmine and warm amber. It has a bold character without feeling rough. This is the one I reach for when I want something with a little more presence.',
       },
       {
         name: 'Coffee & Whiskey',
         detail: 'Bath & Body Works',
         photo: '/fragrances/coffee-whiskey.webp',
         cm: 15.5,
-        note: 'The fragrance that got me interested in collecting. It still has a place on this list because it started the whole thing.',
+        note: 'Bath & Body Works is what first got me into fragrances, so this one has a special place on my shelf. I love the mix of whiskey, vanilla, and a hint of coffee. It’s warm, familiar, and a reminder of where this interest started.',
       },
     ],
   },
@@ -125,12 +127,12 @@ export const personal: PersonalCard[] = [
     view: 'posters',
     inspiredBy: 'Inspired by Letterboxd, one of my favorite products.',
     intro:
-      "Vijay was a huge part of what I watched growing up, and he's still one of my favorite actors. I love films that leave me thinking about the characters, the choices they make, or a moment I shared watching with family.",
+      "I grew up loving movies. They connected me to my language and culture, kept me close to my roots, and sparked my love for dance. I love how each director and actor can build a different world, bring out a different emotion, and leave you with something to think about.\n\nVijay is my all-time favorite actor. I grew up watching him and found so much inspiration in his films. He’s since become Tamil Nadu’s chief minister, but I still love returning to the movies that made me a fan.\n\nHere are a few of my favorite Indian films.",
     body: [],
     tags: ['Film'],
     entries: [
       {
-        name: 'Velaiilla Pattadhari (VIP)',
+        name: 'Velaiilla Pattadhari',
         detail: '2014',
         poster: '/posters/vip.jpg',
         note: "The story of an unemployed graduate finding his direction really stayed with me. It's a reminder that feeling stuck doesn't mean that's where your story ends.",

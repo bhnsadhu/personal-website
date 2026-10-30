@@ -12,9 +12,9 @@ const breakable = (s: string) =>
 
 /**
  * The Fragrance Shelf: photographs of the five bottles, cut out and stood on
- * a brass shelf at their real heights against one another, each house's name
+ * a brass shelf with approximate bottle proportions, each house's name
  * on the ledge beneath. Hover lifts a bottle; the chosen one rises with a
- * glow and a bar under its name, its shadow stays on the shelf, and its note
+ * bold house name, its shadow stays on the shelf, and its note
  * fades in below. The first bottle starts chosen.
  */
 export function FragranceShelf({ entries }: { entries: PersonalEntry[] }) {
@@ -38,9 +38,18 @@ export function FragranceShelf({ entries }: { entries: PersonalEntry[] }) {
             aria-pressed={open === i}
             onClick={() => setOpen(i)}
           >
-            <span className="shelf__glow" aria-hidden="true" />
             <span className="shelf__shadow" aria-hidden="true" />
-            {e.photo && (
+            {e.photo && (e.photoFrame ? (
+              <svg
+                className="shelf__bottle"
+                viewBox={e.photoFrame.viewBox}
+                style={{ height: `${((e.cm ?? tallest) / tallest) * 94}%` }}
+                aria-hidden="true"
+                focusable="false"
+              >
+                <image href={e.photo} width={e.photoFrame.width} height={e.photoFrame.height} />
+              </svg>
+            ) : (
               <img
                 className="shelf__bottle"
                 src={e.photo}
@@ -49,14 +58,14 @@ export function FragranceShelf({ entries }: { entries: PersonalEntry[] }) {
                 loading="lazy"
                 decoding="async"
               />
-            )}
+            ))}
           </button>
         ))}
       </div>
       <div className="shelf__plank" aria-hidden="true" />
       <div className="shelf__labels" aria-hidden="true">
         {entries.map((e, i) => (
-          <span key={e.name} className={`shelf__label mono${open === i ? ' is-on' : ''}`}>
+          <span key={e.name} className={`shelf__label${open === i ? ' is-on' : ''}`}>
             {e.detail && breakable(e.detail)}
           </span>
         ))}

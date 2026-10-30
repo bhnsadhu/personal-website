@@ -1,0 +1,19 @@
+{
+  "santal-33.png": {
+    "product": "Le Labo Santal 33",
+    "source": "https://www.myperfumeshop.in/cdn/shop/products/le-labo-santal-33-edp-perfume-for-them-881453.png?v=1621476859&width=600",
+    "notes": "Downloaded source pixels; transparent padding is framed in the component."
+  },
+  "ombre-leather.png": {
+    "product": "Tom Ford Ombré Leather Eau de Parfum",
+    "source": "https://www.tomfordbeauty.com/cdn/shop/files/tf_sku_T5Y201_2000x2000_0.png?v=1773791127&width=600",
+    "notes": "Downloaded source pixels; transparent padding is framed in the component."
+  },
+  "cypress-grapevine.png": {
+    "product": "Jo Malone London Cypress & Grapevine Cologne Intense",
+    "source": "https://images.hernas.com/s3/global/b/8/b85bb028-4fa9-40d5-b7d0-84e528fa9356_d8d8acc7-7798-448c-94a4-a7bc527be276.png",
+    "processing": "Background extraction with the built-in image_gen tool, transparent_background=true.",
+    "prompt": "Use case: background-extraction. Edit target: the supplied product photograph of Jo Malone London Cypress & Grapevine Cologne Intense. Remove only the white background, producing an actual transparent-background PNG of the exact same bottle. Preserve the bottle's black glass, silver cap, shape, proportions, lighting, and all label lettering exactly. No new shadows, no reflections below the bottle, no embellishment. Center the single front-facing bottle with minimal transparent padding around its outer bounds. This is a cutout for a small fragrance shelf on a personal website. Do not redesign the bottle."
+  },
+  "rights": "Product photos remain the property of their respective owners. No open license is asserted."
+}

@@ -2,11 +2,10 @@ import { useState } from 'react'
 import type { PersonalEntry } from '../data'
 
 /**
- * Indian Cinema, laid out like Letterboxd's favorite films: a label over a
- * rule, the posters in one row with the title and year along the foot of
- * each on hover, and the chosen film's note beneath. Hover only lifts a
- * poster; the chosen one carries the ring and a bar under it, so it is
- * clear a click is what changes the note. The first film starts chosen.
+ * Indian Cinema: a row of posters with always-visible names underneath.
+ * The selected name becomes bold and its poster lifts, matching the
+ * fragrance shelf. The chosen film's full title, year, and note sit below.
+ * The first film starts chosen.
  */
 export function PosterRow({ entries }: { entries: PersonalEntry[] }) {
   const [open, setOpen] = useState(0)
@@ -32,10 +31,8 @@ export function PosterRow({ entries }: { entries: PersonalEntry[] }) {
             >
               <span className="posters__frame">
                 {e.poster && <img src={e.poster} alt="" width={342} height={513} loading="lazy" decoding="async" />}
-                <span className="posters__cap mono" aria-hidden="true">
-                  {label}
-                </span>
               </span>
+              <span className="posters__label" aria-hidden="true">{e.name}</span>
             </button>
           )
         })}
