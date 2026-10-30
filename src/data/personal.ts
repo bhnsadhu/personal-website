@@ -20,6 +20,8 @@ export const personal: PersonalCard[] = [
     meta: 'Current top five',
     summary: 'Five favorites right now.',
     view: 'ranked',
+    intro:
+      "I love food and cooking, and I’ll try just about anything once. Wherever I go, I look for local favorites and the dishes a place is known for. Even a bad review makes me curious enough to try something for myself.\n\nI see cooking as an art, and a restaurant’s atmosphere is part of the experience. I love using Beli to keep track of my favorites, which inspired this list. Here are five I’m loving right now.",
     body: [],
     tags: ['Food'],
     inspiredBy: 'Inspired by Beli, one of my favorite products.',
@@ -170,6 +172,8 @@ export const personal: PersonalCard[] = [
     meta: 'Five favorites',
     summary: 'Five places that stayed with me.',
     view: 'map',
+    intro:
+      "I love traveling, exploring somewhere new, and finding places I want to return to. Some of these favorites go back to childhood; others are more recent. The food, scenery, and people I’ve shared a trip with all stay with me. Here are five places I’ve loved so far, with plenty more I hope to explore.",
     inspiredBy: 'Inspired by a dotted world map.',
     body: [],
     tags: ['Travel'],
