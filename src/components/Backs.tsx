@@ -187,9 +187,7 @@ function RankedEntries({ entries }: { entries: PersonalEntry[] }) {
 export function PersonalBack({ c }: { c: PersonalCard }) {
   return (
     <>
-      {c.intro?.split('\n\n').map((paragraph) => (
-        <p key={paragraph} className="card__summary">{paragraph}</p>
-      ))}
+      {c.intro && <p className="card__summary">{c.intro}</p>}
       {c.view === 'map' ? (
         <PlacesMap entries={c.entries} />
       ) : c.view === 'ranked' ? (
