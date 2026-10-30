@@ -31,10 +31,15 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   `entries` each; a restaurant's address opens Google Maps. A card's
   `inspiredBy` closes its back in one italic line naming what its layout
   borrows from ("Inspired by Beli, one of my favorite products."); no link
-  to his Beli profile anywhere. Favorite Tables has `view: 'ranked'`: laid
-  out like a Beli list, "Ranked on Beli" over rows of rank, place, and his
-  Beli `score` in a ring (green `--score`, on cream in both views), in his
-  order; no photos. Indian Cinema has `view: 'posters'` (`PosterRow.tsx`):
+  to his Beli profile anywhere. All four backs keep one rhythm, measured at
+  every width in both views: the three ruled label rows (`ranked__tabs`,
+  `posters__head`, `shelf__head`) are 26px tall; every label, ruled or
+  not (the map's `pmap__label` is plain, as on hers), sits 14px above its
+  first item; 14px either side of a row rule; 14px to the credit line; every
+  block on the same left and right edge; a map popup sits exactly 12px above
+  its pin. Favorite Tables has `view: 'ranked'`: laid out like a Beli list,
+  "Ranked on Beli" over rows of rank, place, and his Beli `score` in a
+  ring (green `--score`, on cream in both views), in his order; no photos. Indian Cinema has `view: 'posters'` (`PosterRow.tsx`):
   Letterboxd's favorite films, a "Favorite films" label over a rule, five
   TMDB posters (`public/posters/`, 342x513, 2:3, cover-cropped so all
   match) with title and year (`detail`) along a poster's foot on hover,

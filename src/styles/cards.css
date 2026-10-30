@@ -759,7 +759,7 @@
 
 .ranked__tab {
   margin-bottom: -1px;
-  padding-bottom: 8px;
+  padding-bottom: 7px;
   border-bottom: 2px solid var(--wine);
   color: var(--ink);
 }
@@ -769,19 +769,24 @@
   list-style: none;
 }
 
-/* Rank, name, and score share one baseline. */
+/* Rank, name, and score share one baseline. Every gap in the card body is
+   14px: above and below each rule, under the label, above the credit. */
 .ranked__row {
   display: grid;
   grid-template-columns: 34px 1fr 48px;
   align-items: baseline;
   gap: 14px;
-  padding: 16px 0;
+  padding: 14px 0;
   border-top: 1px solid var(--cream-3);
 }
 
 .ranked__row:first-child {
-  padding-top: 4px;
+  padding-top: 0;
   border-top: 0;
+}
+
+.ranked__row:last-child {
+  padding-bottom: 0;
 }
 
 .ranked__rank {
@@ -1131,7 +1136,7 @@
 .pmap {
   --pmap-dot: var(--ink-2);
   display: grid;
-  gap: 12px;
+  gap: 14px;
 }
 
 .pmap__label {

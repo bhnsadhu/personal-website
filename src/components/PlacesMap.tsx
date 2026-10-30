@@ -299,10 +299,11 @@ export function PlacesMap({ entries }: { entries: PersonalEntry[] }) {
     if (!tip || shown < 0 || !width) return
     const p = places[shown]
     const scale = width / REF_W
-    const half = tip.offsetWidth / 2
+    const box = tip.getBoundingClientRect()
+    const half = box.width / 2
     const x = Math.min(Math.max(p.x * scale, half), width - half)
     tip.style.left = `${x - half}px`
-    tip.style.top = `${p.y * scale - tip.offsetHeight - 12}px`
+    tip.style.top = `${p.y * scale - box.height - 12}px`
   }, [shown, width, places])
 
   const place = shown >= 0 ? places[shown] : null
