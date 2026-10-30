@@ -16,9 +16,9 @@ export const personal: PersonalCard[] = [
   {
     slug: 'favorite-tables',
     title: 'Favorite Tables',
-    subtitle: "Five places I'd happily eat at again.",
-    meta: 'My top five, ranked',
-    summary: "Five places I'd happily eat at again.",
+    subtitle: 'Five favorites right now.',
+    meta: 'Current top five',
+    summary: 'Five favorites right now.',
     view: 'ranked',
     body: [],
     tags: ['Food'],
@@ -30,7 +30,7 @@ export const personal: PersonalCard[] = [
         address: '523 Oakbrook Center, Oak Brook, IL 60523',
         pick: 'PERi-PERi chicken and PERi-PERi Saka sauce',
         score: 10,
-        note: 'My all-time favorite. I love the chicken, and the PERi-PERi Saka sauce is a big part of why I keep thinking about it.',
+        note: 'My current number one. I love the chicken, and the PERi-PERi Saka sauce is a big part of why I keep thinking about it.',
       },
       {
         name: 'Tacoria',
