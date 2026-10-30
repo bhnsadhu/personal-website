@@ -21,7 +21,7 @@ export const personal: PersonalCard[] = [
     summary: 'Five favorites right now.',
     view: 'ranked',
     intro:
-      "I love food and cooking, and I’ll try just about anything once. Wherever I go, I look for local favorites and the dishes a place is known for. Even a bad review makes me curious enough to try something for myself.\n\nI see cooking as an art, and a restaurant’s atmosphere is part of the experience. I love using Beli to keep track of my favorites, which inspired this list. Here are five I’m loving right now.",
+      "I love food and cooking, from trying local dishes to appreciating the art and atmosphere of a great meal. Good reviews or bad, I’m curious enough to try almost anything once. I use Beli to track my favorites, which inspired this list of five I’m loving right now.",
     body: [],
     tags: ['Food'],
     inspiredBy: 'Inspired by Beli, one of my favorite products.',
@@ -77,7 +77,7 @@ export const personal: PersonalCard[] = [
     view: 'shelf',
     inspiredBy: 'Inspired by my fragrance shelf at home.',
     intro:
-      "I love all things fragrance, from trying something new to appreciating the art behind a scent. What I wear changes with the day, the occasion, and my mood. These are a few favorites in my rotation right now.",
+      "I love the art behind fragrance and wear different scents for different moods and occasions. Here are five favorites in my rotation right now.",
     body: [],
     tags: ['Fragrance'],
     entries: [
@@ -129,7 +129,7 @@ export const personal: PersonalCard[] = [
     view: 'posters',
     inspiredBy: 'Inspired by Letterboxd, one of my favorite products.',
     intro:
-      "I grew up loving movies. They connected me to my language and culture, kept me close to my roots, and sparked my love for dance. I love how each director and actor can build a different world, bring out a different emotion, and leave you with something to think about.\n\nVijay is my all-time favorite actor. I grew up watching him and found so much inspiration in his films. He’s since become Tamil Nadu’s chief minister, but I still love returning to the movies that made me a fan.\n\nHere are a few of my favorite Indian films.",
+      "Movies connected me to my language and culture and sparked my love for dance. I love how each story draws me into a different world. Vijay, now Tamil Nadu’s chief minister, is my all-time favorite actor and a huge inspiration growing up. Here are five Indian films I keep coming back to.",
     body: [],
     tags: ['Film'],
     entries: [
@@ -173,7 +173,7 @@ export const personal: PersonalCard[] = [
     summary: 'Five places that stayed with me.',
     view: 'map',
     intro:
-      "I love traveling, exploring somewhere new, and finding places I want to return to. Some of these favorites go back to childhood; others are more recent. The food, scenery, and people I’ve shared a trip with all stay with me. Here are five places I’ve loved so far, with plenty more I hope to explore.",
+      "I love exploring new places, and there’s still so much I want to see. These five favorites span childhood trips and recent travels, with memories shaped by the food, scenery, and people I went with.",
     inspiredBy: 'Inspired by a dotted world map.',
     body: [],
     tags: ['Travel'],
