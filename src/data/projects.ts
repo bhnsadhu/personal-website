@@ -240,12 +240,12 @@ export const projects: Project[] = [
     shots: [
       {
         src: '/scentlens/home.jpg',
-        alt: 'The ScentLens demo: a photo upload box, an Identify button, and six sample bottle photos.',
+        alt: 'The ScentLens demo on a silver bench: the viewfinder mark and title, a photo upload box, an ink Identify button, and six sample bottle photos.',
         caption: 'The demo',
       },
       {
         src: '/scentlens/result.jpg',
-        alt: 'A sample photo identified as Vanille Supermassive by Les Eaux Primordiales, with the bottle boxed and its confidence and notes beside it.',
+        alt: 'A sample photo identified as Vanille Supermassive by Les Eaux Primordiales: a Match · confidence 0.99 pill, the bottle boxed, and its notes beside it.',
         caption: 'An identified bottle',
       },
       {
