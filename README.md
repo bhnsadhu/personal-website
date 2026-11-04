@@ -4,7 +4,7 @@
 
 My experience, projects, and interests, dealt as interactive cards. Check it out!
 
-**Live: [bhanusadhu.com](https://bhanusadhu.com)** · [Resume](https://bhanusadhu.com/Bhanu_Sadhu_Resume.pdf) · [LinkedIn](https://www.linkedin.com/in/bhanusadhu) · [Email](mailto:sadhubhanu07@gmail.com)
+**[Visit → bhanusadhu.com](https://bhanusadhu.com)** · [Resume](https://bhanusadhu.com/Bhanu_Sadhu_Resume.pdf) · LinkedIn: in/bhanusadhu · Email: sadhubhanu07@gmail.com
 
 ---
 
@@ -20,16 +20,16 @@ A Computer Science + Economics student at the University of Illinois Urbana-Cham
 
 ## What's in the deck
 
-Everything on the site links to something real. The builds, each with a live link and its repository:
+Everything on the site links to something real. The builds, each with its live link:
 
-| Build | What it is | Live | Code |
-| --- | --- | --- | --- |
-| **Cambio** | Real-time multiplayer card game with house bots at three levels | [play](https://cambio.bhanusadhu.com) | [repo](https://github.com/bhnsadhu/cambio) |
-| **Accord** | Fragrance discovery app with recommendations that show their evidence | [try](https://accord.bhanusadhu.com) | [repo](https://github.com/bhnsadhu/accord) |
-| ↳ **ScentLens** | The model behind Accord's bottle scanner: names a fragrance from a photo, or says it isn't sure | [demo](https://scentlens.bhanusadhu.com) | [repo](https://github.com/bhnsadhu/scent-lens) |
-| **Dishwise** | Ranks every dish on a menu against your taste, with the reasons behind each score | [try](https://dishwise.bhanusadhu.com) | [repo](https://github.com/bhnsadhu/dishwise) |
-| **Replay** | Live guess-the-song game: one screen plays the music, every phone is a buzzer | [play](https://replay.bhanusadhu.com) | [repo](https://github.com/bhnsadhu/replay) |
-| **Replit Learnathon** | Event site and project wall for a beginner AI build day, built in my Replit role | [visit](https://learnathon.bhanusadhu.com) | [repo](https://github.com/bhnsadhu/replit-learnathon) |
+| Build | What it is | Live |
+| --- | --- | --- |
+| **Cambio** | Real-time multiplayer card game with house bots at three levels | [play](https://cambio.bhanusadhu.com) |
+| **Accord** | Fragrance discovery app with recommendations that show their evidence | [try](https://accord.bhanusadhu.com) |
+| ↳ **ScentLens** | The model behind Accord's bottle scanner: names a fragrance from a photo, or says it isn't sure | [demo](https://scentlens.bhanusadhu.com) |
+| **Dishwise** | Ranks every dish on a menu against your taste, with the reasons behind each score | [try](https://dishwise.bhanusadhu.com) |
+| **Replay** | Live guess-the-song game: one screen plays the music, every phone is a buzzer | [play](https://replay.bhanusadhu.com) |
+| **Replit Learnathon** | Event site and project wall for a beginner AI build day, built in my Replit role | [visit](https://learnathon.bhanusadhu.com) |
 
 ![The fan on bhanusadhu.com: Cambio, Accord, ScentLens, Dishwise and Replay dealt as five cards](docs/screenshots/fan.jpg)
 
@@ -107,29 +107,29 @@ The site is also a project, built end to end by me: design, front end, and a sma
 
 ---
 
-## Tech Stack
+## Tech stack
 
 Small on purpose. The only runtime dependencies are React and React DOM.
 
 | Component | Technology |
 | --- | --- |
-| UI | [React 19](https://react.dev) |
-| Language | [TypeScript 5.9](https://www.typescriptlang.org) |
-| Build | [Vite 7](https://vite.dev) with `@vitejs/plugin-react` |
-| Hosting | [Vercel](https://vercel.com) |
+| UI | React 19 |
+| Language | TypeScript 5.9 |
+| Build | Vite 7 with `@vitejs/plugin-react` |
+| Hosting | Vercel |
 | Backend | Two Vercel Functions: `api/contact.ts` and `api/cambio-players.ts` |
-| Email | [Resend](https://resend.com), called through its REST API without an SDK |
+| Email | Resend, called through its REST API without an SDK |
 | Styling | Plain CSS with design tokens |
 | Animation | CSS and a small in-house motion module, with no animation library |
 | Routing | Custom router with anchor links, view transitions, and scroll restoration |
-| Headlines | [Fraunces](https://fonts.google.com/specimen/Fraunces) |
-| Metadata | [IBM Plex Mono](https://fonts.google.com/specimen/IBM+Plex+Mono) |
+| Headlines | Fraunces |
+| Metadata | IBM Plex Mono |
 
 ---
 
-## How It Works
+## How it works
 
-### Shared Content
+### Shared content
 
 All content lives in typed files under `src/data/`. The card view, list view, and detail pages read from the same source, keeping content consistent across layouts.
 
@@ -139,7 +139,7 @@ All content lives in typed files under `src/data/`. The card view, list view, an
 | List view | Flat layout for quickly scanning the same content, plus Education |
 | Detail pages | Individual experience and project entries with shareable URLs |
 
-### Card Interaction
+### Card interaction
 
 Opening a card flips it, expands it across the row, and slides the remaining cards back into slivers.
 
@@ -155,7 +155,7 @@ Opening a card flips it, expands it across the row, and slides the remaining car
 
 `CommandPalette` is built from `src/data`, so it cannot drift from the content. Experience and project results open their pages. Leadership, personal, and Education results flip the card open in the card view, or scroll to the section in the list view.
 
-### Contact Form
+### Contact form
 
 The contact form posts to `api/contact.ts`, which validates the submission, filters bots, and sends the message through Resend.
 
@@ -169,7 +169,7 @@ The contact form posts to `api/contact.ts`, which validates the submission, filt
 
 ---
 
-## Project Layout
+## Project layout
 
 | Path | Responsibility |
 | --- | --- |
@@ -186,7 +186,7 @@ The contact form posts to `api/contact.ts`, which validates the submission, filt
 
 ---
 
-## Run It Locally
+## Run it locally
 
 Use a Node.js version supported by Vite 7.
 
@@ -204,7 +204,7 @@ npm install
 cp .env.example .env
 ```
 
-Add the values described in the Environment Variables section below.
+Add the values described in the environment variables section below.
 
 ### 3. Start the development server
 
@@ -223,7 +223,7 @@ The Vite development server does not run `/api`, so the contact form shows its e
 
 ---
 
-## Environment Variables
+## Environment variables
 
 The local `.env` file is gitignored. Keep real credentials out of version control.
 
@@ -254,3 +254,7 @@ Hosted on Vercel, with a static front end and two serverless endpoints: the cont
 ---
 
 Shuffled, not stirred.
+
+---
+
+Designed and built by me, [Bhanu Sadhu](https://bhanusadhu.com).
