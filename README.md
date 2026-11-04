@@ -14,6 +14,25 @@ A Computer Science + Economics student at the University of Illinois Urbana-Cham
 
 **Recruiting for Summer 2027 internships in Product & Software.**
 
+![The hero of bhanusadhu.com in the light theme: name, intro, Explore My Work, View Resume and Contact Me, the seeking line, and four aces](docs/screenshots/hero.jpg)
+
+---
+
+## What's in the deck
+
+Everything on the site links to something real. The builds, each with a live link and its repository:
+
+| Build | What it is | Live | Code |
+| --- | --- | --- | --- |
+| **Cambio** | Real-time multiplayer card game with house bots at three levels | [play](https://cambio.bhanusadhu.com) | [repo](https://github.com/bhnsadhu/cambio) |
+| **Accord** | Fragrance discovery app with recommendations that show their evidence | [try](https://accord.bhanusadhu.com) | [repo](https://github.com/bhnsadhu/accord) |
+| ↳ **ScentLens** | The model behind Accord's bottle scanner: names a fragrance from a photo, or says it isn't sure | [demo](https://bhnsadhu--scent-lens-web.us-east.modal.run) | [repo](https://github.com/bhnsadhu/scent-lens) |
+| **Dishwise** | Ranks every dish on a menu against your taste, with the reasons behind each score | [try](https://dishwise.bhanusadhu.com) | [repo](https://github.com/bhnsadhu/dishwise) |
+| **Replay** | Live guess-the-song game: one screen plays the music, every phone is a buzzer | [play](https://replay.bhanusadhu.com) | [repo](https://github.com/bhnsadhu/replay) |
+| **Replit Learnathon** | Event site and project wall for a beginner AI build day, built in my Replit role | [visit](https://learnathon.bhanusadhu.com) | [repo](https://github.com/bhnsadhu/replit-learnathon) |
+
+![The fan on bhanusadhu.com: Cambio, Accord, ScentLens, Dishwise and Replay dealt as five cards](docs/screenshots/fan.jpg)
+
 ---
 
 ## Recruiters: a 60-second tour
@@ -47,6 +66,19 @@ The site is also a project, built end to end by me: design, front end, and a sma
 - **Product sense:** one content source feeds the card view, the list view, search, and the sitemap, so nothing drifts between them.
 - **Craft:** custom design system with a dark and a light theme, an opening deal animation, keyboard and screen-reader support, and reduced-motion fallbacks.
 - **Engineering:** React 19 + TypeScript with a custom router and only two runtime dependencies. Two Vercel Functions: a contact form that validates, filters bots, and sends mail through Resend, and a live player count for Cambio.
+
+---
+
+## Product decisions
+
+| Decision | Why |
+| --- | --- |
+| **A deck of cards, not a scroll of sections** | A resume is a hand you're dealt and how you play it. The metaphor gives every section a name and a shape a recruiter remembers. |
+| **A list view of the same content** | The cards are for exploring; the list is for a recruiter with 60 seconds. Both read from one source, so they cannot say different things. |
+| **Every claim is checkable** | Projects link to a live product and its code, team results are credited to the team, and live numbers (Cambio's player count) are fetched, not typed in. No GPA, no ratings, no invented metrics. |
+| **Detail pages with their own URLs** | A recruiter can share one project or role without sending the whole site. |
+| **Search everything** | ⌘K finds any role, project, skill or credential, and opens it in place. |
+| **Accessible by default** | Text holds 4.5:1 contrast in both themes, Increase Contrast and Reduce Transparency are honored, every motion has a reduced-motion fallback, and the keyboard reaches everything. |
 
 ---
 
@@ -208,7 +240,7 @@ For deployed builds, set these variables in the Vercel project settings.
 
 ## Deployment
 
-Hosted on Vercel, with a static front end and one serverless contact endpoint.
+Hosted on Vercel, with a static front end and two serverless endpoints: the contact form and Cambio's live player count.
 
 | Configuration | Behavior |
 | --- | --- |
