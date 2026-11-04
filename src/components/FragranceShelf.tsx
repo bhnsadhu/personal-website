@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { PersonalEntry } from '../data'
+import { play } from '../lib/sound'
 
 /** A soft hyphen midway through any word of ten letters or more, so a long
  *  house name can break in a narrow column. Browsers won't hyphenate
@@ -36,7 +37,10 @@ export function FragranceShelf({ entries }: { entries: PersonalEntry[] }) {
             className="shelf__slot"
             aria-label={[e.name, e.detail].filter(Boolean).join(', ')}
             aria-pressed={open === i}
-            onClick={() => setOpen(i)}
+            onClick={() => {
+              if (open !== i) play('tink')
+              setOpen(i)
+            }}
           >
             <span className="shelf__shadow" aria-hidden="true" />
             {e.photo && (e.photoFrame ? (

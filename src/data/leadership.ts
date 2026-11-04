@@ -22,11 +22,11 @@ export const leadership: Leadership[] = [
     ],
     summary: 'Leading a client product team for a YC-backed startup, after a fellowship spent building product judgment.',
     body: [
-      'Lead a six-person team on a product engagement with CatchBack Cards, a YC-backed collectibles startup.',
+      'Lead a six-person team on a product engagement with CatchBack Cards (YC W26), a collectibles startup.',
       'Studied product cases as a fellow to practice identifying user needs, evaluating solutions, and prioritizing features.',
       'Explored a potential product to help students coordinate apartment chores.',
     ],
-    related: [{ label: 'CatchBack Cards', to: '/experience/catchback-cards' }],
+    related: [{ label: 'CatchBack Cards (YC W26)', to: '/experience/catchback-cards' }],
     tags: ['Product Leadership', 'Client Engagements', 'Problem Definition', 'Feature Prioritization', 'Collaboration'],
   },
   {

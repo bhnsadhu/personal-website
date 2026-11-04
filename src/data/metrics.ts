@@ -12,9 +12,10 @@ import type { Metric } from './types'
  */
 export const CAMBIO_PLAYERS_FALLBACK = 24
 
+/** Lowest to highest, left to right. */
 export const metrics: Metric[] = [
-  { value: '24,642', label: 'Fragrances ScentLens can name from one bottle photo' },
-  { value: '140+', label: 'Rounds played to the finish on Cambio' },
-  { value: '8', label: "Feature areas redesigned from web to mobile for Ingenio Care's App Store launch" },
-  { value: '$7.8M', label: 'Seed raised by CatchBack Cards (YC), where I lead a product team' },
+  { value: '8', label: "Feature areas I redesigned for Ingenio Care's App Store launch" },
+  { value: '140+', label: 'Rounds of Cambio played to the finish' },
+  { value: '24,642', label: 'Fragrances ScentLens can identify from one photo' },
+  { value: '$7.8M', label: 'Seed raised by CatchBack Cards (YC W26), where I lead a product team' },
 ]

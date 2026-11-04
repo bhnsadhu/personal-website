@@ -4,6 +4,7 @@ import { deal } from '../lib/deal'
 import { navigate, usePath } from '../lib/router'
 import { SearchIcon } from './Icons'
 import { SUIT_GLYPH } from './Suit'
+import { play } from '../lib/sound'
 
 type Group = 'Sections' | 'Experience' | 'Leadership' | 'Projects' | 'Skills' | 'Personal' | 'Links' | 'Actions'
 
@@ -237,6 +238,7 @@ export function CommandPalette() {
       setQuery('')
       setActive(0)
       setStatus('')
+      play('deal')
       d.showModal()
       inputRef.current?.focus()
     } else if (!open && d.open) {

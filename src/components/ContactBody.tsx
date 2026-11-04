@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react'
 import { ContactLinks } from './ContactLinks'
 import { site } from '../data'
+import { play } from '../lib/sound'
 
 type Status = { state: 'idle' } | { state: 'sending' } | { state: 'sent' } | { state: 'error'; message: string }
 
@@ -40,8 +41,10 @@ export function ContactBody() {
       const body = (await res.json().catch(() => null)) as { ok?: boolean; error?: string } | null
       if (!res.ok || !body?.ok) throw new Error(body?.error || `the server answered ${res.status}`)
       setStatus({ state: 'sent' })
+      play('stack')
       form.reset()
     } catch (err) {
+      play('thud')
       setStatus({ state: 'error', message: readError(err) })
     }
   }

@@ -57,6 +57,17 @@ export function HandBack({ h }: { h: Highlight }) {
     <>
       <p className="card__summary">{h.summary}</p>
       <Bullets items={h.body} />
+      {h.related && (
+        <p className="card__related">
+          <span className="mono mono--sm">{h.related.label}</span>
+          {h.related.links.map((link) => (
+            <Link key={link.to} to={link.to} className="tlink">
+              {link.label}
+              <Arrow />
+            </Link>
+          ))}
+        </p>
+      )}
       <Links links={h.links} />
     </>
   )

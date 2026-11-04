@@ -126,8 +126,22 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   with the same padding, so the gaps between labels are equal, and the
   suit and label sit exactly midway in the box (measured from pixels).
   The section in view is lit with a faint brass edge; no dot.
-- The nav's "Currently @" pill names the role whose slug is `site.currently`
-  and links to its page. Hidden at 1149px and below.
+- The nav's current-role pill (green dot, then the company, e.g.
+  "CatchBack Cards (YC W26)"; "Currently at …" is its aria-label and
+  title) names the role whose slug is `site.currently` and links to its
+  page. Hidden at 1199px and below, where it would run into the suits.
+- CatchBack Cards is always "CatchBack Cards (YC W26)", with a no-break
+  space inside the brackets, in every mention.
+- Sound: `src/lib/sound.ts` synthesizes short table sounds with Web Audio
+  (no files, no library) and stays silent until the first click, tap or
+  key. A card or list row opening flips, closing lays it down, search and
+  screenshots deal, a fragrance bottle tinks, a map pin pops, a face-down
+  card thuds, chips clack as they land on the stacks (timed to the CSS
+  chip-drop), and a sent message pushes a stack. The speaker button sits
+  before the theme button in the nav ("Turn sound off" / "Turn sound on",
+  saved in `localStorage` `sound`); below 600px the nav has no room, so
+  the footer's "Sound on" / "Sound off" switch takes over.
+- The stat band runs lowest to highest, left to right.
 - `src/components/Chips.tsx` — a chip stack is a rough indicator, not a
   count: `chipsFor()` scales the longest category to `MAX_CHIPS` and the
   rest down to `MIN_CHIPS`, so no stack towers. ChipsSection passes the
@@ -291,7 +305,7 @@ to match).
 `favicon.svg` is the same chip. Rules
 printed on the cream card stock stay. `--live` (green) is reserved for the
 pulsing dot (`LiveDot`) beside "Live", every "Live Demo", and the nav's
-"Currently @" pill, and a "Live Demo" link always has "Repository" beside it.
+current-role pill, and a "Live Demo" link always has "Repository" beside it.
 
 Type: Fraunces for headlines and card titles (optical sizing on), IBM Plex
 Mono for metadata, dates, tags, stat numbers, nav, buttons. No line of
@@ -326,7 +340,7 @@ The fan (projects) · The chips (skills) · The flop (personal) · Let's talk
 Me" (hero), "Resume" (nav, footer), "Send Message" (submit), "Back to the
 hand", "View experience", "Explore the project", "List view" / "Card view", "Live Demo",
 "Repository" (a project's code), "App Store" (Ingenio Care's listing), "GitHub" (his own profile: footer, contact, search), "View Credential", "Search", "Back to top" (aria), "Close" / "Previous screenshot" / "Next screenshot" (aria, the enlarged screenshot), "Hold space to skip" / "Hold to skip" (the opening deal), "Switch to light theme" / "Switch to dark theme"
-(aria and title on the sun/moon), "Currently @ …". The
+(aria and title on the sun/moon), "Sound on" / "Sound off" (footer, phones), "Turn sound off" / "Turn sound on" (aria and title on the speaker). The
 search placeholder is "Search the deck…" and an empty search reads "Not in
 the deck: “…”". Face-down cards say "Not dealt yet". 404 is
 "Not in the deck". Footer sign-off: "Shuffled, not stirred."

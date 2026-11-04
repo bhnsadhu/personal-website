@@ -66,7 +66,9 @@
   color: var(--fg);
 }
 
-@media (max-width: 1149px) {
+/* The pill names the current role beside the brand; below 1200px it would
+   run into the suits. */
+@media (max-width: 1199px) {
   .nav__now {
     display: none;
   }
@@ -168,6 +170,22 @@
 .nav__theme .icon {
   width: 15px;
   height: 15px;
+}
+
+/* The speaker shares the theme button's shape. Below 600px the nav has no
+   room for it, so the footer's "Sound on / off" switch takes over. */
+.footer__sound {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .nav__sound {
+    display: none;
+  }
+
+  .footer__sound {
+    display: inline-flex;
+  }
 }
 
 @media (max-width: 900px) {

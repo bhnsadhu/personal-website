@@ -1,11 +1,13 @@
 import { site } from '../data'
 import { Felt } from './Felt'
 import { SEP } from '../lib/sep'
-import { FileIcon, GitHubIcon, LinkedInIcon, MailIcon } from './Icons'
+import { FileIcon, GitHubIcon, LinkedInIcon, MailIcon, SoundOffIcon, SoundOnIcon } from './Icons'
+import { setSound, useSound } from '../lib/sound'
 import { SUIT_GLYPH } from './Suit'
 
 /** Year and "last updated" are static on purpose: they change with the content, not the clock. */
 export function Footer() {
+  const sound = useSound()
   return (
     <footer className="footer">
       <div className="container footer__inner reveal">
@@ -33,6 +35,11 @@ export function Footer() {
             <FileIcon className="icon--brass" />
             Resume
           </a>
+          {/* Phones have no room for the speaker in the nav, so it lives here. */}
+          <button type="button" className="tlink footer__sound" aria-pressed={sound} onClick={() => setSound(!sound)}>
+            {sound ? <SoundOnIcon className="icon--brass" /> : <SoundOffIcon className="icon--brass" />}
+            {sound ? 'Sound on' : 'Sound off'}
+          </button>
         </nav>
         <p className="footer__note mono mono--sm">
           © {site.copyrightYear} {site.name}{SEP}{site.signoff}

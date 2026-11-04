@@ -31,6 +31,8 @@ export interface Highlight extends CardContent {
   corner?: string
   /** Where the fuller entry lives on the site. The card front stays short. */
   more?: InternalLink
+  /** Other entries this one connects to, named by the relation ("Runs inside"). */
+  related?: { label: string; links: InternalLink[] }
 }
 
 export interface Experience extends CardContent {

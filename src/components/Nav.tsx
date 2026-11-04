@@ -3,7 +3,8 @@ import { Link, usePath } from '../lib/router'
 import { useScrollSpy } from '../lib/useScrollSpy'
 import { setTheme, useTheme } from '../lib/theme'
 import { experience, site, type Suit } from '../data'
-import { MoonIcon, SunIcon } from './Icons'
+import { MoonIcon, SoundOffIcon, SoundOnIcon, SunIcon } from './Icons'
+import { play, setSound, useSound } from '../lib/sound'
 import { LiveDot } from './LiveDot'
 import { Riffle, type RiffleHandle } from './Riffle'
 import { SUIT_GLYPH } from './Suit'
@@ -74,6 +75,7 @@ export function Nav() {
   const current = experience.find((e) => e.slug === site.currently)
   const theme = useTheme()
   const next = theme === 'dark' ? 'light' : 'dark'
+  const sound = useSound()
   const riffles = useRef<(RiffleHandle | null)[]>([])
   const active = useScrollSpy(
     SUIT_NAV.map((s) => s.anchor),
@@ -161,9 +163,9 @@ export function Nav() {
             {site.shortName}
           </Link>
           {current && (
-            <Link to={`/experience/${current.slug}`} className="nav__now mono" aria-label={`Currently at ${current.company}`}>
+            <Link to={`/experience/${current.slug}`} className="nav__now mono" aria-label={`Currently at ${current.company}`} title={`Currently at ${current.company}`}>
               <LiveDot />
-              Currently @ {current.company}
+              {current.company}
             </Link>
           )}
         </div>
@@ -204,10 +206,23 @@ export function Nav() {
           </a>
           <button
             type="button"
+            className="btn btn--ghost nav__theme nav__sound"
+            aria-label={sound ? 'Turn sound off' : 'Turn sound on'}
+            title={sound ? 'Turn sound off' : 'Turn sound on'}
+            aria-pressed={sound}
+            onClick={() => setSound(!sound)}
+          >
+            {sound ? <SoundOnIcon /> : <SoundOffIcon />}
+          </button>
+          <button
+            type="button"
             className="btn btn--ghost nav__theme"
             aria-label={`Switch to ${next} theme`}
             title={`Switch to ${next} theme`}
-            onClick={() => setTheme(next)}
+            onClick={() => {
+              play('click')
+              setTheme(next)
+            }}
           >
             {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
           </button>

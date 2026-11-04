@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { PersonalEntry } from '../data'
+import { play } from '../lib/sound'
 
 /**
  * Indian Cinema: a row of posters with always-visible names underneath.
@@ -27,7 +28,10 @@ export function PosterRow({ entries }: { entries: PersonalEntry[] }) {
               className="posters__item"
               aria-label={label}
               aria-pressed={open === i}
-              onClick={() => setOpen(i)}
+              onClick={() => {
+                if (open !== i) play('deal')
+                setOpen(i)
+              }}
             >
               <span className="posters__frame">
                 {e.poster && <img src={e.poster} alt="" width={342} height={513} loading="lazy" decoding="async" />}

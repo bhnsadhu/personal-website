@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState, type KeyboardEvent, type ReactNode } from 'react'
 import { onDeal, takeDeal } from '../lib/deal'
+import { play } from '../lib/sound'
 
 export interface RowState {
   openId: string | null
@@ -26,8 +27,14 @@ interface CardRowProps {
 export function CardRow({ ids, layout = 'row', className = '', ariaLabel, children }: CardRowProps) {
   const [openId, setOpenId] = useState<string | null>(null)
 
-  const open = useCallback((id: string) => setOpenId(id), [])
-  const close = useCallback(() => setOpenId(null), [])
+  const open = useCallback((id: string) => {
+    play('flip')
+    setOpenId(id)
+  }, [])
+  const close = useCallback(() => {
+    play('close')
+    setOpenId(null)
+  }, [])
   const isOpen = useCallback((id: string) => openId === id, [openId])
   const isAside = useCallback((id: string) => openId !== null && openId !== id, [openId])
 
@@ -39,6 +46,7 @@ export function CardRow({ ids, layout = 'row', className = '', ariaLabel, childr
       const id = takeDeal(key.split(' '))
       if (!id) return
       dealt.current = true
+      play('flip')
       setOpenId(id)
     }
     claim()

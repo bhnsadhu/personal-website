@@ -4,6 +4,7 @@ import { Card } from '../components/Card'
 import { CardRow } from '../components/CardRow'
 import { Section } from '../components/Section'
 import { FAN_RANKS, moreLabel, projects, rankAt, sectionNotes } from '../data'
+import { play } from '../lib/sound'
 
 /** The fan: independent projects. Live and shipped are face up; ideas are face down. */
 export function Fan() {
@@ -11,6 +12,7 @@ export function Fan() {
   const timer = useRef<number | undefined>(undefined)
 
   function notDealt(title: string) {
+    play('thud')
     window.clearTimeout(timer.current)
     setToast(`${title} is still in the deck. Not dealt yet.`)
     timer.current = window.setTimeout(() => setToast(null), 1800)
