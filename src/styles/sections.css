@@ -329,7 +329,7 @@
   line-height: 0.98;
 }
 
-/* Seeking line: when, then what, in one sentence. Product is marked as the lead. */
+/* Seeking line: when, then what, in one sentence. Product and Software are marked equally. */
 .hero__seeking {
   color: var(--gray);
 }

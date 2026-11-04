@@ -1,14 +1,14 @@
 import type { SkillStack } from './types'
 
 /**
- * The chips: one stack per category, product and strategy first.
+ * The chips: one stack per category, product first, then software.
  * Stack height is a count, not a rating. No tool here is claimed for
  * any one project.
  */
 export const skills: SkillStack[] = [
   {
     id: 'product',
-    label: 'Product, Strategy & Delivery',
+    label: 'Product & Delivery',
     skills: [
       'Product strategy',
       'Requirements gathering',

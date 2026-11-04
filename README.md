@@ -12,7 +12,7 @@ My experience, projects, and interests, dealt as interactive cards. Check it out
 
 A Computer Science + Economics student at the University of Illinois Urbana-Champaign, with minors in Statistics and Advertising. I build products and then try to break them.
 
-**Recruiting for Summer 2027 internships in Product, Software, & Strategy.**
+**Recruiting for Summer 2027 internships in Product & Software.**
 
 ---
 

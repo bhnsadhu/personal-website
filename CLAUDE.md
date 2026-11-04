@@ -210,11 +210,14 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   "UIUC" (`site.schoolShort`) to stay short.
 - Fixed wording in fixed places. The hero eyebrow reads "Your hand ·
   UIUC · Computer Science + Economics · Builder & breaker of products"
-  (`site.schoolShort`, `site.major`, `site.focus`), no location; the list view's header says the same. Every list of the three is "Product, Software, &
-  Strategy" (`site.title`, split as `site.interests`): tab title, social
-  meta, the hero's seeking line with Product highlighted, and the
-  `site.availability` sentence in the contact section and the list
-  view. No long form, no other role list.
+  (`site.schoolShort`, `site.major`, `site.focus`), no location; the list view's header says the same. He is recruiting for two
+  tracks with equal weight, and every mention is "Product & Software"
+  (`site.title`, from `site.interests`): tab title, social meta, the
+  social preview image (`public/og.png`), the hero's seeking line with
+  both words highlighted alike, and the `site.availability` sentence in
+  the contact section and the list view. Never "Strategy" as a track (his
+  real titles, such as Strategy Consultant, stay as they are), never one
+  track ranked above the other, no long form, no other role list.
 - The card view and the list view say the same things in the same words.
   Shared text lives in `src/data`, never inline in one view.
 - Confidential clients stay unnamed in text, slugs, metadata, and labels.

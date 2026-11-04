@@ -4,7 +4,7 @@
  */
 export const sectionNotes = {
   spread:
-    'Working across product, technology, and strategy to understand problems and turn research into useful next steps.',
+    'Working across product and software to understand problems, build what matters, and turn research into useful next steps.',
   face:
     'Bringing people together, helping teams find direction, and making things happen across campus. A different kind of strong hand.',
   fan:

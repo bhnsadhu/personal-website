@@ -1,14 +1,14 @@
-/** The short form, split so the hero's seeking line can mark Product as the lead. */
-const interests = { lead: 'Product', rest: 'Software, & Strategy' }
+/** The two tracks, equal weight: the hero's seeking line marks both. */
+const interests = ['Product', 'Software'] as const
 
 export const site = {
   name: 'Bhanu Prakash Sadhu',
   shortName: 'Bhanu Sadhu',
   /** The short form: tab title, social preview, the hero's seeking line, and the availability sentence. */
-  title: `${interests.lead}, ${interests.rest}`,
-  browserTitle: `Bhanu Sadhu | ${interests.lead}, ${interests.rest}`,
+  title: interests.join(' & '),
+  browserTitle: `Bhanu Sadhu | ${interests.join(' & ')}`,
   description:
-    'Bhanu Sadhu studies Computer Science + Economics at the University of Illinois Urbana-Champaign and builds products across software, digital health, and AI. Explore his projects, experience, and interests.',
+    'Bhanu Sadhu studies Computer Science + Economics at the University of Illinois Urbana-Champaign and builds products and software across digital health, AI, and consumer apps. Explore his projects, experience, and interests.',
   location: 'Hawthorn Woods, Illinois',
   /** The short form, used only in the hero eyebrow and the list view's About line. Everywhere else spells the school out. */
   schoolShort: 'UIUC',
@@ -28,14 +28,14 @@ export const site = {
     alt: 'Bhanu in a charcoal suit and white shirt against a plain gray backdrop.',
   },
   tagline:
-    "I turn ideas into products and research into decisions. I'm studying Computer Science + Economics at the University of Illinois Urbana-Champaign, with a focus on product management and building useful software.",
+    "I turn ideas into products and research into decisions. I'm studying Computer Science + Economics at the University of Illinois Urbana-Champaign, with a focus on product management and software engineering.",
   about: [
-    "I'm Bhanu, a Computer Science + Economics student at the University of Illinois Urbana-Champaign, with minors in Statistics and Advertising. My experience spans digital health, AI adoption, consulting, and building products of my own. I enjoy understanding what people need, deciding what matters most, and turning those decisions into something they can use.",
+    "I'm Bhanu, a Computer Science + Economics student at the University of Illinois Urbana-Champaign, with minors in Statistics and Advertising. My experience spans digital health, AI adoption, consulting, and building products of my own. I enjoy understanding what people need, deciding what matters most, and building the software that delivers it.",
     "Outside of work, I'm usually playing cards with friends, trying a restaurant, collecting fragrances, or watching a movie.",
   ],
   workingStyle: 'Understand the problem, make thoughtful tradeoffs, and improve through feedback.',
   /** The short form, as a sentence: the contact section and the list view. */
-  availability: `I'm seeking Summer 2027 internships in ${interests.lead}, ${interests.rest}.`,
+  availability: `I'm seeking Summer 2027 internships in ${interests.join(' & ')}.`,
   email: 'sadhubhanu07@gmail.com',
   phone: '224-428-4480',
   phoneHref: 'tel:+12244284480',
@@ -45,7 +45,7 @@ export const site = {
   githubHandle: 'bhnsadhu',
   /** Drop the real PDF at public/Bhanu_Sadhu_Resume.pdf. */
   resume: '/Bhanu_Sadhu_Resume.pdf',
-  contactLede: "Have a product internship, a project idea, or something interesting to build? I'd love to hear from you.",
+  contactLede: "Have a product or software internship, a project idea, or something interesting to build? I'd love to hear from you.",
   copyrightYear: '2026',
   signoff: 'Shuffled, not stirred.',
   /** Static on purpose. Update by hand when content changes. */
