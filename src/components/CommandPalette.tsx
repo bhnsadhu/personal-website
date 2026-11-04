@@ -101,7 +101,7 @@ export function CommandPalette() {
         label: e.role,
         hint: e.company,
         mark: SUIT_GLYPH.spades,
-        keywords: [e.via ?? '', ...e.tags],
+        keywords: e.tags,
         run: () => navigate(`/experience/${e.slug}`),
       })),
 

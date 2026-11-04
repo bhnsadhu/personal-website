@@ -32,7 +32,7 @@ export const hand: Highlight[] = [
     subtitle: 'Product Management Lead',
     meta: 'Oct 2026 — Present',
     summary: 'Leading a product team on conversion and retention for a collectibles startup that raised a $7.8M seed.',
-    body: ['Lead a six-person Product Space team finding where new users stall before a first deposit, and what brings collectors back.'],
+    body: ['Lead a six-person product team finding where new users stall before a first deposit, and what brings collectors back.'],
     tags: ['Product Management', 'Conversion', 'Retention'],
     links: experienceLinks('catchback-cards'),
     more: { label: moreLabel.experience, to: '/experience/catchback-cards' },

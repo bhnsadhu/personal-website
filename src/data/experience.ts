@@ -8,27 +8,6 @@ import type { Experience } from './types'
  */
 export const experience: Experience[] = [
   {
-    slug: 'catchback-cards',
-    company: 'CatchBack Cards (YC W26)',
-    role: 'Product Management Lead',
-    dates: 'Oct 2026 — Present',
-    location: 'San Francisco, CA',
-    via: 'Product Space',
-    title: 'Product Management Lead',
-    subtitle: 'CatchBack Cards (YC W26)',
-    meta: 'Oct 2026 — Present',
-    summary: 'Leading a product team on first-deposit conversion and collector retention for a Y Combinator collectibles startup.',
-    context:
-      "CatchBack Cards (YC W26) is a digital collectibles platform from Y Combinator's Winter 2026 batch, where people open mystery packs backed by physical trading cards, then keep, sell back, or ship what they pull. It raised a $7.8M seed round led by Foundation Capital, with Y Combinator, Robinhood Ventures, Coinbase Ventures, and the Solana Foundation.",
-    body: [
-      'Lead a six-person Product Space team on a six-week engagement to turn new signups into first-time depositors and bring collectors back.',
-      'Map the signup-to-first-deposit funnel from platform data and run think-aloud usability tests with students who have never used it.',
-      'Benchmark how comparable platforms handle onboarding, deposits, and trust, and study what keeps collectors returning on Reddit, Discord, and TikTok.',
-      'Prioritize conversion and retention recommendations for CatchBack Cards (YC W26) stakeholders, split into short-term fixes and longer-term product bets.',
-    ],
-    tags: ['Product Management', 'Conversion', 'Retention', 'Usability Testing', 'Funnel Analysis', 'Competitive Research'],
-  },
-  {
     slug: 'ingenio-care',
     company: 'Ingenio Care, Inc.',
     role: 'Product Builder Intern',
@@ -47,6 +26,27 @@ export const experience: Experience[] = [
     ],
     tags: ['Product Management', 'Product Requirements', 'UX', 'Digital Health', 'Outreach'],
     links: [{ label: 'App Store', href: 'https://apps.apple.com/us/app/ingenio-care/id6798790795' }],
+  },
+  {
+    slug: 'catchback-cards',
+    company: 'CatchBack Cards (YC W26)',
+    role: 'Product Management Lead',
+    dates: 'Oct 2026 — Present',
+    location: 'San Francisco, CA',
+    via: 'Product Space',
+    title: 'Product Management Lead',
+    subtitle: 'CatchBack Cards (YC W26)',
+    meta: 'Oct 2026 — Present',
+    summary: 'Leading a product team on first-deposit conversion and collector retention for a Y Combinator collectibles startup.',
+    context:
+      "CatchBack Cards (YC W26) is a digital collectibles platform from Y Combinator's Winter 2026 batch, where people open mystery packs backed by physical trading cards, then keep, sell back, or ship what they pull. It raised a $7.8M seed round led by Foundation Capital, with Y Combinator, Robinhood Ventures, Coinbase Ventures, and the Solana Foundation.",
+    body: [
+      'Lead a six-person product team on a six-week engagement to turn new signups into first-time depositors and bring collectors back.',
+      'Map the signup-to-first-deposit funnel from platform data and run think-aloud usability tests with students who have never used it.',
+      'Benchmark how comparable platforms handle onboarding, deposits, and trust, and study what keeps collectors returning on Reddit, Discord, and TikTok.',
+      'Prioritize conversion and retention recommendations for CatchBack Cards (YC W26) stakeholders, split into short-term fixes and longer-term product bets.',
+    ],
+    tags: ['Product Management', 'Conversion', 'Retention', 'Usability Testing', 'Funnel Analysis', 'Competitive Research'],
   },
   {
     slug: 'replit',
@@ -73,7 +73,7 @@ export const experience: Experience[] = [
     shots: [
       {
         src: '/replit/home.jpg',
-        alt: 'Learnathon home page: "Built with Replit" in large type, presented by Disruption Lab at UIUC and Replit, with a countdown to build day.',
+        alt: 'Learnathon home page: "Built with Replit" in large type, with a countdown to build day.',
         caption: 'Home',
       },
       {

@@ -243,8 +243,11 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
 - The card view and the list view say the same things in the same words.
   Shared text lives in `src/data`, never inline in one view.
 - Confidential clients stay unnamed in text, slugs, metadata, and labels.
-  The consulting org (Illinois Business Consulting, Disruption Lab at Gies)
-  is named separately as `via`.
+  The org an engagement runs through (Product Space, Illinois Business
+  Consulting, Disruption Lab at Gies) is kept as `via` in the data but never
+  shown or searched on the experience side: it appears only on that org's
+  face card, whose "Engagements" links lead to the roles. The spread runs
+  Ingenio Care, CatchBack Cards (YC W26), Replit, then the rest.
 - Team results belong to the team. Ongoing work is present tense; proposed
   or idea-stage things (AviLux pilot, the AI learnathon, the
   apartment-chores product) are never described as launched.
