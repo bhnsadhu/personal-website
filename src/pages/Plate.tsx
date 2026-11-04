@@ -209,3 +209,51 @@ export function PlateShots({ shots }: { shots: Shot[] }) {
     </PlateSection>
   )
 }
+
+export interface PlateLeg {
+  slug: string
+  title: string
+  /** This page's own project: its leg is lit and its name is not a link. */
+  here: boolean
+  steps: string[]
+}
+
+/**
+ * A hand-off between two projects, read left to right (top to bottom on
+ * phones): each leg is the run of steps one project does, the page's own
+ * project lit on card stock, the other dashed and linked to its page.
+ */
+export function PlateFlow({ legs }: { legs: PlateLeg[] }) {
+  let n = 0
+  return (
+    <ol className="flow" style={{ ['--legs' as string]: legs.length }}>
+      {legs.map((leg, i) => (
+        <li key={`${leg.slug}-${i}`} className="flow__leg" data-here={leg.here || undefined}>
+          <p className="flow__by mono mono--sm">
+            {leg.here ? (
+              leg.title
+            ) : (
+              <Link to={`/projects/${leg.slug}`} className="tlink">
+                {leg.title}
+                <span className="arrow" aria-hidden="true">
+                  →
+                </span>
+              </Link>
+            )}
+          </p>
+          <ol className="flow__steps">
+            {leg.steps.map((s) => {
+              n += 1
+              return (
+                <li key={s} className="flow__step">
+                  <span className="flow__n mono mono--sm">{String(n).padStart(2, '0')}</span>
+                  <span className="flow__text">{s}</span>
+                </li>
+              )
+            })}
+          </ol>
+        </li>
+      ))}
+    </ol>
+  )
+}

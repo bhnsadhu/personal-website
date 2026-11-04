@@ -25,7 +25,17 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   rendered by `PlateShots` on its page three across, never anyone else's
   name in frame; a click enlarges one in a native `<dialog>` with the
   caption and a close button above, back/next and "2 / 3" below, both bars
-  exactly the image's width; arrows step, Escape closes only the dialog),
+  exactly the image's width; arrows step, Escape closes only the dialog.
+  Five cards: Cambio, Accord, ScentLens, Dishwise, Replay. Accord and
+  ScentLens are separate projects with a `pairing` each: ScentLens is the
+  recognition model behind Accord's bottle scanner. Its card back names
+  the relation and links the partner ("Scanner powered by" / "Runs
+  inside"), the fronts' `meta` says it too ("Scanner by ScentLens" /
+  "Powers Accord"), and both pages show one shared `flow` (the `scan`
+  steps in projects.ts) under "How it connects", drawn by `PlateFlow`:
+  consecutive steps by one project form a leg, the page's own legs on
+  `--cream-2`, the partner's dashed and linked, arrows between, stacked
+  under 720px. Flow text is CSS-balanced and skipped by `widows.ts`),
   `education.ts`,
   `certifications.ts`, `skills.ts`, `personal.ts` (four cards, five
   `entries` each; a restaurant's address opens Google Maps. A card's

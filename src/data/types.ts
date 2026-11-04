@@ -69,8 +69,27 @@ export interface Shot {
   caption: string
 }
 
+/** One step of a flow that runs across two projects. `by` is the slug of the project that does it. */
+export interface FlowStep {
+  by: string
+  text: string
+}
+
+/**
+ * A project that runs inside, or runs on, another. Both entries carry the
+ * same `flow`, so the two pages describe the hand-off in the same words.
+ */
+export interface Pairing {
+  slug: string
+  /** Names the relation on the card back, e.g. "Scanner powered by". */
+  label: string
+  line: string
+  flow: FlowStep[]
+}
+
 export interface Project extends CardContent {
   status: 'live' | 'shipped' | 'idea'
+  pairing?: Pairing
   stack: string[]
   siteUrl?: string
   codeUrl?: string

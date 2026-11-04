@@ -1,5 +1,5 @@
 import type { Experience, Highlight, Leadership, Link as LinkData, PersonalCard, PersonalEntry, Project } from '../data'
-import { personalExtras } from '../data'
+import { personalExtras, projects } from '../data'
 import { Link } from '../lib/router'
 import { SEP } from '../lib/sep'
 import { LiveDot } from './LiveDot'
@@ -109,6 +109,15 @@ export function ProjectBack({ p }: { p: Project }) {
     <>
       <p className="card__summary">{p.summary}</p>
       <Bullets items={p.body} />
+      {p.pairing && (
+        <p className="card__related">
+          <span className="mono mono--sm">{p.pairing.label}</span>
+          <Link to={`/projects/${p.pairing.slug}`} className="tlink">
+            {projects.find((x) => x.slug === p.pairing?.slug)?.title}
+            <Arrow />
+          </Link>
+        </p>
+      )}
       <div className="linkrow">
         {p.siteUrl && (
           <a className="tlink" href={p.siteUrl} target="_blank" rel="noreferrer">

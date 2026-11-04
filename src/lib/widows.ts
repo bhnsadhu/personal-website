@@ -42,7 +42,9 @@ function widthOf(text: Text, start: number, end: number) {
 
 /** Glues the last three words (two if three would crowd the line). Idempotent. */
 function glue(el: Element) {
-  if (el.closest('.split, .palette, [contenteditable]')) return
+  // A flow step's text sits beside its number, narrower than the li it is
+  // measured from, and is balanced by CSS already.
+  if (el.closest('.split, .palette, .flow, [contenteditable]')) return
   const room = (el as HTMLElement).clientWidth * MAX_SHARE
   if (!room) return
   const t = lastText(el)

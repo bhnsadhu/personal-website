@@ -49,7 +49,7 @@ export const site = {
   copyrightYear: '2026',
   signoff: 'Shuffled, not stirred.',
   /** Static on purpose. Update by hand when content changes. */
-  updated: 'October 15, 2026',
+  updated: 'November 4, 2026',
 }
 
 /** The link at the foot of an expanded card, named for where it leads. */

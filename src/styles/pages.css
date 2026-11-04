@@ -167,6 +167,93 @@
   margin-top: 10px;
 }
 
+/* A hand-off between two projects: one leg per run of steps, side by side
+   with an arrow in each gap, stacked with a downward arrow on phones. The
+   page's own project sits on darker stock; the other is dashed, like a card
+   that belongs to another hand. */
+.flow {
+  display: grid;
+  grid-template-columns: repeat(var(--legs), minmax(0, 1fr));
+  gap: 32px;
+  margin-top: 18px;
+  list-style: none;
+  padding: 0;
+}
+
+.flow__leg {
+  position: relative;
+  padding: 16px 18px 18px;
+  border: 1px dashed var(--ink-2);
+  border-radius: 10px;
+}
+
+.flow__leg[data-here] {
+  border: 1px solid var(--cream-3);
+  background: var(--cream-2);
+}
+
+.flow__leg + .flow__leg::before {
+  content: '→';
+  position: absolute;
+  top: 50%;
+  left: -32px;
+  width: 32px;
+  transform: translateY(-50%);
+  text-align: center;
+  color: var(--ink-2);
+}
+
+.flow__by {
+  margin-bottom: 12px;
+  color: var(--ink-2);
+}
+
+.flow__leg[data-here] .flow__by {
+  color: var(--wine);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.flow__steps {
+  display: grid;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+}
+
+.flow__step {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 10px;
+  align-items: baseline;
+}
+
+.flow__n {
+  color: var(--ink-2);
+}
+
+.flow__text {
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+@media (max-width: 720px) {
+  .flow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .flow__leg + .flow__leg::before {
+    content: '↓';
+    top: -32px;
+    left: 0;
+    width: 100%;
+    height: 32px;
+    line-height: 32px;
+    transform: none;
+  }
+}
+
 /* Screenshots from the live product, three across the plate's column and
    one per line on phones. Each opens full size. */
 .plate__shots {

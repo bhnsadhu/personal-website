@@ -5,7 +5,7 @@ import { SEP } from '../lib/sep'
 import { useTitle } from '../lib/useTitle'
 import { LiveDot } from '../components/LiveDot'
 import { NotFound } from './NotFound'
-import { Plate, PlateSection, PlateShots } from './Plate'
+import { Plate, PlateFlow, PlateSection, PlateShots, type PlateLeg } from './Plate'
 
 export function ProjectDetail() {
   const { slug } = useParams()
@@ -17,6 +17,19 @@ export function ProjectDetail() {
   const i = projects.indexOf(item)
   const dealt = projects.filter((p) => p.status !== 'idea')
   const next = dealt.length > 1 ? dealt[(dealt.indexOf(item) + 1) % dealt.length] : undefined
+  // Consecutive steps by the same project read as one leg of the hand-off.
+  const legs = (item.pairing?.flow ?? []).reduce<PlateLeg[]>((acc, step) => {
+    const last = acc[acc.length - 1]
+    if (last?.slug === step.by) last.steps.push(step.text)
+    else
+      acc.push({
+        slug: step.by,
+        title: findBySlug(projects, step.by)?.title ?? step.by,
+        here: step.by === item.slug,
+        steps: [step.text],
+      })
+    return acc
+  }, [])
 
   return (
     <Plate
@@ -59,6 +72,12 @@ export function ProjectDetail() {
       {item.ownership && (
         <PlateSection label="Who built it">
           <p className="plate__p">{item.ownership}</p>
+        </PlateSection>
+      )}
+      {item.pairing && (
+        <PlateSection label="How it connects">
+          <p className="plate__p">{item.pairing.line}</p>
+          <PlateFlow legs={legs} />
         </PlateSection>
       )}
       {item.usage && (
