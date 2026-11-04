@@ -95,6 +95,7 @@ The site is also a project, built end to end by me: design, front end, and a sma
 | **Motion** | The name rises letter by letter, cards tilt with glare, sections reveal on scroll, stats count up, and chips drop onto their stacks. |
 | **Scroll chip** | A monogram chip, the same mark as the favicon, rolls along the line under the nav as you scroll. Drag it left or right and the page scrolls with it. |
 | **The felt** | The footer closes on a canvas strip of drifting characters with suits on the crest and a ripple that follows the cursor. Decorative, paused off screen. |
+| **Table sounds** | Card flips, deals, chip clacks and a glass tink on the fragrance shelf, synthesized with Web Audio (no audio files). Silent until the first click, with a speaker toggle in the nav (the footer on phones). |
 | **Live numbers** | Cambio's player count is fetched at page load through `/api/cambio-players`, falling back to the built-in number if the request fails. |
 | **Resume in one click** | “View Resume” opens the PDF in a new tab. |
 | **Serverless contact form** | Validates messages, filters bot submissions, and sends email through Resend with the visitor's address as the reply-to. |
