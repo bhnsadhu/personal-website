@@ -1,6 +1,8 @@
 /* ==================================================================
-   Cards. One flip/expand model everywhere: the open card takes most
-   of the row, siblings slide back to slivers. Escape closes.
+   Cards. One flip/expand model everywhere: every card in a row keeps
+   one size, a row with more cards than fit scrolls sideways, and the
+   open card widens in place. Escape closes. The hero fan is the one
+   row that always fits, so it keeps its overlap and its slivers.
    ================================================================== */
 
 /* ---------------- Rows ---------------- */
@@ -12,21 +14,118 @@
   transition: grid-template-columns var(--slide) var(--ease);
 }
 
-/* Cap card width so short rows read as a hand, not a billboard. Opening
-   a card releases the cap so it can fill the row. */
-.row--row,
-.row--flop {
-  max-width: calc(var(--n) * 300px + (var(--n) - 1) * 20px);
-  margin-inline: auto;
+/* One size for every card in a section, the same 5:7 everywhere. A row
+   that fits sits centred and still; one that doesn't scrolls sideways,
+   snapping card by card, and fades on the side with more to see. The
+   padding (taken back by the margin) leaves room for the hover lift and
+   the shadow, which a scrolling box would otherwise clip. */
+.rail {
+  --card-w: 248px;
+  --open-w: min(860px, 100%);
+  position: relative;
 }
 
+.rail--flop {
+  --open-w: 100%;
+}
+
+.row--row,
 .row--flop {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 6px;
+  scrollbar-width: none;
+  padding: 14px 6px 34px;
+  margin: -14px -6px -34px;
+}
+
+.row--row::-webkit-scrollbar,
+.row--flop::-webkit-scrollbar {
+  display: none;
+}
+
+.rail.fits .row--row,
+.rail.fits .row--flop {
   justify-content: center;
 }
 
-.row--row.has-open,
-.row--flop.has-open {
-  max-width: 100%;
+.row--row > .card,
+.row--flop > .card {
+  flex: 0 0 var(--card-w);
+  scroll-snap-align: start;
+  transition: flex-basis var(--slide) var(--ease);
+}
+
+.row--row > .card.is-open,
+.row--flop > .card.is-open {
+  flex-basis: var(--open-w);
+}
+
+/* An open back is never shorter than a closed card beside it. */
+.row--row > .card.is-open .card__back,
+.row--flop > .card.is-open .card__back {
+  min-height: calc(var(--card-w) * 1.4);
+}
+
+.rail.more-right .row {
+  mask-image: linear-gradient(90deg, #000 calc(100% - 56px), transparent);
+}
+
+.rail.more-left .row {
+  mask-image: linear-gradient(90deg, transparent, #000 56px);
+}
+
+.rail.more-left.more-right .row {
+  mask-image: linear-gradient(90deg, transparent, #000 56px, #000 calc(100% - 56px), transparent);
+}
+
+/* The count and the arrows, right-aligned above a row that scrolls. */
+.rail__bar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  margin: -6px 0 16px;
+}
+
+.rail.fits .rail__bar {
+  display: none;
+}
+
+.rail__count {
+  margin-right: 4px;
+  color: var(--fg-3);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+.rail__btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--fg);
+  font: 500 15px/1 var(--mono);
+  cursor: pointer;
+  transition:
+    border-color var(--fast) var(--ease),
+    opacity var(--fast) var(--ease);
+}
+
+.rail__btn:hover:not(:disabled),
+.rail__btn:focus-visible {
+  border-color: var(--brass);
+}
+
+.rail__btn:disabled {
+  opacity: 0.3;
+  cursor: default;
 }
 
 /* The hero fan: overlapped and rotated until a card opens. */
@@ -514,32 +613,12 @@
   }
 }
 
-/* ---------------- Tablets: between the phone stack and the full spread ---------------- */
+/* ---------------- Tablets: the hero fan tightens ---------------- */
 
-/* Kept in one row up to 1149px, five cards crush (120px wide at 721, still
-   too narrow for a four-line client name at 1120), so a closed row of four
-   or more wraps: three to a line, or two to a line for exactly four. Below
-   1024 the hero fan runs off the screen too, so it stays a fan, tighter and
-   flatter. --rot is rewritten rather than the transform, so the deal-in
-   and the hover lift land on the same angle. */
-@media (min-width: 721px) and (max-width: 1149px) {
-  .row:not(.row--fan):not(.has-open):has(> .card:nth-child(4)) {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .row:not(.row--fan):not(.has-open):has(> .card:nth-child(4)) > .card {
-    flex: 0 0 calc((100% - 40px) / 3);
-    max-width: 300px;
-  }
-  .row:not(.row--fan):not(.has-open):has(> .card:nth-child(4)):not(:has(> .card:nth-child(5))) {
-    max-width: 620px;
-  }
-  .row:not(.row--fan):not(.has-open):has(> .card:nth-child(4)):not(:has(> .card:nth-child(5))) > .card {
-    flex-basis: calc((100% - 20px) / 2);
-  }
-}
-
+/* Below 1024 the hero fan runs off the screen, so it stays a fan, tighter
+   and flatter. --rot is rewritten rather than the transform, so the
+   deal-in and the hover lift land on the same angle. Every other row
+   simply scrolls. */
 @media (min-width: 721px) and (max-width: 1023px) {
   .row--fan:not(.has-open) .card {
     --rot: calc((var(--i) - 1.5) * 4deg) !important;
@@ -557,28 +636,68 @@
   }
 }
 
-/* ---------------- Small screens: one column, no fan ---------------- */
+/* ---------------- Small screens: every row scrolls ---------------- */
 
+/* On a phone every row, the hero's aces included, is the same sideways
+   scroller as on a laptop: one card at a time with a peek of the next,
+   the open card nearly the width of the screen. */
 @media (max-width: 720px) {
-  .row {
-    grid-template-columns: 1fr !important;
+  .rail {
+    --card-w: 230px;
+    --open-w: calc(100vw - 48px);
+  }
+  /* :not(.has-open) matches the wide-screen fan's own selector, so its
+     centring and padding don't win here: a centred row that overflows
+     would push its first card out of reach. */
+  .row--fan,
+  .row--fan:not(.has-open) {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
     gap: 14px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 6px;
+    scrollbar-width: none;
+    padding: 14px 6px 34px;
+    margin: -14px -6px -34px;
+  }
+  .row--fan::-webkit-scrollbar {
+    display: none;
   }
   .row--row,
   .row--flop {
-    max-width: 100%;
+    gap: 14px;
   }
-  .row--fan:not(.has-open) {
-    display: grid;
-    padding: 0;
-  }
-  .row--fan:not(.has-open) .card {
+  .row--fan > .card,
+  .row--fan:not(.has-open) > .card {
+    flex: 0 0 var(--card-w);
     width: auto;
     margin-left: 0;
     transform: none;
+    scroll-snap-align: start;
+    transition: flex-basis var(--slide) var(--ease);
+  }
+  .row--fan > .card.is-open {
+    flex-basis: var(--open-w);
+  }
+  .row--fan > .card.is-open .card__back {
+    min-height: calc(var(--card-w) * 1.4);
   }
   .row--fan:not(.has-open) .card:hover {
     transform: none;
+  }
+  /* The fan's slivers are a wide-screen idea; here its other aces stay whole. */
+  .row--fan .card.is-aside .card__front {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 5 / 7;
+    opacity: 1;
+  }
+  .row--fan .card.is-aside .card__face-body,
+  .row--fan .card.is-aside .card__down-label {
+    opacity: 1;
   }
   @keyframes deal {
     from {
@@ -589,37 +708,6 @@
       opacity: 1;
       transform: none;
     }
-  }
-  /* One size for every card on a phone: full width, and tall enough for a
-     face card's portrait, title, subtitle, and dates. */
-  .card__front {
-    aspect-ratio: auto;
-    min-height: 272px;
-  }
-  .card__face-body {
-    padding: 40px 48px;
-  }
-  /* A wide card is too short to float the portrait over the title, so it
-     joins the column above it. */
-  .card--face .card__face-body {
-    position: relative;
-    inset: auto;
-    min-height: inherit;
-    justify-content: center;
-    padding: 36px 48px;
-  }
-  .card__portrait {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    width: 64px;
-    margin-bottom: 10px;
-    font-size: 34px;
-  }
-  .card.is-aside .card__front {
-    height: 64px;
-    min-height: 0;
   }
   .card__back {
     padding: 22px 20px;

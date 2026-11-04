@@ -93,14 +93,22 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   Cards keep a fixed shape: 5:7 on desktop, and on phones one size for
   every card (full width, 272px tall). Face cards carry a large framed
   portrait letter above the title.
-- `src/components/CardRow.tsx` — owns which card is open in a row; sets
-  `grid-template-columns` (7fr for the open card, 1fr slivers) and handles
-  Escape. Layouts: `row` (spread, fan), `fan` (hero overlap), `flop` (short
-  centered sets). Rows center with auto margins, so wrap them in a block,
-  never a grid or flex parent. At 720px and below every row stacks; from
-  721 to 1149 a closed row of four or more wraps (three per line, two for
-  exactly four), and from 721 to 1023 the hero fan tightens, so nothing
-  crushes or scrolls sideways on a tablet or small laptop.
+- `src/components/CardRow.tsx` — the standard for every row of cards. It
+  owns which card is open and renders a `.rail`: a row in which every card
+  keeps one size (`--card-w`, 248px; 230px at 720 and below; always 5:7).
+  A row whose cards fit sits centred and still. One that doesn't scrolls
+  sideways, snapping card by card, fades (56px) on the side with more to
+  see, and shows a bar above it: "1–4 of 6" (or "1 of 6") and round ← →
+  buttons ("Previous cards" / "More cards") that page by all but one card;
+  arrow keys do the same while a card face has focus. Opening a card widens
+  it in place (`--open-w`: min(860px, 100%), the full row for `flop`) with
+  its back never shorter than a closed card, then slides the row so the
+  whole card is in view; the other cards stay whole. Layouts: `row`
+  (spread, fan), `flop` (face cards and personal), and `fan` (the hero),
+  which on a wide screen always fits, so it keeps its overlap and, when a
+  card opens, its 7fr/1fr slivers; at 720 and below it scrolls like every
+  other row. A centred row that overflows would hide its first card, so
+  rows only centre when they fit.
 - `src/sections/` — Hand (hero: intro, actions, seeking line, and
   beside them `HeroPhoto`, then four aces), Spread (experience), FaceCards (leadership, dealt three to a suit
   in one row per suit: K/Q/J spades, then clubs), Fan (projects;

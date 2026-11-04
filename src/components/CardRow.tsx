@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState, type KeyboardEvent, type ReactNode } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent, type ReactNode } from 'react'
 import { onDeal, takeDeal } from '../lib/deal'
 import { play } from '../lib/sound'
 
@@ -19,13 +19,29 @@ interface CardRowProps {
   children: (state: RowState) => ReactNode
 }
 
+/** What the rail shows about its row: whether it scrolls, and which cards are in view. */
+interface View {
+  fits: boolean
+  left: boolean
+  right: boolean
+  first: number
+  last: number
+}
+
+const GAP = 20
+
 /**
- * Owns which card in a row is open. Columns animate so the open card
- * fills the row and the others slide back. Escape closes. A card picked in
- * the search palette opens through `deal`.
+ * Owns which card in a row is open. Every card in a row keeps one size;
+ * a row with more cards than fit scrolls sideways, snapping card by card,
+ * with a count and ← → buttons above it and a fade on the side that has
+ * more to show. Opening a card widens it in place and brings it fully into
+ * view. The hero's fan is the exception on wide screens: it always fits,
+ * so it keeps its overlap and, when a card opens, its slivers. Escape
+ * closes. A card picked in the search palette opens through `deal`.
  */
 export function CardRow({ ids, layout = 'row', className = '', ariaLabel, children }: CardRowProps) {
   const [openId, setOpenId] = useState<string | null>(null)
+  const [view, setView] = useState<View>({ fits: true, left: false, right: false, first: 1, last: ids.length })
 
   const open = useCallback((id: string) => {
     play('flip')
@@ -36,7 +52,8 @@ export function CardRow({ ids, layout = 'row', className = '', ariaLabel, childr
     setOpenId(null)
   }, [])
   const isOpen = useCallback((id: string) => openId === id, [openId])
-  const isAside = useCallback((id: string) => openId !== null && openId !== id, [openId])
+  // Only the hero fan slides its other cards back to slivers; scrolling rows keep them whole.
+  const isAside = useCallback((id: string) => layout === 'fan' && openId !== null && openId !== id, [layout, openId])
 
   const rowRef = useRef<HTMLDivElement>(null)
   const dealt = useRef(false)
@@ -67,27 +84,106 @@ export function CardRow({ ids, layout = 'row', className = '', ariaLabel, childr
     )
   }, [openId])
 
+  // Read the row: does it overflow, which way can it scroll, which cards are fully in view.
+  const measure = useCallback(() => {
+    const row = rowRef.current
+    if (!row) return
+    // A row that doesn't scroll (the hero fan on a wide screen) always fits, however its cards overlap.
+    const max = getComputedStyle(row).overflowX === 'visible' ? 0 : row.scrollWidth - row.clientWidth
+    // Cards in view, measured on screen against the row's own edges.
+    const box = row.getBoundingClientRect()
+    const cards = [...row.children].map((c) => c.getBoundingClientRect())
+    let first = cards.findIndex((c) => c.right > box.left + 8)
+    let last = cards.length - 1
+    while (last > 0 && cards[last].right > box.right + 8) last--
+    if (first < 0) first = 0
+    const from = row.scrollLeft
+    const next: View = { fits: max <= 2, left: from > 4, right: from < max - 4, first: first + 1, last: Math.max(first, last) + 1 }
+    setView((v) => (v.fits === next.fits && v.left === next.left && v.right === next.right && v.first === next.first && v.last === next.last ? v : next))
+  }, [])
+
+  useLayoutEffect(() => {
+    const row = rowRef.current
+    if (!row) return
+    measure()
+    const ro = new ResizeObserver(measure)
+    ro.observe(row)
+    row.addEventListener('scroll', measure, { passive: true })
+    return () => {
+      ro.disconnect()
+      row.removeEventListener('scroll', measure)
+    }
+  }, [measure])
+
+  // Once an opened card has finished widening, slide the row so all of it is in view.
+  useEffect(() => {
+    const row = rowRef.current
+    if (!row || !openId) return
+    const t = window.setTimeout(() => {
+      const card = row.querySelector<HTMLElement>(`[data-card="${openId}"]`)
+      if (!card || row.scrollWidth <= row.clientWidth) return measure()
+      const inView = card.offsetLeft >= row.scrollLeft && card.offsetLeft + card.offsetWidth <= row.scrollLeft + row.clientWidth
+      if (!inView) row.scrollTo({ left: card.offsetLeft - (row.clientWidth - card.offsetWidth) / 2, behavior: 'smooth' })
+      measure()
+    }, 520)
+    return () => window.clearTimeout(t)
+  }, [openId, measure])
+
+  // A page of cards at a time, leaving the last one in view as a landmark.
+  const step = useCallback((dir: -1 | 1) => {
+    const row = rowRef.current
+    const card = row?.querySelector<HTMLElement>('.card:not(.is-open)')
+    if (!row || !card) return
+    const w = card.offsetWidth + GAP
+    play('deal')
+    row.scrollBy({ left: dir * w * Math.max(1, Math.floor(row.clientWidth / w) - 1), behavior: 'smooth' })
+  }, [])
+
   function onKeyDown(e: KeyboardEvent<HTMLDivElement>) {
     if (e.key === 'Escape' && openId !== null) {
       e.stopPropagation()
       close()
+      return
+    }
+    // Arrow keys page the row while focus is on a card's face.
+    if ((e.key === 'ArrowRight' || e.key === 'ArrowLeft') && !view.fits && (e.target as HTMLElement).closest('.card__front')) {
+      e.preventDefault()
+      step(e.key === 'ArrowRight' ? 1 : -1)
     }
   }
 
-  const columns = openId
-    ? ids.map((id) => (id === openId ? 'minmax(0, 7fr)' : 'minmax(0, 1fr)')).join(' ')
-    : `repeat(${ids.length}, minmax(0, 1fr))`
+  const columns =
+    layout !== 'fan'
+      ? undefined
+      : openId
+        ? ids.map((id) => (id === openId ? 'minmax(0, 7fr)' : 'minmax(0, 1fr)')).join(' ')
+        : `repeat(${ids.length}, minmax(0, 1fr))`
+
+  const rail = ['rail', `rail--${layout}`, view.left && 'more-left', view.right && 'more-right', view.fits && 'fits'].filter(Boolean).join(' ')
 
   return (
-    <div
-      ref={rowRef}
-      className={`row row--${layout} ${layout === 'fan' ? '' : 'reveal-group'} ${openId ? 'has-open' : ''} ${className}`.trim()}
-      style={{ gridTemplateColumns: columns, ['--n' as string]: ids.length }}
-      role="group"
-      aria-label={ariaLabel}
-      onKeyDown={onKeyDown}
-    >
-      {children({ openId, open, close, isOpen, isAside })}
+    <div className={rail}>
+      <div className="rail__bar" aria-hidden={view.fits || undefined}>
+        <span className="rail__count mono mono--sm">
+          {view.first === view.last ? view.first : `${view.first}–${view.last}`} of {ids.length}
+        </span>
+        <button type="button" className="rail__btn" aria-label="Previous cards" disabled={!view.left} onClick={() => step(-1)}>
+          ←
+        </button>
+        <button type="button" className="rail__btn" aria-label="More cards" disabled={!view.right} onClick={() => step(1)}>
+          →
+        </button>
+      </div>
+      <div
+        ref={rowRef}
+        className={`row row--${layout} ${layout === 'fan' ? '' : 'reveal-group'} ${openId ? 'has-open' : ''} ${className}`.trim()}
+        style={{ gridTemplateColumns: columns, ['--n' as string]: ids.length }}
+        role="group"
+        aria-label={ariaLabel}
+        onKeyDown={onKeyDown}
+      >
+        {children({ openId, open, close, isOpen, isAside })}
+      </div>
     </div>
   )
 }
