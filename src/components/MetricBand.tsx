@@ -5,13 +5,15 @@ import { useReducedMotion } from '../lib/useReducedMotion'
 
 /**
  * A figure that counts up from zero the first time it scrolls into view.
- * The prefix and suffix ("~", "+") and the thousands comma are kept; the
+ * The prefix and suffix ("~", "+", "$", "M"), the thousands comma and any
+ * decimals are kept; the
  * real value is what assistive tech reads, and what shows without motion.
  */
 function CountUp({ value }: { value: string }) {
   const reduced = useReducedMotion()
-  const m = /^(\D*)([\d,]+)(.*)$/.exec(value)
+  const m = /^(\D*)([\d,]+(?:\.\d+)?)(.*)$/.exec(value)
   const target = m ? Number(m[2].replace(/,/g, '')) : NaN
+  const decimals = m?.[2].split('.')[1]?.length ?? 0
   const animate = !reduced && Number.isFinite(target) && typeof IntersectionObserver !== 'undefined'
   const [n, setN] = useState(animate ? 0 : target)
   const ref = useRef<HTMLSpanElement>(null)
@@ -27,7 +29,8 @@ function CountUp({ value }: { value: string }) {
         const start = performance.now()
         const tick = (now: number) => {
           const t = Math.min(1, (now - start) / 1400)
-          setN(Math.round(target * (1 - Math.pow(1 - t, 4))))
+          const k = 10 ** decimals
+          setN(Math.round(target * (1 - Math.pow(1 - t, 4)) * k) / k)
           if (t < 1) frame = requestAnimationFrame(tick)
         }
         frame = requestAnimationFrame(tick)
@@ -39,13 +42,17 @@ function CountUp({ value }: { value: string }) {
       io.disconnect()
       cancelAnimationFrame(frame)
     }
-  }, [animate, target])
+  }, [animate, target, decimals])
 
   if (!m) return <>{value}</>
   // Without motion the count is simply its target, so a live figure that
   // arrives late replaces the built-in one instead of staying behind.
   const current = animate ? n : target
-  const shown = m[2].includes(',') ? current.toLocaleString('en-US') : String(current)
+  const shown = current.toLocaleString('en-US', {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+    useGrouping: m[2].includes(','),
+  })
   return (
     <>
       <span ref={ref} aria-hidden="true">

@@ -18,7 +18,7 @@ export const site = {
   focus: 'Builder & breaker of products',
   seeking: 'Summer 2027 internships',
   /** Slug of the role in `experience` shown as "Currently @" beside the name in the nav. */
-  currently: 'replit',
+  currently: 'catchback-cards',
   interests,
   /** The one photo on the site: beside the name in the hero, in both views. */
   photo: {

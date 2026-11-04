@@ -8,6 +8,27 @@ import type { Experience } from './types'
  */
 export const experience: Experience[] = [
   {
+    slug: 'catchback-cards',
+    company: 'CatchBack Cards',
+    role: 'Product Management Lead',
+    dates: 'Oct 2026 — Present',
+    location: 'Champaign, IL',
+    via: 'Product Space',
+    title: 'Product Management Lead',
+    subtitle: 'CatchBack Cards',
+    meta: 'Oct 2026 — Present',
+    summary: 'Leading a product team on first-deposit conversion and collector retention for a YC-backed collectibles startup.',
+    context:
+      'CatchBack Cards is a Y Combinator-backed digital collectibles platform where people open mystery packs backed by physical trading cards, then keep, sell back, or ship what they pull. It raised a $7.8M seed round led by Foundation Capital, with Y Combinator, Robinhood Ventures, Coinbase Ventures, and the Solana Foundation.',
+    body: [
+      'Lead a six-person Product Space team on a six-week engagement to turn new signups into first-time depositors and bring collectors back.',
+      'Map the signup-to-first-deposit funnel from platform data and run think-aloud usability tests with students new to CatchBack.',
+      'Benchmark how comparable platforms handle onboarding, deposits, and trust, and study what keeps collectors returning on Reddit, Discord, and TikTok.',
+      'Prioritize conversion and retention recommendations for CatchBack stakeholders, split into short-term fixes and longer-term product bets.',
+    ],
+    tags: ['Product Management', 'Conversion', 'Retention', 'Usability Testing', 'Funnel Analysis', 'Competitive Research'],
+  },
+  {
     slug: 'ingenio-care',
     company: 'Ingenio Care, Inc.',
     role: 'Product Builder Intern',

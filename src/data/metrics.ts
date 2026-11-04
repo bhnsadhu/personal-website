@@ -2,10 +2,9 @@ import type { Metric } from './types'
 
 /**
  * The thin stat strip. Separate, contextualized figures; never summed.
- * Each figure is
- * the one already stated in experience.ts, projects.ts or leadership.ts,
- * so the wording stays as careful here: "potential" opportunities, and an
- * attendance figure that belongs to the events, not to one person.
+ * Each figure is the one already stated in experience.ts or projects.ts,
+ * so the wording stays as careful here. The funding belongs to CatchBack
+ * Cards, not to him: the label says whose it is and what his role is.
  */
 /**
  * What the Cambio figure shows before /api/cambio-players answers, and if it
@@ -14,8 +13,8 @@ import type { Metric } from './types'
 export const CAMBIO_PLAYERS_FALLBACK = 24
 
 export const metrics: Metric[] = [
-  { value: '12', label: 'Potential expansion opportunities for a Berkshire Hathaway affiliate' },
-  { value: String(CAMBIO_PLAYERS_FALLBACK), label: 'Players on Cambio, live and deployed', live: 'cambioPlayers' },
-  { value: '750+', label: 'Contacts in an Ingenio Care outreach pipeline' },
-  { value: '3,000+', label: 'Combined Diwali Night and India Night attendance' },
+  { value: '24,642', label: 'Fragrances ScentLens can name from one bottle photo' },
+  { value: '140+', label: 'Rounds played to the finish on Cambio' },
+  { value: '8', label: "Feature areas redesigned from web to mobile for Ingenio Care's App Store launch" },
+  { value: '$7.8M', label: 'Seed raised by CatchBack Cards (YC), where I lead a product team' },
 ]
