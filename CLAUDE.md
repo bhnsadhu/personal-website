@@ -30,8 +30,8 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   ScentLens are separate projects with a `pairing` each: ScentLens is the
   recognition model behind Accord's bottle scanner. Its card back names
   the relation and links the partner ("Scanner powered by" / "Runs
-  inside"), the fronts' `meta` says it too ("Scanner by ScentLens" /
-  "Powers Accord"), and both pages show one shared `flow` (the `scan`
+  inside"), ScentLens's front `meta` says it too ("Powers Accord"; Accord's
+  is an action like the others, "Find a fragrance"), and both pages show one shared `flow` (the `scan`
   steps in projects.ts) under "How it connects", drawn by `PlateFlow`:
   consecutive steps by one project form a leg, the page's own legs on
   `--cream-2`, the partner's dashed and linked, arrows between, stacked

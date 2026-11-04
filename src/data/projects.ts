@@ -118,7 +118,7 @@ export const projects: Project[] = [
     status: 'live',
     title: 'Accord',
     subtitle: ['Next.js', 'TypeScript', 'PostgreSQL'].join(SEP),
-    meta: 'Scanner by ScentLens',
+    meta: 'Find a fragrance',
     summary: 'A fragrance app that names a bottle from a photo, explains what is in it, and finds what to try next.',
     body: [
       'Search, read, compare, and collect across a catalog of 24,651 fragrances, with no sign-up needed.',
