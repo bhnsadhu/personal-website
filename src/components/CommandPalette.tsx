@@ -282,6 +282,8 @@ export function CommandPalette() {
       <button
         type="button"
         className="fab palette-hint"
+        // The label hides on phones, so the button keeps its name for screen readers.
+        aria-label="Search"
         onClick={() => setOpen(true)}
         aria-haspopup="dialog"
         aria-keyshortcuts="Meta+K Control+K /"

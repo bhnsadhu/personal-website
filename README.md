@@ -26,7 +26,7 @@ Everything on the site links to something real. The builds, each with a live lin
 | --- | --- | --- | --- |
 | **Cambio** | Real-time multiplayer card game with house bots at three levels | [play](https://cambio.bhanusadhu.com) | [repo](https://github.com/bhnsadhu/cambio) |
 | **Accord** | Fragrance discovery app with recommendations that show their evidence | [try](https://accord.bhanusadhu.com) | [repo](https://github.com/bhnsadhu/accord) |
-| ↳ **ScentLens** | The model behind Accord's bottle scanner: names a fragrance from a photo, or says it isn't sure | [demo](https://bhnsadhu--scent-lens-web.us-east.modal.run) | [repo](https://github.com/bhnsadhu/scent-lens) |
+| ↳ **ScentLens** | The model behind Accord's bottle scanner: names a fragrance from a photo, or says it isn't sure | [demo](https://scentlens.bhanusadhu.com) | [repo](https://github.com/bhnsadhu/scent-lens) |
 | **Dishwise** | Ranks every dish on a menu against your taste, with the reasons behind each score | [try](https://dishwise.bhanusadhu.com) | [repo](https://github.com/bhnsadhu/dishwise) |
 | **Replay** | Live guess-the-song game: one screen plays the music, every phone is a buzzer | [play](https://replay.bhanusadhu.com) | [repo](https://github.com/bhnsadhu/replay) |
 | **Replit Learnathon** | Event site and project wall for a beginner AI build day, built in my Replit role | [visit](https://learnathon.bhanusadhu.com) | [repo](https://github.com/bhnsadhu/replit-learnathon) |

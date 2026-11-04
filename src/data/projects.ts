@@ -225,7 +225,7 @@ export const projects: Project[] = [
       'Modal',
       'pytest',
     ],
-    siteUrl: 'https://bhnsadhu--scent-lens-web.us-east.modal.run',
+    siteUrl: 'https://scentlens.bhanusadhu.com',
     codeUrl: 'https://github.com/bhnsadhu/scent-lens',
     origin:
       'I wanted to know how well a model could name a fragrance from an ordinary phone photo, and whether it could tell when it was wrong. ScentLens is that experiment, and it became the scanner inside Accord.',
