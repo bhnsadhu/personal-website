@@ -65,6 +65,18 @@
   flex-basis: var(--open-w);
 }
 
+/* While a card travels between its closed and open size (cardSize.ts), both
+   faces are clipped to the moving box rather than sizing it. */
+.card.is-sizing .card__inner,
+.card.is-sizing .card__front,
+.card.is-sizing .card__back {
+  height: 100%;
+}
+
+.card.is-sizing .card__front {
+  aspect-ratio: auto;
+}
+
 /* An open back is never shorter than a closed card beside it. */
 .row--row > .card.is-open .card__back,
 .row--flop > .card.is-open .card__back {

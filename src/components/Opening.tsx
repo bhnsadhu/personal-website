@@ -33,6 +33,23 @@ const HOLD_MS = 800
 /** --cap-gap in motion.css: the caption keeps it below the skip line too. */
 const CAP_GAP = 28
 
+/**
+ * When, within an animation that runs on EASE, its eased progress reaches
+ * `p`: the sound for "the card lands" belongs there, not at the linear
+ * fraction, because this curve is nearly done in the first third of the time.
+ */
+function easeAt(p: number): number {
+  const bez = (t: number, a: number, b: number) => 3 * (1 - t) * (1 - t) * t * a + 3 * (1 - t) * t * t * b + t * t * t
+  let lo = 0
+  let hi = 1
+  for (let i = 0; i < 24; i += 1) {
+    const mid = (lo + hi) / 2
+    if (bez(mid, 0.7, 1) < p) lo = mid
+    else hi = mid
+  }
+  return bez((lo + hi) / 2, 0.2, 0.2)
+}
+
 const wait = (ms: number) => new Promise<void>((r) => window.setTimeout(r, ms))
 
 export function Opening() {
@@ -136,7 +153,8 @@ export function Opening() {
     async function run() {
       // 1. The riffle: cut into two halves, then let them fall back in turn.
       const half = Math.ceil(DECK / 2)
-      sfx('riffle', 120)
+      // The halves part with a riffle, over the same 18ms stagger as the cards.
+      sfx('riffle', 100)
       await Promise.all(
         deck.map((c, i) =>
           play(c, [{ transform: rest(i) }, { transform: i < half ? cut(-1, i) : cut(1, i - half) }], {
@@ -150,8 +168,9 @@ export function Opening() {
         if (k < DECK - half) order.push(half + k)
         order.push(k)
       }
-      // Each card crosses the other half's about 220ms into its move.
-      order.forEach((_, slot) => sfx('deal', 80 + slot * 66 + 220))
+      // Each card drops onto the pile as its move settles: 80ms + 66ms a slot
+      // after the pass starts, a little before the end of its 440ms.
+      order.forEach((_, slot) => sfx('deal', 80 + slot * 66 + easeAt(0.85) * 440))
       await Promise.all(
         order.map((i, slot) => {
           deck[i].style.zIndex = String(slot + 1)
@@ -167,7 +186,7 @@ export function Opening() {
         }),
       )
       if (done || !alive) return
-      sfx('close', 0)
+      sfx('close', easeAt(0.5) * 380)
       await play(stage, [{ transform: 'scale(1)' }, { transform: 'scale(1.03)' }, { transform: 'scale(1)' }], {
         duration: 380,
       })
@@ -212,9 +231,11 @@ export function Opening() {
         targets.map(async (card, i) => {
           await wait(i * DEAL_GAP)
           if (done || !alive) return
-          // Off the deck now; the card snaps over midway through its turn.
+          // Off the deck now. The turn runs from 35% of the progress to the
+          // end, so on this curve the card is face up, and snaps down onto
+          // the felt, well before DEAL_MS is up.
           sfx('deal', 0)
-          sfx('flip', DEAL_MS * 0.68)
+          sfx('flip', easeAt(0.9) * DEAL_MS)
           // The card's own box, without the fan's rotation. The fan eases its
           // transform, so the transition is off while it is measured.
           const saved = { transform: card.style.transform, transition: card.style.transition }

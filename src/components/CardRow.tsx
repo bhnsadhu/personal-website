@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent, type ReactNode } from 'react'
 import { onDeal, takeDeal } from '../lib/deal'
+import { animateSize, boxOf, type Box } from '../lib/cardSize'
 import { play } from '../lib/sound'
 
 export interface RowState {
@@ -43,19 +44,49 @@ export function CardRow({ ids, layout = 'row', className = '', ariaLabel, childr
   const [openId, setOpenId] = useState<string | null>(null)
   const [view, setView] = useState<View>({ fits: true, left: false, right: false, first: 1, last: ids.length })
 
-  const open = useCallback((id: string) => {
-    play('flip')
-    setOpenId(id)
-  }, [])
+  const rowRef = useRef<HTMLDivElement>(null)
+
+  // Every card's box just before a change, so the ones that open or close can
+  // travel from it to their new size instead of ballooning (see cardSize.ts).
+  const boxes = useRef(new Map<Element, Box>())
+  const prevOpen = useRef<string | null>(null)
+  const change = useCallback(
+    (id: string | null) => {
+      boxes.current.clear()
+      if (layout !== 'fan') rowRef.current?.querySelectorAll<HTMLElement>(':scope > .card').forEach((c) => boxes.current.set(c, boxOf(c)))
+      setOpenId(id)
+    },
+    [layout],
+  )
+  useLayoutEffect(() => {
+    const row = rowRef.current
+    const before = prevOpen.current
+    prevOpen.current = openId
+    if (!row || layout === 'fan' || before === openId) return
+    for (const id of [before, openId]) {
+      if (!id) continue
+      const card = row.querySelector<HTMLElement>(`:scope > [data-card="${CSS.escape(id)}"]`)
+      const from = card && boxes.current.get(card)
+      if (card && from) animateSize(card, from)
+    }
+    boxes.current.clear()
+  }, [openId, layout])
+
+  const open = useCallback(
+    (id: string) => {
+      play('flip')
+      change(id)
+    },
+    [change],
+  )
   const close = useCallback(() => {
     play('close')
-    setOpenId(null)
-  }, [])
+    change(null)
+  }, [change])
   const isOpen = useCallback((id: string) => openId === id, [openId])
   // Only the hero fan slides its other cards back to slivers; scrolling rows keep them whole.
   const isAside = useCallback((id: string) => layout === 'fan' && openId !== null && openId !== id, [layout, openId])
 
-  const rowRef = useRef<HTMLDivElement>(null)
   const dealt = useRef(false)
   const key = ids.join(' ')
   useEffect(() => {
@@ -64,11 +95,11 @@ export function CardRow({ ids, layout = 'row', className = '', ariaLabel, childr
       if (!id) return
       dealt.current = true
       play('flip')
-      setOpenId(id)
+      change(id)
     }
     claim()
     return onDeal(claim)
-  }, [key])
+  }, [key, change])
 
   // A dealt card is brought into view under the nav, after any anchor scroll has landed.
   useEffect(() => {
