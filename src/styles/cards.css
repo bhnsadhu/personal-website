@@ -524,6 +524,7 @@
 /* Focus lands here when a card opens. A keyboard visitor needs to see it;
    wine, since brass fails on cream. */
 .card__back-title:focus-visible {
+  width: fit-content;
   outline: 2px solid var(--wine);
   outline-offset: 4px;
   border-radius: 2px;
@@ -545,6 +546,14 @@
   font-style: italic;
   font-size: 17px;
   color: var(--ink-2);
+}
+
+/* Running text keeps a reading measure, however wide the open card: an
+   860px or full-row back would otherwise run 90 to 130 characters a line.
+   Maps, posters, the shelf and the ranked list keep the full width. The
+   list view lays the same backs flat, so it keeps the same measure. */
+:is(.card__body, .ix__back) > :is(.card__summary, .card__context, .dlist, .card__related, .card__credit) {
+  max-width: 60ch; /* about 70 characters of Fraunces; ch is a wide zero here */
 }
 
 /* What a personal card's layout borrows from: one quiet italic line at the
