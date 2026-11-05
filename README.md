@@ -4,7 +4,7 @@
 
 **[bhanusadhu.com](https://bhanusadhu.com)** · [Resume (PDF)](https://bhanusadhu.com/Bhanu_Sadhu_Resume.pdf) · [LinkedIn](https://www.linkedin.com/in/bhanusadhu) · [Email](mailto:sadhubhanu07@gmail.com)
 
-![Demo of bhanusadhu.com: a deck shuffles and deals four aces, the CatchBack Cards and ScentLens aces flip open to show the role and the project, the experience spread slides past, and the ⌘K search jumps to the Replay project page](docs/screenshots/demo.gif)
+![Demo of bhanusadhu.com in its default dark theme: a deck shuffles and deals four aces, the CatchBack Cards and ScentLens aces flip open to show the role and the project, the experience spread slides past, and the ⌘K search jumps to the Replay project page](docs/screenshots/demo.gif)
 
 ## About
 
