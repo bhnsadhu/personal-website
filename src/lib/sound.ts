@@ -3,7 +3,8 @@ import { useSyncExternalStore } from 'react'
 /**
  * Table sounds, synthesized with Web Audio: no files, no library. Short and
  * quiet, and silent until the visitor's first click, tap or key, because
- * browsers only start audio after a gesture. The speaker button in the nav
+ * browsers only start audio after a gesture (the opening deal asks early and
+ * sounds only where the browser allows it). The speaker button in the nav
  * turns them off, saved in `localStorage` `sound`.
  */
 
@@ -70,6 +71,14 @@ function unlock() {
 }
 window.addEventListener('pointerdown', unlock, { capture: true, passive: true })
 window.addEventListener('keydown', unlock, { capture: true })
+
+/* The opening deal plays before any gesture. Ask for audio anyway: browsers
+   that already trust the site (Chrome, for a returning visitor) let it start,
+   and the rest keep the context suspended, so the deal is silent there. */
+if (document.documentElement.dataset.intro === 'play') {
+  const c = context()
+  if (c) c.resume().catch(() => undefined)
+}
 
 const jitter = (v: number, by = 0.08) => v * (1 + (Math.random() * 2 - 1) * by)
 
@@ -152,11 +161,17 @@ const SOUNDS: Record<Sfx, (c: AudioContext, t: number) => void> = {
   },
 }
 
-/** Plays one sound now, or `delay` seconds from now. Silent when off, hidden, or not yet unlocked. */
-export function play(sfx: Sfx, delay = 0) {
+/**
+ * Plays one sound now, or `delay` seconds from now. Silent when off, hidden, or
+ * not yet unlocked. `ifRunning` drops the sound unless the audio is already
+ * live, so a timed sequence (the opening deal) never queues up behind a locked
+ * context and bursts out when the first gesture finally wakes it.
+ */
+export function play(sfx: Sfx, delay = 0, ifRunning = false) {
   if (!on || document.hidden) return
   const c = ctx
   if (!c || c.state === 'closed') return
+  if (ifRunning && c.state !== 'running') return
   // The gesture that woke the audio is still resuming it; play once it has.
   if (c.state === 'suspended') {
     void c.resume().then(() => c.state === 'running' && SOUNDS[sfx](c, c.currentTime + 0.005 + delay))

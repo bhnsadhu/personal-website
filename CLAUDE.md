@@ -145,7 +145,13 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   key. A card or list row opening flips, closing lays it down, search and
   screenshots deal, a fragrance bottle tinks, a map pin pops, a face-down
   card thuds, chips clack as they land on the stacks (timed to the CSS
-  chip-drop), and a sent message pushes a stack. The speaker button sits
+  chip-drop), and a sent message pushes a stack. The opening deal has
+  its own: the cut riffles, the halves tick as they interleave, the deck
+  is squared with a soft tap, and each ace slides off and snaps over as it
+  turns (`sfx()` in `Opening.tsx`, dropped on a skip). It plays before any
+  gesture, so it sounds only where the browser already lets audio start
+  (`play(..., ifRunning)` never queues behind a locked context); a hold to
+  skip is the first gesture and wakes audio for the rest. The speaker button sits
   before the theme button in the nav ("Turn sound off" / "Turn sound on",
   saved in `localStorage` `sound`); below 600px the nav has no room, so
   the footer's "Sound on" / "Sound off" switch takes over.

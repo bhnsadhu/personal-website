@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { createPortal } from 'react-dom'
+import { play as playSound, type Sfx } from '../lib/sound'
 
 /**
  * The opening deal. A deck riffle-shuffles in the middle of the screen, then
@@ -13,6 +14,11 @@ import { createPortal } from 'react-dom'
  * hold, of space or of a press anywhere, while the quiet line at the top
  * fills with brass; let go early and it drains back. While it plays,
  * motion.css holds the hero's own entrance until it hands over.
+ *
+ * It sounds like the table: the cut riffles, the halves tick together as they
+ * interleave, the deck is squared with a tap, and each ace slides off with a
+ * card sound and snaps over as it turns. Only where the browser already lets
+ * audio run (see sound.ts); a skip silences whatever is still to come.
  */
 
 const DECK = 10
@@ -65,9 +71,20 @@ export function Opening() {
       return a.finished.catch(() => undefined)
     }
 
+    // Table sounds, timed to the animation; a skip or unmount drops the rest.
+    const timers: number[] = []
+    const sfx = (name: Sfx, ms: number) => {
+      timers.push(
+        window.setTimeout(() => {
+          if (alive && !done) playSound(name, 0, true)
+        }, ms),
+      )
+    }
+
     const finish = (skip = false) => {
       if (done) return
       done = true
+      timers.forEach((t) => window.clearTimeout(t))
       root.dataset.intro = 'done'
       if (skip) {
         // The hand is already in place under the overlay; the aces in flight
@@ -119,6 +136,7 @@ export function Opening() {
     async function run() {
       // 1. The riffle: cut into two halves, then let them fall back in turn.
       const half = Math.ceil(DECK / 2)
+      sfx('riffle', 120)
       await Promise.all(
         deck.map((c, i) =>
           play(c, [{ transform: rest(i) }, { transform: i < half ? cut(-1, i) : cut(1, i - half) }], {
@@ -132,6 +150,8 @@ export function Opening() {
         if (k < DECK - half) order.push(half + k)
         order.push(k)
       }
+      // Each card crosses the other half's about 220ms into its move.
+      order.forEach((_, slot) => sfx('deal', 80 + slot * 66 + 220))
       await Promise.all(
         order.map((i, slot) => {
           deck[i].style.zIndex = String(slot + 1)
@@ -147,6 +167,7 @@ export function Opening() {
         }),
       )
       if (done || !alive) return
+      sfx('close', 0)
       await play(stage, [{ transform: 'scale(1)' }, { transform: 'scale(1.03)' }, { transform: 'scale(1)' }], {
         duration: 380,
       })
@@ -191,6 +212,9 @@ export function Opening() {
         targets.map(async (card, i) => {
           await wait(i * DEAL_GAP)
           if (done || !alive) return
+          // Off the deck now; the card snaps over midway through its turn.
+          sfx('deal', 0)
+          sfx('flip', DEAL_MS * 0.68)
           // The card's own box, without the fan's rotation. The fan eases its
           // transform, so the transition is off while it is measured.
           const saved = { transform: card.style.transform, transition: card.style.transition }
@@ -268,6 +292,7 @@ export function Opening() {
     return () => {
       // Development mounts twice; the first run must leave nothing behind.
       alive = false
+      timers.forEach((t) => window.clearTimeout(t))
       window.clearTimeout(holdTimer)
       window.removeEventListener('keydown', onKeyDown)
       window.removeEventListener('keyup', onKeyUp)
