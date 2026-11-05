@@ -269,7 +269,8 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   Consulting, Disruption Lab at Gies) is kept as `via` in the data but never
   shown or searched on the experience side: it appears only on that org's
   face card, whose "Engagements" links lead to the roles. The spread and the
-  face cards run reverse chronological, newest start date first (a tie
+  face cards run reverse chronological: current ("Present") roles first,
+  newest start date first, then past roles by end date, newest first (a tie
   keeps its order; within a card, `progression` is newest first too). The
   face letters follow position, K/Q/J spades then clubs. Projects carry no
   dates and keep their order.
