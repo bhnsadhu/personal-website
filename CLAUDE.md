@@ -85,7 +85,9 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   needs for 4.5:1, with flag, place, and note. No chips, no legend. Dots shy
   from the cursor. Draws only while on screen and open; still under reduced
   motion. Dot color from `--pmap-dot`, re-pointed for the list view.
-- `src/components/Card.tsx` — one playing card: front is a `<button>`, back
+- `src/components/Card.tsx` — one playing card ("Tap to flip" on its face
+  shows only on touch screens; the back's title, which takes focus on open,
+  shows a wine ring for keyboard focus): front is a `<button>`, back
   is a `role="region"` with the full content, always in the DOM, `inert`
   until open. Focus moves into the back on open and returns on close. The
   front's title, italic subtitle, and dates sit in one column with equal
@@ -102,7 +104,7 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   the left edge with no sideways snap. One that doesn't scrolls
   sideways, snapping card by card, fades (56px) on the side with more to
   see, and shows a bar above it: "1–4 of 6" (or "1 of 6") and round ← →
-  buttons ("Previous cards" / "More cards") that page by all but one card;
+  buttons ("Previous cards" / "More cards", 44px at 720 and below) that page by all but one card;
   arrow keys do the same while a card face has focus. Opening a card widens
   it in place (`--open-w`: min(860px, 100%), the full row for `flop`) with
   its back never shorter than a closed card, its width and height
@@ -110,14 +112,19 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   out at closed width is 1,500px tall and a closed face laid out at open
   width is 1,200px, so the card would balloon on every open and close;
   every changed card's target is measured before any is pinned, and
-  `is-sizing` clips both faces to the moving box), then slides the row so
-  the whole card is in view; the other cards stay whole. A card that fills
+  `is-sizing` clips both faces to the moving box). As it widens, on the same
+  curve and from the same frame, the row slides the card to its start edge
+  if it would not be wholly in view, and the page scrolls so the card sits
+  under the nav or its foot ("Back to the hand") clears the bottom of the
+  screen (`planScroll` / `runScroll` in CardRow, `src/lib/ease.ts`; a wheel
+  or touch takes over); the other cards stay whole. A card that fills
   the row (`flop`, and every open card at 720 and below) drops the edge
   fade, which would grey its own edges. Layouts: `row`
   (spread, fan), `flop` (face cards and personal), and `fan` (the hero),
   which on a wide screen always fits, so it keeps its overlap and, when a
-  card opens, its 7fr/1fr slivers (opening and closing swap layouts in one
-  step; switching aces eases the columns, heights travelling with them); at
+  card opens, its slivers: the same flex row, the open ace seven parts and
+  each other one part, on solid `--cream-2` stock, so opening, switching and
+  closing all travel (width, overlap, tilt and height together); at
   720 and below it scrolls like every other row. Only hover or keyboard
   focus (`:focus-visible`) lifts an ace: closing hands focus back to the
   face, and a clicked ace must settle back into the hand. A centred row that overflows would hide its first card, so
@@ -357,7 +364,8 @@ hand", "View experience", "Explore the project", "List view" / "Card view", "Liv
 "Repository" (a project's code), "App Store" (Ingenio Care's listing), "GitHub" (his own profile: footer, contact, search), "View Credential", "Search", "Back to top" (aria), "Close" / "Previous screenshot" / "Next screenshot" (aria, the enlarged screenshot), "Hold space to skip" / "Hold to skip" (the opening deal), "Switch to light theme" / "Switch to dark theme"
 (aria and title on the sun/moon). The
 search placeholder is "Search the deck…" and an empty search reads "Not in
-the deck: “…”". Face-down cards say "Not dealt yet". 404 is
+the deck: “…”". Face-down cards say "Not dealt yet"; a card face on a touch screen says
+"Tap to flip". 404 is
 "Not in the deck". Footer sign-off: "Shuffled, not stirred."
 
 ## Routes

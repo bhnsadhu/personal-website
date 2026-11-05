@@ -159,8 +159,7 @@
 }
 
 .row--fan:not(.has-open) .card {
-  flex: none;
-  width: 224px;
+  flex: 0 0 224px;
   margin-left: -64px;
   transform: rotate(var(--rot, 0deg));
   transform-origin: 50% 150%;
@@ -171,6 +170,26 @@
 
 .row--fan:not(.has-open) .card:first-child {
   margin-left: 0;
+}
+
+/* Open, from 721 up, the hand is the same flex row: the open ace takes seven
+   parts and the others one part each, as slivers. Because both states are
+   flex, each ace travels between them (cardSize.ts animates width, margin,
+   tilt and height together) instead of the hand swapping in one frame. */
+@media (min-width: 721px) {
+  .row--fan.has-open {
+    display: flex;
+    align-items: stretch;
+    padding: 32px 0 12px;
+  }
+  .row--fan.has-open > .card {
+    flex: 0 0 calc((100% - (var(--n) - 1) * 20px) / (var(--n) + 6));
+    margin-left: 0;
+    transform-origin: 50% 150%;
+  }
+  .row--fan.has-open > .card.is-open {
+    flex-basis: calc((100% - (var(--n) - 1) * 20px) * 7 / (var(--n) + 6));
+  }
 }
 
 /* Keyboard focus lifts a card like hover does. Not plain focus: closing a
@@ -343,6 +362,13 @@
   transform: none;
 }
 
+/* "Tap to flip" is a touch hint; with a mouse the lift says enough. */
+@media (hover: hover) and (pointer: fine) {
+  .card__hint {
+    display: none;
+  }
+}
+
 /* Face cards (leadership): a framed portrait letter, mirrored like the real thing. */
 .card--face .card__face-body {
   justify-content: flex-end;
@@ -495,6 +521,14 @@
   outline: none;
 }
 
+/* Focus lands here when a card opens. A keyboard visitor needs to see it;
+   wine, since brass fails on cream. */
+.card__back-title:focus-visible {
+  outline: 2px solid var(--wine);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
 .card__back-meta {
   color: var(--ink-2);
 }
@@ -548,7 +582,7 @@
   height: 100%;
   min-height: 220px;
   aspect-ratio: auto;
-  opacity: 0.6;
+  background: var(--cream-2);
 }
 
 .card.is-aside .card__face-body,
@@ -558,7 +592,7 @@
 
 .card.is-aside .card__front:hover,
 .card.is-aside .card__front:focus-visible {
-  opacity: 1;
+  background: var(--cream);
 }
 
 /* ---------------- Toast ---------------- */
@@ -647,7 +681,7 @@
 @media (min-width: 721px) and (max-width: 1023px) {
   .row--fan:not(.has-open) .card {
     --rot: calc((var(--i) - 1.5) * 4deg) !important;
-    width: 208px;
+    flex-basis: 208px;
     margin-left: -100px;
   }
 }
@@ -719,11 +753,16 @@
     height: auto;
     min-height: 0;
     aspect-ratio: 5 / 7;
-    opacity: 1;
+    background: var(--cream);
   }
   .row--fan .card.is-aside .card__face-body,
   .row--fan .card.is-aside .card__down-label {
     opacity: 1;
+  }
+  /* A thumb's minimum target. */
+  .rail__btn {
+    width: 44px;
+    height: 44px;
   }
   /* Here the open card nearly fills the screen, so the fade would sit on it. */
   .rail .row.row.has-open {

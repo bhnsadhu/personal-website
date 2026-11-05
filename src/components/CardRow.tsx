@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent, type ReactNode } from 'react'
 import { onDeal, takeDeal } from '../lib/deal'
 import { animateSizes, boxOf, type Box } from '../lib/cardSize'
+import { slideMs, tween } from '../lib/ease'
 
 export interface RowState {
   openId: string | null
@@ -44,60 +45,38 @@ export function CardRow({ ids, layout = 'row', className = '', ariaLabel, childr
   const [view, setView] = useState<View>({ fits: true, left: false, right: false, first: 1, last: ids.length })
 
   const rowRef = useRef<HTMLDivElement>(null)
+  const dealt = useRef(false)
 
-  // The wide-screen hero fan's columns: 7fr for the open ace, 1fr slivers.
-  const columns =
-    layout !== 'fan'
-      ? undefined
-      : openId
-        ? ids.map((id) => (id === openId ? 'minmax(0, 7fr)' : 'minmax(0, 1fr)')).join(' ')
-        : `repeat(${ids.length}, minmax(0, 1fr))`
-
-  // Every card's box just before a change, so the ones that open or close can
-  // travel from it to their new size instead of ballooning (see cardSize.ts).
+  // Every card's box just before a change, so each can travel from it to its
+  // new box instead of ballooning or snapping (see cardSize.ts).
   const boxes = useRef(new Map<Element, Box>())
-  const wasGrid = useRef(false)
   const prevOpen = useRef<string | null>(null)
-  const prevColumns = useRef(columns)
+  const stopScroll = useRef<(() => void) | null>(null)
   const change = useCallback((id: string | null) => {
-    const row = rowRef.current
     boxes.current.clear()
-    if (row) {
-      wasGrid.current = getComputedStyle(row).display === 'grid'
-      row.querySelectorAll<HTMLElement>(':scope > .card').forEach((c) => boxes.current.set(c, boxOf(c)))
-    }
+    rowRef.current?.querySelectorAll<HTMLElement>(':scope > .card').forEach((c) => boxes.current.set(c, boxOf(c)))
     setOpenId(id)
   }, [])
   useLayoutEffect(() => {
     const row = rowRef.current
     const before = prevOpen.current
-    const fromColumns = prevColumns.current
     prevOpen.current = openId
-    prevColumns.current = columns
     if (!row || before === openId || boxes.current.size === 0) return
-    const grid = getComputedStyle(row).display === 'grid'
-    const cards = [before, openId]
-      .map((id) => id && row.querySelector<HTMLElement>(`:scope > [data-card="${CSS.escape(id)}"]`))
-      .filter((c): c is HTMLElement => !!c)
-    if (!grid && !wasGrid.current) {
-      // A flex row (every row, and the hero on a phone): widths and heights travel together.
-      animateSizes(cards.map((el) => ({ el, from: boxes.current.get(el)! })))
-    } else if (grid && wasGrid.current && fromColumns && columns && fromColumns !== columns) {
-      // The wide hero switching aces: its columns ease from the old split to
-      // the new one. Measure every card at the new split with that easing
-      // held, then start it from the old split, so heights travel with it.
-      row.style.transition = 'none'
-      animateSizes(cards.map((el) => ({ el, from: boxes.current.get(el)! })))
-      row.style.gridTemplateColumns = fromColumns
-      void row.offsetWidth
-      row.style.transition = ''
-      void row.offsetWidth
-      row.style.gridTemplateColumns = columns
-    }
-    // Opening or closing the wide hero swaps the overlapped fan for the
-    // column layout in one step, as designed; nothing to travel.
+    const items = [...row.querySelectorAll<HTMLElement>(':scope > .card')]
+      .filter((el) => boxes.current.has(el))
+      .map((el) => ({ el, from: boxes.current.get(el)! }))
     boxes.current.clear()
-  }, [openId, columns])
+    // The opened card's final place is read while the final layout is in
+    // place, so the row and the page can start moving with the card rather
+    // than after it: one gesture. A card dealt from search scrolls itself.
+    const opened = openId ? row.querySelector<HTMLElement>(`:scope > [data-card="${CSS.escape(openId)}"]`) : null
+    const out: { plan?: Plan } = {}
+    animateSizes(items, () => {
+      if (opened && !dealt.current) out.plan = planScroll(row, opened)
+    })
+    stopScroll.current?.()
+    stopScroll.current = out.plan ? runScroll(row, out.plan) : null
+  }, [openId])
 
   const open = useCallback((id: string) => change(id), [change])
   const close = useCallback(() => change(null), [change])
@@ -105,7 +84,6 @@ export function CardRow({ ids, layout = 'row', className = '', ariaLabel, childr
   // Only the hero fan slides its other cards back to slivers; scrolling rows keep them whole.
   const isAside = useCallback((id: string) => layout === 'fan' && openId !== null && openId !== id, [layout, openId])
 
-  const dealt = useRef(false)
   const key = ids.join(' ')
   useEffect(() => {
     const claim = () => {
@@ -173,17 +151,10 @@ export function CardRow({ ids, layout = 'row', className = '', ariaLabel, childr
     }
   }, [measure])
 
-  // Once an opened card has finished widening, slide the row so all of it is in view.
+  // Once an opened card has finished widening, re-read the count and fades.
   useEffect(() => {
-    const row = rowRef.current
-    if (!row || !openId) return
-    const t = window.setTimeout(() => {
-      const card = row.querySelector<HTMLElement>(`[data-card="${openId}"]`)
-      if (!card || row.scrollWidth <= row.clientWidth) return measure()
-      const inView = card.offsetLeft >= row.scrollLeft && card.offsetLeft + card.offsetWidth <= row.scrollLeft + row.clientWidth
-      if (!inView) row.scrollTo({ left: card.offsetLeft - (row.clientWidth - card.offsetWidth) / 2, behavior: 'smooth' })
-      measure()
-    }, 520)
+    if (!openId) return
+    const t = window.setTimeout(measure, 560)
     return () => window.clearTimeout(t)
   }, [openId, measure])
 
@@ -227,7 +198,7 @@ export function CardRow({ ids, layout = 'row', className = '', ariaLabel, childr
       <div
         ref={rowRef}
         className={`row row--${layout} ${layout === 'fan' ? '' : 'reveal-group'} ${openId ? 'has-open' : ''} ${className}`.trim()}
-        style={{ gridTemplateColumns: columns, ['--n' as string]: ids.length }}
+        style={{ ['--n' as string]: ids.length }}
         role="group"
         aria-label={ariaLabel}
         onKeyDown={onKeyDown}
@@ -236,4 +207,64 @@ export function CardRow({ ids, layout = 'row', className = '', ariaLabel, childr
       </div>
     </div>
   )
+}
+
+/** Where an opened card needs the row and the page to go: [from, to] each. */
+interface Plan {
+  left?: [number, number]
+  top?: [number, number]
+}
+
+/**
+ * Measured in the card's final layout. Sideways: a card not wholly inside a
+ * scrolling row is brought to its start edge, a snap point, so the snap that
+ * resumes afterwards has nothing to correct. Down the page: a card that ends
+ * under the nav or past the bottom of the screen is brought up to sit under
+ * the nav, or just far enough that its foot (and "Back to the hand") shows.
+ */
+function planScroll(row: HTMLElement, card: HTMLElement): Plan {
+  const plan: Plan = {}
+  const cs = getComputedStyle(row)
+  const rb = row.getBoundingClientRect()
+  const cb = card.getBoundingClientRect()
+  if (cs.overflowX !== 'visible') {
+    const pad = parseFloat(cs.scrollPaddingLeft) || 0
+    const from = row.scrollLeft
+    const left = cb.left - rb.left + from
+    const right = left + cb.width
+    if (left < from + pad - 1 || right > from + row.clientWidth - pad + 1) {
+      const to = Math.max(0, Math.min(row.scrollWidth - row.clientWidth, left - pad))
+      if (Math.abs(to - from) > 1) plan.left = [from, to]
+    }
+  }
+  const nav = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 0
+  const top = nav + 16
+  const bottom = window.innerHeight - 24
+  let dy = 0
+  if (cb.top < top || cb.height > bottom - top) dy = cb.top - top
+  else if (cb.bottom > bottom) dy = cb.bottom - bottom
+  if (Math.abs(dy) > 1) plan.top = [window.scrollY, window.scrollY + dy]
+  return plan
+}
+
+/** Runs the plan on the card's own curve and duration; a wheel or touch takes over. */
+function runScroll(row: HTMLElement, plan: Plan): (() => void) | null {
+  const set = (p: number) => {
+    if (plan.left) row.scrollLeft = plan.left[0] + (plan.left[1] - plan.left[0]) * p
+    if (plan.top) window.scrollTo({ top: plan.top[0] + (plan.top[1] - plan.top[0]) * p, behavior: 'instant' })
+  }
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    set(1)
+    return null
+  }
+  // Snapping would pull each frame's position to a card edge.
+  row.style.scrollSnapType = 'none'
+  const stop = tween(slideMs(), set, () => {
+    row.style.scrollSnapType = ''
+    window.removeEventListener('wheel', stop)
+    window.removeEventListener('touchstart', stop)
+  })
+  window.addEventListener('wheel', stop, { passive: true })
+  window.addEventListener('touchstart', stop, { passive: true })
+  return stop
 }
