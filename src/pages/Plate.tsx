@@ -3,7 +3,6 @@ import { ArrowLeftIcon, ArrowRightIcon, CloseIcon } from '../components/Icons'
 import { SuitGlyph } from '../components/Suit'
 import type { Rank, Shot, Suit } from '../data'
 import { goBack, Link } from '../lib/router'
-import { play } from '../lib/sound'
 
 interface PlateProps {
   eyebrow: string
@@ -137,7 +136,6 @@ export function PlateShots({ shots }: { shots: Shot[] }) {
   }
 
   const step = (by: number) => {
-    play('deal')
     setAt((i) => (i === null ? i : (i + by + shots.length) % shots.length))
   }
   const shot = at === null ? null : shots[at]
@@ -155,7 +153,6 @@ export function PlateShots({ shots }: { shots: Shot[] }) {
                 onClick={(e) => {
                   if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return
                   e.preventDefault()
-                  play('deal')
                   setAt(i)
                 }}
               >

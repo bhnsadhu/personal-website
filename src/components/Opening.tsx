@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { createPortal } from 'react-dom'
-import { play as playSound, type Sfx } from '../lib/sound'
 
 /**
  * The opening deal. A deck riffle-shuffles in the middle of the screen, then
@@ -14,11 +13,6 @@ import { play as playSound, type Sfx } from '../lib/sound'
  * hold, of space or of a press anywhere, while the quiet line at the top
  * fills with brass; let go early and it drains back. While it plays,
  * motion.css holds the hero's own entrance until it hands over.
- *
- * It sounds like the table: the cut riffles, the halves tick together as they
- * interleave, the deck is squared with a tap, and each ace slides off with a
- * card sound and snaps over as it turns. Only where the browser already lets
- * audio run (see sound.ts); a skip silences whatever is still to come.
  */
 
 const DECK = 10
@@ -32,23 +26,6 @@ const EASE = 'cubic-bezier(0.2, 0.7, 0.2, 1)'
 const HOLD_MS = 800
 /** --cap-gap in motion.css: the caption keeps it below the skip line too. */
 const CAP_GAP = 28
-
-/**
- * When, within an animation that runs on EASE, its eased progress reaches
- * `p`: the sound for "the card lands" belongs there, not at the linear
- * fraction, because this curve is nearly done in the first third of the time.
- */
-function easeAt(p: number): number {
-  const bez = (t: number, a: number, b: number) => 3 * (1 - t) * (1 - t) * t * a + 3 * (1 - t) * t * t * b + t * t * t
-  let lo = 0
-  let hi = 1
-  for (let i = 0; i < 24; i += 1) {
-    const mid = (lo + hi) / 2
-    if (bez(mid, 0.7, 1) < p) lo = mid
-    else hi = mid
-  }
-  return bez((lo + hi) / 2, 0.2, 0.2)
-}
 
 const wait = (ms: number) => new Promise<void>((r) => window.setTimeout(r, ms))
 
@@ -88,20 +65,9 @@ export function Opening() {
       return a.finished.catch(() => undefined)
     }
 
-    // Table sounds, timed to the animation; a skip or unmount drops the rest.
-    const timers: number[] = []
-    const sfx = (name: Sfx, ms: number) => {
-      timers.push(
-        window.setTimeout(() => {
-          if (alive && !done) playSound(name, 0, true)
-        }, ms),
-      )
-    }
-
     const finish = (skip = false) => {
       if (done) return
       done = true
-      timers.forEach((t) => window.clearTimeout(t))
       root.dataset.intro = 'done'
       if (skip) {
         // The hand is already in place under the overlay; the aces in flight
@@ -153,8 +119,6 @@ export function Opening() {
     async function run() {
       // 1. The riffle: cut into two halves, then let them fall back in turn.
       const half = Math.ceil(DECK / 2)
-      // The halves part with a riffle, over the same 18ms stagger as the cards.
-      sfx('riffle', 100)
       await Promise.all(
         deck.map((c, i) =>
           play(c, [{ transform: rest(i) }, { transform: i < half ? cut(-1, i) : cut(1, i - half) }], {
@@ -168,9 +132,6 @@ export function Opening() {
         if (k < DECK - half) order.push(half + k)
         order.push(k)
       }
-      // Each card drops onto the pile as its move settles: 80ms + 66ms a slot
-      // after the pass starts, a little before the end of its 440ms.
-      order.forEach((_, slot) => sfx('deal', 80 + slot * 66 + easeAt(0.85) * 440))
       await Promise.all(
         order.map((i, slot) => {
           deck[i].style.zIndex = String(slot + 1)
@@ -186,7 +147,6 @@ export function Opening() {
         }),
       )
       if (done || !alive) return
-      sfx('close', easeAt(0.5) * 380)
       await play(stage, [{ transform: 'scale(1)' }, { transform: 'scale(1.03)' }, { transform: 'scale(1)' }], {
         duration: 380,
       })
@@ -231,10 +191,6 @@ export function Opening() {
         targets.map(async (card, i) => {
           await wait(i * DEAL_GAP)
           if (done || !alive) return
-          // One sound per ace: the snap as it lands face up. The turn runs
-          // from 35% of the progress to the end, so on this curve the card
-          // is flat on the felt well before DEAL_MS is up.
-          sfx('flip', easeAt(0.95) * DEAL_MS)
           // The card's own box, without the fan's rotation. The fan eases its
           // transform, so the transition is off while it is measured.
           const saved = { transform: card.style.transform, transition: card.style.transition }
@@ -312,7 +268,6 @@ export function Opening() {
     return () => {
       // Development mounts twice; the first run must leave nothing behind.
       alive = false
-      timers.forEach((t) => window.clearTimeout(t))
       window.clearTimeout(holdTimer)
       window.removeEventListener('keydown', onKeyDown)
       window.removeEventListener('keyup', onKeyUp)

@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent, type ReactNode } from 'react'
 import { onDeal, takeDeal } from '../lib/deal'
 import { animateSizes, boxOf, type Box } from '../lib/cardSize'
-import { play } from '../lib/sound'
 
 export interface RowState {
   openId: string | null
@@ -100,17 +99,8 @@ export function CardRow({ ids, layout = 'row', className = '', ariaLabel, childr
     boxes.current.clear()
   }, [openId, columns])
 
-  const open = useCallback(
-    (id: string) => {
-      play('flip')
-      change(id)
-    },
-    [change],
-  )
-  const close = useCallback(() => {
-    play('close')
-    change(null)
-  }, [change])
+  const open = useCallback((id: string) => change(id), [change])
+  const close = useCallback(() => change(null), [change])
   const isOpen = useCallback((id: string) => openId === id, [openId])
   // Only the hero fan slides its other cards back to slivers; scrolling rows keep them whole.
   const isAside = useCallback((id: string) => layout === 'fan' && openId !== null && openId !== id, [layout, openId])
@@ -122,7 +112,6 @@ export function CardRow({ ids, layout = 'row', className = '', ariaLabel, childr
       const id = takeDeal(key.split(' '))
       if (!id) return
       dealt.current = true
-      play('flip')
       change(id)
     }
     claim()
@@ -204,7 +193,6 @@ export function CardRow({ ids, layout = 'row', className = '', ariaLabel, childr
     const card = row?.querySelector<HTMLElement>('.card:not(.is-open)')
     if (!row || !card) return
     const w = card.offsetWidth + GAP
-    play('deal')
     row.scrollBy({ left: dir * w * Math.max(1, Math.floor(row.clientWidth / w) - 1), behavior: 'smooth' })
   }, [])
 

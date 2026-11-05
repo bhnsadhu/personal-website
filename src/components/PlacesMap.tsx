@@ -1,7 +1,6 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import type { PersonalEntry } from '../data'
 import { DOT_STEP, DOT_TOP, WORLD_DOTS } from '../lib/worldDots'
-import { play } from '../lib/sound'
 
 const COLS = WORLD_DOTS[0].length
 const ROWS = WORLD_DOTS.length
@@ -325,7 +324,6 @@ export function PlacesMap({ entries }: { entries: PersonalEntry[] }) {
               aria-label={[p.entry.name, p.entry.detail].filter(Boolean).join(', ')}
               aria-pressed={pinned === i}
               onClick={() => {
-                if (pinned !== i) play('pop')
                 setPinned((cur) => (cur === i ? -1 : i))
               }}
               onPointerEnter={(e) => e.pointerType === 'mouse' && setHover(i)}

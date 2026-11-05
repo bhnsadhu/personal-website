@@ -3,8 +3,7 @@ import { Link, usePath } from '../lib/router'
 import { useScrollSpy } from '../lib/useScrollSpy'
 import { setTheme, useTheme } from '../lib/theme'
 import { experience, site, type Suit } from '../data'
-import { MoonIcon, SoundOffIcon, SoundOnIcon, SunIcon } from './Icons'
-import { play, setSound, useSound } from '../lib/sound'
+import { MoonIcon, SunIcon } from './Icons'
 import { LiveDot } from './LiveDot'
 import { Riffle, type RiffleHandle } from './Riffle'
 import { SUIT_GLYPH } from './Suit'
@@ -75,7 +74,6 @@ export function Nav() {
   const current = experience.find((e) => e.slug === site.currently)
   const theme = useTheme()
   const next = theme === 'dark' ? 'light' : 'dark'
-  const sound = useSound()
   const riffles = useRef<(RiffleHandle | null)[]>([])
   const active = useScrollSpy(
     SUIT_NAV.map((s) => s.anchor),
@@ -206,23 +204,10 @@ export function Nav() {
           </a>
           <button
             type="button"
-            className="btn btn--ghost nav__theme nav__sound"
-            aria-label={sound ? 'Turn sound off' : 'Turn sound on'}
-            title={sound ? 'Turn sound off' : 'Turn sound on'}
-            aria-pressed={sound}
-            onClick={() => setSound(!sound)}
-          >
-            {sound ? <SoundOnIcon /> : <SoundOffIcon />}
-          </button>
-          <button
-            type="button"
             className="btn btn--ghost nav__theme"
             aria-label={`Switch to ${next} theme`}
             title={`Switch to ${next} theme`}
-            onClick={() => {
-              play('click')
-              setTheme(next)
-            }}
+            onClick={() => setTheme(next)}
           >
             {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
           </button>

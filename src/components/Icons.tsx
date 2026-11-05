@@ -139,26 +139,6 @@ export function CloseIcon(props: IconProps) {
   )
 }
 
-/** Speaker with waves: sound is on; press to mute. */
-export function SoundOnIcon(props: IconProps) {
-  return (
-    <Icon {...props}>
-      <path d="M11 5 6 9H2v6h4l5 4z" />
-      <path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14" />
-    </Icon>
-  )
-}
-
-/** Speaker crossed out: sound is off; press to turn it on. */
-export function SoundOffIcon(props: IconProps) {
-  return (
-    <Icon {...props}>
-      <path d="M11 5 6 9H2v6h4l5 4z" />
-      <path d="m16 9 6 6M22 9l-6 6" />
-    </Icon>
-  )
-}
-
 /** Sun: switch to the light theme. */
 export function SunIcon(props: IconProps) {
   return (

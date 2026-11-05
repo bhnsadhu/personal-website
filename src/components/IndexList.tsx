@@ -5,7 +5,6 @@ import { Link } from '../lib/router'
 import { SEP } from '../lib/sep'
 import { LiveDot } from './LiveDot'
 import { SuitGlyph } from './Suit'
-import { play } from '../lib/sound'
 
 /**
  * The list view's rows. Each row is a card laid flat: the same rank and
@@ -58,7 +57,6 @@ export function IndexGroup({ ids, label, children }: { ids: string[]; label: str
   const state: GroupState = {
     isOpen: (id) => open.has(id),
     toggle: (id) => {
-      play(open.has(id) ? 'close' : 'flip')
       setOpen((s) => {
         const next = new Set(s)
         if (next.has(id)) next.delete(id)
@@ -72,7 +70,6 @@ export function IndexGroup({ ids, label, children }: { ids: string[]; label: str
     <GroupContext.Provider value={state}>
       <div className="ix__bar">
         <button type="button" className="tlink ix__all" onClick={() => {
-            play(all ? 'close' : 'riffle')
             setOpen(all ? new Set() : new Set(ids))
           }}>
           {all ? 'Close all' : 'Open all'}

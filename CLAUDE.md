@@ -153,21 +153,6 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   page. Hidden at 1199px and below, where it would run into the suits.
 - CatchBack Cards is always "CatchBack Cards (YC W26)", with a no-break
   space inside the brackets, in every mention.
-- Sound: `src/lib/sound.ts` synthesizes short table sounds with Web Audio
-  (no files, no library) and stays silent until the first click, tap or
-  key. A card or list row opening flips, closing lays it down, search and
-  screenshots deal, a fragrance bottle tinks, a map pin pops, a face-down
-  card thuds, chips clack as they land on the stacks (timed to the CSS
-  chip-drop), and a sent message pushes a stack. The opening deal has
-  its own: the cut riffles, the halves tick as they interleave, the deck
-  is squared with a soft tap, and each ace slides off and snaps over as it
-  turns (`sfx()` in `Opening.tsx`, dropped on a skip). It plays before any
-  gesture, so it sounds only where the browser already lets audio start
-  (`play(..., ifRunning)` never queues behind a locked context); a hold to
-  skip is the first gesture and wakes audio for the rest. The speaker button sits
-  before the theme button in the nav ("Turn sound off" / "Turn sound on",
-  saved in `localStorage` `sound`); below 600px the nav has no room, so
-  the footer's "Sound on" / "Sound off" switch takes over.
 - The stat band runs lowest to highest, left to right.
 - `src/components/Chips.tsx` — a chip stack is a rough indicator, not a
   count: `chipsFor()` scales the longest category to `MAX_CHIPS` and the
@@ -370,7 +355,7 @@ The fan (projects) · The chips (skills) · The flop (personal) · Let's talk
 Me" (hero), "Resume" (nav, footer), "Send Message" (submit), "Back to the
 hand", "View experience", "Explore the project", "List view" / "Card view", "Live Demo",
 "Repository" (a project's code), "App Store" (Ingenio Care's listing), "GitHub" (his own profile: footer, contact, search), "View Credential", "Search", "Back to top" (aria), "Close" / "Previous screenshot" / "Next screenshot" (aria, the enlarged screenshot), "Hold space to skip" / "Hold to skip" (the opening deal), "Switch to light theme" / "Switch to dark theme"
-(aria and title on the sun/moon), "Sound on" / "Sound off" (footer, phones), "Turn sound off" / "Turn sound on" (aria and title on the speaker). The
+(aria and title on the sun/moon). The
 search placeholder is "Search the deck…" and an empty search reads "Not in
 the deck: “…”". Face-down cards say "Not dealt yet". 404 is
 "Not in the deck". Footer sign-off: "Shuffled, not stirred."
