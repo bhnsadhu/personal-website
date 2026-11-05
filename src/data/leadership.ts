@@ -125,12 +125,16 @@ export const leadership: Leadership[] = [
     face: 'J',
     slug: 'ghungroo-dance-company',
     organization: 'Ghungroo Dance Company',
-    role: 'Performer & Social Events Coordinator',
+    role: 'Social Events Coordinator',
     dates: 'Aug 2025 — Present',
     location: 'Champaign, IL',
-    title: 'Performer & Social Events Coordinator',
+    title: 'Social Events Coordinator',
     subtitle: 'Ghungroo Dance Company',
     meta: 'Aug 2025 — Present',
+    progression: [
+      { role: 'Social Events Coordinator', dates: 'Aug 2026 — Present' },
+      { role: 'Performer', dates: 'From Aug 2025' },
+    ],
     summary: 'Building team connection through dance, social events, and fundraising.',
     body: [
       'Perform with a roughly 35-member dance team.',
