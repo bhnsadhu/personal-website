@@ -231,10 +231,9 @@ export function Opening() {
         targets.map(async (card, i) => {
           await wait(i * DEAL_GAP)
           if (done || !alive) return
-          // Off the deck now. The turn runs from 35% of the progress to the
-          // end, so on this curve the card is face up, and snaps down onto
-          // the felt, well before DEAL_MS is up.
-          sfx('deal', 0)
+          // One sound per ace: the snap as it lands face up. The turn runs
+          // from 35% of the progress to the end, so on this curve the card
+          // is flat on the felt well before DEAL_MS is up.
           sfx('flip', easeAt(0.95) * DEAL_MS)
           // The card's own box, without the fan's rotation. The fan eases its
           // transform, so the transition is off while it is measured.
