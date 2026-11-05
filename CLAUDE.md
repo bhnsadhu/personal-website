@@ -19,7 +19,7 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   `interests`), links, and the static "last updated" date.
   `hand.ts` (four aces, each links to its fuller entry), `experience.ts`
   (the spread; `via` names the consulting org, kept separate from the
-  client), `leadership.ts` (face cards, fixed order, `progression` and
+  client), `leadership.ts` (face cards, newest first, `progression` and
   `related` optional), `projects.ts` (the fan; a project or role may
   carry `shots`, screenshots of the live product in `public/<slug>/`,
   rendered by `PlateShots` on its page three across, never anyone else's
@@ -268,8 +268,11 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   The org an engagement runs through (Product Space, Illinois Business
   Consulting, Disruption Lab at Gies) is kept as `via` in the data but never
   shown or searched on the experience side: it appears only on that org's
-  face card, whose "Engagements" links lead to the roles. The spread runs
-  Ingenio Care, CatchBack Cards (YC W26), Replit, then the rest.
+  face card, whose "Engagements" links lead to the roles. The spread and the
+  face cards run reverse chronological, newest start date first (a tie
+  keeps its order; within a card, `progression` is newest first too). The
+  face letters follow position, K/Q/J spades then clubs. Projects carry no
+  dates and keep their order.
 - Team results belong to the team. Ongoing work is present tense; proposed
   or idea-stage things (AviLux pilot, the AI learnathon, the
   apartment-chores product) are never described as launched.

@@ -8,26 +8,6 @@ import type { Experience } from './types'
  */
 export const experience: Experience[] = [
   {
-    slug: 'ingenio-care',
-    company: 'Ingenio Care, Inc.',
-    role: 'Product Builder Intern',
-    dates: 'May 2026 — Aug 2026',
-    location: 'Lombard, IL',
-    title: 'Product Builder Intern',
-    subtitle: 'Ingenio Care, Inc.',
-    meta: 'May 2026 — Aug 2026',
-    summary: 'Product strategy and feature development for a pre-seed digital health startup.',
-    context:
-      "Shaped product direction for an AI care companion, led the web-to-mobile UI/UX redesign, and drove Ingenio Care's App Store launch while building patient and provider outreach.",
-    body: [
-      'Defined use cases and product requirements for an AI care companion, translating patient feedback into features.',
-      "Drove Ingenio Care's App Store launch by leading the web-to-mobile UI/UX redesign across eight feature areas.",
-      'Built a patient and provider outreach pipeline spanning 750+ contacts across eight healthcare networks.',
-    ],
-    tags: ['Product Management', 'Product Requirements', 'UX', 'Digital Health', 'Outreach'],
-    links: [{ label: 'App Store', href: 'https://apps.apple.com/us/app/ingenio-care/id6798790795' }],
-  },
-  {
     slug: 'catchback-cards',
     company: 'CatchBack Cards (YC W26)',
     role: 'Product Management Lead',
@@ -107,6 +87,26 @@ export const experience: Experience[] = [
       'Evaluating AI and media-management tools to standardize post-production and reduce dependence on the founder.',
     ],
     tags: ['Business Analysis', 'Process Mapping', 'AI Tool Evaluation', 'Stakeholder Management', 'Operations'],
+  },
+  {
+    slug: 'ingenio-care',
+    company: 'Ingenio Care, Inc.',
+    role: 'Product Builder Intern',
+    dates: 'May 2026 — Aug 2026',
+    location: 'Lombard, IL',
+    title: 'Product Builder Intern',
+    subtitle: 'Ingenio Care, Inc.',
+    meta: 'May 2026 — Aug 2026',
+    summary: 'Product strategy and feature development for a pre-seed digital health startup.',
+    context:
+      "Shaped product direction for an AI care companion, led the web-to-mobile UI/UX redesign, and drove Ingenio Care's App Store launch while building patient and provider outreach.",
+    body: [
+      'Defined use cases and product requirements for an AI care companion, translating patient feedback into features.',
+      "Drove Ingenio Care's App Store launch by leading the web-to-mobile UI/UX redesign across eight feature areas.",
+      'Built a patient and provider outreach pipeline spanning 750+ contacts across eight healthcare networks.',
+    ],
+    tags: ['Product Management', 'Product Requirements', 'UX', 'Digital Health', 'Outreach'],
+    links: [{ label: 'App Store', href: 'https://apps.apple.com/us/app/ingenio-care/id6798790795' }],
   },
   {
     slug: 'confidential-manufacturer',
