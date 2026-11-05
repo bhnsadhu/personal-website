@@ -172,10 +172,14 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   rises clear of where the hand lands, then the four aces are dealt to the
   exact spots the hero's hand occupies and turn face up while the rest of
   the deck and its caption fade, so no ace rests on the deck; they are clones of the real cards, so the overlay fades
-  onto a hand already in place. An inline script in `index.html` decides
+  onto a hand already in place. Where the hand is not wholly on screen (a
+  phone, where it sits below the fold; a short laptop, where its foot is
+  cut), the same fan is dealt scaled to fit the width and the lower 42% of
+  the screen, centred (`fitHand`), and the overlay fades from there. An inline script in `index.html` decides
   before first paint (`data-intro="play"`): once per visit
   (`sessionStorage` `dealt`), only when landing on `/` itself, never for a
-  `#section` link or reduced motion. It runs about 4.5s with the page locked.
+  `#section` link or reduced motion. It runs about 4.5s with the page locked
+  and `inert`, so nothing under the overlay takes focus.
   Watching is the default: stray clicks and keys do nothing. After a second
   a quiet line fades in, centred at the top on the nav's own centre line
   (`(--nav-h - 1px) / 2`, where the nav's contents measure), set like the

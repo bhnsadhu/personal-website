@@ -54,6 +54,10 @@ export function Opening() {
       /* private mode: it may replay, which is harmless */
     }
     window.scrollTo(0, 0)
+    // The page under the overlay is out of reach until it hands over: no
+    // tabbing onto links nobody can see.
+    const app = document.getElementById('root')
+    app?.setAttribute('inert', '')
 
     let done = false
     let alive = true
@@ -69,6 +73,7 @@ export function Opening() {
       if (done) return
       done = true
       root.dataset.intro = 'done'
+      app?.removeAttribute('inert')
       if (skip) {
         // The hand is already in place under the overlay; the aces in flight
         // go at once so they never sit beside it, and the rest fades quickly.
@@ -157,7 +162,8 @@ export function Opening() {
       // comes to rest on the deck; never past the top of the screen.
       setCaption('Dealing your hand')
       const targets = Array.from(document.querySelectorAll<HTMLElement>('.hero__fan > .card'))
-      const handTop = Math.min(...targets.map((t) => t.getBoundingClientRect().top))
+      const fit = fitHand(targets.map((t) => t.getBoundingClientRect()))
+      const handTop = fit.top
       const pile = stage.getBoundingClientRect()
       const capTop = pile.top - 60
       // Never past the skip line at the top: the caption keeps the same gap
@@ -203,8 +209,16 @@ export function Opening() {
           // Land on whatever the card really shows at this width: the fan's
           // tilt on a desktop, straight in a column on a phone.
           const cs = getComputedStyle(card)
-          const finalTransform = cs.transform === 'none' ? 'matrix(1, 0, 0, 1, 0, 0)' : cs.transform
           const [ox, oy] = cs.transformOrigin.split(' ').map(parseFloat)
+          // Where the hand is not wholly on screen (a phone, a short laptop),
+          // the same fan is dealt scaled into the lower part of the screen:
+          // the card's own transform, scaled by fit.s about the screen and
+          // moved by fit.x/y, re-expressed about the clone's origin.
+          const m = new DOMMatrix(cs.transform === 'none' ? undefined : cs.transform)
+          const { s: k, x: ux, y: uy } = fit
+          const fe = k * (box.left + ox + m.e) + ux - box.left - ox
+          const ff = k * (box.top + oy + m.f) + uy - box.top - oy
+          const finalTransform = `matrix(${k * m.a}, ${k * m.b}, ${k * m.c}, ${k * m.d}, ${fe}, ${ff})`
 
           const clone = card.cloneNode(true) as HTMLElement
           clone.querySelector('.card__back')?.remove()
@@ -268,6 +282,7 @@ export function Opening() {
     return () => {
       // Development mounts twice; the first run must leave nothing behind.
       alive = false
+      app?.removeAttribute('inert')
       window.clearTimeout(holdTimer)
       window.removeEventListener('keydown', onKeyDown)
       window.removeEventListener('keyup', onKeyUp)
@@ -315,4 +330,30 @@ function rest(i: number) {
 /** A card in the left (-1) or right (1) half of the cut. */
 function cut(side: -1 | 1, k: number) {
   return `translate(${side * 92 - k * 0.4}px, ${-k * 1.2 + 6}px) rotate(${side * 7}deg)`
+}
+
+/**
+ * Where the dealt hand comes to rest. Where the real hand is wholly on
+ * screen, exactly there (scale 1, no shift), so the overlay fades onto a hand
+ * already in place. Where it is not (on a phone it sits below the screen and
+ * runs off its right edge; on a short laptop its foot is cut), the same fan,
+ * scaled to fit the width and the lower 42% of the screen, centred, with a
+ * margin at the foot. `top` is the top of the hand as dealt.
+ */
+function fitHand(rects: DOMRect[]): { s: number; x: number; y: number; top: number } {
+  const left = Math.min(...rects.map((r) => r.left))
+  const right = Math.max(...rects.map((r) => r.right))
+  const top = Math.min(...rects.map((r) => r.top))
+  const bottom = Math.max(...rects.map((r) => r.bottom))
+  const vw = window.innerWidth
+  const vh = window.innerHeight
+  const margin = 16
+  if (left >= margin && right <= vw - margin && bottom <= vh - margin) return { s: 1, x: 0, y: 0, top }
+  const w = right - left
+  const h = bottom - top
+  const s = Math.min(1, (vw - 2 * margin) / w, (vh * 0.42) / h)
+  const foot = Math.max(margin, vh * 0.06)
+  const newLeft = (vw - s * w) / 2
+  const newTop = vh - foot - s * h
+  return { s, x: newLeft - s * left, y: newTop - s * top, top: newTop }
 }
