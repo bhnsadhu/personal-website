@@ -93,7 +93,7 @@ export const experience: Experience[] = [
     company: 'Confidential Media Production Firm',
     role: 'Strategy Consultant',
     dates: 'Aug 2026 — Present',
-    location: 'Champaign, IL',
+    location: 'Evergreen Park, IL',
     via: 'Illinois Business Consulting',
     title: 'Strategy Consultant',
     subtitle: 'Confidential Media Production Firm',
