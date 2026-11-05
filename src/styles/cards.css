@@ -48,9 +48,12 @@
   display: none;
 }
 
+/* `safe`: once an open card makes the row overflow, it starts from the left
+   edge instead of pushing its first card out of reach, and the change is
+   continuous, so nothing snaps sideways as the card widens. */
 .rail.fits .row--row,
 .rail.fits .row--flop {
-  justify-content: center;
+  justify-content: safe center;
 }
 
 .row--row > .card,
@@ -93,6 +96,13 @@
 
 .rail.more-left.more-right .row {
   mask-image: linear-gradient(90deg, transparent, #000 56px, #000 calc(100% - 56px), transparent);
+}
+
+/* An open card that fills the row is what the visitor asked to read; the
+   fade would grey its own edges. (.row.row matches the four classes of
+   the fade rules above.) */
+.rail--flop .row.row.has-open {
+  mask-image: none;
 }
 
 /* The count and the arrows, right-aligned above a row that scrolls. */
@@ -700,7 +710,8 @@
   .row--fan > .card.is-open .card__back {
     min-height: calc(var(--card-w) * 1.4);
   }
-  .row--fan:not(.has-open) .card:hover {
+  .row--fan:not(.has-open) .card:hover,
+  .row--fan:not(.has-open) .card:has(:focus-visible) {
     transform: none;
   }
   /* The fan's slivers are a wide-screen idea; here its other aces stay whole. */
@@ -713,6 +724,10 @@
   .row--fan .card.is-aside .card__face-body,
   .row--fan .card.is-aside .card__down-label {
     opacity: 1;
+  }
+  /* Here the open card nearly fills the screen, so the fade would sit on it. */
+  .rail .row.row.has-open {
+    mask-image: none;
   }
   @keyframes deal {
     from {

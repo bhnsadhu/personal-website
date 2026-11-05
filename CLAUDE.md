@@ -90,24 +90,37 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   until open. Focus moves into the back on open and returns on close. The
   front's title, italic subtitle, and dates sit in one column with equal
   spacing, so the subtitle is midway between the title and the dates.
-  Cards keep a fixed shape: 5:7 on desktop, and on phones one size for
-  every card (full width, 272px tall). Face cards carry a large framed
+  Cards keep a fixed shape: 5:7 everywhere, 248px wide (230px at 720 and
+  below). Face cards carry a large framed
   portrait letter above the title.
 - `src/components/CardRow.tsx` — the standard for every row of cards. It
   owns which card is open and renders a `.rail`: a row in which every card
   keeps one size (`--card-w`, 248px; 230px at 720 and below; always 5:7).
-  A row whose cards fit sits centred and still. One that doesn't scrolls
+  A row whose cards fit sits centred and still, decided by its cards
+  closed, so opening one never brings the bar in (no jump mid-flip); it
+  centres with `safe center`, so an open card that overflows starts from
+  the left edge with no sideways snap. One that doesn't scrolls
   sideways, snapping card by card, fades (56px) on the side with more to
   see, and shows a bar above it: "1–4 of 6" (or "1 of 6") and round ← →
   buttons ("Previous cards" / "More cards") that page by all but one card;
   arrow keys do the same while a card face has focus. Opening a card widens
   it in place (`--open-w`: min(860px, 100%), the full row for `flop`) with
-  its back never shorter than a closed card, then slides the row so the
-  whole card is in view; the other cards stay whole. Layouts: `row`
+  its back never shorter than a closed card, its width and height
+  travelling together (`src/lib/cardSize.ts`: left to CSS, an open back laid
+  out at closed width is 1,500px tall and a closed face laid out at open
+  width is 1,200px, so the card would balloon on every open and close;
+  every changed card's target is measured before any is pinned, and
+  `is-sizing` clips both faces to the moving box), then slides the row so
+  the whole card is in view; the other cards stay whole. A card that fills
+  the row (`flop`, and every open card at 720 and below) drops the edge
+  fade, which would grey its own edges. Layouts: `row`
   (spread, fan), `flop` (face cards and personal), and `fan` (the hero),
   which on a wide screen always fits, so it keeps its overlap and, when a
-  card opens, its 7fr/1fr slivers; at 720 and below it scrolls like every
-  other row. A centred row that overflows would hide its first card, so
+  card opens, its 7fr/1fr slivers (opening and closing swap layouts in one
+  step; switching aces eases the columns, heights travelling with them); at
+  720 and below it scrolls like every other row. Only hover or keyboard
+  focus (`:focus-visible`) lifts an ace: closing hands focus back to the
+  face, and a clicked ace must settle back into the hand. A centred row that overflows would hide its first card, so
   rows only centre when they fit.
 - `src/sections/` — Hand (hero: intro, actions, seeking line, and
   beside them `HeroPhoto`, then four aces), Spread (experience), FaceCards (leadership, dealt three to a suit

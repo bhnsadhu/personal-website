@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent, type ReactNode } from 'react'
 import { onDeal, takeDeal } from '../lib/deal'
-import { animateSize, boxOf, type Box } from '../lib/cardSize'
+import { animateSizes, boxOf, type Box } from '../lib/cardSize'
 import { play } from '../lib/sound'
 
 export interface RowState {
@@ -46,31 +46,59 @@ export function CardRow({ ids, layout = 'row', className = '', ariaLabel, childr
 
   const rowRef = useRef<HTMLDivElement>(null)
 
+  // The wide-screen hero fan's columns: 7fr for the open ace, 1fr slivers.
+  const columns =
+    layout !== 'fan'
+      ? undefined
+      : openId
+        ? ids.map((id) => (id === openId ? 'minmax(0, 7fr)' : 'minmax(0, 1fr)')).join(' ')
+        : `repeat(${ids.length}, minmax(0, 1fr))`
+
   // Every card's box just before a change, so the ones that open or close can
   // travel from it to their new size instead of ballooning (see cardSize.ts).
   const boxes = useRef(new Map<Element, Box>())
+  const wasGrid = useRef(false)
   const prevOpen = useRef<string | null>(null)
-  const change = useCallback(
-    (id: string | null) => {
-      boxes.current.clear()
-      if (layout !== 'fan') rowRef.current?.querySelectorAll<HTMLElement>(':scope > .card').forEach((c) => boxes.current.set(c, boxOf(c)))
-      setOpenId(id)
-    },
-    [layout],
-  )
+  const prevColumns = useRef(columns)
+  const change = useCallback((id: string | null) => {
+    const row = rowRef.current
+    boxes.current.clear()
+    if (row) {
+      wasGrid.current = getComputedStyle(row).display === 'grid'
+      row.querySelectorAll<HTMLElement>(':scope > .card').forEach((c) => boxes.current.set(c, boxOf(c)))
+    }
+    setOpenId(id)
+  }, [])
   useLayoutEffect(() => {
     const row = rowRef.current
     const before = prevOpen.current
+    const fromColumns = prevColumns.current
     prevOpen.current = openId
-    if (!row || layout === 'fan' || before === openId) return
-    for (const id of [before, openId]) {
-      if (!id) continue
-      const card = row.querySelector<HTMLElement>(`:scope > [data-card="${CSS.escape(id)}"]`)
-      const from = card && boxes.current.get(card)
-      if (card && from) animateSize(card, from)
+    prevColumns.current = columns
+    if (!row || before === openId || boxes.current.size === 0) return
+    const grid = getComputedStyle(row).display === 'grid'
+    const cards = [before, openId]
+      .map((id) => id && row.querySelector<HTMLElement>(`:scope > [data-card="${CSS.escape(id)}"]`))
+      .filter((c): c is HTMLElement => !!c)
+    if (!grid && !wasGrid.current) {
+      // A flex row (every row, and the hero on a phone): widths and heights travel together.
+      animateSizes(cards.map((el) => ({ el, from: boxes.current.get(el)! })))
+    } else if (grid && wasGrid.current && fromColumns && columns && fromColumns !== columns) {
+      // The wide hero switching aces: its columns ease from the old split to
+      // the new one. Measure every card at the new split with that easing
+      // held, then start it from the old split, so heights travel with it.
+      row.style.transition = 'none'
+      animateSizes(cards.map((el) => ({ el, from: boxes.current.get(el)! })))
+      row.style.gridTemplateColumns = fromColumns
+      void row.offsetWidth
+      row.style.transition = ''
+      void row.offsetWidth
+      row.style.gridTemplateColumns = columns
     }
+    // Opening or closing the wide hero swaps the overlapped fan for the
+    // column layout in one step, as designed; nothing to travel.
     boxes.current.clear()
-  }, [openId, layout])
+  }, [openId, columns])
 
   const open = useCallback(
     (id: string) => {
@@ -120,7 +148,17 @@ export function CardRow({ ids, layout = 'row', className = '', ariaLabel, childr
     const row = rowRef.current
     if (!row) return
     // A row that doesn't scroll (the hero fan on a wide screen) always fits, however its cards overlap.
-    const max = getComputedStyle(row).overflowX === 'visible' ? 0 : row.scrollWidth - row.clientWidth
+    const cs = getComputedStyle(row)
+    const scrolls = cs.overflowX !== 'visible'
+    const max = scrolls ? row.scrollWidth - row.clientWidth : 0
+    // Whether the row fits is decided by its cards closed, so opening one in
+    // a row that fits (face cards, the flop) never brings the bar in above it
+    // and drops the row 48px mid-flip. The open card may still overflow; it
+    // scrolls into view, and closing it returns the row to centre.
+    const n = row.children.length
+    const cardW = parseFloat(cs.getPropertyValue('--card-w')) || 0
+    const pad = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight)
+    const fits = !scrolls || !cardW || n * cardW + (n - 1) * (parseFloat(cs.columnGap) || GAP) + pad <= row.clientWidth + 2
     // Cards in view, measured on screen against the row's own edges.
     const box = row.getBoundingClientRect()
     const cards = [...row.children].map((c) => c.getBoundingClientRect())
@@ -129,7 +167,7 @@ export function CardRow({ ids, layout = 'row', className = '', ariaLabel, childr
     while (last > 0 && cards[last].right > box.right + 8) last--
     if (first < 0) first = 0
     const from = row.scrollLeft
-    const next: View = { fits: max <= 2, left: from > 4, right: from < max - 4, first: first + 1, last: Math.max(first, last) + 1 }
+    const next: View = { fits, left: from > 4, right: from < max - 4, first: first + 1, last: Math.max(first, last) + 1 }
     setView((v) => (v.fits === next.fits && v.left === next.left && v.right === next.right && v.first === next.first && v.last === next.last ? v : next))
   }, [])
 
@@ -182,13 +220,6 @@ export function CardRow({ ids, layout = 'row', className = '', ariaLabel, childr
       step(e.key === 'ArrowRight' ? 1 : -1)
     }
   }
-
-  const columns =
-    layout !== 'fan'
-      ? undefined
-      : openId
-        ? ids.map((id) => (id === openId ? 'minmax(0, 7fr)' : 'minmax(0, 1fr)')).join(' ')
-        : `repeat(${ids.length}, minmax(0, 1fr))`
 
   const rail = ['rail', `rail--${layout}`, view.left && 'more-left', view.right && 'more-right', view.fits && 'fits'].filter(Boolean).join(' ')
 
