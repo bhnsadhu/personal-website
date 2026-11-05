@@ -915,6 +915,65 @@
   line-height: 1.5;
 }
 
+/* A personal card's back (PersonalBack). Narrow, one column: the intro, the
+   picture, the chosen favorite's note under it, then links and credit.
+   Given the room (an open card on a wide screen), the words take a column on
+   the left and the picture the right, so the card is no taller than any
+   other. The list view's rows are narrower and keep one column. Every gap stays 14px, as in the rest of the back. */
+.pback {
+  container-type: inline-size;
+}
+
+.pback__grid {
+  display: grid;
+  gap: 14px;
+}
+
+.pback__text {
+  display: contents;
+}
+
+.pback__view {
+  order: 1;
+  min-width: 0;
+}
+
+.pback__pick {
+  order: 2;
+  display: grid;
+  gap: 4px;
+}
+
+.pback__text > .linkrow {
+  order: 3;
+}
+
+.pback__text > .card__credit {
+  order: 4;
+}
+
+.pback__title .entry__name {
+  font-weight: 600;
+}
+
+.pback__detail {
+  margin-left: 10px;
+  color: var(--ink-2);
+}
+
+@container (min-width: 900px) {
+  .pback__grid {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    column-gap: 40px;
+    align-items: start;
+  }
+  .pback__text {
+    display: grid;
+    gap: 14px;
+    align-content: start;
+  }
+}
+
 /* Favorite Tables, ranked like a Beli list: one tab-style label over the
    rows, then each row its rank, the place, and his score in a ring on the
    right. */
@@ -930,6 +989,19 @@
   color: var(--ink);
 }
 
+.ranked__hint {
+  margin-left: auto;
+  padding-bottom: 9px;
+  color: var(--ink-2);
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+.rankedlist {
+  display: grid;
+  gap: 14px;
+}
+
 .ranked {
   display: grid;
   list-style: none;
@@ -939,11 +1011,15 @@
    14px: above and below each rule, under the label, above the credit. */
 .ranked__row {
   display: grid;
-  grid-template-columns: 34px 1fr 48px;
+  grid-template-columns: 34px 1fr 40px;
   align-items: baseline;
   gap: 14px;
   padding: 14px 0;
   border-top: 1px solid var(--cream-3);
+}
+
+.ranked__row {
+  cursor: pointer;
 }
 
 .ranked__row:first-child {
@@ -973,6 +1049,25 @@
   font-weight: 600;
 }
 
+/* The place's name is the row's button; the whole row answers a click. */
+.ranked__pick {
+  justify-self: start;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ranked__pick:focus-visible {
+  outline: 2px solid var(--wine);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 /* The address reads like Beli's neighbourhood line: small and quiet. */
 .ranked__body .entry__line.mono {
   font-size: 12px;
@@ -982,15 +1077,25 @@
 .ranked__score {
   display: grid;
   place-items: center;
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border: 1.5px solid var(--cream-3);
   border-radius: 50%;
   background: var(--cream);
   color: var(--score);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 0;
+  transition: border-color var(--fast) var(--ease);
+}
+
+.ranked__row:hover .ranked__score {
+  border-color: var(--ink-2);
+}
+
+/* The chosen place: its ring in wine, as the chosen poster and bottle are marked. */
+.ranked__row.is-on .ranked__score {
+  border: 2px solid var(--wine);
 }
 
 /* Indian Cinema (PosterRow.tsx): names stay beneath their posters, and the
@@ -1078,20 +1183,6 @@
 .posters__label {
   display: block;
   margin-top: 16px;
-}
-
-.posters__review {
-  display: grid;
-  gap: 4px;
-}
-
-.posters__title .entry__name {
-  font-weight: 600;
-}
-
-.posters__year {
-  margin-left: 10px;
-  color: var(--ink-2);
 }
 
 /* The Fragrance Shelf (FragranceShelf.tsx): photographs of the five
@@ -1246,20 +1337,6 @@
   .shelf__shadow {
     transition: none;
   }
-}
-
-.shelf__review {
-  display: grid;
-  gap: 4px;
-  margin-top: 14px;
-}
-
-.shelf__title .entry__name {
-  font-weight: 600;
-}
-
-.shelf__title .entry__detail {
-  margin-left: 10px;
 }
 
 /* Places, drawn as a map (PlacesMap.tsx) after Gauri Menon's "Where" card.

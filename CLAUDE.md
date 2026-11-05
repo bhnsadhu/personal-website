@@ -47,22 +47,30 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   not (the map's `pmap__label` is plain, as on hers), sits 14px above its
   first item; 14px either side of a row rule; 14px to the credit line; every
   block on the same left and right edge; a map popup sits exactly 12px above
-  its pin. Favorite Tables has `view: 'ranked'`: laid out like a Beli list,
-  "Ranked on Beli" over rows of rank, place, and his Beli `score` in a
-  ring (green `--score`, on cream in both views), in his order; no photos. Indian Cinema has `view: 'posters'` (`PosterRow.tsx`):
+  its pin. An open personal card fits on screen like every other (536 to
+  685px at 1440): `PersonalBack` puts its words in a left column (intro,
+  the chosen favorite's name and note, links, credit) and its picture in the
+  right, 2:3, once its container is 900px or wider (`.pback`); narrower (the
+  list view, phones) it is one column, intro, picture, note, credit.
+  `PersonalBack` owns which favorite is chosen (the first, to start).
+  Favorite Tables has `view: 'ranked'`: laid out like a Beli list,
+  "Ranked on Beli" / "Click a place to read why" over rows of rank, place,
+  address, and his Beli `score` in a 40px ring (green `--score`, on cream in
+  both views; wine on the chosen row), in his order; no photos; a row is
+  chosen like a poster, and its order and note show beside the list. Indian Cinema has `view: 'posters'` (`PosterRow.tsx`):
   Letterboxd's favorite films, a "Favorite films" label over a rule, five
   TMDB posters (`public/posters/`, 342x513, 2:3, cover-cropped so all
   match) with title and year (`detail`) along a poster's foot on hover,
   "Click a poster to read why" beside the label; hover only lifts, the
   chosen film gets the wine ring and a bar under it, and its note fades in
-  below. Fragrance Shelf has `view: 'shelf'` (`FragranceShelf.tsx`): each
+  beside the posters. Fragrance Shelf has `view: 'shelf'` (`FragranceShelf.tsx`): each
   entry's `photo` (`public/fragrances/*.webp`: product photos with the
   background lifted on-device, trimmed, 400px for the tallest) stood on a
   brass ledge at its real height (`cm`) against the others, house names
   beneath in columns that match the bottles; "On my shelf" / "Click a
   bottle to read why" over a rule; hover lifts a bottle, the chosen one
   rises with a glow and the wine bar under its name while its shadow stays
-  on the shelf, and its note fades in below. Places has `view: 'map'`,
+  on the shelf, and its note fades in beside the shelf. Places has `view: 'map'`,
   each entry an `at` [lat, lon] and `flag`),
   `metrics.ts`, `sections.ts` (`sectionHeads`: each
   section's eyebrow and title, and `sectionNotes`: the note beside it,
@@ -363,7 +371,7 @@ The fan (projects) · The chips (skills) · The flop (personal) · Let's talk
 (contact). Buttons and links: "Explore My Work", "View Resume", "Contact
 Me" (hero), "Resume" (nav, footer), "Send Message" (submit), "Back to the
 hand", "View experience", "Explore the project", "List view" / "Card view", "Live Demo",
-"Repository" (a project's code), "App Store" (Ingenio Care's listing), "GitHub" (his own profile: footer, contact, search), "View Credential", "Search", "Back to top" (aria), "Close" / "Previous screenshot" / "Next screenshot" (aria, the enlarged screenshot), "Hold space to skip" / "Hold to skip" (the opening deal), "Switch to light theme" / "Switch to dark theme"
+"Repository" (a project's code), "App Store" (Ingenio Care's listing), "GitHub" (his own profile: footer, contact, search), "View Credential", "Search", "Back to top" (aria), "Close" / "Previous screenshot" / "Next screenshot" (aria, the enlarged screenshot), "Hold space to skip" / "Hold to skip" (the opening deal), "Click a place to read why" (Favorite Tables), "Switch to light theme" / "Switch to dark theme"
 (aria and title on the sun/moon). The
 search placeholder is "Search the deck…" and an empty search reads "Not in
 the deck: “…”". Face-down cards say "Not dealt yet"; a card face on a touch screen says

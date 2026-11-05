@@ -828,7 +828,8 @@
   outline-color: var(--gray);
 }
 
-.ix__back .posters__year {
+.ix__back .pback__detail,
+.ix__back .ranked__hint {
   color: var(--gray);
 }
 

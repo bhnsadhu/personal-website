@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import type { PersonalEntry } from '../data'
 
 /** A soft hyphen midway through any word of ten letters or more, so a long
@@ -14,13 +13,11 @@ const breakable = (s: string) =>
  * The Fragrance Shelf: photographs of the five bottles, cut out and stood on
  * a brass shelf with approximate bottle proportions, each house's name
  * on the ledge beneath. Hover lifts a bottle; the chosen one rises with a
- * bold house name, its shadow stays on the shelf, and its note
- * fades in below. The first bottle starts chosen.
+ * bold house name, and its shadow stays on the shelf. The back that holds
+ * it (PersonalBack) owns which bottle is chosen and shows its note beside it.
  */
-export function FragranceShelf({ entries }: { entries: PersonalEntry[] }) {
-  const [open, setOpen] = useState(0)
+export function FragranceShelf({ entries, open, onPick }: { entries: PersonalEntry[]; open: number; onPick: (i: number) => void }) {
   const tallest = Math.max(...entries.map((e) => e.cm ?? 0)) || 1
-  const pick = entries[open]
 
   return (
     <div className="shelf">
@@ -36,9 +33,7 @@ export function FragranceShelf({ entries }: { entries: PersonalEntry[] }) {
             className="shelf__slot"
             aria-label={[e.name, e.detail].filter(Boolean).join(', ')}
             aria-pressed={open === i}
-            onClick={() => {
-              setOpen(i)
-            }}
+            onClick={() => onPick(i)}
           >
             <span className="shelf__shadow" aria-hidden="true" />
             {e.photo && (e.photoFrame ? (
@@ -72,15 +67,6 @@ export function FragranceShelf({ entries }: { entries: PersonalEntry[] }) {
           </span>
         ))}
       </div>
-      {pick && (
-        <div key={open} className="shelf__review" aria-live="polite">
-          <p className="shelf__title">
-            <span className="entry__name">{pick.name}</span>
-            {pick.detail && <span className="entry__detail">{pick.detail}</span>}
-          </p>
-          <p className="entry__note">{pick.note}</p>
-        </div>
-      )}
     </div>
   )
 }

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import type { Experience, Highlight, Leadership, Link as LinkData, PersonalCard, PersonalEntry, Project } from '../data'
 import { personalExtras, projects } from '../data'
 import { Link } from '../lib/router'
@@ -152,44 +153,59 @@ export function ProjectBack({ p }: { p: Project }) {
 function EntryDetails({ e }: { e: PersonalEntry }) {
   return (
     <>
-      {e.address && (
-        <p className="entry__line mono mono--sm">
-          <a className="entry__map" href={mapsHref(e.name, e.address)} target="_blank" rel="noreferrer">
-            {e.address}
-            <span className="sr-only"> (Google Maps)</span>
-          </a>
-        </p>
-      )}
-      {e.pick && (
-        <p className="entry__line">
-          <span className="entry__key mono mono--sm">Order</span>
-          {e.pick}
-        </p>
-      )}
+      {e.address && <Address e={e} />}
+      <Order e={e} />
       <p className="entry__note">{e.note}</p>
     </>
   )
 }
 
+function Address({ e }: { e: PersonalEntry }) {
+  if (!e.address) return null
+  return (
+    <p className="entry__line mono mono--sm">
+      <a className="entry__map" href={mapsHref(e.name, e.address)} target="_blank" rel="noreferrer">
+        {e.address}
+        <span className="sr-only"> (Google Maps)</span>
+      </a>
+    </p>
+  )
+}
+
+function Order({ e }: { e: PersonalEntry }) {
+  if (!e.pick) return null
+  return (
+    <p className="entry__line">
+      <span className="entry__key mono mono--sm">Order</span>
+      {e.pick}
+    </p>
+  )
+}
+
 /**
  * Favorite Tables, laid out like a Beli list: one tab-style label over the
- * rows, each row its rank, the place, and his Beli score in a ring on the right.
+ * rows, each row its rank, the place, its address, and his Beli score in a
+ * ring on the right. A row is chosen like a poster or a bottle; what to
+ * order and the note sit beside the list.
  */
-function RankedEntries({ entries }: { entries: PersonalEntry[] }) {
+function RankedEntries({ entries, open, onPick }: { entries: PersonalEntry[]; open: number; onPick: (i: number) => void }) {
   return (
-    <>
+    <div className="rankedlist">
       <p className="ranked__tabs mono mono--sm">
         <span className="ranked__tab">Ranked on Beli</span>
+        <span className="ranked__hint">Click a place to read why</span>
       </p>
       <ol className="ranked">
         {entries.map((e, i) => (
-          <li key={e.name} className="ranked__row">
+          <li key={e.name} className={`ranked__row${open === i ? ' is-on' : ''}`} onClick={() => onPick(i)}>
             <span className="ranked__rank" aria-hidden="true">
               {i + 1}
             </span>
             <div className="ranked__body">
-              <p className="entry__name">{e.name}</p>
-              <EntryDetails e={e} />
+              <button type="button" className="ranked__pick entry__name" aria-pressed={open === i}>
+                {e.name}
+              </button>
+              <Address e={e} />
             </div>
             {e.score !== undefined && (
               <span className="ranked__score mono">
@@ -200,38 +216,70 @@ function RankedEntries({ entries }: { entries: PersonalEntry[] }) {
           </li>
         ))}
       </ol>
-    </>
+    </div>
   )
 }
 
-export function PersonalBack({ c }: { c: PersonalCard }) {
+/** The chosen place, film, or bottle: its name, and why. */
+function Chosen({ e, view }: { e: PersonalEntry; view: PersonalCard['view'] }) {
   return (
-    <>
-      {c.intro && <p className="card__summary">{c.intro}</p>}
-      {c.view === 'map' ? (
-        <PlacesMap entries={c.entries} />
-      ) : c.view === 'ranked' ? (
-        <RankedEntries entries={c.entries} />
-      ) : c.view === 'posters' ? (
-        <PosterRow entries={c.entries} />
-      ) : c.view === 'shelf' ? (
-        <FragranceShelf entries={c.entries} />
-      ) : (
-        <ol className="card__entries">
-          {c.entries.map((e) => (
-            <li key={e.name} className="entry">
-              <p className="entry__head">
-                <span className="entry__name">{e.name}</span>
-                {e.detail && <span className="entry__detail">{e.detail}</span>}
-              </p>
-              <EntryDetails e={e} />
-            </li>
-          ))}
-        </ol>
-      )}
-      <Links links={c.links} />
-      {c.inspiredBy && <p className="card__credit">{c.inspiredBy}</p>}
-    </>
+    <div className="pback__pick" aria-live="polite">
+      <p className="pback__title">
+        <span className="entry__name">{e.name}</span>
+        {view !== 'ranked' && e.detail && <span className="pback__detail">{e.detail}</span>}
+      </p>
+      {view === 'ranked' && <Order e={e} />}
+      <p className="entry__note">{e.note}</p>
+    </div>
+  )
+}
+
+/**
+ * A personal card's back. Where it has the room (an open card on a wide
+ * screen), its words sit in a column on the left (the intro, the chosen
+ * favorite's note, the credit) and its picture fills the right: the map,
+ * the posters, the shelf, or the ranked list. So the whole card fits on
+ * screen like every other. Narrow, it is one column again, the note under
+ * the picture it belongs to.
+ */
+export function PersonalBack({ c }: { c: PersonalCard }) {
+  const [pick, setPick] = useState(0)
+  const picks = c.view === 'ranked' || c.view === 'posters' || c.view === 'shelf'
+  const chosen = picks ? c.entries[pick] : undefined
+  return (
+    <div className="pback">
+      <div className="pback__grid">
+        <div className="pback__text">
+          {c.intro && <p className="card__summary pback__intro">{c.intro}</p>}
+          {chosen && <Chosen key={pick} e={chosen} view={c.view} />}
+          <Links links={c.links} />
+          {c.inspiredBy && <p className="card__credit">{c.inspiredBy}</p>}
+        </div>
+        <div className="pback__view">
+          {c.view === 'map' ? (
+            <PlacesMap entries={c.entries} />
+          ) : c.view === 'ranked' ? (
+            <RankedEntries entries={c.entries} open={pick} onPick={setPick} />
+          ) : c.view === 'posters' ? (
+            <PosterRow entries={c.entries} open={pick} onPick={setPick} />
+          ) : c.view === 'shelf' ? (
+            <FragranceShelf entries={c.entries} open={pick} onPick={setPick} />
+          ) : (
+            <ol className="card__entries">
+              {c.entries.map((e) => (
+                <li key={e.name} className="entry">
+                  <p className="entry__head">
+                    <span className="entry__name">{e.name}</span>
+                    {e.detail && <span className="entry__detail">{e.detail}</span>}
+                  </p>
+                  <EntryDetails e={e} />
+                </li>
+              ))}
+            </ol>
+          )}
+        </div>
+      </div>
+    </div>
   )
 }
 
