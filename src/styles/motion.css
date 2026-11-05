@@ -200,7 +200,7 @@
     transform: translateX(calc((var(--i, 0) - 1.5) * 14px)) rotate(calc(var(--rot, 0deg) * 1.2));
   }
   .row--fan:not(.has-open):hover .card:hover,
-  .row--fan:not(.has-open) .card:focus-within {
+  .row--fan:not(.has-open) .card:has(:focus-visible) {
     transform: translateX(calc((var(--i, 0) - 1.5) * 14px)) rotate(calc(var(--rot, 0deg) * 1.2)) translateY(-22px);
   }
 }

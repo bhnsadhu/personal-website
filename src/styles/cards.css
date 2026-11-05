@@ -163,8 +163,11 @@
   margin-left: 0;
 }
 
+/* Keyboard focus lifts a card like hover does. Not plain focus: closing a
+   card hands focus back to its face, and a mouse visitor would see the ace
+   stay raised instead of settling back into the hand. */
 .row--fan:not(.has-open) .card:hover,
-.row--fan:not(.has-open) .card:focus-within {
+.row--fan:not(.has-open) .card:has(:focus-visible) {
   transform: rotate(var(--rot, 0deg)) translateY(-18px);
   z-index: 2;
 }
