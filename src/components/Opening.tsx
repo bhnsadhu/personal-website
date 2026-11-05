@@ -235,7 +235,7 @@ export function Opening() {
           // end, so on this curve the card is face up, and snaps down onto
           // the felt, well before DEAL_MS is up.
           sfx('deal', 0)
-          sfx('flip', easeAt(0.9) * DEAL_MS)
+          sfx('flip', easeAt(0.95) * DEAL_MS)
           // The card's own box, without the fan's rotation. The fan eases its
           // transform, so the transition is off while it is measured.
           const saved = { transform: card.style.transform, transition: card.style.transition }
