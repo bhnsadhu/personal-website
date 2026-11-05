@@ -21,16 +21,11 @@
    the shadow, which a scrolling box would otherwise clip. */
 .rail {
   --card-w: 248px;
-  --open-w: min(860px, 100%);
+  --open-w: 100%; /* every row: an open card fills it */
   position: relative;
 }
 
-.rail--flop {
-  --open-w: 100%;
-}
-
-.row--row,
-.row--flop {
+.row--row {
   display: flex;
   align-items: flex-start;
   gap: 20px;
@@ -43,28 +38,24 @@
   margin: -14px -6px -34px;
 }
 
-.row--row::-webkit-scrollbar,
-.row--flop::-webkit-scrollbar {
+.row--row::-webkit-scrollbar {
   display: none;
 }
 
 /* `safe`: once an open card makes the row overflow, it starts from the left
    edge instead of pushing its first card out of reach, and the change is
    continuous, so nothing snaps sideways as the card widens. */
-.rail.fits .row--row,
-.rail.fits .row--flop {
+.rail.fits .row--row {
   justify-content: safe center;
 }
 
-.row--row > .card,
-.row--flop > .card {
+.row--row > .card {
   flex: 0 0 var(--card-w);
   scroll-snap-align: start;
   transition: flex-basis var(--slide) var(--ease);
 }
 
-.row--row > .card.is-open,
-.row--flop > .card.is-open {
+.row--row > .card.is-open {
   flex-basis: var(--open-w);
 }
 
@@ -81,8 +72,7 @@
 }
 
 /* An open back is never shorter than a closed card beside it. */
-.row--row > .card.is-open .card__back,
-.row--flop > .card.is-open .card__back {
+.row--row > .card.is-open .card__back {
   min-height: calc(var(--card-w) * 1.4);
 }
 
@@ -101,7 +91,7 @@
 /* An open card that fills the row is what the visitor asked to read; the
    fade would grey its own edges. (.row.row matches the four classes of
    the fade rules above.) */
-.rail--flop .row.row.has-open {
+.rail--row .row.row.has-open {
   mask-image: none;
 }
 
@@ -734,8 +724,7 @@
   .row--fan::-webkit-scrollbar {
     display: none;
   }
-  .row--row,
-  .row--flop {
+  .row--row {
     gap: 14px;
   }
   .row--fan > .card,

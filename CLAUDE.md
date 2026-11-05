@@ -115,7 +115,7 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   buttons ("Previous cards" / "More cards", 44px at 720 and below) that page by all but one card;
   arrow keys do the same while a card face has focus, and focus moves
   with the page. Opening a card widens
-  it in place (`--open-w`: min(860px, 100%), the full row for `flop`) with
+  it in place to the full row (`--open-w: 100%`, in every section alike) with
   its back never shorter than a closed card, its width and height
   travelling together (`src/lib/cardSize.ts`: left to CSS, an open back laid
   out at closed width is 1,500px tall and a closed face laid out at open
@@ -126,10 +126,11 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   if it would not be wholly in view, and the page scrolls so the card sits
   under the nav or its foot ("Back to the hand") clears the bottom of the
   screen (`planScroll` / `runScroll` in CardRow, `src/lib/ease.ts`; a wheel
-  or touch takes over); the other cards stay whole. A card that fills
-  the row (`flop`, and every open card at 720 and below) drops the edge
-  fade, which would grey its own edges. Layouts: `row`
-  (spread, fan), `flop` (face cards and personal), and `fan` (the hero),
+  or touch takes over); the other cards stay whole. An open card fills the
+  row, so the row drops its edge fade, which would grey the card's own
+  edges. Layouts: `row` (every section: spread, face cards, fan, flop, one
+  row each, so they fit, scroll, count, page and open the same way) and
+  `fan` (the hero),
   which on a wide screen always fits, so it keeps its overlap and, when a
   card opens, its slivers: the same flex row, the open ace seven parts and
   each other one part, on solid `--cream-2` stock, so opening, switching and
@@ -139,8 +140,8 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   face, and a clicked ace must settle back into the hand. A centred row that overflows would hide its first card, so
   rows only centre when they fit.
 - `src/sections/` — Hand (hero: intro, actions, seeking line, and
-  beside them `HeroPhoto`, then four aces), Spread (experience), FaceCards (leadership, dealt three to a suit
-  in one row per suit: K/Q/J spades, then clubs), Fan (projects;
+  beside them `HeroPhoto`, then four aces), Spread (experience), FaceCards (leadership, dealt three to a suit,
+  K/Q/J spades then clubs, in one row like the others), Fan (projects;
   `status: 'idea'` renders face down and shows a toast), ChipsSection
   (skills plus certifications), Flop (personal: flop and turn, four cards),
   CallOrFold (contact form posting to `/api/contact`).

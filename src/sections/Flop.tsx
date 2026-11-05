@@ -15,7 +15,7 @@ export function Flop() {
     >
       <p className="lede flop__intro">{personalIntro}</p>
       <div className="table">
-        <CardRow ids={cards.map((c) => c.slug)} layout="flop" ariaLabel="Personal interests">
+        <CardRow ids={cards.map((c) => c.slug)} ariaLabel="Personal interests">
           {(row) =>
             cards.map((c, i) => (
               <Card

@@ -501,14 +501,6 @@
 
 /* Block, not grid: each row centers itself with auto margins, which a
    grid or flex parent would shrink-wrap to nothing. */
-.face-rows {
-  display: block;
-}
-
-.face-rows .row + .row {
-  margin-top: 28px;
-}
-
 /* ---------------- Chips ---------------- */
 
 /* Stacks line up along the top so one long list does not float the rest. */

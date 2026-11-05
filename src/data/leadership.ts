@@ -110,6 +110,10 @@ export const leadership: Leadership[] = [
     title: 'Director of Cultural Events',
     subtitle: 'Indian Student Association',
     meta: 'Aug 2025 — Present',
+    progression: [
+      { role: 'Director of Cultural Events', dates: 'Aug 2026 — Present' },
+      { role: 'Freshman Representative', dates: 'From Aug 2025' },
+    ],
     summary: "Bringing the South Asian community at the University of Illinois Urbana-Champaign together through cultural programming.",
     body: [
       'Led five South Asian Unity Week events reaching 1,000+ attendees in total.',

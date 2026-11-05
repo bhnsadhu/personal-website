@@ -17,7 +17,7 @@ export const personal: PersonalCard[] = [
     slug: 'favorite-tables',
     title: 'Favorite Tables',
     subtitle: 'Five favorites right now.',
-    meta: 'Current top five',
+    meta: 'Five favorites',
     summary: 'Five favorites right now.',
     view: 'ranked',
     intro:
@@ -72,7 +72,7 @@ export const personal: PersonalCard[] = [
     slug: 'fragrance-shelf',
     title: 'Fragrance Shelf',
     subtitle: 'A few favorites in rotation.',
-    meta: 'In rotation',
+    meta: 'Five favorites',
     summary: 'A few favorites in rotation.',
     view: 'shelf',
     inspiredBy: 'Inspired by my fragrance shelf at home.',

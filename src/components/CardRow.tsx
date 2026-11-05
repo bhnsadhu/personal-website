@@ -13,8 +13,8 @@ export interface RowState {
 
 interface CardRowProps {
   ids: string[]
-  /** 'fan' overlaps cards until one opens; 'row' is a flat spread; 'flop' centers a short set. */
-  layout?: 'row' | 'fan' | 'flop'
+  /** 'row' for every section; 'fan' is the hero's overlapped hand. */
+  layout?: 'row' | 'fan'
   className?: string
   ariaLabel: string
   children: (state: RowState) => ReactNode
