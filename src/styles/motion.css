@@ -144,7 +144,7 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 255, 255, 0.55), transparent 55%);
+  background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), var(--glare), transparent 55%);
   mix-blend-mode: soft-light;
   opacity: 0;
   transition: opacity 0.3s var(--ease);
@@ -502,13 +502,13 @@ html[data-intro='play'] .hero__photo {
   border-radius: var(--card-radius);
   background-color: var(--bg-2);
   background-image:
-    repeating-linear-gradient(45deg, rgba(176, 141, 87, 0.24) 0 1px, transparent 1px 11px),
-    repeating-linear-gradient(-45deg, rgba(176, 141, 87, 0.24) 0 1px, transparent 1px 11px);
+    repeating-linear-gradient(45deg, var(--back-hatch-strong) 0 1px, transparent 1px 11px),
+    repeating-linear-gradient(-45deg, var(--back-hatch-strong) 0 1px, transparent 1px 11px);
   box-shadow:
-    inset 0 0 0 1px rgba(176, 141, 87, 0.75),
+    inset 0 0 0 1px var(--back-edge),
     inset 0 0 0 7px var(--bg-2),
-    inset 0 0 0 8px rgba(176, 141, 87, 0.35),
-    0 10px 24px rgba(0, 0, 0, 0.5);
+    inset 0 0 0 8px var(--back-inlay),
+    var(--back-drop);
 }
 
 .opening__back {

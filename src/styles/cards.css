@@ -428,8 +428,8 @@
   color: var(--brass);
   background-color: var(--bg-2);
   background-image:
-    repeating-linear-gradient(45deg, rgba(176, 141, 87, 0.16) 0 1px, transparent 1px 11px),
-    repeating-linear-gradient(-45deg, rgba(176, 141, 87, 0.16) 0 1px, transparent 1px 11px);
+    repeating-linear-gradient(45deg, var(--back-hatch) 0 1px, transparent 1px 11px),
+    repeating-linear-gradient(-45deg, var(--back-hatch) 0 1px, transparent 1px 11px);
 }
 
 .card.is-down .card__front::before {
@@ -646,7 +646,7 @@
   .card__back {
     backface-visibility: visible;
     -webkit-backface-visibility: visible;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s var(--ease);
   }
   .card__back {
     transform: none;

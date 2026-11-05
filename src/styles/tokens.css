@@ -58,6 +58,15 @@
   --pop-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
   --pip-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset, 0 4px 10px rgba(0, 0, 0, 0.35);
   --chip-shadow: 0 3px 0 rgba(0, 0, 0, 0.55), 0 1px 0 rgba(255, 255, 255, 0.12) inset;
+  /* Card backs (face down, and the opening deal's deck) stay dark in both
+     themes, so their brass crosshatch and drop are fixed too. */
+  --back-hatch: color-mix(in srgb, var(--brass-fill) 16%, transparent);
+  --back-hatch-strong: color-mix(in srgb, var(--brass-fill) 24%, transparent);
+  --back-edge: color-mix(in srgb, var(--brass-fill) 75%, transparent);
+  --back-inlay: color-mix(in srgb, var(--brass-fill) 35%, transparent);
+  --back-drop: 0 10px 24px rgba(0, 0, 0, 0.5);
+  /* The glare that follows the cursor across a tilted card. */
+  --glare: rgba(255, 255, 255, 0.55);
 
   --container: 1240px;
   --gutter: 32px;

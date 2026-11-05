@@ -159,12 +159,14 @@ export function CardRow({ ids, layout = 'row', className = '', ariaLabel, childr
   }, [openId, measure])
 
   // A page of cards at a time, leaving the last one in view as a landmark.
-  const step = useCallback((dir: -1 | 1) => {
+  const step = useCallback((dir: -1 | 1): number => {
     const row = rowRef.current
     const card = row?.querySelector<HTMLElement>('.card:not(.is-open)')
-    if (!row || !card) return
+    if (!row || !card) return 0
     const w = card.offsetWidth + GAP
-    row.scrollBy({ left: dir * w * Math.max(1, Math.floor(row.clientWidth / w) - 1), behavior: 'smooth' })
+    const by = Math.max(1, Math.floor(row.clientWidth / w) - 1)
+    row.scrollBy({ left: dir * w * by, behavior: 'smooth' })
+    return by
   }, [])
 
   function onKeyDown(e: KeyboardEvent<HTMLDivElement>) {
@@ -176,7 +178,13 @@ export function CardRow({ ids, layout = 'row', className = '', ariaLabel, childr
     // Arrow keys page the row while focus is on a card's face.
     if ((e.key === 'ArrowRight' || e.key === 'ArrowLeft') && !view.fits && (e.target as HTMLElement).closest('.card__front')) {
       e.preventDefault()
-      step(e.key === 'ArrowRight' ? 1 : -1)
+      const dir = e.key === 'ArrowRight' ? 1 : -1
+      const by = step(dir)
+      // Focus goes with the page, so it never sits on a card scrolled out of view.
+      const cards = [...(rowRef.current?.children ?? [])] as HTMLElement[]
+      const at = cards.findIndex((c) => c.contains(e.target as Node))
+      const next = cards[Math.max(0, Math.min(cards.length - 1, at + dir * by))]
+      next?.querySelector<HTMLElement>('.card__front')?.focus({ preventScroll: true })
     }
   }
 

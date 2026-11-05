@@ -105,7 +105,8 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
   sideways, snapping card by card, fades (56px) on the side with more to
   see, and shows a bar above it: "1–4 of 6" (or "1 of 6") and round ← →
   buttons ("Previous cards" / "More cards", 44px at 720 and below) that page by all but one card;
-  arrow keys do the same while a card face has focus. Opening a card widens
+  arrow keys do the same while a card face has focus, and focus moves
+  with the page. Opening a card widens
   it in place (`--open-w`: min(860px, 100%), the full row for `flop`) with
   its back never shorter than a closed card, its width and height
   travelling together (`src/lib/cardSize.ts`: left to CSS, an open back laid
