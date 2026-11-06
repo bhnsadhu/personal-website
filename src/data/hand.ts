@@ -65,7 +65,7 @@ export const hand: Highlight[] = [
   {
     kind: 'role',
     slug: 'replit-campus-ambassador',
-    corner: 'Current',
+    corner: 'Campus',
     title: 'Campus Ambassador',
     subtitle: 'Replit',
     meta: 'Aug 2026 — Present',
