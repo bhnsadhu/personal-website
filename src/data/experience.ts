@@ -89,6 +89,23 @@ export const experience: Experience[] = [
     tags: ['Claude', 'Workflow Design', 'Sales Prospecting', 'Team Leadership', 'AI Adoption'],
   },
   {
+    slug: 'replit-campus-ambassador',
+    company: 'Replit',
+    role: 'Campus Ambassador',
+    dates: 'Aug 2026 — Present',
+    location: 'Champaign, IL',
+    title: 'Campus Ambassador',
+    subtitle: 'Replit',
+    meta: 'Aug 2026 — Present',
+    summary: 'Bringing Replit Agent to University of Illinois Urbana-Champaign students through workshops and build sessions.',
+    body: [
+      'Drive campus adoption of Replit Agent by introducing University of Illinois Urbana-Champaign students to AI-assisted software development.',
+      'Organize workshops and build sessions to help students turn ideas into working applications with Replit Agent.',
+      'Gather student feedback on onboarding and usability to identify adoption barriers and inform product improvements.',
+    ],
+    tags: ['Campus Adoption', 'Workshops', 'User Feedback', 'AI-Assisted Development', 'Replit Agent'],
+  },
+  {
     slug: 'ingenio-care',
     company: 'Ingenio Care, Inc.',
     role: 'Product Builder Intern',
