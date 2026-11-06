@@ -10,9 +10,11 @@ import './styles/palette.css'
 import './styles/motion.css'
 import { installReveal } from './lib/motion'
 import { installWidows } from './lib/widows'
+import { installSmoothScroll } from './lib/smoothScroll'
 
 installReveal()
 installWidows()
+installSmoothScroll()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

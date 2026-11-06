@@ -3,6 +3,7 @@ import type { Face, Rank, Suit } from '../data'
 import { onDeal, takeDeal } from '../lib/deal'
 import { Link } from '../lib/router'
 import { SEP } from '../lib/sep'
+import { scrollToY } from '../lib/smoothScroll'
 import { LiveDot } from './LiveDot'
 import { SuitGlyph } from './Suit'
 
@@ -47,7 +48,7 @@ export function IndexGroup({ ids, label, children }: { ids: string[]; label: str
       requestAnimationFrame(() => {
         if (!row) return
         const nav = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 0
-        window.scrollTo({ top: row.getBoundingClientRect().top + window.scrollY - nav - 16 })
+        scrollToY(row.getBoundingClientRect().top + window.scrollY - nav - 16)
         row.querySelector<HTMLElement>('.ix__btn')?.focus({ preventScroll: true })
       }),
     )

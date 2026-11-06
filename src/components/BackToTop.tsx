@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react'
-import { useReducedMotion } from '../lib/useReducedMotion'
+import { scrollToY } from '../lib/smoothScroll'
 import { ArrowUpIcon } from './Icons'
 
 /** The corner arrow. Shows once a screen of the page has scrolled past. */
 export function BackToTop() {
   const [shown, setShown] = useState(false)
-  const reduced = useReducedMotion()
 
   useEffect(() => {
     let frame = 0
@@ -29,7 +28,7 @@ export function BackToTop() {
       className={`fab to-top ${shown ? 'is-shown' : ''}`.trim()}
       aria-label="Back to top"
       title="Back to top"
-      onClick={() => window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' })}
+      onClick={() => scrollToY(0)}
     >
       <ArrowUpIcon className="icon--brass" />
     </button>

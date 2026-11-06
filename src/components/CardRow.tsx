@@ -2,6 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState, type Keyboar
 import { onDeal, takeDeal } from '../lib/deal'
 import { animateSizes, boxOf, type Box } from '../lib/cardSize'
 import { slideMs, tween } from '../lib/ease'
+import { scrollToY } from '../lib/smoothScroll'
 
 export interface RowState {
   openId: string | null
@@ -105,7 +106,7 @@ export function CardRow({ ids, layout = 'row', className = '', ariaLabel, childr
       requestAnimationFrame(() => {
         if (!card) return
         const nav = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 0
-        window.scrollTo({ top: card.getBoundingClientRect().top + window.scrollY - nav - 16 })
+        scrollToY(card.getBoundingClientRect().top + window.scrollY - nav - 16)
       }),
     )
   }, [openId])

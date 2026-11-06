@@ -8,6 +8,7 @@ import {
   type ReactNode,
 } from 'react'
 import { flushSync } from 'react-dom'
+import { scrollToElement, scrollToY } from './smoothScroll'
 
 /**
  * A small client-side router. It does exactly what this site needs:
@@ -49,7 +50,7 @@ export function goBack(fallback = '/') {
 function scrollToHash(hash: string) {
   const el = document.getElementById(hash)
   if (!el) return false
-  el.scrollIntoView({ block: 'start' })
+  scrollToElement(el)
   return true
 }
 
@@ -90,7 +91,7 @@ export function navigate(to: string, options: { replace?: boolean } = {}) {
     // Same page: just move to the anchor (or the top).
     window.history.replaceState(window.history.state, '', to)
     if (hash) scrollToHash(hash)
-    else window.scrollTo({ top: 0 })
+    else scrollToY(0)
     return
   }
   positions.set(currentKey, window.scrollY)

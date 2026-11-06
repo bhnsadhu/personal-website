@@ -212,6 +212,16 @@ contact form, deployed on Vercel. Desktop first; phones get a stacked layout.
 - `src/lib/router.tsx` — in-house router: params, `/#anchor` links, view
   transitions, scroll restoration, and `goBack()` which uses history when
   the visit started in-app and falls back to `/` on a shared link.
+- `src/lib/smoothScroll.ts` — Lenis, eased wheel scrolling for the whole
+  page (`lerp` 0.12). Touch stays native, and Reduce Motion skips it
+  entirely. It waits through the opening deal (`html[data-intro='play']`)
+  and ignores anything inside a `<dialog>`, which scrolls its own list.
+  Code that moves the page *by hand* keeps working: `CardRow`'s tween, the
+  nav scrubber and the router's restore set `scrollTop` with `behavior:
+  'instant'`, and Lenis picks the position up from the scroll event. Code
+  that used to lean on CSS `scroll-behavior: smooth` (nav anchors, a card
+  dealt from search, Back to top) goes through `scrollToY` /
+  `scrollToElement` instead, because Lenis turns the CSS smoothing off.
 - `src/lib/sep.ts` — `SEP`, the " · " between joined items, with a
   no-break space before the dot so a wrapped line never starts with one.
   Use it for every rendered separator, in data and views alike.
