@@ -9,3 +9,7 @@ dist
 .env
 .env.*
 !.env.example
+
+# Scratch output and design-critique notes from working sessions.
+output/
+.impeccable/critique/
