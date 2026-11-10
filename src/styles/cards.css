@@ -275,7 +275,7 @@
   font-family: var(--serif);
   font-weight: 600;
   font-size: 19px;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 }
 
 .card__corner--tl {
@@ -1298,7 +1298,7 @@
 .shelf__label.is-on,
 .posters__item[aria-pressed='true'] .posters__label {
   color: var(--ink);
-  font-weight: 700;
+  font-weight: 600;
 }
 
 /* Narrow: names wrap while keeping the same readable size. */
