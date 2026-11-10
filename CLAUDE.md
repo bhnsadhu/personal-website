@@ -315,9 +315,8 @@ the nav's round sun/moon button, the last thing in the nav, top right.
 `src/lib/theme.ts` sets `data-theme` on `<html>`, saves it to
 `localStorage` `theme`, and updates `theme-color`; the inline script in
 `index.html` applies it before first paint, so nothing flashes. Until
-the visitor picks one, the page follows the system's appearance, live
-(dark when the system says neither); a pick is saved and wins from then
-on. Increase Contrast (`prefers-contrast: more`) steps up gray, rules,
+the visitor picks one, the page is dark, whatever the system prefers; a
+pick is saved and wins from then on. Increase Contrast (`prefers-contrast: more`) steps up gray, rules,
 and brass in both themes, and Reduce Transparency makes the nav and the
 dialog scrims solid with no blur, both in tokens beside each blur. A focus
 ring on cream card stock is wine, not brass (2.7:1 there). Type never
