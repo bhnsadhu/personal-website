@@ -1,71 +1,73 @@
 # Bhanu Sadhu
 
-**Computer Science + Economics at the University of Illinois Urbana-Champaign, with minors in Statistics and Advertising. I work on product and build the software behind it.**
+**Computer Science and Economics at the University of Illinois Urbana-Champaign, building products and software across digital health, AI and consumer apps.** Seeking Summer 2027 internships in Product & Software.
 
-**[bhanusadhu.com](https://bhanusadhu.com)** · [Resume (PDF)](https://bhanusadhu.com/Bhanu_Sadhu_Resume.pdf) · [LinkedIn](https://www.linkedin.com/in/bhanusadhu) · [Email](mailto:sadhubhanu07@gmail.com)
+**[bhanusadhu.com](https://bhanusadhu.com)** · **[Resume](public/Bhanu_Sadhu_Resume.pdf)**
 
-![Demo of bhanusadhu.com in its default dark theme: a deck shuffles and deals four aces, the CatchBack Cards and ScentLens aces flip open to show the role and the project, the experience spread slides past, and the ⌘K search jumps to the Replay project page](docs/screenshots/demo.gif)
+![The site's home page in dark mode: the name Bhanu Prakash Sadhu in large serif type, a short introduction, a portrait, and a hand of four playing cards for current work, a live project, education and campus](docs/screenshots/hero.jpg)
+
+![A recording of the site: a hand is dealt, the first card opens to show a role, a row of cards scrolls, quick search lists every section, and a project page opens with its screenshots](docs/screenshots/demo.gif)
 
 ## About
 
-I like the whole path from "what do people actually need?" to a product that works: talking to users, deciding what matters most, and then building it. That has taken me through digital health, AI adoption, strategy consulting, and a handful of products of my own, all live.
-
-Outside work: card games with friends, new restaurants, a growing fragrance collection, Indian cinema and badminton.
+I'm a Computer Science and Economics student with minors in Statistics and Advertising. My experience spans digital health, AI adoption, consulting and building products of my own, and I like working out what people need, deciding what matters and shipping it. Outside of work I play cards with friends, try restaurants, collect fragrances and watch movies, and all of that ends up on the site.
 
 ## Looking for
 
-**Summer 2027 internships in Product & Software.** Both tracks, equally, and happiest where they meet.
+**Summer 2027 internships in Product & Software**, with both tracks equal.
 
 ## Experience
 
 | Role | Where | When |
 | --- | --- | --- |
-| **Product Management Lead** | CatchBack Cards (YC W26) | Oct 2026 to present |
-| **Product Strategy & Development Consultant** | Replit | Aug 2026 to present |
-| **Senior Strategy Consultant** | A media production firm (confidential) | Aug 2026 to present |
-| **Product Builder Intern** | Ingenio Care, a pre-seed digital health startup | May to Aug 2026 |
-| **Strategy Consultant** | A Berkshire Hathaway-affiliated manufacturer (confidential) | Jan to May 2026 |
-| **Strategy Consultant** | AviLux, a drone technology startup | Jan to May 2026 |
+| Product Management Lead | CatchBack Cards (YC W26), San Francisco | Oct 2026 to present |
+| Product Strategy and Development Consultant | Replit, Foster City | Aug 2026 to present |
+| Campus Ambassador | Replit, Champaign | Aug 2026 to present |
+| Senior Strategy Consultant | Confidential media production firm, Evergreen Park | Aug 2026 to present |
+| Product Builder Intern | Ingenio Care, Lombard | May 2026 to Aug 2026 |
+| Strategy Consultant | Confidential manufacturer, Macomb | Jan 2026 to May 2026 |
+| Strategy Consultant | AviLux, Champaign | Jan 2026 to May 2026 |
 
-At CatchBack I lead a six-person product team working on where new users stall before a first deposit, and what brings collectors back. At Ingenio Care I redesigned 8 feature areas for the App Store launch. At Replit I work on product research and campus adoption, including the learnathon below.
-
-Leadership: Product Space, Disruption Lab at Gies, Illinois Business Consulting, HackIllinois (marketing), the Indian Student Association and Ghungroo Dance Company.
+Some of what I measured along the way: I led the web-to-mobile redesign across **eight feature areas** for Ingenio Care's App Store launch and built a patient and provider outreach pipeline of **750+ contacts** across eight healthcare networks. For a manufacturer I evaluated **500+ product applications across 10 industries** and narrowed them to 12 expansion opportunities, and for AviLux I mapped **15+ FAA and state regulatory requirements** into a compliance roadmap for a proposed pilot. Campus leadership: Product Space, Disruption Lab at Gies, Illinois Business Consulting, the Indian Student Association and Ghungroo Dance Company.
 
 ## Featured projects
 
-| Project | What it is | Links |
+| Project | What it is | Link |
 | --- | --- | --- |
-| **Cambio** | The memory card game, live with friends or fair house bots, with real-time sync and hidden cards kept server-side | [Play](https://cambio.bhanusadhu.com) · [Repo](https://github.com/bhnsadhu/cambio) |
-| **Accord** | Fragrance discovery: search 24,651 fragrances, scan a bottle, and get picks that explain themselves | [Try](https://accord.bhanusadhu.com) · [Repo](https://github.com/bhnsadhu/accord) |
-| **ScentLens** | The model behind Accord's scanner: names a fragrance from a bottle photo, or says it isn't sure (real-photo top-1 from 30.3% to 66.7%) | [Try](https://scentlens.bhanusadhu.com) · [Repo](https://github.com/bhnsadhu/scent-lens) |
-| **Dishwise** | Snap a menu, get every dish ranked for your taste with the points behind each score | [Try](https://dishwise.bhanusadhu.com) · [Repo](https://github.com/bhnsadhu/dishwise) |
-| **Replay** | An arcade-style guess-the-song party game: a TV plays the clip, phones are the buttons | [Play](https://replay.bhanusadhu.com) · [Repo](https://github.com/bhnsadhu/replay) |
-| **Replit Learnathon** | Event site and project wall for a beginner AI build day at the University of Illinois Urbana-Champaign | [Visit](https://learnathon.bhanusadhu.com) · [Repo](https://github.com/bhnsadhu/replit-learnathon) |
+| **Accord** | Fragrance discovery that explains every pick, with a bottle scanner | [accord.bhanusadhu.com](https://accord.bhanusadhu.com) · [repo](https://github.com/bhnsadhu/accord) |
+| **ScentLens** | Names a fragrance from one photo of its bottle, or says it is not sure | [scentlens.bhanusadhu.com](https://scentlens.bhanusadhu.com) · [repo](https://github.com/bhnsadhu/scent-lens) |
+| **Cambio** | A real-time four-player memory card game with measured house bots | [cambio.bhanusadhu.com](https://cambio.bhanusadhu.com) · [repo](https://github.com/bhnsadhu/cambio) |
+| **Dishwise** | Ranks every dish on a menu photo for your taste, read on the device | [dishwise.bhanusadhu.com](https://dishwise.bhanusadhu.com) · [repo](https://github.com/bhnsadhu/dishwise) |
+| **Replay** | A live guess-the-song party game styled as an arcade cabinet | [replay.bhanusadhu.com](https://replay.bhanusadhu.com) · [repo](https://github.com/bhnsadhu/replay) |
 
-Each repo's README covers the problem, product decisions, architecture and measured results.
+The ScentLens demo is paused while its free monthly credit resets, and its page says so.
 
 ## Contact
 
-The fastest way to reach me is [email](mailto:sadhubhanu07@gmail.com) or the contact form on [bhanusadhu.com](https://bhanusadhu.com). I'm also on [LinkedIn](https://www.linkedin.com/in/bhanusadhu).
+[bhanusadhu.com](https://bhanusadhu.com) · [LinkedIn](https://www.linkedin.com/in/bhanusadhu) · [GitHub](https://github.com/bhnsadhu) · [sadhubhanu07@gmail.com](mailto:sadhubhanu07@gmail.com)
 
 ## About the site
 
-**The idea: a resume you play like a hand of cards.** Each section is a deck. Four aces hold the top highlights, experience is a spread, projects are a fan, skills are chips and personal favourites are the flop. Open a card and it fills its row while the others slide back. For a fast read there's a list view and ⌘K search.
+The site is called **Your Hand**: every section is a deck of playing cards, and opening a card widens it to fill its row while the others slide back. A list view shows the same content as a plain index for anyone who would rather scroll than flip, and it is one tap away in the header.
 
-| Decision | Why |
-| --- | --- |
-| **Two runtime dependencies (React and React DOM)** | The card motion, router and search are written by hand, so the bundle stays small and nothing fights the design. |
-| **One content source** | Every role and project is written once in `src/data` and feeds the card, list and detail views, so they can't disagree. |
-| **A list view next to the cards** | The card table is the fun part; a recruiter with two minutes gets the same content as a plain list. |
-| **Live numbers where they exist** | The Cambio stat comes from a small serverless function that asks Cambio for its player count, caches it for a minute, and falls back to the built-in number if Cambio is down. |
-| **Motion that can be skipped** | Hold Space to skip the opening deal. With reduced motion on, flips become fades and the deal doesn't play. |
+**Decisions worth knowing**
 
-**Stack:** React 19, TypeScript and Vite, with hand-written CSS. Two Vercel Functions handle the contact form (sent through Resend) and the live Cambio count. Hosted on Vercel.
+- **One source for content.** Every entry lives once in `src/data/*.ts` and renders in the card, the list view and the detail page, so the three cannot drift apart. The back of a card and the row in the list view share one component per kind.
+- **Fixed card shape.** Cards stay 5:7 and a set width at every size, so rows scroll, count and page the same way everywhere. Opening a card animates its width and height together, because laying a back out at closed width produced a card about 1,500 px tall.
+- **Motion that gives way.** Effects turn off for visitors who prefer reduced motion, every card is a real button or region with managed focus, and dark and light themes are both complete.
+- **Real numbers, stated carefully.** A stat strip shows only figures that appear elsewhere on the site, and funding is labelled as the company's, not mine.
+- **A live count with a fallback.** The Cambio player count comes from a small Vercel Function that passes on one integer, with a built-in number if Cambio is slow or down.
+
+**Measured on the live site** with Lighthouse, mobile preset, on 2026-11-12: **Accessibility 100, Best Practices 100, SEO 100** and **Performance 80**. Largest Contentful Paint is 3.9 s, Total Blocking Time 0 ms and Cumulative Layout Shift 0.001. The paint time is the weakest number and the next thing to look at. There are no automated tests beyond the TypeScript build.
+
+**Stack:** React 19, TypeScript and Vite 7 on Vercel, with Lenis for smooth scrolling and two Vercel Functions: the contact form, which sends mail through Resend, and the live Cambio player count.
+
+**Run it locally**
 
 ```bash
 npm install
-npm run dev     # Vite dev server (the contact form needs the deployed /api)
-npm run build   # typecheck, then the production build in dist/
+npm run dev          # http://localhost:5173; the contact form's /api route needs Vercel
+npm run build        # typecheck, then a production build to dist/
 ```
 
-Content lives in `src/data/*.ts`, the sections in `src/sections`, and the serverless functions in `api/`.
+Content lives in `src/data/`: `site.ts` for identity and what I'm seeking, `experience.ts`, `projects.ts`, `leadership.ts`, `education.ts` and `personal.ts`.
